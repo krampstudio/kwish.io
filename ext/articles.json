@@ -1,0 +1,2 @@
+{ "_id" : { "$oid" : "4e10949c15b5eb811b73a227" }, "name" : "babycook", "description" : "to cook for the baby", "price" : 50, "img" : "http:\/\/ecx.images-amazon.com\/images\/I\/31jZXPoIEzL.jpg", "url" : "http:\/\/www.amazon.com\/Beaba-Babycook-Baby-Food-Maker\/dp\/B001LQCOIS" }
+{ "_id" : { "$oid" : "4e1099a115b5eb811b73a228" }, "name" : "pousette", "description" : "pour mettre le monstre", "price" : 250 }

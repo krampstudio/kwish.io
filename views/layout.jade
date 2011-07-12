@@ -1,6 +1,19 @@
 !!! 5
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/reset.css')
+		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet', href='/stylesheets/start/jquery-ui-1.8.14.custom.css')
+		script(type='text/javascript', src='/lib/jquery-1.5.1.min.js')
+		script(type='text/javascript', src='/lib/jquery-ui-1.8.14.custom.min.js')
+		script(type='text/javascript', src='/widgets.js')
+	body
+		#header= title
+		#container!= body
+		#contact
+			#contact-title.ui-state-highlight 
+				img.icon(src='/imgs/email_go.png') 
+				| Nous contacter
+			#contact-content
+		#footer 2011 - a Bellette & co © production

@@ -1,7 +1,19 @@
-h1= title
-p Welcome to #{title}
-#container
+#intro Welcome to #{title} Welcome to #{title} Welcome to #{title} Welcome to #{title} Welcome to #{title}
+#content
 	ul
-		- each article in articles
-			li #{article.name} : #{article.description}
+		li: a(href='#mustHave') Les indispensables
+		li: a(href='#niceToHave') Les plus
+	#mustHave
+		ul.whishes
+			- each article in articles
+				li 
+					- if (article.img)
+						img.thumbnails(src=article.img)
+					.article-title #{article.name}
+					.article-desc #{article.description}
+					.article-action: a(href='#') Réserver
+	#niceToHave
+		ul.whishes
+			- each article in articles
+				li #{article.name} : #{article.description}
 

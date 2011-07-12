@@ -1,8 +1,108 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{
+	color:#333;
+	height:100%;
+	font-family:Verdana;
+	font-size:14px;
+}
+img.icon {
+	vertical-align: middle;
+	margin-right:5px;
 }
 
-a {
-  color: #00B7FF;
+#header{
+	height:50px;
+	text-align:center;
+	font-size:2em;
+	font-weight:bold;
+	padding-top:10px;
+}
+#container{
+	width:60%;
+	margin:auto;
+}
+#container #intro{
+	border:dashed 1px #ccc;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:8px;
+	color:#666;
+}
+#container #content{
+	margin-top:15px;
+}
+#contact{
+	position: absolute;
+	width:175px;
+	height:250px;
+	left:20px;
+	top:60px;
+	border:solid 1px #fcd113;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+#contact #contact-title{
+	margin:0;
+	position:relative;
+	padding:5px;
+}
+#footer{
+	position: absolute;
+	bottom:0;
+	width:99.5%;
+	height:30px;
+	text-align:center;
+	font-size:0.8em;
+	color:#888;
+	padding:0px;
+}
+
+ul.whishes li{
+	display:block;
+	position:relative;
+	width:95%;
+	padding:10px;
+	border:solid 1px #fcd113;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	margin:5px auto 15px auto;
+	min-height:100px;
+}
+
+.whishes img.thumbnails{
+	width: 100px;
+	height: 100px;
+	float:left;
+	margin-right: 10px;
+	border:solid 1px #eee;
+}
+
+.whishes .article-title,.whishes .article-desc{
+	width:60%;
+	margin:5px 0px 0px 110px;
+	padding:2px;
+}
+.whishes .article-title{
+	font-size:1.2em;
+	font-weight:bold;
+}
+
+.whishes .article-desc{
+	font-size:0.9em;
+	border:solid 1px #efefef;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	background-color:#eee;
+}
+
+.whishes .article-action{
+	position:absolute;
+	right:50px;
+	top:45px;
+	text-align: left;
+	padding-left:24px;
+	background-image: url('../imgs/bullet_go.png');
+	background-repeat: no-repeat;
 }

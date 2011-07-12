@@ -29,7 +29,7 @@ ArticleProvider.prototype.getCollection = function(onSuccess, onError){
 		else {
 			onSuccess(articleCollection);
 		}
-	})
+	});
 };
 
 
