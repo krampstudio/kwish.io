@@ -2,6 +2,11 @@
 
 A web app to build baby wish lists.
 
-It uses Node.js, Express, MongoDB and JQuery
-
-
+This project uses:
+ 
+*	[Node.js](http://nodejs.org/)
+	*  [Express](http://senchalabs.github.com/connect/)
+	*  [Connect](http://expressjs.com/)
+	*  [Jade](http://jade-lang.com/)
+*	[MongoDB](http://www.mongodb.org/)
+* 	[JQuery](http://jquery.com/)

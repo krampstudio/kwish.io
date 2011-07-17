@@ -1,17 +1,11 @@
-var mongodb = require('mongodb'); 
-
-
 /**
  * Constructor
  * Instantiate the provider
  * @class ArticleProvider
- * @param {String} name the mongo database name
- * @param {String} host the mongo server host
- * @param {int}	   port	the mongo server port
+ * @param {MongoStore} the mongo database store instance
  */
-ArticleProvider = function(name ,host, port) {
-  this.db = new mongodb.Db(name, new mongodb.Server(host, port, {auto_reconnect: true}, {}));
-  this.db.open(function(){});
+ArticleProvider = function(store) {
+	this.collection = store.getCollection('articles');
 };
 
 /**
@@ -21,8 +15,7 @@ ArticleProvider = function(name ,host, port) {
  * @param {Function} onError callback
  */
 ArticleProvider.prototype.getCollection = function(onSuccess, onError){
-	var collection = new mongodb.Collection(this.db, 'articles');
-	collection.find().toArray(function(err, articleCollection){
+	this.collection.find().toArray(function(err, articleCollection){
 		if(err){
 			onError(err);
 		}

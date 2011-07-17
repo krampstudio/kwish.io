@@ -10,6 +10,17 @@ html
 		script(type='text/javascript', src='/widgets.js')
 	body
 		#header= title
+		#login-box
+			a#connector(href='#') Se connecter
+			form#login-form
+				label(for='login') Pseudo
+				input#login(type='text',name='login')
+				br
+				label(for='passwd') Mot de passe
+				input#passwd(type='password',name='passwd')
+				br
+				input#logger(type='button',value='connection')
+			
 		#container!= body
 		#contact
 			#contact-title.ui-state-highlight 

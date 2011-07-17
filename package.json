@@ -5,6 +5,7 @@
   , "dependencies": {
       "express": "2.4.0",
       "jade": ">= 0.0.1",
-      "mongodb": "0.9.3"
+      "mongodb": "0.9.3",
+      "hashlib": "1.0.0"
   }
 }

@@ -41,6 +41,7 @@ img.icon {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
+	
 }
 #contact #contact-title{
 	margin:0;
@@ -57,7 +58,49 @@ img.icon {
 	color:#888;
 	padding:0px;
 }
-
+#login-box{
+	position:absolute;
+	top:10px;
+	right:10px;
+	width:230px;
+	height:90px;
+}
+#login-box a{
+	background-color:#41A1C9;
+	color:#fff;
+	padding:5px;
+	margin-top:1px;
+	border:solid 1px #41A1C9;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	text-decoration: none;
+}
+#login-box a:hover{
+	font-style:italic;
+}
+#login-box #login-form{
+	display:none;	
+	background-color:#41A1C9;
+	color:#fff;
+	font-size:0.9em;
+	padding:5px;
+	position:relative;
+	height:100%;
+	border:solid 1px #41A1C9;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+#login-box #login-form label{
+	line-height:25px;
+}
+#login-box #login-form input{
+	width:100px;
+	border:solid 1px #333;
+	position:absolute;
+	left:120px;
+}
 ul.whishes li{
 	display:block;
 	position:relative;
