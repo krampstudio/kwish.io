@@ -46,10 +46,11 @@ var userProvider	= new UserProvider(mongoStore);
 // Routes
 
 app.get('/', function(req, res){
- articleProvider.getCollection(function(articles){
+	articleProvider.getCollection(function(articles){
 	 res.render('index', {
-    		title: 'Baby Wish List',
-		articles : articles
+    		title		: 'Baby Wish List',
+    		articles	: articles,
+    		user		: req.session.user || null
  	 });
  },throwError);
 
@@ -60,21 +61,18 @@ app.post('/login', function(req,res){
 			res.send({valid: false});
 		}
 		else{
+			
 			req.session.user = user;
 			res.send({valid: true});
 		}
 	}, throwError);
 });
 
-app.get('/testSet', function(req, res){
-	req.session.test ='session-tested';
+app.get('/logout', function(req, res){
+	req.session.user = null;
 	res.redirect('/');
 });
-app.get('/testGet', function(req, res){
-	console.log(req.session);
-	console.log(req.session.test);
-	res.redirect('/');
-});
+
 
 
 app.listen(3000);

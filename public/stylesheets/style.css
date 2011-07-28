@@ -58,6 +58,12 @@ img.icon {
 	color:#888;
 	padding:0px;
 }
+#message-box{
+	display:none;
+	margin:15px auto 15px auto;
+	padding:5px;
+	width: 300px;
+}
 #login-box{
 	position:absolute;
 	top:10px;
