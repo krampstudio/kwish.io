@@ -47,7 +47,7 @@ var userProvider	= new UserProvider(mongoStore);
 
 app.get('/', function(req, res){
 	articleProvider.getCollection(function(articles){
-	 res.render('index', {
+	 res.render('content', {
     		title		: 'Baby Wish List',
     		articles	: articles,
     		user		: req.session.user || null

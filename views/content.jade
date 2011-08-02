@@ -9,12 +9,12 @@
 	#mustHave
 		ul.whishes
 			- each article in articles
-				li 
+				li(id='#{article._id}')
 					- if (article.img)
 						img.thumbnails(src=article.img)
 					.article-title #{article.name}
 					.article-desc #{article.description}
-					.article-action: a(href='#') Réserver
+					.article-action: a(href='#') Détails
 	#niceToHave
 		ul.whishes
 			- each article in articles

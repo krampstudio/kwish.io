@@ -1,8 +1,8 @@
 body{
 	color:#333;
-	height:100%;
 	font-family:Verdana;
 	font-size:14px;
+	background-color: #FCFCF5;
 }
 img.icon {
 	vertical-align: middle;
@@ -17,8 +17,12 @@ img.icon {
 	padding-top:10px;
 }
 #container{
+	z-index:100;
 	width:60%;
 	margin:auto;
+	position:relative;
+	height:100%;
+	margin-bottom:50px;
 }
 #container #intro{
 	border:dashed 1px #ccc;
@@ -27,11 +31,15 @@ img.icon {
 	border-radius:5px;
 	padding:8px;
 	color:#666;
+	background-color: #FFF;
 }
 #container #content{
 	margin-top:15px;
+	background-color: #FFF;
 }
 #contact{
+	background-color: #FCFCF5;
+	z-index:100;
 	position: absolute;
 	width:175px;
 	height:250px;
@@ -49,14 +57,21 @@ img.icon {
 	padding:5px;
 }
 #footer{
-	position: absolute;
+	z-index:0;
+	position:fixed;
 	bottom:0;
-	width:99.5%;
-	height:30px;
+	width:100%;
+	border-top:solid #353240 50px;
+	background-color:#767287;
+	height:35%;
 	text-align:center;
+	margin:0;
+}
+#footer p{
 	font-size:0.8em;
-	color:#888;
-	padding:0px;
+	color:#FFF;
+	position:relative;
+	top:90%;
 }
 #message-box{
 	display:none;
