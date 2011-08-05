@@ -50,6 +50,18 @@ $(document).ready(function(){
 		}	
 	});
 	
-	$('#content').tabs({selected : 0});
+	$('#content').tabs({
+		selected : 0,
+		show: function(event, ui){
+			$('ul.whishes li').each(function(){
+				var thumbHeight = parseInt($(this).find('img.thumbnails').height()) + 20;
+				var itemHeight	= parseInt($(this).height());
+				console.log(this.id + " : " + thumbHeight + " > " +itemHeight);
+				if(thumbHeight > itemHeight){
+					$(this).height(thumbHeight + 'px');
+				}
+			});
+		}
+	});
 	
 });

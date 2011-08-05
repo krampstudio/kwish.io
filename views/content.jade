@@ -10,8 +10,13 @@
 		ul.whishes
 			- each article in articles
 				li(id='#{article._id}')
-					- if (article.img)
-						img.thumbnails(src=article.img)
+					- if (article.thumb)
+						-if(typeof(article.thumb) == 'string')
+							img.thumbnails(src='/imgs/articles/#{article.thumb}')
+						-if(typeof(article.thumb) == 'object')
+							img.thumbnails(src='/imgs/articles/#{article.thumb[0]}')
+					- else
+						img.thumbnails(src='/imgs/articles/default.png')
 					.article-title #{article.name}
 					.article-desc #{article.description}
 					.article-action: a(href='#') Détails
