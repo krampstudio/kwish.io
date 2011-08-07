@@ -8,7 +8,10 @@ img.icon {
 	vertical-align: middle;
 	margin-right:5px;
 }
-
+#loader{
+	text-align: center;
+	width:100%;
+}
 #header{
 	height:50px;
 	text-align:center;
@@ -18,7 +21,7 @@ img.icon {
 }
 #container{
 	z-index:100;
-	width:60%;
+	width:65%;
 	margin:auto;
 	position:relative;
 	height:100%;
@@ -36,6 +39,9 @@ img.icon {
 #container #content{
 	margin-top:15px;
 	background-color: #FFF;
+}
+#container .ui-tabs .ui-tabs-panel {
+	padding: 0.8em;	
 }
 #contact{
 	background-color: #FCFCF5;
@@ -122,17 +128,27 @@ img.icon {
 	position:absolute;
 	left:120px;
 }
-ul.whishes li{
+ul.whishes{
+	margin:auto;
+}
+ul.whishes li.article{
 	display:block;
 	position:relative;
-	width:95%;
-	padding:10px;
+	width:29.5%;
+	padding:5px;
 	border:solid 1px #fcd113;
-	-moz-border-radius:15px;
-	-webkit-border-radius:15px;
-	border-radius:15px;
-	margin:5px auto 15px auto;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	margin:5px 5px 15px 5px;
 	min-height:100px;
+	float:left;
+}
+ul.whishes li.article:hover{
+	cursor:pointer;
+	-moz-box-shadow: 0 0 2px 2px #FCDC51;
+	-webkit-box-shadow: 0 0 5px 5px ##fcd113;
+	box-shadow: 0 0 5px 5px #fcd113;
 }
 
 .whishes img.thumbnails{
@@ -140,32 +156,55 @@ ul.whishes li{
 	float:left;
 	margin-right: 10px;
 	border:solid 1px #eee;
+	position:relative;
+	z-index:200;
 }
 
 .whishes .article-title,.whishes .article-desc{
-	width:60%;
-	margin:5px 0px 0px 110px;
 	padding:2px;
 }
 .whishes .article-title{
-	font-size:1.2em;
+	font-size:0.9em;
 	font-weight:bold;
+	background-color:#eee;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
 }
 
 .whishes .article-desc{
-	font-size:0.9em;
-	border:solid 1px #efefef;
-	-moz-border-radius:5px;
-	-webkit-border-radius:5px;
-	background-color:#eee;
+	font-size:0.8em;
 }
 
+.whish{
+	padding:5px;
+}
+.whish .article-photo{
+	float:left;
+	border: solid 1px #eee;
+	margin:0 5px 0 5px;
+}
+.whish .article-title{
+	font-size:1.4em;
+	font-weight:bold;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+.whish .article-price{
+	font-size:3em;
+	font-weight:bold;
+	font-style:italic;
+	color:#ccc;
+}
+/*
 .whishes .article-action{
 	position:absolute;
 	right:50px;
-	top:45px;
+	bottom : 5px;
 	text-align: left;
 	padding-left:24px;
 	background-image: url('../imgs/bullet_go.png');
 	background-repeat: no-repeat;
 }
+*/

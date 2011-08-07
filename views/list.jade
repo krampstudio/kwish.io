@@ -1,0 +1,21 @@
+ul
+	li: a(href='#mustHave') Les indispensables
+	li: a(href='#niceToHave') Les plus
+#mustHave
+	ul.whishes
+		- each article, index in articles
+			li(id='#{article._id}',class='article row-#{Math.floor(index/3)}')
+				- if (article.thumb)
+					- if(typeof(article.thumb) == 'string')
+						img.thumbnails(src='/imgs/articles/#{article.thumb}')
+					- if(typeof(article.thumb) == 'object')
+						img.thumbnails(src='/imgs/articles/#{article.thumb[Math.floor(Math.random()*article.thumb.length)]}')
+				- else
+					img.thumbnails(src='/imgs/articles/default.png')
+				.article-title #{article.name}
+				- if (article.description)
+					.article-desc #{article.description}
+#niceToHave
+	ul.whishes
+		- each article in articles
+			li #{article.name} : #{article.description}

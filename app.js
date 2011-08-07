@@ -1,10 +1,20 @@
-// Dependencies
+/**
+ * Node.js Main file
+ * 
+ * 
+ * @author Bertrand Chevrier <chevrier.bertrand@gmail.com>
+ * @version 0.1
+ * 
+ */
+
+// Import Dependencies
 var express 	= require('express');
 var MemoryStore = require('./node_modules/express/node_modules/connect/lib/middleware/session/memory');
 
+//Create the app instance
 var app = module.exports = express.createServer();
 
-// Configuration
+//Main  Configuration
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -32,12 +42,12 @@ app.configure('production', function(){
 });
 
 
-//Models
+//Load Models providers
 require('./system/mongostore');
 require('./providers/article');
 require('./providers/user');
 
-var mongoStore		= new MongoStore('babywish', 'localhost', 27017);
+var mongoStore		= new MongoStore('babywish', 'localhost', 27017, {native_parser: true});
 var articleProvider = new ArticleProvider(mongoStore);
 var userProvider	= new UserProvider(mongoStore);
 
@@ -45,16 +55,47 @@ var userProvider	= new UserProvider(mongoStore);
 
 // Routes
 
+/*
+ *  Index
+ */
 app.get('/', function(req, res){
-	articleProvider.getCollection(function(articles){
-	 res.render('content', {
+	 res.render('index', {
     		title		: 'Baby Wish List',
-    		articles	: articles,
     		user		: req.session.user || null
- 	 });
+	 });
  },throwError);
+	
+/*
+ * List articles
+ */
+app.get('/list', function(req, res){
+	articleProvider.getCollection(function(articles){
+		 res.render('list', {
+			 	title		: "list",
+			 	layout		: false,
+	    		articles	: articles
+	 	 });
+}, throwError);
+	
+/*
+ * Article
+ */
+app.get('/article', function(req, res){
+	articleProvider.getOne(req.param('id'), function(article){
+			console.log(article);
+			res.render('article', {
+				 	title		: "article",
+				 	layout		: false,
+		    		article		: article
+		 	 });
+	});
+}, throwError);
 
 });
+
+/*
+ * Login
+ */
 app.post('/login', function(req,res){
 	userProvider.login( req.body.login, req.body.passwd, function(user){
 		if(user == null){
@@ -68,12 +109,15 @@ app.post('/login', function(req,res){
 	}, throwError);
 });
 
+/*
+ * Logout
+ */
 app.get('/logout', function(req, res){
 	req.session.user = null;
 	res.redirect('/');
 });
 
 
-
+//on start
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

@@ -6,6 +6,7 @@
  */
 ArticleProvider = function(store) {
 	this.collection = store.getCollection('articles');
+	this.oid	= this.collection.db.bson_serializer.ObjectID;
 };
 
 /**
@@ -25,4 +26,20 @@ ArticleProvider.prototype.getCollection = function(onSuccess, onError){
 	});
 };
 
+/**
+ * Get one article by it's identifier
+ * @param id
+ * @param onSuccess
+ * @param onError
+ */
+ArticleProvider.prototype.getOne = function(id, onSuccess, onError){
+	this.collection.find({'_id': this.oid.createFromHexString(id)}).nextObject(function(err, article){
+		if(err){
+			onError(err);
+		}
+		else {
+			onSuccess(article);
+		}
+	});
+};
 
