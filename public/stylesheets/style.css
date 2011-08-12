@@ -178,11 +178,19 @@ ul.whishes li.article:hover{
 
 .whish{
 	padding:5px;
+	position:realitve;
+}
+.whish .article-photos{
+	width:30%;
+	float:left;
+	margin:0 15px 0 5px;
 }
 .whish .article-photo{
-	float:left;
-	border: solid 1px #eee;
-	margin:0 5px 0 5px;
+	border:solid 1px #eee;
+}
+.whish .article-content{
+	width:70%;
+	margin-left:30%;
 }
 .whish .article-title{
 	font-size:1.4em;
@@ -197,6 +205,38 @@ ul.whishes li.article:hover{
 	font-style:italic;
 	color:#ccc;
 }
+.whish ul.links{
+	list-style-image: url('../imgs/bullet_go.png');	
+}
+.whish ul.links li{
+	margin:5px 0px 10px 50px;
+}
+.whish ul.links li a{
+	font-weight: bold;
+}
+.whish ul.links li a:hover{
+	text-decoration:none;
+}
+.whish ul.options{
+	text-align:right;
+}
+.whish ul.options li{
+	margin:5px 0px 5px 30px;
+	width:300px;
+	/*
+	border:solid 1px #666;
+	padding:5px;
+	
+	background-color:#eee;*/
+}
+/*
+.whish ul.options li a{
+	text-decoration: none;
+	color:#666;
+}
+.whish ul.options li a:hover{
+	color:#333;
+}
 /*
 .whishes .article-action{
 	position:absolute;
@@ -208,3 +248,7 @@ ul.whishes li.article:hover{
 	background-repeat: no-repeat;
 }
 */
+.return {
+	width:95%;
+	text-align:center;
+}

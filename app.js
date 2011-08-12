@@ -82,7 +82,6 @@ app.get('/list', function(req, res){
  */
 app.get('/article', function(req, res){
 	articleProvider.getOne(req.param('id'), function(article){
-			console.log(article);
 			res.render('article', {
 				 	title		: "article",
 				 	layout		: false,

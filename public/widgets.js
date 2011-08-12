@@ -53,39 +53,71 @@ function initLogin(){
 	
 	
 function onListLoad(){
+	var imageCount = 0;
 	var rows = [];
-	$.each($('ul.whishes li'), function(index, elt){
-		
-		var desc = $(elt).find('.article-desc').text();
+	$('ul.whishes').bind('fullLoaded', function(event){
+		$(this).unbind(event);
+		var totalHeight = 0;
+		for(var i in rows){
+			totalHeight += rows[i] + 32;
+			$('li.row-'+i).height(rows[i] + 'px');
+		}
+		$('ul.whishes').parent('div').height(totalHeight + 'px');
+	});
+	
+	$('img.thumbnails').bind('load', function(event){
+		var $elt = $(this).parents('li.article');
+		var desc = $elt.find('.article-desc').text();
 		if(desc.length > 100){
-			$(elt).find('.article-desc').text( 
+			$elt.find('.article-desc').text( 
 				desc.substring(0, 95) + ' [...]'
 			);
 		}
 		
-		var itemHeight = parseInt($(elt).height());
-		var thumbHeight = parseInt($(elt).find('img.thumbnails').height()) + 20;
+		var itemHeight = parseInt($elt.height());
+		var thumbHeight = parseInt($(this).height()) + 20;
 		if(thumbHeight > itemHeight){
 			itemHeight = thumbHeight;
 		}
 		
-		var rowNum = Math.floor(index/3);
+		var $classes = $elt.attr('class').split(' ');
+		var rowNum = 0;
+		for(var i in $classes){
+			if(/^row-/.test($classes[i])){
+				rowNum = $classes[i].replace('row-', '');
+				break;
+			}
+		}
+		
 		if(!rows[rowNum]){
 			rows[rowNum] = itemHeight;
 		}
 		else if(itemHeight > rows[rowNum]){
 			rows[rowNum] = itemHeight;
 		}
+		
+		
+		if($('img.thumbnails').length == imageCount){
+			$('ul.whishes').trigger('fullLoaded');
+		}
+		else{
+			imageCount++;
+		}
 	});
-	var totalHeight = 0;
-	for(i in rows){
-		totalHeight += rows[i] + 16;
-		$('li.row-'+i).height(rows[i] + 'px');
-	}
-	$('ul.whishes').parent('div').height(totalHeight + 'px');
 	
 	$('ul.whishes li').click(function(){
-		$('#content').load('/article?id='+$(this).attr('id'));
+		$('#content').load('/article?id='+$(this).attr('id'), function(){
+			$('img.article-photo').bind('load', function(){
+				var containerWidth = parseInt($(this).parents('.article-photos').width());
+				var imageWidth = parseInt($(this).width());
+				
+				if(imageWidth > containerWidth){
+					$(this).width(containerWidth + 'px');
+				}
+			});
+			
+			$('.whish ul.options li').button();
+		});
 		return false;
 	});
 }
@@ -104,6 +136,7 @@ $(document).ready(function(){
 				onListLoad();
 			}
 		});	
+		
 	});
 	
 });
