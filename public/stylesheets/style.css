@@ -21,7 +21,7 @@ img.icon {
 }
 #container{
 	z-index:100;
-	width:65%;
+	width:63%;
 	margin:auto;
 	position:relative;
 	height:100%;
@@ -49,13 +49,13 @@ img.icon {
 	position: absolute;
 	width:175px;
 	height:250px;
-	left:20px;
-	top:60px;
-	border:solid 1px #fcd113;
+	right:10px;
+	top:40px;
+	border:solid 1px #f8be4e;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
-	
+	font-weight:bold;
 }
 #contact #contact-title{
 	margin:0;
@@ -89,15 +89,16 @@ img.icon {
 	position:absolute;
 	top:10px;
 	right:10px;
-	width:230px;
+	width:200px;
 	height:90px;
+	text-align: right;
 }
 #login-box a{
-	background-color:#41A1C9;
+	background-color:#767287;
 	color:#fff;
 	padding:5px;
 	margin-top:1px;
-	border:solid 1px #41A1C9;
+	border:solid 1px #767287;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
@@ -107,14 +108,15 @@ img.icon {
 	font-style:italic;
 }
 #login-box #login-form{
+	text-align:left;
 	display:none;	
-	background-color:#41A1C9;
+	background-color:#767287;
 	color:#fff;
 	font-size:0.9em;
 	padding:5px;
 	position:relative;
 	height:100%;
-	border:solid 1px #41A1C9;
+	border:solid 1px #767287;
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
@@ -123,10 +125,10 @@ img.icon {
 	line-height:25px;
 }
 #login-box #login-form input{
-	width:100px;
+	width:90px;
 	border:solid 1px #333;
 	position:absolute;
-	left:120px;
+	left:100px;
 }
 ul.whishes{
 	margin:auto;
@@ -136,7 +138,8 @@ ul.whishes li.article{
 	position:relative;
 	width:29.5%;
 	padding:5px;
-	border:solid 1px #fcd113;
+	/*border:solid 1px #fcd113;*/
+	border:solid 1px #767287;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 	border-radius:10px;
@@ -146,9 +149,12 @@ ul.whishes li.article{
 }
 ul.whishes li.article:hover{
 	cursor:pointer;
-	-moz-box-shadow: 0 0 2px 2px #FCDC51;
-	-webkit-box-shadow: 0 0 5px 5px ##fcd113;
-	box-shadow: 0 0 5px 5px #fcd113;
+	/*-moz-box-shadow: 0 0 2px 2px #FCDC51;
+	-webkit-box-shadow: 0 0 5px 5px #fcd113;
+	box-shadow: 0 0 5px 5px #fcd113;*/
+	-moz-box-shadow: 0 0 2px 2px #A6A4B1;
+	-webkit-box-shadow: 0 0 5px 5px #A6A4B1;
+	box-shadow: 0 0 5px 5px #A6A4B1;
 }
 
 .whishes img.thumbnails{
@@ -200,7 +206,7 @@ ul.whishes li.article:hover{
 	border-radius:5px;
 }
 .whish .article-price{
-	font-size:3em;
+	font-size:1em;
 	font-weight:bold;
 	font-style:italic;
 	color:#ccc;
