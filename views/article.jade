@@ -30,11 +30,21 @@
 			ul.options
 				- each option in article.options
 					-if(option == 'PARIAL_CASH')
-						li: a(href='#') Participer
+						li#partial-cash-button: a(href='#', title='') Participer
 					-if(option == 'BOOK_BUY')
-						li: a(href='#') Réserver et acheter
+						li#book-buy-button: a(href='#', title='') Réserver et acheter
 					-if(option == 'BOOK_CASH')
-						li: a(href='#') Réserver et déposer l'argent
+						li#book-cash-button: a(href='#', title='') Réserver et déposer l'argent
 					br
 	br
 	.return: a(href="/") Retour à la liste
+- each option in article.options
+	- if(option == 'PARIAL_CASH')
+		#partial-cash-container.options-dialog
+			p Vous déposez sur notre compte Paypal une partie de la valeur (vous pouvez aussi envoyer un chèque).
+	- if(option == 'BOOK_BUY')
+		#book-buy-container.options-dialog
+			p Vous l'achetez vous-même. L'objet ne sera plus disponible dans la liste.
+	- if(option == 'BOOK_CASH')	
+		#book-cash-container.options-dialog
+			p Vous déposez l'argent sur notre compte Paypal (vous pouvez aussi envoyer un chèque). L'objet ne sera plus disponible dans la liste.

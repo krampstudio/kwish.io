@@ -10,13 +10,23 @@ ArticleProvider = function(store) {
 };
 
 /**
+ * Priorities enum
+ * @memberOf ArticleProvider
+ * @static
+ */
+ArticleProvider.priority = {
+		MUST_HAVE	 : "MUST_HAVE",
+		NICE_TO_HAVE : "NICE_TO_HAVE" 
+};
+
+/**
  * Retrieve the article collection
  * @memberOf ArticleProvider
  * @param {Function} onSuccess callback
  * @param {Function} onError callback
  */
-ArticleProvider.prototype.getCollection = function(onSuccess, onError){
-	this.collection.find().toArray(function(err, articleCollection){
+ArticleProvider.prototype.getCollection = function(priority, onSuccess, onError){
+	this.collection.find({priority: priority}).toArray(function(err, articleCollection){
 		if(err){
 			onError(err);
 		}

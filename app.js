@@ -69,13 +69,19 @@ app.get('/', function(req, res){
  * List articles
  */
 app.get('/list', function(req, res){
-	articleProvider.getCollection(function(articles){
-		 res.render('list', {
-			 	title		: "list",
-			 	layout		: false,
-	    		articles	: articles
-	 	 });
-}, throwError);
+	articleProvider.getCollection(ArticleProvider.priority.MUST_HAVE ,function(mustHaveArticles){
+		var mustHaveArticles = mustHaveArticles;
+		articleProvider.getCollection(ArticleProvider.priority.NICE_TO_HAVE ,function(niceToHaveArticles){
+			 res.render('list', {
+				 	title				: "list",
+				 	layout				: false,
+				 	mustHaveArticles	: mustHaveArticles,
+				 	niceToHaveArticles	: niceToHaveArticles
+		 	 });
+		}, throwError);
+	}, throwError);
+});
+
 	
 /*
  * Article
@@ -87,8 +93,7 @@ app.get('/article', function(req, res){
 				 	layout		: false,
 		    		article		: article
 		 	 });
-	});
-}, throwError);
+	}, throwError);
 
 });
 

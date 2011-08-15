@@ -3,6 +3,8 @@ body{
 	font-family:Verdana;
 	font-size:14px;
 	background-color: #FCFCF5;
+	background-image: url('../imgs/moon.png');
+	background-repeat: no-repeat;
 }
 img.icon {
 	vertical-align: middle;
@@ -229,32 +231,11 @@ ul.whishes li.article:hover{
 .whish ul.options li{
 	margin:5px 0px 5px 30px;
 	width:300px;
-	/*
-	border:solid 1px #666;
-	padding:5px;
-	
-	background-color:#eee;*/
 }
-/*
-.whish ul.options li a{
-	text-decoration: none;
-	color:#666;
-}
-.whish ul.options li a:hover{
-	color:#333;
-}
-/*
-.whishes .article-action{
-	position:absolute;
-	right:50px;
-	bottom : 5px;
-	text-align: left;
-	padding-left:24px;
-	background-image: url('../imgs/bullet_go.png');
-	background-repeat: no-repeat;
-}
-*/
 .return {
 	width:95%;
 	text-align:center;
+}
+.options-dialog{
+	display:none;
 }
