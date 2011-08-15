@@ -239,3 +239,16 @@ ul.whishes li.article:hover{
 .options-dialog{
 	display:none;
 }
+.options-dialog form label{
+	line-height:30px;
+	margin:3px 0 3px 0;
+}
+.options-dialog form input{
+	border:solid 1px #333;
+	position:absolute;
+	left:150px;
+	margin:3px 0 3px 0;
+}
+input.short-field{
+	width:50px;
+}

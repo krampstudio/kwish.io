@@ -26,15 +26,31 @@ UserProvider.prototype.login = function(login, password, onSuccess, onError){
 		}
 		else {
 			if(users.length == 1){
-				console.log(users[0]);
 				onSuccess(users[0]);
 			}
 			else{
 				onSuccess(null);
 			}
-			
 		}
 	});
 };
 
-
+UserProvider.prototype.insert = function(user, onSuccess, onError){
+	this.collection.findOne({email: user.email}).toArray(function(err, foundUser){
+		if(err){
+			onError(err);
+		}
+		else {
+			if(!foundUser){
+				this.collection.insert(user, {safe: true}, function(err, objects){
+					if(err){
+						onError(err);
+					}
+					else {
+						onSuccess(objects);
+					}
+				});
+			}
+		}
+	});
+};

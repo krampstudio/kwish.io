@@ -1,0 +1,2 @@
+
+{ paypal: { action : 'https://sandbox.paypal.com/cgi-bin/webscr', method : 'post', fields: { cmd:'_xclick',business:'JRFMJLBS89HFA',currency_code:'EUR',charset:'utf-8',return:'http://localhost:3000',address_override: '1'}},baseUrl: 'http://localhost:3000' }

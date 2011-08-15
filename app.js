@@ -18,6 +18,7 @@ var app = module.exports = express.createServer();
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
+  app.set('baseUrl', '');
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({secret:'b4b1w15h35', store: new MemoryStore()}));
@@ -35,9 +36,10 @@ app.configure('development', function(){
   };
 });
 app.configure('production', function(){
+  express.logger();
   app.use(express.errorHandler()); 
   throwError = function(err){
-        console.error(err.stack);
+        next(err);
   };
 });
 
@@ -46,12 +48,13 @@ app.configure('production', function(){
 require('./system/mongostore');
 require('./providers/article');
 require('./providers/user');
+require('./providers/settings');
 
-var mongoStore		= new MongoStore('babywish', 'localhost', 27017, {native_parser: true});
-var articleProvider = new ArticleProvider(mongoStore);
-var userProvider	= new UserProvider(mongoStore);
-
-
+var mongoStore			= new MongoStore('babywish', 'localhost', 27017, {native_parser: true});
+var articleProvider 	= new ArticleProvider(mongoStore);
+var userProvider		= new UserProvider(mongoStore);
+var settingsProvider	= new SettingsProvider(mongoStore);
+settingsProvider.load(throwError);
 
 // Routes
 
@@ -70,7 +73,6 @@ app.get('/', function(req, res){
  */
 app.get('/list', function(req, res){
 	articleProvider.getCollection(ArticleProvider.priority.MUST_HAVE ,function(mustHaveArticles){
-		var mustHaveArticles = mustHaveArticles;
 		articleProvider.getCollection(ArticleProvider.priority.NICE_TO_HAVE ,function(niceToHaveArticles){
 			 res.render('list', {
 				 	title				: "list",
@@ -91,10 +93,17 @@ app.get('/article', function(req, res){
 			res.render('article', {
 				 	title		: "article",
 				 	layout		: false,
-		    		article		: article
+		    		baseUrl		: settingsProvider.get('baseUrl'),
+				 	paypalOpts	: settingsProvider.get('paypal'),
+				 	article		: article
 		 	 });
 	}, throwError);
 
+});
+app.post('/bookArticle', function(req, res){
+	if(req.param('email')){
+		
+	}
 });
 
 /*
@@ -121,7 +130,13 @@ app.get('/logout', function(req, res){
 	res.redirect('/');
 });
 
+app.error(function(err, req, res){
+	  res.send('Error: ' + err);
+});
+
+
 
 //on start
-app.listen(3000);
+app.listen(3000, '127.0.0.1');
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log(app.address());

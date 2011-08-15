@@ -24,7 +24,7 @@
 		-if(article.urls)
 			ul.links
 				- each link,i in article.urls
-					li: a(href='#{link}') lien #{i+1} 
+					li: a(href='#{link}',target='_blank') lien #{i+1} 
 		br
 		-if(article.options)
 			ul.options
@@ -42,9 +42,41 @@
 	- if(option == 'PARIAL_CASH')
 		#partial-cash-container.options-dialog
 			p Vous déposez sur notre compte Paypal une partie de la valeur (vous pouvez aussi envoyer un chèque).
+			form.paypal-form(action='#{paypalOpts.action}',method='#{paypalOpts.method}')
+				- each value,name in paypalOpts.fields
+					input(type='hidden',name='#{name}',value='#{value}')
+				input(type='hidden',name='item_name',value='#{article.title}')
+				input(type='hidden',name='custom',value='#{article._id}')
+				br
+				label(for='amount') Montant (en €)
+				input.short-field(type='text',name='amount',value='#{article.price}')
+				br
+				label(for='email') Email
+				input(type='text',name='email',value='')
 	- if(option == 'BOOK_BUY')
 		#book-buy-container.options-dialog
 			p Vous l'achetez vous-même. L'objet ne sera plus disponible dans la liste.
+			form
+				input(type='hidden',name='item_name',value='#{article.title}')
+				input(type='hidden',name='custom',value='#{article._id}')
+				br
+				label(for='amount') Montant (en €)
+				input.short-field(type='text',name='amount',value='#{article.price}',readonly='true')
+				br
+				label(for='email') Email
+				input(type='text',name='email',value='')
 	- if(option == 'BOOK_CASH')	
 		#book-cash-container.options-dialog
 			p Vous déposez l'argent sur notre compte Paypal (vous pouvez aussi envoyer un chèque). L'objet ne sera plus disponible dans la liste.
+			form.paypal-form(action='#{paypalOpts.action}',method='#{paypalOpts.method}')
+				- each value,name in paypalOpts.fields
+					input(type='hidden',name='#{name}',value='#{value}')
+				input(type='hidden',name='item_name',value='#{article.title}')
+				input(type='hidden',name='custom',value='#{article._id}')
+				br
+				label(for='amount') Montant (en €)
+				input.short-field(type='text',name='amount',value='#{article.price}')
+				br
+				label(for='email') Email
+				input(type='text',name='email',value='')
+				

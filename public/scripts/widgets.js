@@ -89,11 +89,34 @@ function focusArticle(articleId){
 		});
 		
 		$('.options-dialog').dialog({
-			autoOpen: false,
-			title: 'test',
-			modal : true,
-			width: 450,
-			height: 250
+			autoOpen	: false,
+			title		: 'test',
+			modal 		: true,
+			width		: 500,
+			height		: 300,
+			buttons		: {
+				"Payer sur Paypal": function(){
+					$('form.paypal-form', $(this));
+				},
+				"Réserver seulement": function(){
+					$('form.paypal-form', $(this));
+				},
+				"Annuler" : function(){
+					$(this).dialog( "close" );
+				}
+			},
+			open : function(event, ui){
+				if($(this).attr('id') == 'book-buy-container'){
+					$('.ui-dialog-buttonset button').each(function(){
+						if(/^Payer/.test($(this).find('.ui-button-text').text())){
+							$(this).button("option", "disabled", true );
+						}
+					});
+				}
+				else{
+					$('.ui-dialog-buttonset button').button("option", "disabled", false);
+				}
+			}
 		});
 		
 		//set up the actions buttons
@@ -211,7 +234,5 @@ $(document).ready(function(){
 				onListLoad(ui.panel);
 			}
 		});	
-		
 	});
-	
 });
