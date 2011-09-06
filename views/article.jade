@@ -37,7 +37,9 @@
 						li#book-cash-button: a(href='#', title='') Réserver et déposer l'argent
 					br
 	br
-	.return: a(href="/") Retour à la liste
+	.return: a(href='/')
+		img.icon(src='/imgs/back.png') 
+		| Retour à la liste
 - each option in article.options
 	- if(option == 'PARIAL_CASH')
 		#partial-cash-container.options-dialog

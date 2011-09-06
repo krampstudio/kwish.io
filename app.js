@@ -63,7 +63,7 @@ settingsProvider.load(throwError);
  */
 app.get('/', function(req, res){
 	 res.render('index', {
-    		title		: 'Baby Wish List',
+    		title		: 'Liste de naissance',
     		user		: req.session.user || null
 	 });
  },throwError);
@@ -78,7 +78,8 @@ app.get('/list', function(req, res){
 				 	title				: "list",
 				 	layout				: false,
 				 	mustHaveArticles	: mustHaveArticles,
-				 	niceToHaveArticles	: niceToHaveArticles
+				 	niceToHaveArticles	: niceToHaveArticles,
+				 	lastArticle			: req.session.currentArticle || null
 		 	 });
 		}, throwError);
 	}, throwError);
@@ -90,6 +91,7 @@ app.get('/list', function(req, res){
  */
 app.get('/article', function(req, res){
 	articleProvider.getOne(req.param('id'), function(article){
+			req.session.currentArticle = article;
 			res.render('article', {
 				 	title		: "article",
 				 	layout		: false,

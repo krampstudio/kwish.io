@@ -227,9 +227,12 @@ $(document).ready(function(){
 	//by default load the articles list
 	$('#content').load('/list',function(){
 		
+		var tabIndex = $('#content > div').index($('#content .selected'));
+		console.log((tabIndex > -1) ? tabIndex : 0)
+		
 		//create the tabs widget
 		$('#content').tabs({
-			selected : 0,
+			selected : (tabIndex > -1) ? tabIndex : 0,
 			show: function(event, ui){
 				onListLoad(ui.panel);
 			}
