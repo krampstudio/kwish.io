@@ -9,12 +9,12 @@ BookingProvider = function(store) {
 };
 
 /**
- * Retrieve all the settings
+ * 
  * @memberOf BookingProvider
  * @param {Function} onSuccess callback
  * @param {Function} onError callback
  */
-BookingProvider.prototype.isBooked = function(onSuccess, onError){
+BookingProvider.prototype.isBooked = function(article, onSuccess, onError){
 	this.collection.find().toArray(function(err, settings){
 		if(err){
 			onError(err);
