@@ -96,10 +96,26 @@ function focusArticle(articleId){
 			height		: 300,
 			buttons		: {
 				"Payer sur Paypal": function(){
-					$('form.paypal-form', $(this));
+					$('form.paypal-form', $(this)).submit();
 				},
 				"Réserver seulement": function(){
-					$('form.paypal-form', $(this));
+					console.log($(this),{
+							'email'	: $('form', $(this)).find(":text[name='email']").val(),
+							'amount': $('form', $(this)).find(":text[name='amount']").val()
+						})
+					$.post(
+						'/bookArticle', {
+							'email'	: $('form', $(this)).find(":text[name='email']").val(),
+							'amount': $('form', $(this)).find(":text[name='amount']").val()
+						},
+						function(response){
+							if(response.valid == true){
+								alert('Article Réservé');
+							}
+						},
+						'json'
+					);
+				
 				},
 				"Annuler" : function(){
 					$(this).dialog( "close" );
@@ -206,9 +222,15 @@ function onListLoad($ctx){
 		});
 	});
 	
-	$('ul.whishes li', $ctx).click(function(){
+	$('ul.whishes li', $ctx).not('.booked').click(function(){
 		focusArticle($(this).attr('id'));
 		return false;
+	});
+	$('ul.whishes li.booked', $ctx).each(function(){
+		var $overDiv = $("<div class='over-article'></div>");
+		$overDiv.width(parseInt($(this).width()) - 10);
+		$overDiv.height(parseInt($(this).height()) - 10 );
+		$(this).prepend($overDiv);
 	});
 }
 	
@@ -228,7 +250,6 @@ $(document).ready(function(){
 	$('#content').load('/list',function(){
 		
 		var tabIndex = $('#content > div').index($('#content .selected'));
-		console.log((tabIndex > -1) ? tabIndex : 0)
 		
 		//create the tabs widget
 		$('#content').tabs({

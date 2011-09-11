@@ -8,8 +8,9 @@ ul
 	li: a(href='#niceToHave') Les plus
 #mustHave(class=mustHaveClass)
 	ul.whishes
-		- each article, index in mustHaveArticles
-			li(id='#{article._id}',class='article row-#{Math.floor(index/3)}')
+		- each article in mustHaveArticles
+			- var bookedClass = (article.booked) ? 'booked ui-widget-overlay' : ''; 
+			li(id='#{article._id}',class='article #{bookedClass} row-#{Math.floor(article._index/3)}')
 				- if (article.thumb)
 					- if(typeof(article.thumb) == 'string')
 						img.thumbnails(src='/imgs/articles/#{article.thumb}')
@@ -24,7 +25,8 @@ ul
 #niceToHave(class=niceToHaveClass)
 	ul.whishes
 		- each article, index in niceToHaveArticles
-			li(id='#{article._id}',class='article row-#{Math.floor(index/3)}')
+			- var bookedClass = (article.booked) ? 'booked ui-widget-overlay' : '';
+			li(id='#{article._id}',class='article #{bookedClass} row-#{Math.floor(article._index/3)}')
 				- if (article.thumb)
 					- if(typeof(article.thumb) == 'string')
 						img.thumbnails(src='/imgs/articles/#{article.thumb}')

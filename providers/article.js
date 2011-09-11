@@ -31,7 +31,13 @@ ArticleProvider.prototype.getCollection = function(priority, onSuccess, onError)
 			onError(err);
 		}
 		else {
-			onSuccess(articleCollection);
+			var articles = {};
+			for(index in articleCollection){
+				var article = articleCollection[index];
+				article._index = index;
+				articles[article._id] = article;
+			}
+			onSuccess(articles);
 		}
 	});
 };

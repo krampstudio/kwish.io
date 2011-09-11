@@ -176,12 +176,26 @@ ul.whishes li.article{
 }
 ul.whishes li.article:hover{
 	cursor:pointer;
-	/*-moz-box-shadow: 0 0 2px 2px #FCDC51;
-	-webkit-box-shadow: 0 0 5px 5px #fcd113;
-	box-shadow: 0 0 5px 5px #fcd113;*/
 	-moz-box-shadow: 0 0 2px 2px #A6A4B1;
 	-webkit-box-shadow: 0 0 5px 5px #A6A4B1;
 	box-shadow: 0 0 5px 5px #A6A4B1;
+}
+
+ul.whishes li.article.booked{
+	cursor:default;
+	opacity:0.7;
+}
+ul.whishes li.article.booked:hover{
+	cursor:default;
+}
+ul.whishes li.article.booked .over-article{
+	position:absolute;
+	z-index:500;
+	background-image: url('../imgs/booked.png');
+	background-repeat: no-repeat;
+	background-position:top right;
+	opacity:1.0;
+	margin-top:20px;
 }
 
 .whishes img.thumbnails{

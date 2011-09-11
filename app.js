@@ -32,7 +32,7 @@ var throwError = null;
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
   throwError = function(err){
-	  console.error(err.stack);
+	  console.log(err);
   };
 });
 app.configure('production', function(){
@@ -47,11 +47,13 @@ app.configure('production', function(){
 //Load Models providers
 require('./system/mongostore');
 require('./providers/article');
+require('./providers/booking');
 require('./providers/user');
 require('./providers/settings');
 
 var mongoStore			= new MongoStore('babywish', 'localhost', 27017, {native_parser: true});
 var articleProvider 	= new ArticleProvider(mongoStore);
+var bookingProvider		= new BookingProvider(mongoStore);
 var userProvider		= new UserProvider(mongoStore);
 var settingsProvider	= new SettingsProvider(mongoStore);
 settingsProvider.load(throwError);
@@ -73,14 +75,21 @@ app.get('/', function(req, res){
  */
 app.get('/list', function(req, res){
 	articleProvider.getCollection(ArticleProvider.priority.MUST_HAVE ,function(mustHaveArticles){
-		articleProvider.getCollection(ArticleProvider.priority.NICE_TO_HAVE ,function(niceToHaveArticles){
-			 res.render('list', {
-				 	title				: "list",
-				 	layout				: false,
-				 	mustHaveArticles	: mustHaveArticles,
-				 	niceToHaveArticles	: niceToHaveArticles,
-				 	lastArticle			: req.session.currentArticle || null
-		 	 });
+		bookingProvider.areBooked(mustHaveArticles, function(mustHaveArticles){
+			
+			articleProvider.getCollection(ArticleProvider.priority.NICE_TO_HAVE ,function(niceToHaveArticles){
+				bookingProvider.areBooked(mustHaveArticles, function(niceToHaveArticles){
+					
+					res.render('list', {
+					 	title				: "list",
+					 	layout				: false,
+					 	mustHaveArticles	: mustHaveArticles,
+					 	niceToHaveArticles	: niceToHaveArticles,
+					 	lastArticle			: req.session.currentArticle || null
+					});
+					
+				}, throwError);
+			}, throwError);
 		}, throwError);
 	}, throwError);
 });
@@ -103,9 +112,16 @@ app.get('/article', function(req, res){
 
 });
 app.post('/bookArticle', function(req, res){
-	if(req.param('email')){
-		
+	if(req.session.currentArticle && req.param('email')){
+		var amount = (req.param('amount')) ? parseFloat(req.param('amount')) : 0.0;
+		bookingProvider.book(req.session.currentArticle, req.param('email'), amount, throwError);
+		res.send({valid: true});
+		return;
 	}
+	res.send({valid: false});
+});
+app.post('/test', function(req, res){
+	res.redirect('/');
 });
 
 /*

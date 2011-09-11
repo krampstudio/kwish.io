@@ -47,7 +47,7 @@
 			form.paypal-form(action='#{paypalOpts.action}',method='#{paypalOpts.method}')
 				- each value,name in paypalOpts.fields
 					input(type='hidden',name='#{name}',value='#{value}')
-				input(type='hidden',name='item_name',value='#{article.title}')
+				input(type='hidden',name='item_name',value='#{article.name}')
 				input(type='hidden',name='custom',value='#{article._id}')
 				br
 				label(for='amount') Montant (en €)
@@ -59,7 +59,7 @@
 		#book-buy-container.options-dialog
 			p Vous l'achetez vous-même. L'objet ne sera plus disponible dans la liste.
 			form
-				input(type='hidden',name='item_name',value='#{article.title}')
+				input(type='hidden',name='item_name',value='#{article.name}')
 				input(type='hidden',name='custom',value='#{article._id}')
 				br
 				label(for='amount') Montant (en €)
@@ -73,7 +73,7 @@
 			form.paypal-form(action='#{paypalOpts.action}',method='#{paypalOpts.method}')
 				- each value,name in paypalOpts.fields
 					input(type='hidden',name='#{name}',value='#{value}')
-				input(type='hidden',name='item_name',value='#{article.title}')
+				input(type='hidden',name='item_name',value='#{article.name}')
 				input(type='hidden',name='custom',value='#{article._id}')
 				br
 				label(for='amount') Montant (en €)
