@@ -65,7 +65,7 @@ settingsProvider.load(throwError);
  */
 app.get('/', function(req, res){
 	 res.render('index', {
-    		title		: 'Liste de naissance',
+    		title		: 'Bienvenu sur la liste de naissance de Ditlinde',
     		user		: req.session.user || null
 	 });
  },throwError);
@@ -78,7 +78,7 @@ app.get('/list', function(req, res){
 		bookingProvider.areBooked(mustHaveArticles, function(mustHaveArticles){
 			
 			articleProvider.getCollection(ArticleProvider.priority.NICE_TO_HAVE ,function(niceToHaveArticles){
-				bookingProvider.areBooked(mustHaveArticles, function(niceToHaveArticles){
+				bookingProvider.areBooked(niceToHaveArticles, function(niceToHaveArticles){
 					
 					res.render('list', {
 					 	title				: "list",
@@ -155,6 +155,6 @@ app.error(function(err, req, res){
 
 
 //on start
-app.listen(3000, '127.0.0.1');
+app.listen(3000, '192.168.1.11');
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 console.log(app.address());

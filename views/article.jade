@@ -5,13 +5,14 @@
 				img.article-photo(src='/imgs/articles/#{article.images}')	
 			- if(typeof(article.images) == 'object')
 				- each imageSrc in article.images
-					img.article-photo(src='/imgs/articles/#{imageSrc}')
+					img.article-photo(src='#{imageSrc}')
 		- if (article.thumb)
 			- if(typeof(article.thumb) == 'string')
 				img.article-photo(src='/imgs/articles/#{article.thumb}')	
 			- if(typeof(article.thumb) == 'object')
-				- each imageSrc in article.thumb
-					img.article-photo(src='/imgs/articles/#{imageSrc}'
+				- each thumbSrc in article.thumb
+					img.article-photo(src='/imgs/articles/#{thumbSrc}')
+
 	.article-content
 		.article-title #{article.name}
 		br

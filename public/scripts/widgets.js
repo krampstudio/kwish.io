@@ -79,12 +79,19 @@ function focusArticle(articleId){
 	$('#content').load('/article?id='+articleId, function(){
 		
 		//adapt the container size to the photo
+		var imageHeight = 0;
+		var containerHeight = parseInt($('#content').height());
 		$('img.article-photo').bind('load', function(){
+			
 			var containerWidth = parseInt($(this).parents('.article-photos').width());
 			var imageWidth = parseInt($(this).width());
-			
+	
 			if(imageWidth > containerWidth){
 				$(this).width(containerWidth + 'px');
+			}
+			imageHeight +=  parseInt($(this).height());
+			if(imageHeight >= containerHeight){
+				$('#content').height( (imageHeight + 20) + 'px');
 			}
 		});
 		
@@ -247,7 +254,7 @@ $(document).ready(function(){
 	initLogin();
 	
 	//by default load the articles list
-	$('#content').load('/list',function(){
+	$('#content').load('/list?d='+new Date().getTime(), function(){
 		
 		var tabIndex = $('#content > div').index($('#content .selected'));
 		
