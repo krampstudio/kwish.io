@@ -1,2 +1,2 @@
 
-{ paypal: { action : 'https://www.paypal.com/cgi-bin/webscr', method : 'post', fields: { cmd:'_xclick',business:'JRFMJLBS89HFA', display:'1', bn:'KRAMPSTUDIO_BuyNow_WPS_FR',currency_code:'EUR',charset:'UTF-8',address_override: '1', page_style:'ListeNaissance', tax:0, lc:'FR'}},baseUrl: 'http://localhost:3000' }
+{ paypal: { host:'www.paypal.com', path: '/cgi-bin/webscr', method : 'post', fields: { cmd:'_xclick',business:'JRFMJLBS89HFA', display:'1', bn:'KRAMPSTUDIO_BuyNow_WPS_FR',currency_code:'EUR',charset:'UTF-8',address_override: '1', page_style:'ListeNaissance', tax:0, lc:'FR'}},baseUrl: 'http://localhost:3000' }

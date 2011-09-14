@@ -95,6 +95,63 @@ function focusArticle(articleId){
 			}
 		});
 		
+		function checkForm($ctx, dontCheckAmount){
+			
+			$('.valid-form').remove();
+			
+			var $email  = $('form', $ctx).find(":text[name='email']");
+			var $amount =  $('form', $ctx).find(":text[name='amount']");
+			
+			var status = {
+				email: {
+					valid	: false,
+					img		: 'error',
+					alt		: 'erreur',
+					msg		: 'Le champ email est invalide'	
+				},
+				amount: {
+					valid	: false,
+					img		: 'error',
+					alt		: 'erreur',
+					msg		: 'Le champ email est invalide'	
+				}	
+			};
+			if($email.val().trim().length > 0 && /^\S+@\S+\.\S+$/.test($email.val())){
+					status.email.valid = true;
+					status.email.img   = 'valid';
+					status.email.alt   = 'Valide';
+					status.email.msg   = '';
+			}
+			
+			$email.after(
+					"<img src='/imgs/"+status.email.img+".png' " +
+					"class='valid-form' alt='"+status.email.alt+"' " +
+					"title='"+status.email.msg+"' />"
+				);
+			
+			
+			if(dontCheckAmount == true){
+				return status.email.valid;
+			}
+			
+			if($amount.val().trim().length > 0){
+				if(/^\d+$/.test($amount.val()) && parseInt($amount.val()) > 0 && parseInt($amount.val()) < 10000){
+					status.amount.valid = true;
+					status.amount.img   = 'valid';
+					status.amount.alt   = 'Valide';
+					status.amount.msg   = '';
+				}
+			}
+			$amount.after(
+					"<img src='/imgs/"+status.amount.img+".png' " +
+					"class='valid-form' alt='"+status.amount.alt+"' " +
+					"title='"+status.amount.msg+"' />"
+				);
+			
+			
+			return status.email.valid && status.amount.valid;
+		}
+		
 		$('.options-dialog').dialog({
 			autoOpen	: false,
 			title		: 'test',
@@ -103,32 +160,45 @@ function focusArticle(articleId){
 			height		: 300,
 			buttons		: {
 				"Payer sur Paypal": function(){
-					$('form.paypal-form', $(this)).submit();
+					if(checkForm($(this), false)){
+						$('form.paypal-form', $(this)).submit();
+					}
 				},
 				"Réserver seulement": function(){
-					console.log($(this),{
-							'email'	: $('form', $(this)).find(":text[name='email']").val(),
-							'amount': $('form', $(this)).find(":text[name='amount']").val()
-						})
-					$.post(
-						'/bookArticle', {
-							'email'	: $('form', $(this)).find(":text[name='email']").val(),
-							'amount': $('form', $(this)).find(":text[name='amount']").val()
-						},
-						function(response){
-							if(response.valid == true){
-								alert('Article Réservé');
-							}
-						},
-						'json'
-					);
-				
+					
+					var $dialog = $(this);
+					
+					if(checkForm($dialog, true)){
+						$.post(
+							'/bookArticle', {
+								'email'	: $('form', $dialog).find(":text[name='email']").val(),
+								'amount': $('form', $dialog).find(":text[name='amount']").val()
+							},
+							function(response){
+								$dialog.dialog( "close" );
+								if(response.valid == true){
+									msg(MSG.TYPE.INFO, "Article réservé!");
+									
+									setTimeout(function(){
+										window.location = '/';
+									}, 3000);
+								}
+								else{
+									msg(MSG.TYPE.ERROR, "Un problème est survenue en réservant l'article");
+								}
+							},
+							'json'
+						);
+					}
 				},
 				"Annuler" : function(){
 					$(this).dialog( "close" );
 				}
 			},
 			open : function(event, ui){
+				
+				$('.valid-form').remove();
+				
 				if($(this).attr('id') == 'book-buy-container'){
 					$('.ui-dialog-buttonset button').each(function(){
 						if(/^Payer/.test($(this).find('.ui-button-text').text())){
@@ -137,6 +207,18 @@ function focusArticle(articleId){
 					});
 				}
 				else{
+					if($(this).attr('id') == 'partial-cash-container'){
+						var $amount =  $('form', $(this)).find(":text[name='amount']");
+						$('#slider').slider({
+							value: parseInt($amount.val()) || 0,
+							min: 0,
+							max: parseInt($amount.val()) || 1000,
+							step: 10,
+							slide: function (event, ui){
+								$amount.val( ui.value );
+							}
+						});
+					}
 					$('.ui-dialog-buttonset button').button("option", "disabled", false);
 				}
 			}

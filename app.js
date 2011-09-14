@@ -120,9 +120,6 @@ app.post('/bookArticle', function(req, res){
 	}
 	res.send({valid: false});
 });
-app.post('/test', function(req, res){
-	res.redirect('/');
-});
 
 /*
  * Login
@@ -152,7 +149,51 @@ app.error(function(err, req, res){
 	  res.send('Error: ' + err);
 });
 
-
+app.get('/ipn', function(req, res){
+	 
+	var https 		= require('https');
+	var queryString	= require('queryString');
+	
+	 var paypalOpts = settingsProvider.get('paypal');
+	
+	 var params = req.params;
+	 params.cmd = '_notify-validate';
+	 
+	  var request = https.request({
+		    host: 	paypalOpts.host,
+		    method: paypalOpts.method,
+		    path: 	paypalOpts.path,
+		    headers: {'Content-Length': requestBody.length}
+		  }, function (res) {
+			  res.on('data', function (resp) {
+		      var response = resp.toString();
+		      if(response == 'VERFIED'){
+		    	  
+		    	  console.log('PAYPAL IPN BEGIN');
+		    	  console.log(params);
+		    	  console.log('PAYPAL IPN END');
+		    	  
+		    	  if(params.payment_status == 'Completed'){
+		    		  
+		    		  if(params.receiver_id == paypalOpts.fiels.business){
+		    		  
+			    		  if(params.custom && (params.payer_email || params.payer_id ) && (params.payment_gross || params.mc_gross)){
+			    			  var email = params.payer_email || params.payer_id;
+			    			  var amount = params.payment_gross || params.mc_gross;
+			    			  
+			    			  articleProvider.getOne(params.custom, function(article){
+				    			  bookingProvider.book(article, email, amount, throwError);
+				    		  });
+			    		  }
+		    		  }
+		    	  }
+		      }
+		  });
+	  });
+	  request.write(queryString.stringify(params));
+	  request.end();
+	  request.on('error', throwError);
+});
 
 //on start
 app.listen(3000, '192.168.1.11');

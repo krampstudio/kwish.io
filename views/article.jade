@@ -52,7 +52,13 @@
 				input(type='hidden',name='custom',value='#{article._id}')
 				br
 				label(for='amount') Montant (en €)
-				input.short-field(type='text',name='amount',value='#{article.price}')
+				-if (parseInt(article.price) > 0)
+					input.short-field(type='text',name='amount',value='#{article.price}',readonly='true')
+				-else
+					input.short-field(type='text',name='amount',value='0',readonly='true')
+				#slider
+				sup [Déplacez le curseur ci-dessus]
+				br
 				br
 				label(for='email') Email
 				input(type='text',name='email',value='')
@@ -71,15 +77,17 @@
 	- if(option == 'BOOK_CASH')	
 		#book-cash-container.options-dialog
 			p Vous déposez l'argent sur notre compte Paypal (vous pouvez aussi envoyer un chèque). L'objet ne sera plus disponible dans la liste.
-			form.paypal-form(action='#{paypalOpts.action}',method='#{paypalOpts.method}')
+			form.paypal-form(action='https://#{paypalOpts.host}#{paypalOpts.path}',method='#{paypalOpts.method}')
 				- each value,name in paypalOpts.fields
 					input(type='hidden',name='#{name}',value='#{value}')
 				input(type='hidden',name='item_name',value='#{article.name}')
 				input(type='hidden',name='custom',value='#{article._id}')
 				br
 				label(for='amount') Montant (en €)
-				input.short-field(type='text',name='amount',value='#{article.price}')
+				-if (parseInt(article.price) > 0)
+					input.short-field(type='text',name='amount',value='#{article.price}',readonly='true')
+				-else
+					input.short-field(type='text',name='amount')
 				br
 				label(for='email') Email
 				input(type='text',name='email',value='')
-				
