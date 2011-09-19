@@ -1,2 +1,2 @@
 
-{ paypal: {host:'www.sandbox.paypal.com', path: '/cgi-bin/webscr', method : 'post', fields: { cmd:'_xclick',business:'chevr0_1230667459_biz@free.fr',currency_code:'EUR',charset:'utf-8',return:'http://localhost:3000',address_override: '1'}},baseUrl: 'http://localhost:3000' }
+{ paypal: {host:'www.sandbox.paypal.com', path: '/cgi-bin/webscr', method : 'post', fields: { cmd:'_xclick',business:'chevr0_1230667459_biz@free.fr',currency_code:'EUR',charset:'utf-8',return:'http://ec2-46-137-46-203.eu-west-1.compute.amazonaws.com:3000',address_override: '1'}},baseUrl: 'http://ec2-46-137-46-203.eu-west-1.compute.amazonaws.com:3000' }

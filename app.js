@@ -150,15 +150,20 @@ app.error(function(err, req, res){
 });
 
 app.get('/ipn', function(req, res){
-	 
+
+	console.log(req);	 
 	var https 		= require('https');
-	var queryString	= require('queryString');
+//	var queryString	= require('queryString');
 	
 	 var paypalOpts = settingsProvider.get('paypal');
 	
 	 var params = req.params;
 	 params.cmd = '_notify-validate';
 	 
+	 var requestBody = '';
+	 for (key in params){
+		requestBody += key + '=' + params[key] + '&';
+	}
 	  var request = https.request({
 		    host: 	paypalOpts.host,
 		    method: paypalOpts.method,
@@ -175,7 +180,7 @@ app.get('/ipn', function(req, res){
 		    	  
 		    	  if(params.payment_status == 'Completed'){
 		    		  
-		    		  if(params.receiver_id == paypalOpts.fiels.business){
+		    		  if(params.receiver_id == paypalOpts.fields.business){
 		    		  
 			    		  if(params.custom && (params.payer_email || params.payer_id ) && (params.payment_gross || params.mc_gross)){
 			    			  var email = params.payer_email || params.payer_id;
@@ -190,12 +195,12 @@ app.get('/ipn', function(req, res){
 		      }
 		  });
 	  });
-	  request.write(queryString.stringify(params));
+	  request.write(requestBody);
 	  request.end();
 	  request.on('error', throwError);
 });
 
 //on start
-app.listen(3000, '192.168.1.11');
+app.listen(3000, '0.0.0.0');
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 console.log(app.address());
