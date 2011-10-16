@@ -15,13 +15,18 @@ var MemoryStore = require('./node_modules/express/node_modules/connect/lib/middl
 var app = module.exports = express.createServer();
 
 //Main  Configuration
+require('./properties');
+var prop = new Properties();
+
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.set('baseUrl', '');
+  if(prop.app){
+	  for(key in prop.app){
+		app.set(key, prop.app.key);
+	}
+  }
   app.use(express.bodyParser());
   app.use(express.cookieParser());
-  app.use(express.session({secret:'b4b1w15h35', store: new MemoryStore()}));
+  app.use(express.session({secret:prop.store.session.pass, store: new MemoryStore()}));
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + "/public")); 
@@ -51,7 +56,12 @@ require('./providers/booking');
 require('./providers/user');
 require('./providers/settings');
 
-var mongoStore			= new MongoStore('babywish', 'localhost', 27017, {native_parser: true});
+var mongoStore			= new MongoStore(
+		prop.store.db.name, 
+		prop.store.db.host, 
+		prop.store.db.port, 
+		{native_parser: true}
+	);
 var articleProvider 	= new ArticleProvider(mongoStore);
 var bookingProvider		= new BookingProvider(mongoStore);
 var userProvider		= new UserProvider(mongoStore);
@@ -196,6 +206,5 @@ app.get('/ipn', function(req, res){
 });
 
 //on start
-app.listen(3000, '192.168.1.11');
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
-console.log(app.address());
+app.listen(prop.server.port, prop.server.address);
+console.log("Express server listening %s on port %d in %s mode", app.address().address, app.address().port, app.settings.env);
