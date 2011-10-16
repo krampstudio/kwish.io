@@ -4,13 +4,13 @@ Properties = function(){
 		'port'			: 3000
 	};
 	this.app = {
-		'views'			: __dirname + 'views',
+		'views'			: __dirname + '/views',
   		'view engine'	: 'jade',
   		'baseUrl'		: ''	
 	};
 	this.store = {
 		'session': {
-			'pass' : ''
+			'pass' : 'password'
 		},
 		'db' :{
 			'name'  	: 'babywish',

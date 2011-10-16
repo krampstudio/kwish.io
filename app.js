@@ -21,7 +21,7 @@ var prop = new Properties();
 app.configure(function(){
   if(prop.app){
 	  for(key in prop.app){
-		app.set(key, prop.app.key);
+		app.set(key, prop.app[key]);
 	}
   }
   app.use(express.bodyParser());
@@ -37,6 +37,7 @@ var throwError = null;
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
   throwError = function(err){
+	  console.log("Error:");
 	  console.log(err);
   };
 });
@@ -44,7 +45,8 @@ app.configure('production', function(){
   express.logger();
   app.use(express.errorHandler()); 
   throwError = function(err){
-        next(err);
+	  console.log("Error at " + new Date().toString());  
+	  next(err);
   };
 });
 
