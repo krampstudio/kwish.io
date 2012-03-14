@@ -1,11 +1,11 @@
 {
     "name": "baby-wish-list"
-  , "version": "0.0.1"
+  , "version": "0.2.0"
   , "private": true
   , "dependencies": {
-      "express": "2.4.0",
-      "jade": ">= 0.0.1",
-      "mongodb": "0.9.3",
-      "hashlib": "1.0.0"
+      "express" : "2.5.8",
+      "mongodb" : "0.9.9",
+      "jqtpl"   : "1.0.9",
+      "hashlib2": "1.0.3"
   }
 }

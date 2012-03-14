@@ -24,6 +24,7 @@ app.configure(function(){
 		app.set(key, prop.app[key]);
 	}
   }
+  app.register(".html", require("jqtpl").express);
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({secret:prop.store.session.pass, store: new MemoryStore()}));

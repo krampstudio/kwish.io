@@ -1,4 +1,4 @@
-var hashlib = require('hashlib');
+var hashlib = require('hashlib2');
 
 /**
  * Constructor
