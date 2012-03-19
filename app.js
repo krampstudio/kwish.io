@@ -12,13 +12,29 @@ var express     = require('express'),
     util        = require('util'),
     properties  = require('./properties');
     
+    
+console.log(util.inspect(properties));
 
 everyauth.twitter
             .consumerKey(properties.auth.twitter.consumerKey)
-            .consumerSecret(properties.auth.twitter.consumerSecret);
+            .consumerSecret(properties.auth.twitter.consumerSecret)
+            .findOrCreateUser( function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
+               
+                console.log(util.inspect(session));
+                console.log(util.inspect(accessToken));
+                console.log(util.inspect(accessTokenSecret));
+                console.log(util.inspect(twitterUserMetadata));
+                
+                var promise = this.Promise();
+                
+                return promise;
+            })
+            .redirectPath('/');
+
+console.log(util.inspect(everyauth.twitter.configurable()));
 
 //Create the app instance
-var app = module.exports = express.createServer();
+var app = express.createServer();
 
 app.configure(function(){
   if(properties.app){
@@ -27,7 +43,7 @@ app.configure(function(){
 	}
   }
   app.register(".html", require("jqtpl").express);
-  app.use(express.logger("tiny"));
+//  app.use(express.logger("tiny"));
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({secret:properties.store.session.pass}));
@@ -47,61 +63,27 @@ app.configure('production', function(){
 });
 
 
-//Load Models providers
-require('./system/mongostore');
-require('./providers/article');
-require('./providers/booking');
-require('./providers/user');
-require('./providers/settings');
-
-var mongoStore			= new MongoStore(
-		properties.store.db.name, 
-		properties.store.db.host, 
-		properties.store.db.port, 
-		{native_parser: true}
-	);
-var articleProvider 	= new ArticleProvider(mongoStore);
-var bookingProvider		= new BookingProvider(mongoStore);
-var userProvider		= new UserProvider(mongoStore);
-var settingsProvider	= new SettingsProvider(mongoStore);
-settingsProvider.load();
-
 // Routes
 
-/*
- *  Index
- */
 app.get('/', function(req, res){
 	 res.render('index', {
-    		title		: 'BabyWishList',
-    		user		: req.session.user || null
+        title: 'BabyWishList',
+        user : req.session.user || null
+	 });
+ });
+
+app.get('/signin', function(req, res){
+     res.render('signin', {
+        title: 'BabyWishList',
+        user : req.session.user || null
 	 });
  });
 
 
-/*
- * Login
- */
-app.post('/login', function(req,res){
-	userProvider.login( req.body.login, req.body.passwd, function(user){
-		if(user == null){
-			res.send({valid: false});
-		}
-		else{
-			req.session.user = user;
-			res.send({valid: true});
-		}
-	});
-});
-
-/*
- * Logout
- */
-app.get('/logout', function(req, res){
-	req.session.user = null;
-	res.redirect('/');
-});
 
 //on start
-app.listen(prop.server.port, prop.server.address);
-console.log("Express server listening %s on port %d in %s mode", prop.server.address, prop.server.port, app.settings.env);
+app.listen(
+    properties.server.port, 
+    properties.server.address
+);
+console.log("Express server listening %s on port %d in %s mode", properties.server.address, properties.server.port, app.settings.env);
