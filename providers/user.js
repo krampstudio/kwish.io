@@ -6,7 +6,7 @@ var hashlib = require('hashlib2');
  * @class UserProvider
  * @param {MongoStore} the mongo database store instance
  */
-UserProvider = function(store) {
+var UserProvider = function(store) {
 	this.collection = store.getCollection('users');
 };
 

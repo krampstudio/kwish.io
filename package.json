@@ -3,9 +3,10 @@
   , "version": "0.2.0"
   , "private": true
   , "dependencies": {
-      "express" : "2.5.8",
-      "mongodb" : "0.9.9",
-      "jqtpl"   : "1.0.9",
-      "hashlib2": "1.0.3"
+      "express" : "2.5.x",
+      "mongodb" : "0.9.x",
+      "jqtpl"   : "1.0.x",
+      "hashlib2": "1.0.x",
+      "everyauth": "0.2.x"
   }
 }

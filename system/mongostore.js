@@ -8,7 +8,7 @@ var Mongodb = require('mongodb');
  * @param {String} host the mongo server host
  * @param {int}	   port	the mongo server port
  */
-MongoStore = function(name ,host, port){
+var MongoStore = function(name ,host, port){
 	 this.db = new Mongodb.Db(name, new Mongodb.Server(host, port, {auto_reconnect: true}, {}));
 	 this.db.open(function(){});
 };
@@ -31,3 +31,4 @@ MongoStore.prototype.getDb = function(){
 MongoStore.prototype.getCollection = function(collectionName){
 	return new Mongodb.Collection(this.db, collectionName);
 };
+

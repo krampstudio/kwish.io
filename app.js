@@ -7,28 +7,31 @@
  * 
  */
 
-// Import Dependencies
-var express 	= require('express');
-var MemoryStore = require('./node_modules/express/node_modules/connect/lib/middleware/session/memory');
+var express     = require('express'),
+    everyauth   = require('everyauth'),
+    util        = require('util'),
+    properties  = require('./properties');
+    
+
+everyauth.twitter
+            .consumerKey(properties.auth.twitter.consumerKey)
+            .consumerSecret(properties.auth.twitter.consumerSecret);
 
 //Create the app instance
 var app = module.exports = express.createServer();
 
-//Main  Configuration
-require('./properties');
-var prop = new Properties();
-
 app.configure(function(){
-  if(prop.app){
-	  for(key in prop.app){
-		app.set(key, prop.app[key]);
+  if(properties.app){
+	  for(var key in properties.app){
+		app.set(key, properties.app[key]);
 	}
   }
   app.register(".html", require("jqtpl").express);
   app.use(express.logger("tiny"));
   app.use(express.bodyParser());
   app.use(express.cookieParser());
-  app.use(express.session({secret:prop.store.session.pass, store: new MemoryStore()}));
+  app.use(express.session({secret:properties.store.session.pass}));
+  app.use(everyauth.middleware());
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + "/public")); 
@@ -52,9 +55,9 @@ require('./providers/user');
 require('./providers/settings');
 
 var mongoStore			= new MongoStore(
-		prop.store.db.name, 
-		prop.store.db.host, 
-		prop.store.db.port, 
+		properties.store.db.name, 
+		properties.store.db.host, 
+		properties.store.db.port, 
 		{native_parser: true}
 	);
 var articleProvider 	= new ArticleProvider(mongoStore);
@@ -70,7 +73,7 @@ settingsProvider.load();
  */
 app.get('/', function(req, res){
 	 res.render('index', {
-    		title		: 'Bienvenu sur la liste de naissance de Ditlinde',
+    		title		: 'BabyWishList',
     		user		: req.session.user || null
 	 });
  });
@@ -85,7 +88,6 @@ app.post('/login', function(req,res){
 			res.send({valid: false});
 		}
 		else{
-			
 			req.session.user = user;
 			res.send({valid: true});
 		}
