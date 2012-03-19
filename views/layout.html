@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>${title}</title>
+        <link rel="stylesheet" href="/stylesheets/reset.css"/>
+        <link rel="stylesheet" href="/stylesheets/style.css"/>
+        <link rel="stylesheet" href="/stylesheets/bedroom/jquery-ui-1.8.15.custom.css"/>
+        <script type="text/javascript" src="/scripts/lib/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="/scripts/lib/jquery-ui-1.8.15.custom.min.js"></script>
+        <script type="text/javascript" src="/scripts/lib/jquery.imgload.js"></script>
+        <script type="text/javascript" src="/scripts/widgets.js"></script>
+    </head>
+    <body xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+        <div id="header">${title}</div>
+        <div id="message-box"></div>
+        <div id="login-box">
+            <a id="connector" href="#">Se connecter</a>
+            <form id="login-form">
+                <label for="login">Pseudo</label><input id="login" type="text" name="login"/><br/>
+                <label for="passwd">Mot de passe</label><input id="passwd" type="password" name="passwd"/><br/>
+                <input id="logger" type="button" value="connection"/>
+            </form>
+        </div>
+            <div id="container">
+                <div id="loader" style="display:none;"><img src="/imgs/ajax-loader.gif"/></div>
+
+                <div id="content">
+                {{html body}}
+                </div>
+            </div>
+
+        <div id="footer"><p>2011 - a Bellette & co © production</p></div>
+
+    </body>
+</html>
