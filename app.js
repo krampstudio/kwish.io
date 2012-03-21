@@ -13,25 +13,18 @@ var express     = require('express'),
     properties  = require('./properties');
     
     
-console.log(util.inspect(properties));
+//console.log(util.inspect(properties));
 
 everyauth.twitter
             .consumerKey(properties.auth.twitter.consumerKey)
             .consumerSecret(properties.auth.twitter.consumerSecret)
             .findOrCreateUser( function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
-               
-                console.log(util.inspect(session));
-                console.log(util.inspect(accessToken));
-                console.log(util.inspect(accessTokenSecret));
-                console.log(util.inspect(twitterUserMetadata));
-                
                 var promise = this.Promise();
-                
-                return promise;
+                return promise.fulfill(twitterUserMetadata);
             })
             .redirectPath('/');
 
-console.log(util.inspect(everyauth.twitter.configurable()));
+//console.log(util.inspect(everyauth.twitter.configurable()));
 
 //Create the app instance
 var app = express.createServer();
@@ -53,6 +46,8 @@ app.configure(function(){
   app.use(express.static(__dirname + "/public")); 
 });
 
+
+
 //error configuration
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -62,20 +57,22 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
+//add everyauth view helper
+everyauth.helpExpress(app);
 
 // Routes
 
-app.get('/', function(req, res){
+app.get('/', function(req, res){    
 	 res.render('index', {
         title: 'BabyWishList',
-        user : req.session.user || null
+        user: everyauth.twitter.user || null
 	 });
  });
 
 app.get('/signin', function(req, res){
      res.render('signin', {
         title: 'BabyWishList',
-        user : req.session.user || null
+         user: everyauth.twitter.user || null
 	 });
  });
 
