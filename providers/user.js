@@ -1,21 +1,48 @@
-var hashlib = require('hashlib2');
+var hashlib = require('hashlib2'),
+    MongoStore   = require('../system/mongostore');
 
 /**
  * Constructor
  * Instantiate the provider
  * @class UserProvider
- * @param {MongoStore} the mongo database store instance
  */
-var UserProvider = function(store) {
-	this.collection = store.getCollection('users');
+var UserProvider = function() {
+    this.store = MongoStore.getInstance();
+    if(this.store === null){
+        throw new Error('Store not initialized');   
+    }
+	this.collection = this.store.getCollection('users');
 };
+
+UserProvider.prototype.findOneBy = function(parameters, callback){
+     this.collection.findOne(parameters, function(err, user){
+        if(err){
+            callback(err);   
+        }
+        else{
+            callback(null, user);
+        }
+     });
+};
+
+UserProvider.prototype.save = function(user, callback){
+    this.collection.update({email: user.email}, {$set : user}, {upsert : true}, function(err, user){
+        if(err){
+            callback(err);   
+        }
+        else{
+            callback(null, user);
+        }
+	});
+};
+
 
 /**
  * Login
  * @memberOf UserProvider
  * @param {Function} onSuccess callback
  * @param {Function} onError callback
- */
+ 
 UserProvider.prototype.login = function(login, password, onSuccess, onError){
 	this.collection.find({
 		login: login,
@@ -35,22 +62,6 @@ UserProvider.prototype.login = function(login, password, onSuccess, onError){
 	});
 };
 
-UserProvider.prototype.insert = function(user, onSuccess, onError){
-	this.collection.findOne({email: user.email}).toArray(function(err, foundUser){
-		if(err){
-			onError(err);
-		}
-		else {
-			if(!foundUser){
-				this.collection.insert(user, {safe: true}, function(err, objects){
-					if(err){
-						onError(err);
-					}
-					else {
-						onSuccess(objects);
-					}
-				});
-			}
-		}
-	});
-};
+*/
+
+module.exports = UserProvider;

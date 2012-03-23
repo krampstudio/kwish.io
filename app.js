@@ -10,17 +10,43 @@
 var express     = require('express'),
     everyauth   = require('everyauth'),
     util        = require('util'),
-    properties  = require('./properties');
+    properties  = require('./properties'),
+    MongoStore  = require('./system/mongostore'),
+    UserProvider= require('./providers/user');
     
+//initialize the mongodb store
+MongoStore.getInstance(
+    properties.store.db.name,
+    properties.store.db.host,
+    properties.store.db.port
+);
+
+var userProvier = new UserProvider();
+
     
 //console.log(util.inspect(properties));
+everyauth.everymodule.findUserById( function (id, callback) {
+   console.log("everyauth.everymodule.findUserById called with %s ", id);
+   console.log(callback);
+});
 
 everyauth.twitter
             .consumerKey(properties.auth.twitter.consumerKey)
             .consumerSecret(properties.auth.twitter.consumerSecret)
             .findOrCreateUser( function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
                 var promise = this.Promise();
-                return promise.fulfill(twitterUserMetadata);
+                var user = {
+                    'twitter': {
+                        'id' : twitterUserMetadata
+                    }
+                };
+                userProvier.save(user, function(err, user){
+                     if(err){
+                        console.log(err);   
+                     }
+                     promise.fulfill(user);
+                });
+                return promise;
             })
             .redirectPath('/');
 
@@ -57,8 +83,7 @@ app.configure('production', function(){
   app.use(express.errorHandler());
 });
 
-//add everyauth view helper
-everyauth.helpExpress(app);
+
 
 // Routes
 
@@ -76,7 +101,8 @@ app.get('/signin', function(req, res){
 	 });
  });
 
-
+//add everyauth view helper
+everyauth.helpExpress(app);
 
 //on start
 app.listen(
