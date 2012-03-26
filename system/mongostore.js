@@ -14,7 +14,7 @@ var MongoStore = function(name ,host, port){
 	 }
      this.db = new Mongodb.Db(name, new Mongodb.Server(host, port, {auto_reconnect: true}, {}));
 	 this.db.open(function(){
-        console.debug("connection to mongo opened");     
+        console.log("connection to mongo opened");     
     });
 };
 
@@ -61,7 +61,7 @@ MongoStore.prototype.getCollection = function(collectionName){
 MongoStore.prototype.close = function(){
     if(this.db){
         this.db.close();  
-        console.debug("connection to mongo closed"); 
+        console.log("connection to mongo closed"); 
     }
 };
 

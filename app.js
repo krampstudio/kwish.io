@@ -21,36 +21,40 @@ MongoStore.getInstance(
     properties.store.db.port
 );
 
+//getting the user data provider
 var userProvier = new UserProvider();
 
-    
-//console.log(util.inspect(properties));
-everyauth.everymodule.findUserById( function (id, callback) {
-   console.log("everyauth.everymodule.findUserById called with %s ", id);
-   console.log(callback);
-});
+//auth
 
+//how everyauth get a user
+everyauth.everymodule.findUserById( function (id, callback) {
+    userProvier.getOne(id, callback);
+});
+everyauth.everymodule.moduleTimeout(10000);
+
+//login using twitter oauth
 everyauth.twitter
             .consumerKey(properties.auth.twitter.consumerKey)
             .consumerSecret(properties.auth.twitter.consumerSecret)
             .findOrCreateUser( function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
                 var promise = this.Promise();
                 var user = {
-                    'twitter': {
-                        'id' : twitterUserMetadata
+                    'login'     : twitterUserMetadata.screen_name,
+                    'name'      : twitterUserMetadata.name,
+                    'twitter'   : {
+                        'id' : twitterUserMetadata.id
                     }
                 };
                 userProvier.save(user, function(err, user){
                      if(err){
-                        console.log(err);   
+                        console.error(err);   
                      }
+                     user.id = user._id;
                      promise.fulfill(user);
                 });
                 return promise;
             })
             .redirectPath('/');
-
-//console.log(util.inspect(everyauth.twitter.configurable()));
 
 //Create the app instance
 var app = express.createServer();
@@ -63,13 +67,14 @@ app.configure(function(){
   }
   app.register(".html", require("jqtpl").express);
 //  app.use(express.logger("tiny"));
+  app.use(express.static(__dirname + "/public"));
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({secret:properties.store.session.pass}));
   app.use(everyauth.middleware());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(__dirname + "/public")); 
+  
 });
 
 
@@ -86,18 +91,15 @@ app.configure('production', function(){
 
 
 // Routes
-
-app.get('/', function(req, res){    
+app.get('/', function(req, res){
+    console.log(req.user);
 	 res.render('index', {
-        title: 'BabyWishList',
-        user: everyauth.twitter.user || null
+        title: 'BabyWishList'
 	 });
  });
-
-app.get('/signin', function(req, res){
+ app.get('/signin', function(req, res){    
      res.render('signin', {
-        title: 'BabyWishList',
-         user: everyauth.twitter.user || null
+        title: 'BabyWishList'
 	 });
  });
 
