@@ -15,7 +15,7 @@ var Properties = function(){
 		'db' :{
             'name'      :'babywish',
             'host'      :'localhost',
-            'port'      :27017
+            'port'      : 27017
 		}
 	};
     this.auth = {

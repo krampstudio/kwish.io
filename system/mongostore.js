@@ -1,9 +1,36 @@
+/**
+ * BabyWishList Platform : A web application to build cool baby wish lists 
+ * Copyright (C) 2012  Bertrand CHEVRIER, KrampStudio
+ *  
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/agpl-3.0.txt
+ * 
+ * @author <a href="mailto:chevrier.bertrand@gmail.com">Bertrand Chevrier</a>
+ * @license http://www.gnu.org/licenses/agpl-3.0.txt
+ * @version 0.2.0
+ */
+ 
+/**
+ * @requires mongodb
+ */
 var Mongodb     = require('mongodb'); 
 
 /**
  * Private Constructor, throw an exception, use getInstance instead 
  * 
  * @class MongoStore
+ * @private
+ * 
  * @param {String} name the mongo database name
  * @param {String} host the mongo server host
  * @param {int}	   port	the mongo server port
@@ -21,22 +48,47 @@ var MongoStore = function(name ,host, port){
 /**
  * The single instance
  * @memberOf MongoStore
+ * @static
+ * @type {MongoStore}
  */
 MongoStore.self = null;
 
 /**
+ * An object containing store settings
+ * @memberOf MongoStore
+ * @static
+ * @type {Object}
+ */ 
+MongoStore.setting = null;
+
+/**
  * Get the mongostore instance 
- * 
- * @class MongoStore
- * @param {String}  [name] the mongo database name
- * @param {String}  [host] the mongo server host
- * @param {int}     [port] the mongo server port
+ * @memberOf MongoStore
+ * @static
  */
-MongoStore.getInstance = function(name ,host, port){
+MongoStore.getInstance = function(){
     if(this.self === null){
+        if(this.settings === null){
+            throw new Error("No settigns found! Initialise the store before to load it.");
+        }
+        var name = this.settings.name || 'babywish';
+        var host = this.settings.name || 'localhost';
+        var port = this.settings.port || 27017;
         this.self = new MongoStore(name ,host, port);
     }
     return this.self;
+};
+
+/**
+ * @param {Object} settings
+ * @param {String} settings.name the mongo database name
+ * @param {String} settings.host the mongo server host
+ * @param {int}    settings.port the mongo server port
+ * @memberOf MongoStore
+ * @static
+ */
+MongoStore.init = function(settings){
+    MongoStore.setting = settings;
 };
 
 /**
@@ -58,6 +110,9 @@ MongoStore.prototype.getCollection = function(collectionName){
 	return new Mongodb.Collection(this.db, collectionName);
 };
 
+/**
+ * Close propertly the mongo store
+ */
 MongoStore.prototype.close = function(){
     if(this.db){
         this.db.close();  
@@ -65,4 +120,5 @@ MongoStore.prototype.close = function(){
     }
 };
 
+//export the MongoStore to be required
 module.exports = MongoStore;
