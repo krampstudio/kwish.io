@@ -35,7 +35,7 @@ function _msg(type, msg){
 	
 /**
  * Initialize the login box
- */
+ 
 function initLogin(){
 	$("#connector").click(function(){
 		if($("#login-form").css('display') == 'none'){
@@ -68,7 +68,7 @@ function initLogin(){
 			);
 		}	
 	});
-}
+}*/
 
 	
 /**
@@ -83,5 +83,5 @@ $(document).ready(function(){
     $('.big-button').button();
 	
 	//initialize the login box
-	initLogin();
+//	initLogin();
 });

@@ -78,14 +78,12 @@ app.configure('production', function(){
 
 // Routes
 app.get('/', function(req, res){
-    console.log(req.user);
 	 res.render('index', {
         title: 'BabyWishList'
 	 });
  });
  
 app.get('/signin', function(req, res){    
-    console.log(req);
      res.render('signin', {
         title: 'BabyWishList'
 	 });

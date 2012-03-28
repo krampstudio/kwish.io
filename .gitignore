@@ -3,4 +3,5 @@
 node_modules
 ext
 .settings.xml
+.sass-cache
 properties.js

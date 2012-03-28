@@ -11,17 +11,25 @@
         <script type="text/javascript" src="/scripts/widgets.js"></script>
     </head>
     <body xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+        <div id="control">
+            <a id="connector" href="#">Se connecter</a>
+            <div id="connect-box">
+                <form name="connect-form">
+                    <input class="short-field" type="text" />
+                    <input class="short-field" type="password" />
+                </form>
+                ou
+                <a href="/auth/twitter">
+                    <img src="imgs/twitter.ico" /> avec twitter 
+                </a>
+                ou
+                <a href="/auth/facebook">
+                    <img src="imgs/facebook.ico" /> avec facebook 
+                </a>
+            </div>
+        </div>
         <div id="header">${title}</div>
         <div id="message-box"></div>
-        <div id="login-box">
-            <a id="connector" href="#">Se connecter</a>
-            <form id="login-form">
-                
-                <label for="login">Pseudo</label><input id="login" type="text" name="login"/><br/>
-                <label for="passwd">Mot de passe</label><input id="passwd" type="password" name="passwd"/><br/>
-                <input id="logger" type="button" value="connection"/>
-            </form>
-        </div>
             <div id="container">
                 <div id="loader" style="display:none;"><img src="/imgs/ajax-loader.gif"/></div>
 
