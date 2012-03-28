@@ -1,5 +1,4 @@
-var hashlib = require('hashlib2'),
-    MongoStore   = require('../system/mongostore');
+var MongoStore   = require('../system/mongostore');
 
 //TODO setup a mongo link between _id and id
 

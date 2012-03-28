@@ -48,10 +48,11 @@ var MongoStore = function(name ,host, port){
 /**
  * The single instance
  * @memberOf MongoStore
+ * @private
  * @static
  * @type {MongoStore}
  */
-MongoStore.self = null;
+MongoStore._self = null;
 
 /**
  * An object containing store settings
@@ -59,7 +60,7 @@ MongoStore.self = null;
  * @static
  * @type {Object}
  */ 
-MongoStore.setting = null;
+MongoStore.settings = null;
 
 /**
  * Get the mongostore instance 
@@ -67,16 +68,16 @@ MongoStore.setting = null;
  * @static
  */
 MongoStore.getInstance = function(){
-    if(this.self === null){
-        if(this.settings === null){
+    if(this._self === null){
+        if(!this.settings){
             throw new Error("No settigns found! Initialise the store before to load it.");
         }
         var name = this.settings.name || 'babywish';
         var host = this.settings.name || 'localhost';
         var port = this.settings.port || 27017;
-        this.self = new MongoStore(name ,host, port);
+        this._self = new MongoStore(name ,host, port);
     }
-    return this.self;
+    return this._self;
 };
 
 /**
@@ -88,7 +89,7 @@ MongoStore.getInstance = function(){
  * @static
  */
 MongoStore.init = function(settings){
-    MongoStore.setting = settings;
+    this.settings = settings;
 };
 
 /**
