@@ -52,32 +52,4 @@ UserProvider.prototype.save = function(user, callback){
 	});
 };
 
-
-/**
- * Login
- * @memberOf UserProvider
- * @param {Function} onSuccess callback
- * @param {Function} onError callback
- 
-UserProvider.prototype.login = function(login, password, onSuccess, onError){
-	this.collection.find({
-		login: login,
-		password: hashlib.sha1(password)
-	}).toArray(function(err, users){
-		if(err){
-			onError(err);
-		}
-		else {
-			if(users.length == 1){
-				onSuccess(users[0]);
-			}
-			else{
-				onSuccess(null);
-			}
-		}
-	});
-};
-
-*/
-
 module.exports = UserProvider;

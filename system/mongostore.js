@@ -40,8 +40,11 @@ var MongoStore = function(name ,host, port){
         throw new Error('Cannot be instanciated that way, use getInstance instead');   
 	 }
      this.db = new Mongodb.Db(name, new Mongodb.Server(host, port, {auto_reconnect: true}, {}));
-	 this.db.open(function(){
-        console.log("connection to mongo opened");     
+	 this.db.open(function(err){
+         if(err){
+           console.error(err);   
+         }
+        console.log("connection to mongo opened on "+ host + ":" + port +" using "+name);     
     });
 };
 
@@ -73,7 +76,7 @@ MongoStore.getInstance = function(){
             throw new Error("No settigns found! Initialise the store before to load it.");
         }
         var name = this.settings.name || 'babywish';
-        var host = this.settings.name || 'localhost';
+        var host = this.settings.host || 'localhost';
         var port = this.settings.port || 27017;
         this._self = new MongoStore(name ,host, port);
     }

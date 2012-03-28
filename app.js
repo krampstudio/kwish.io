@@ -20,63 +20,40 @@
  * @version 0.2.0
  * 
  */
+ 
+ /**
+  * Main app file, bootstrap all the services and start the server loop
+  */
 
 //imports
-var express     = require('express'),
-    everyauth   = require('everyauth'),
-    util        = require('util'),
-    properties  = require('./properties'),
-    MongoStore  = require('./system/mongostore'),
-    UserProvider= require('./providers/user');
+var express       = require('express'),
+    everyauth     = require('everyauth'),
+    util          = require('util'),
+    properties    = require('./properties'),
+    MongoStore    = require('./system/mongostore'),
+    Authenticator = require('./system/authenticator');
     
 //initialize the mongodb store
 MongoStore.init(properties.store.db);
 
-//getting the user data provider
-var userProvier = new UserProvider();
-
 //auth
-
-//how everyauth get a user
-everyauth.everymodule.findUserById( function (id, callback) {
-    userProvier.getOne(id, callback);
-});
-everyauth.everymodule.moduleTimeout(10000);
-
-//login using twitter oauth
-everyauth.twitter
-            .consumerKey(properties.auth.twitter.consumerKey)
-            .consumerSecret(properties.auth.twitter.consumerSecret)
-            .findOrCreateUser( function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
-                var promise = this.Promise();
-                var user = {
-                    'login'     : twitterUserMetadata.screen_name,
-                    'name'      : twitterUserMetadata.name,
-                    'twitter'   : {
-                        'id' : twitterUserMetadata.id
-                    }
-                };
-                userProvier.save(user, function(err, user){
-                     if(err){
-                        console.error(err);   
-                     }
-                     user.id = user._id;
-                     promise.fulfill(user);
-                });
-                return promise;
-            })
-            .redirectPath('/');
+var authenticator = new Authenticator(properties.auth);
+authenticator.setUp();
 
 //Create the app instance
 var app = express.createServer();
 
 app.configure(function(){
+    
+  //dynamic configuration reagrding properties.app 
   if(properties.app){
 	  for(var key in properties.app){
 		app.set(key, properties.app[key]);
 	}
   }
+  
   app.register(".html", require("jqtpl").express);
+  
 //  app.use(express.logger("tiny"));
   app.use(express.static(__dirname + "/public"));
   app.use(express.bodyParser());
@@ -85,7 +62,6 @@ app.configure(function(){
   app.use(everyauth.middleware());
   app.use(express.methodOverride());
   app.use(app.router);
-  
 });
 
 
@@ -109,6 +85,7 @@ app.get('/', function(req, res){
  });
  
 app.get('/signin', function(req, res){    
+    console.log(req);
      res.render('signin', {
         title: 'BabyWishList'
 	 });
