@@ -82,14 +82,60 @@ Authenticator.prototype.setUpTwitter = function(){
             userProvider.save(user, function(err, userData){
                  if(err){
                     console.error(err);   
+                    promise.fail(err);
                  }
                  userData.id = userData._id;
-                 console.log(userData);
                  promise.fulfill(userData);
             });
             return promise;
         })
         .redirectPath('/');
+};
+
+/**
+ * Facebook authentication 
+ * @memberOf Authenticator
+ */
+Authenticator.prototype.setUpFacebook = function(){
+    
+    var userProvider = this.userProvider;
+    
+    everyauth.facebook
+        .appId(this.settings.facebook.appId)
+        .appSecret(this.settings.facebook.appSecret)
+        .scope('email')
+        .findOrCreateUser( function (session, accessToken, accessTokExtra, fbUserMetadata) {
+            var promise = this.Promise();
+           
+            var user = {
+                'login'     : fbUserMetadata.username,
+                'name'      : fbUserMetadata.name,
+                'facebook'   : {
+                    'id' : fbUserMetadata.id
+                }
+            };
+            if(fbUserMetadata.email){
+                user.email = fbUserMetadata.email;
+            }
+           
+            userProvider.save(user, function(err, userData){
+                 if(err){
+                    console.error(err);   
+                    promise.fail(err);
+                 }
+                 userData.id = userData._id;
+                 promise.fulfill(userData);
+            });
+            return promise;
+  })
+  .redirectPath('/');  
+};
+
+Authenticator.prototype.setUpGoogle = function(){
+    
+    var userProvider = this.userProvider;
+    
+   //HERE
 };
 
 /**
@@ -99,6 +145,7 @@ Authenticator.prototype.setUpTwitter = function(){
 Authenticator.prototype.setUp = function(){
     this._init();
     this.setUpTwitter();
+    this.setUpFacebook();
 };
 
 //export the MongoStore to be required

@@ -60,7 +60,16 @@ var Properties = function(){
         'twitter' : {
             'consumerKey'   : 'xxx',
             'consumerSecret': 'xxx'
-        }
+        },
+        'facebook' : {
+            'appId'     : 'xxx',
+            'appSecret' : 'xxx'
+        },
+        'google' : {
+            'appId'     : 'xxx',
+            'appSecret' : 'xxx'
+        },
+        'timeout' : 30000
     };
 };
 

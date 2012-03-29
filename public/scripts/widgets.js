@@ -70,6 +70,13 @@ function initLogin(){
 	});
 }*/
 
+function initControl(){
+    $('#connector').click(function(){
+       $('#connect-box').slideToggle();
+       return false;
+    });
+}
+
 	
 /**
  * Main loop
@@ -83,5 +90,5 @@ $(document).ready(function(){
     $('.big-button').button();
 	
 	//initialize the login box
-//	initLogin();
+	initControl();
 });

@@ -11,23 +11,37 @@
         <script type="text/javascript" src="/scripts/widgets.js"></script>
     </head>
     <body xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+         
         <div id="control">
-            <a id="connector" href="#">Se connecter</a>
-            <div id="connect-box">
-                <form name="connect-form">
-                    <input class="short-field" type="text" />
-                    <input class="short-field" type="password" />
-                </form>
-                ou
-                <a href="/auth/twitter">
-                    <img src="imgs/twitter.ico" /> avec twitter 
-                </a>
-                ou
-                <a href="/auth/facebook">
-                    <img src="imgs/facebook.ico" /> avec facebook 
-                </a>
-            </div>
+        {{if everyauth.loggedIn}}
+            <a id="deconnector" href="/logout">Se déconnecter</a>
+        {{else}}
+            <a id="connector" href="#">Se connecter</a>|
+            
+            <a id="subscribor" href="#">S'inscrire</a>
+        {{/if}}
         </div>
+        {{if !everyauth.loggedIn}}
+        <div id="connect-box">
+            <form name="connect-form">
+                <label for="bwlogin">Pseudo/Email</label>
+                <input class="short-field" type="text" name="bwlogin" /> 
+                <label for="bwpass">Mot de passe</label>
+                <input class="short-field" type="password" name="bwpass" />
+                <input type="submit" value="ok" />
+            </form>
+            ou
+            <a href="/auth/twitter">
+                <img src="imgs/twitter.ico" alt="connection avec twitter" title="Se connecter avec votre compte Twitter" />
+            </a>
+            <a href="/auth/facebook">
+                <img src="imgs/facebook.ico" alt="connection avec facebook" title="Se connecter avec votre compte Facebook" />
+            </a>
+            <a href="/auth/google">
+                <img src="imgs/google.ico" alt="connection avec google" title="Se connecter avec votre compte Google" />
+            </a>
+        </div>
+        {{/if}}
         <div id="header">${title}</div>
         <div id="message-box"></div>
             <div id="container">

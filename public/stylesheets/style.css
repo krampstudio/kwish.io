@@ -1,4 +1,4 @@
-/* line 4, sass/style.scss */
+/* line 9, sass/style.scss */
 body {
   color: #333;
   font-family: Verdana;
@@ -8,19 +8,19 @@ body {
   background-repeat: no-repeat;
 }
 
-/* line 12, sass/style.scss */
+/* line 17, sass/style.scss */
 img.icon {
   vertical-align: middle;
   margin-right: 5px;
 }
 
-/* line 16, sass/style.scss */
+/* line 21, sass/style.scss */
 #loader {
   text-align: center;
   width: 100%;
 }
 
-/* line 21, sass/style.scss */
+/* line 26, sass/style.scss */
 #header {
   height: 50px;
   text-align: center;
@@ -30,7 +30,7 @@ img.icon {
   color: #666;
 }
 
-/* line 29, sass/style.scss */
+/* line 34, sass/style.scss */
 #container {
   z-index: 100;
   width: 63%;
@@ -39,18 +39,20 @@ img.icon {
   height: 100%;
   margin-bottom: 50px;
 }
-/* line 36, sass/style.scss */
+/* line 41, sass/style.scss */
 #container #content {
   margin-top: 15px;
   padding: 5px;
   background-color: #FFF;
   border: dashed 1px #999;
-  -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
 }
 
-/* line 45, sass/style.scss */
+/* line 50, sass/style.scss */
 #footer {
   z-index: 0;
   position: fixed;
@@ -62,7 +64,7 @@ img.icon {
   text-align: center;
   margin: 0;
 }
-/* line 55, sass/style.scss */
+/* line 60, sass/style.scss */
 #footer p {
   font-size: 0.8em;
   color: #FFF;
@@ -70,7 +72,7 @@ img.icon {
   top: 90%;
 }
 
-/* line 61, sass/style.scss */
+/* line 68, sass/style.scss */
 #message-box {
   display: none;
   margin: 15px auto 15px auto;
@@ -78,8 +80,9 @@ img.icon {
   width: 300px;
 }
 
-/* line 67, sass/style.scss */
-div#control {
+/* line 75, sass/style.scss */
+#control {
+  position: relative;
   background-color: #767287;
   *zoom: 1;
   filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FF767287', endColorstr='#FF353240');
@@ -93,18 +96,60 @@ div#control {
   background-image: linear-gradient(top, #767287 0%, #767287 20%, #353240 100%);
   height: 25px;
   width: 99%;
-  color: #ffffff;
+  color: #353240;
   text-align: right;
   padding-right: 1%;
   padding-top: 5px;
+  z-index: 200;
 }
-/* line 79, sass/style.scss */
-div#control a {
+/* line 89, sass/style.scss */
+#control a {
   color: #ffffff;
   text-decoration: none;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+/* line 4, ../../../../../../../var/lib/gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/typography/links/_hover-link.scss */
+#control a:hover {
+  text-decoration: underline;
 }
 
-/* line 83, sass/style.scss */
+/* line 96, sass/style.scss */
+#connect-box {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  width: 400px;
+  right: 5px;
+  top: 29px;
+  padding: 10px;
+  background-color: #767287;
+  border: solid 1px #353240;
+  -moz-border-radius-bottomleft: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -ms-border-bottom-left-radius: 5px;
+  -o-border-bottom-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  -moz-border-radius-bottomright: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  -ms-border-bottom-right-radius: 5px;
+  -o-border-bottom-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: #ffffff;
+  font-size: 11px;
+  text-align: right;
+}
+/* line 110, sass/style.scss */
+#connect-box form {
+  margin-bottom: 8px;
+}
+/* line 113, sass/style.scss */
+#connect-box a {
+  text-decoration: none;
+  margin-right: 3px;
+}
+
+/* line 119, sass/style.scss */
 .short-field {
   width: 50px;
 }
