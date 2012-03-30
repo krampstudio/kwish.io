@@ -113,6 +113,32 @@ img.icon {
     a{
         text-decoration:none;
         margin-right:3px;
+        span {
+            height: 20px;
+            opacity: 1 !important;
+            text-indent: -9999px;
+            width: 20px;
+        }
+        #twitter-connect{
+            background: url('../imgs/twitter-connect.png') no-repeat;
+        }
+        #facebook-connect{
+            background: url('../imgs/facebook-connect.png') no-repeat;
+        }
+        #google-connect{
+            background: url('../imgs/google-connect.png') no-repeat;
+        }
+    }
+    a:hover{
+         #twitter-connect{
+            background: url('../imgs/twitter-connect.png') no-repeat 50%;
+        }
+        #facebook-connect{
+            background: url('../imgs/facebook-connect.png') no-repeat 50%;
+        }
+        #google-connect{
+            background: url('../imgs/google-connect.png') no-repeat 50%;
+        }
     }
 }
 
