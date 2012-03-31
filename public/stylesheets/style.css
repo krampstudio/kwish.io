@@ -77,10 +77,15 @@ img.icon {
   display: none;
   margin: 15px auto 15px auto;
   padding: 5px;
-  width: 300px;
+  width: 25%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
 }
 
-/* line 75, sass/style.scss */
+/* line 76, sass/style.scss */
 #control {
   position: relative;
   background-color: #767287;
@@ -102,7 +107,7 @@ img.icon {
   padding-top: 5px;
   z-index: 200;
 }
-/* line 89, sass/style.scss */
+/* line 90, sass/style.scss */
 #control a {
   color: #ffffff;
   text-decoration: none;
@@ -114,12 +119,12 @@ img.icon {
   text-decoration: underline;
 }
 
-/* line 96, sass/style.scss */
+/* line 97, sass/style.scss */
 #connect-box {
   display: none;
   position: absolute;
-  z-index: 10;
-  width: 400px;
+  z-index: 150;
+  width: 275px;
   right: 5px;
   top: 29px;
   padding: 10px;
@@ -136,20 +141,70 @@ img.icon {
   -o-border-bottom-right-radius: 5px;
   border-bottom-right-radius: 5px;
   color: #ffffff;
-  font-size: 11px;
+  font-size: 0.8em;
   text-align: right;
 }
-/* line 110, sass/style.scss */
+/* line 111, sass/style.scss */
 #connect-box form {
   margin-bottom: 8px;
+  float: left;
 }
 /* line 113, sass/style.scss */
-#connect-box a {
+#connect-box form input[type=text], #connect-box form input[type=password] {
+  border: solid 2px #353240;
+  width: 65px;
+  height: 18px;
+  font-size: 0.8em;
+  margin: 2px;
+}
+/* line 119, sass/style.scss */
+#connect-box form input[type=text]:focus, #connect-box form input[type=password]:focus {
+  border-color: #BAAFC1;
+}
+/* line 122, sass/style.scss */
+#connect-box form .ui-button {
+  padding: 4px;
+  font-size: 0.8em;
+}
+/* line 128, sass/style.scss */
+#connect-box #social-connect {
+  clear: right;
+}
+/* line 130, sass/style.scss */
+#connect-box #social-connect a {
   text-decoration: none;
   margin-right: 3px;
 }
-
-/* line 119, sass/style.scss */
-.short-field {
-  width: 50px;
+/* line 133, sass/style.scss */
+#connect-box #social-connect a span {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+}
+/* line 138, sass/style.scss */
+#connect-box #social-connect a #twitter-connect {
+  background: url("../imgs/twitter-connect.png") no-repeat;
+  background-position: left top;
+}
+/* line 142, sass/style.scss */
+#connect-box #social-connect a #facebook-connect {
+  background: url("../imgs/facebook-connect.png") no-repeat;
+  background-position: left top;
+}
+/* line 146, sass/style.scss */
+#connect-box #social-connect a #google-connect {
+  background: url("../imgs/google-connect.png") no-repeat;
+  background-position: left top;
+}
+/* line 152, sass/style.scss */
+#connect-box #social-connect a:hover #twitter-connect {
+  background-position: left bottom;
+}
+/* line 155, sass/style.scss */
+#connect-box #social-connect a:hover #facebook-connect {
+  background-position: left bottom;
+}
+/* line 158, sass/style.scss */
+#connect-box #social-connect a:hover #google-connect {
+  background-position: left bottom;
 }

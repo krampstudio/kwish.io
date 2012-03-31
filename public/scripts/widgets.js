@@ -11,9 +11,12 @@ var MSG = {
 /**
  * Display a message
  * @param {MSG.TYPE} type
- * @param {String} msg
+ * @param {String|Array} msg the message(s) to display
+ * @param {Number} [time] display time in ms (default 4000)
+ *                        Possible values are -1 to never hide or > 1500 
+ *                        (because of the apparition time)
  */
-function _msg(type, msg){
+function _msg(type, msg, time){
 	switch(type){
 		case MSG.TYPE.ERROR:
 			$('#message-box')
@@ -27,10 +30,25 @@ function _msg(type, msg){
 				.toggleClass('ui-state-highlight', true);
 		break;
 	}
-	$('#message-box').text(msg).show('slow');
-	setTimeout(function(){
-		$('#message-box').empty().hide();
-	}, 4000);
+     $('#message-box').empty();
+    if($.isArray(msg) && msg.length > 0){
+        var $ul = $('<ul />');
+        for(var i in msg){
+            $ul.append('<li>'+msg[i]+'</li>');     
+        }
+        $('#message-box').append($ul).fadeIn(1500, 'easeInCubic');
+    }
+    else{
+	    $('#message-box').text(msg).fadeIn(1500, 'easeInCubic');
+    }
+    var timeout = (time && (time < 0 || time > 1500)) ? time : 4000;
+    if(timeout > 0){
+        setTimeout(function(){
+    		$('#message-box').fadeOut(1500, 'easeOutCubic', function(){
+                $(this).empty();
+            });
+    	}, timeout);
+    }
 }
 	
 /**

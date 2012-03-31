@@ -69,11 +69,12 @@ img.icon {
   display: none;
   margin: 15px auto 15px auto;
   padding: 5px;
-  width: 300px; 
- }
+  width: 25%; 
+  @include border-radius(5px);
+}
 
 #control {
-    position: relative;
+  position: relative;
   background-color: $purple; // Old browsers
   @include filter-gradient($purple, $dark-purple, vertical); // IE6-8
   // IE9 SVG, needs conditional override of 'filter' to 'none'
@@ -96,8 +97,8 @@ img.icon {
 #connect-box{
     display: none;  
     position: absolute;
-     z-index: 10;
-    width: 400px;
+    z-index: 150;
+    width: 275px;
     right: 5px;
     top: 29px;
     padding: 10px;
@@ -105,43 +106,58 @@ img.icon {
     border: solid 1px $dark-purple;
     @include border-bottom-radius(5px);
     color: #ffffff;
-    font-size:11px;    
+    font-size:0.8em;    
     text-align:right;  
     form {
         margin-bottom: 8px;
+        input[type=text],input[type=password] {
+            border: solid 2px $dark-purple;
+            width:65px;
+            height:18px;
+            font-size:0.8em;
+            margin:2px;
+        }input[type=text]:focus,input[type=password]:focus{
+            border-color:#BAAFC1;
+        }
+        .ui-button{
+            padding:4px;
+            font-size:0.8em;
+        }
+        float:left;
     }
-    a{
-        text-decoration:none;
-        margin-right:3px;
-        span {
-            height: 20px;
-            opacity: 1 !important;
-            text-indent: -9999px;
-            width: 20px;
+    #social-connect{
+        clear:right;
+        a{
+            text-decoration:none;
+            margin-right:3px;
+            span {
+                display:inline-block;
+                height: 25px;
+                width: 25px;
+            }
+            #twitter-connect{
+                background: url('../imgs/twitter-connect.png') no-repeat;
+                background-position:left top;
+            }
+            #facebook-connect{
+                background: url('../imgs/facebook-connect.png') no-repeat;
+                 background-position:left top;
+            }
+            #google-connect{
+                background: url('../imgs/google-connect.png') no-repeat;
+                 background-position:left top;
+            }
         }
-        #twitter-connect{
-            background: url('../imgs/twitter-connect.png') no-repeat;
-        }
-        #facebook-connect{
-            background: url('../imgs/facebook-connect.png') no-repeat;
-        }
-        #google-connect{
-            background: url('../imgs/google-connect.png') no-repeat;
+        a:hover{
+             #twitter-connect{
+                background-position:left bottom;
+            }
+            #facebook-connect{
+                background-position:left bottom;
+            }
+            #google-connect{
+                background-position:left bottom;
+            }
         }
     }
-    a:hover{
-         #twitter-connect{
-            background: url('../imgs/twitter-connect.png') no-repeat 50%;
-        }
-        #facebook-connect{
-            background: url('../imgs/facebook-connect.png') no-repeat 50%;
-        }
-        #google-connect{
-            background: url('../imgs/google-connect.png') no-repeat 50%;
-        }
-    }
-}
-
-.short-field {
-  width: 50px; 
 }

@@ -1,0 +1,12 @@
+{{if ('undefined' !== typeof errors && errors.length)}}
+    <script type="text/javascript">
+            _msg(MSG.TYPE.ERROR, "${errors}", -1);
+    </script>
+{{/if}}
+<form name="connect-form" action="/login" method="post">
+    <label for="bwlogin">Pseudo/Email</label>
+    <input type="text" name="bwlogin" /><br />
+    <label for="bwpass">Mot de passe</label>
+    <input type="password" name="bwpass" /><br />
+    <input type="submit" class="big-button" value="ok" />
+</form>

@@ -11,7 +11,6 @@
         <script type="text/javascript" src="/scripts/widgets.js"></script>
     </head>
     <body xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
-         
         <div id="control">
         {{if everyauth.loggedIn}}
             <a id="deconnector" href="/logout">Se déconnecter</a>
@@ -23,23 +22,25 @@
         </div>
         {{if !everyauth.loggedIn}}
         <div id="connect-box">
-            <form name="connect-form">
+            <form name="connect-form" action="/login" method="post">
                 <label for="bwlogin">Pseudo/Email</label>
-                <input class="short-field" type="text" name="bwlogin" /> 
+                <input type="text" name="bwlogin" /><br />
                 <label for="bwpass">Mot de passe</label>
-                <input class="short-field" type="password" name="bwpass" />
-                <input type="submit" value="ok" />
+                <input type="password" name="bwpass" /><br />
+                <input type="submit" class="big-button" value="ok" />
             </form>
-            ou
-            <a href="/auth/twitter">
-                <span id="twitter-connect" />
-            </a>
-            <a href="/auth/facebook">
-                <span id="facebook-connect" />
-            </a>
-            <a href="/auth/google">
-                <span id="google-connect" />
-            </a>
+            <div id="social-connect">
+                ou
+                <a href="/auth/twitter">
+                    <span id="twitter-connect"></span>
+                </a>
+                <a href="/auth/facebook">
+                    <span id="facebook-connect"></span>
+                </a>
+                <a href="/auth/google">
+                    <span id="google-connect"></span>
+                </a>
+            </div>
         </div>
         {{/if}}
         <div id="header">${title}</div>

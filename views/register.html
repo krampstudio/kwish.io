@@ -1,0 +1,35 @@
+{{if ('undefined' !== typeof errors && errors.length)}}
+    <script type="text/javascript">
+        {{if ('object' === typeof errors && errors.length)}}
+            var errors = [
+              {{each(i, error) errors}}
+                {{if (i>0) }},{{/if}}  "${error}"
+              {{/each}}
+            ];
+        {{else}}
+            var errors = "${errors}";
+        {{/if}}
+        _msg(MSG.TYPE.ERROR, errors, -1);
+    </script>
+{{/if}}
+<form name="register-form" action="/register" method="post">
+    <label for="bwlogin">Pseudo *</label>
+    <input type="text" name="bwlogin" />
+    <br />
+    <label for="login">Email</label>
+    <input type="text" name="email" />
+    <br />
+    <label for="lastname">Nom</label>
+    <input type="text" name="lastname" />
+    <br />
+    <label for="firstname">Prénom</label>
+    <input type="text" name="firstname" />
+    <br />
+    <label for="bwpass">Mot de passe *</label>
+    <input type="password" name="bwpass" />
+    <br />
+    <label for="passbis">Répéter le mot de passe *</label>
+    <input type="password" name="passbis" />
+    <br />
+    <input type="submit" class="big-button" value="S'inscrire" />
+</form>

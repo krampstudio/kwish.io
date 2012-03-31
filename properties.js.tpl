@@ -69,6 +69,10 @@ var Properties = function(){
             'appId'     : 'xxx',
             'appSecret' : 'xxx'
         },
+        'password' : {
+            'salt'      : 'xxx',
+            'pepper'    : 'xxx'
+        },
         'timeout' : 30000
     };
 };
