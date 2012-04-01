@@ -21,8 +21,9 @@
  */
 
 
-var MongoStore   = require('../system/mongostore'),
-    crypto       = require('crypto'),
+var MongoStore  = require('../system/mongostore'),
+    ObjectId    = require('mongodb').ObjectID,
+    crypto      = require('crypto'),
     util        = require('util');
 
 //TODO setup a mongo link between _id and id
@@ -54,7 +55,7 @@ var UserProvider = function() {
  * @param {Function} callback callback(error, foundUser); 
  */ 
 UserProvider.prototype.getOne = function(id, callbck){
-     this.collection.findOne({'_id': this.oid.createFromHexString(id)}, function(err, user){
+     this.collection.findOne({'_id': new ObjectId(id)}, function(err, user){
         if(err){
             callbck(err);   
         }
@@ -79,7 +80,9 @@ UserProvider.prototype.findOneBy = function(parameters, callback){
             callback(err);   
         }
         else{
-            user.id = user._id;
+            if(user && user !== null){
+                user.id = user._id;
+            }
             callback(null, user);
         }
      });

@@ -31,7 +31,8 @@ var express       = require('express'),
     util          = require('util'),
     properties    = require('./properties'),
     MongoStore    = require('./system/mongostore'),
-    Authenticator = require('./system/authenticator');
+    Authenticator = require('./system/authenticator'),
+    path            = require('path');
     
 //initialize the mongodb store
 MongoStore.init(properties.store.db);
@@ -65,6 +66,7 @@ app.configure(function(){
 });
 
 
+
 //error configuration
 app.configure('development', function(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
@@ -74,23 +76,61 @@ app.configure('production', function(){
     app.use(express.errorHandler());
 });
 
+function getViewName(req){
+    return    req.path.replace(properties.app.baseUrl, '')
+                        .replace(/^\/+/, '')
+                        .replace(/\/$/, '')+'';
+}
 
+//register view helpers
+
+//add everyauth
+everyauth.helpExpress(app);
+
+//global templates variables
+app.dynamicHelpers({
+    model: function(req, res){
+        var model =  {
+            title: 'BabyWishList'
+        };
+
+        var viewName = getViewName(req);
+        if(viewName.length > 0){
+            //set the view name to global model
+            model.view = viewName;
+            //add the path of  client script to load regarding the view
+            if(path.existsSync(__dirname + '/public/scripts/views/'  + viewName + '.js')){
+                model.viewScript = viewName + '.js';
+            }
+        }
+        return model;
+    }
+});
 
 // Routes
 app.get('/', function(req, res){
-	 res.render('index', {
-        title: 'BabyWishList'
-	 });
+     res.render('index');
  });
  
-app.get('/signin', function(req, res){    
-     res.render('signin', {
-        title: 'BabyWishList'
-	 });
+app.post('/site/checkLogin', function(req, res){    
+     var login = req.param('login', null);
+     if(login && login.trim().length > 0){
+         authenticator.isLoginAvailable(login, function(err, isAvailable){
+             if(err){
+                console.error(err);
+                res.send(500);
+             }
+             res.json({'available': isAvailable});
+         });
+     }
+     else{
+        res.json({});
+     }
  });
 
-//add everyauth view helper
-everyauth.helpExpress(app);
+ app.get('/site/*', function(req, res){
+     res.render(getViewName(req));
+ });
 
 //on start
 app.listen(

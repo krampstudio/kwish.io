@@ -69,19 +69,15 @@ Authenticator.prototype._init = function(){
 Authenticator.prototype.setUpLogin = function(){
   
     var userProvider = this.userProvider;
-  
+    
     everyauth.password
         .loginFormFieldName('bwlogin')
         .passwordFormFieldName('bwpass')
-        .getLoginPath('/login') 
-        .postLoginPath('/login') 
+        .getLoginPath('/site/login') 
+        .postLoginPath('/site/login') 
         .loginView('login')
         .authenticate( function (login, password) {
-
-            console.log('authenticate');
-            console.log(login);
-            console.log(password);
-            
+        
             var promise = this.Promise();
             
             var testedUser = {
@@ -92,93 +88,104 @@ Authenticator.prototype.setUpLogin = function(){
             
             userProvider.login(testedUser, function(err, loggedIn){
                 if(err){
-                    console.log('error');
-                    console.log(err);
+                    console.error(err);
                     return promise.fulfill([err]);   
-                
                 }
                 promise.fullfill(loggedIn);
             });
             return promise;
-  })
-  .loginSuccessRedirect('/') // Where to redirect to after a login
-  .getRegisterPath('/register') // Uri path to the registration page
-  .postRegisterPath('/register') // The Uri path that your registration form POSTs to
-  .registerView('register')
-  .extractExtraRegistrationParams( function (req) {
-        return {
-            email: req.body.email,
-            passbis: req.body.passbis,
-            firstname: req.body.firstname,
-            lastname: req.body.lastname
-          };
-    })
-  .validateRegistration( function (newUserAttributes) {
-    console.log('validate');
-    console.log(newUserAttributes);
-    console.log('/validate');
-    var validator = new BwValidator();
-    validator.reset();
-    
-    validator.check(newUserAttributes.login, 'Le champ pseudo ne doit pas être vide.').notEmpty();
-    if(newUserAttributes.login && newUserAttributes.login.trim().length > 0){
-        validator.check(newUserAttributes.login, 'Le champ pseudo est mal formé ou invalide.').isAlphanumeric().len(4,32);
-    }
-    
-    validator.check(newUserAttributes.email, 'Le champ email ne doit pas être vide.').notEmpty();
-    if(newUserAttributes.login && newUserAttributes.login.trim().length > 0){
-        validator.check(newUserAttributes.email, 'Le champ email est mal formé.').isEmail();
-    }
-    
-    if(newUserAttributes.lastname && newUserAttributes.lastname.trim().length > 0){
-        validator.check(newUserAttributes.lastname, 'Le champ nom est invalide.').len(1,32).is(/[a-zA-Z ']/);
-    }
-    
-    if(newUserAttributes.firstname && newUserAttributes.firstname.trim().length > 0){
-        validator.check(newUserAttributes.firstname, 'Le champ prénom est invalide.').len(1,32).is(/[a-zA-Z ']/);
-    }
-    
-    validator.check(newUserAttributes.password, 'Le champ mot de passe ne doit pas être vide.').notEmpty();
-    validator.check(newUserAttributes.passbis, 'Veuillez répéter le mot de passe.').notEmpty();
-     if(newUserAttributes.password && newUserAttributes.password.trim().length > 0){
-        validator.check(newUserAttributes.password, 'Le mot de passe est invalide (6 à 32 caratères, lettres et chiffres).').len(6,32).isAlphanumeric();
-        validator.check(newUserAttributes.password, 'Les mots de passes ne correspondent pas.').equals(newUserAttributes.passbis);
-     }
-
-    return validator.getErrors();
-  })
-  .registerUser( function (newUserAttributes) {
-      var promise = this.Promise();
-      
-      console.log('register');
-     console.log(newUserAttributes);
-     console.log('/register');
-    // This step is only executed if we pass the validateRegistration step without
-    // any errors.
-    //
-    // Returns a user (or a Promise that promises a user) after adding it to
-    // some user store.
-    //
-    // As an edge case, sometimes your database may make you aware of violation
-    // of the unique login index, so if this error is sent back in an async
-    // callback, then you can just return that error as a single element array
-    // containing just that error message, and everyauth will automatically handle
-    // that as a failed registration. Again, you will have access to this error via
-    // the `errors` local in your register view jade template.
-    // e.g.,
-    // var promise = this.Promise();
-    // User.create(newUserAttributes, function (err, user) {
-    //   if (err) return promise.fulfill([err]);
-    //   promise.fulfill(user);
-    // });
-    // return promise;
-    //
-    // Note: Index and db-driven validations are the only validations that occur 
-    // here; all other validations occur in the `validateRegistration` step documented above.
-  })
-  .registerSuccessRedirect('/'); // Where to redirect to after a successful registration
-
-  
+        })
+        .loginSuccessRedirect('/') 
+        .getRegisterPath('/site/register')
+        .postRegisterPath('/site/register')
+        .registerView('register')
+        .extractExtraRegistrationParams( function (req) {
+            return {
+                email: req.body.email,
+                passbis: req.body.passbis,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname
+            };
+        })
+        .validateRegistration( function (newUserAttributes) {
+            
+            var promise = this.Promise();
+            
+            var validator = new BwValidator();
+            validator.reset();
+            
+            validator.check(newUserAttributes.email, 'Le champ email ne doit pas être vide.').notEmpty();
+            if(newUserAttributes.login && newUserAttributes.login.trim().length > 0){
+                validator.check(newUserAttributes.email, 'Le champ email est mal formé.').isEmail();
+            }
+            
+            if(newUserAttributes.lastname && newUserAttributes.lastname.trim().length > 0){
+                validator.check(newUserAttributes.lastname, 'Le champ nom est invalide.').len(1,32).is(/[a-zA-Z ']/);
+            }
+            
+            if(newUserAttributes.firstname && newUserAttributes.firstname.trim().length > 0){
+                validator.check(newUserAttributes.firstname, 'Le champ prénom est invalide.').len(1,32).is(/[a-zA-Z ']/);
+            }
+            
+            validator.check(newUserAttributes.password, 'Le champ mot de passe ne doit pas être vide.').notEmpty();
+            validator.check(newUserAttributes.passbis, 'Veuillez répéter le mot de passe.').notEmpty();
+            if(newUserAttributes.password && newUserAttributes.password.trim().length > 0){
+                validator.check(newUserAttributes.password, 'Le mot de passe est invalide (6 à 32 caratères, lettres et chiffres).').len(6,32).isAlphanumeric();
+                validator.check(newUserAttributes.password, 'Les mots de passes ne correspondent pas.').equals(newUserAttributes.passbis);
+            }
+            
+            
+            //we end by the login to check availablity asynchronoulsy
+            validator.check(newUserAttributes.login, 'Le champ pseudo ne doit pas être vide.').notEmpty();
+            if(newUserAttributes.login && newUserAttributes.login.trim().length > 0){
+                validator.check(newUserAttributes.login, 'Le champ pseudo est mal formé ou invalide.').isAlphanumeric().len(4,32);
+            
+                this.isLoginAvailable(newUserAttributes.login, function(err, isAvailable){
+                   if(err){
+                        promise.fail(err);     
+                   }
+                   if(isAvailable !== true){
+                        validator.error("Le login est déjà pris par un autre utilisateur, veuillez en changer");   
+                   }
+                   promise.fullfil(validator.getErrors());
+                });
+                return;
+            }
+            else{
+                 promise.fullfil(validator.getErrors());
+            }
+            return promise;
+        })
+        .registerUser( function (newUserAttributes) {
+        
+            var promise = this.Promise();
+            
+            var user = {
+                'login'     : newUserAttributes.login,
+                'email'     : newUserAttributes.email,
+                'password'  : newUserAttributes.password
+            };
+            if(newUserAttributes.lastname && newUserAttributes.lastname.trim().length > 0){
+                user.lastname = newUserAttributes.lastname;
+            }
+            if(newUserAttributes.firstname && newUserAttributes.firstname.trim().length > 0){
+                user.firstname = newUserAttributes.firstname;
+            }
+            if(user.firstname && user.lastname){
+                user.name = user.firstname + ' '+ newUserAttributes.lastname;
+            }
+            
+            userProvider.save(user, function(err, userData){
+                if(err){
+                    console.error(err);   
+                    return promise.fail(err);
+                }
+                userData.id = userData._id;
+                promise.fulfill(userData);
+            });
+            return promise;
+        })
+        .registerSuccessRedirect('/');
 };
 
 /**
@@ -196,6 +203,7 @@ Authenticator.prototype.setUpTwitter = function(){
         .consumerSecret(this.settings.twitter.consumerSecret)
         .findOrCreateUser( function (session, accessToken, accessTokenSecret, twitterUserMetadata) {
             var promise = this.Promise();
+            
             var user = {
                 'login'     : twitterUserMetadata.screen_name,
                 'name'      : twitterUserMetadata.name,
@@ -235,6 +243,8 @@ Authenticator.prototype.setUpFacebook = function(){
             var user = {
                 'login'     : fbUserMetadata.username,
                 'name'      : fbUserMetadata.name,
+                'firstname' : fbUserMetadata.first_name,
+                'lastname'  : fbUserMetadata.last_name,
                 'facebook'   : {
                     'id' : fbUserMetadata.id
                 }
@@ -271,9 +281,12 @@ Authenticator.prototype.setUpGoogle = function(){
         .scope('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email')
         .findOrCreateUser( function (session, accessToken, accessTokExtra, googleUserMetadata) {
             var promise = this.Promise();
+            
             var user = {
                 'login'     : googleUserMetadata.email.split('@')[0],
                 'name'      : googleUserMetadata.name,
+                'firstname' : googleUserMetadata.given_name,
+                'lastname'  : googleUserMetadata.family_name,
                 'email'     : googleUserMetadata.email,
                 'google'    : {
                     'id' : googleUserMetadata.id
@@ -305,5 +318,25 @@ Authenticator.prototype.setUp = function(){
     this.setUpGoogle();
 };
 
+
+/**
+ * Check if a login is available or not
+ * @param {String} login the login to check
+ * @param {Function} callback callback(Error error, boolean isAvailable)
+ */
+Authenticator.prototype.isLoginAvailable = function(login, callback){
+   this.userProvider.findOneBy({'login': login}, function(err, user){
+        if(err){
+            console.error(err);
+            return callback(err);   
+        }
+        var isAvailable = true;
+        if(user && user !== null && user.login == login){
+               isAvailable = false;
+        }
+        callback(null, isAvailable);
+   });
+   
+}
 //export the Authenticator to be required
 module.exports = Authenticator;

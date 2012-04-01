@@ -9,6 +9,9 @@
         <script type="text/javascript" src="/scripts/lib/jquery-ui-1.8.15.custom.min.js"></script>
         <script type="text/javascript" src="/scripts/lib/jquery.imgload.js"></script>
         <script type="text/javascript" src="/scripts/widgets.js"></script>
+        {{if model.viewScript && model.viewScript.length > 0}}
+         <script type="text/javascript" src="/scripts/views/${model.viewScript}"></script>
+        {{/if}}
     </head>
     <body xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
         <div id="control">
@@ -17,7 +20,7 @@
         {{else}}
             <a id="connector" href="#">Se connecter</a>|
             
-            <a id="subscribor" href="/register">S'inscrire</a>
+            <a id="subscribor" href="/site/register">S'inscrire</a>
         {{/if}}
         </div>
         {{if !everyauth.loggedIn}}
@@ -53,7 +56,7 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-            <div id="header">${title}</div>
+            <div id="header">${model.title}</div>
             <div id="loader" style="display:none;"><img src="/imgs/ajax-loader.gif"/></div>
 
             <div id="content">
