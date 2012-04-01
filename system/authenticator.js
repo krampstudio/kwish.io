@@ -114,7 +114,9 @@ Authenticator.prototype.setUpLogin = function(){
           };
     })
   .validateRegistration( function (newUserAttributes) {
-    
+    console.log('validate');
+    console.log(newUserAttributes);
+    console.log('/validate');
     var validator = new BwValidator();
     validator.reset();
     
@@ -146,6 +148,11 @@ Authenticator.prototype.setUpLogin = function(){
     return validator.getErrors();
   })
   .registerUser( function (newUserAttributes) {
+      var promise = this.Promise();
+      
+      console.log('register');
+     console.log(newUserAttributes);
+     console.log('/register');
     // This step is only executed if we pass the validateRegistration step without
     // any errors.
     //

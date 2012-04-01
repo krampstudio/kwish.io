@@ -4,9 +4,14 @@
     </script>
 {{/if}}
 <form name="connect-form" action="/login" method="post">
-    <label for="bwlogin">Pseudo/Email</label>
-    <input type="text" name="bwlogin" /><br />
-    <label for="bwpass">Mot de passe</label>
-    <input type="password" name="bwpass" /><br />
-    <input type="submit" class="big-button" value="ok" />
+    <p>Veuillez entrer vos identifiants pour vous connecter</p>
+    <div class='form-bag'>
+        <label for="bwlogin">Pseudo/Email</label>
+        <input type="text" name="bwlogin" />
+    </div>
+    <div class='form-bag'>
+        <label for="bwpass">Mot de passe</label>
+        <input type="password" name="bwpass" /><br />
+    </div>
+    <input type="submit" class="big-button" value="Se connecter" />
 </form>

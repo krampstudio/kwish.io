@@ -1,10 +1,36 @@
 @import "compass";
 @import "compass/css3";
+@import "compass/css3/text-shadow";
 @import "compass/utilities";
 @import "compass/typography/links/hover-link";
+@import "compass/typography/lists/inline-block-list";
 
 $purple: #767287;
+$light-purple:#BAAFC1;
 $dark-purple: #353240;
+$orange:#F8BE4E;
+$dark-orange:#DDB705;
+$grey:#eeeeee;
+$grey1:#CCC;
+$grey2:#999;
+
+
+@mixin form-styling {
+     label{
+        display:inline-block;
+    }
+    input[type=text],input[type=password],textarea {
+        border: solid 2px $dark-purple;
+        @include border-radius(3px);
+        margin:3px;
+    }
+    input:focus[type=text],input[type=password]:focus,textarea:focus{
+        border-color:$light-purple;
+    }
+    .form-bag:hover{
+         background-color:$grey;
+     }
+}
 
 body {
   color: #333;
@@ -12,38 +38,87 @@ body {
   font-size: 14px;
   background-color: #FCFCF5;
   background-image: url('../imgs/moon.png');
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat; 
+}
 
 img.icon {
   vertical-align: middle;
-  margin-right: 5px; }
+  margin-right: 5px; 
+}
 
 #loader {
   text-align: center;
-  width: 100%; }
-
-
-#header {
-  height: 50px;
-  text-align: center;
-  font-size: 2em;
-  font-weight: bold;
-  padding-top: 10px;
-  color: #666; }
+  width: 100%; 
+}
 
 #container {
+  
   z-index: 100;
   width: 63%;
-  margin: auto;
+  margin:15px auto 50px auto;
   position: relative;
   height: 100%;
-  margin-bottom: 50px;
+  background-color: #FFF;
+  border: dashed 1px $grey2;
+  @include border-radius(5px);
+  #nav{
+      text-align:right;
+      margin:5px;
+      ul{
+        @include inline-block-list;
+        li{
+            margin:2px 5px;
+            a{
+                font-size:1.2em;
+                color:$orange;
+                @include single-text-shadow($grey, 1px, 1px, 0);
+                text-decoration:none
+            }
+            a:hover{
+              @include single-text-shadow($grey1, 1px, 1px, 0);
+            }
+        }
+    }
+  }
+  #header {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      padding:5px 0px;
+      margin:0.5em auto;
+      color: #FCFCF5;
+      background: url("bedroom/images/ui-bg_gloss-wave_75_767287_500x100.png") repeat-x scroll 50% 50% #767287;
+    }
   #content {
-    margin-top: 15px;
     padding: 5px;
-    background-color: #FFF;
-    border: dashed 1px #999;
-    @include border-radius(5px);
+    form{
+        @include form-styling;
+        font-size:0.9em;
+        p {
+            font-size:1.1em;
+            margin:5px 2px;
+            padding:5px 2px;
+            background-color:$grey;
+        }
+        .form-bag{
+            label{
+                width:30%;
+                margin-left:2px;
+            }
+            input[type=text],input[type=password]{
+                height:20px;   
+            }
+            input[type=text],input[type=password],textarea {
+                margin:3px 0px 3px -5px;
+            }
+        }
+        .ui-button{
+            display:block;
+            font-size:1em;
+            font-weight:bold;
+            margin:5px 0px 5px 30%;
+        }
+    }
   } 
 }
 
@@ -70,7 +145,24 @@ img.icon {
   margin: 15px auto 15px auto;
   padding: 5px;
   width: 25%; 
+  z-index:175;
   @include border-radius(5px);
+}
+#message-box.ui-state-error{
+    li:before{
+        width:16px;
+        height:16px;
+        display:inline-block;
+        position:relative;
+        content: " ";
+        top:4px;
+        margin:2px;
+        overflow: hidden;
+        background-image: url('bedroom/images/ui-icons_fcd113_256x240.png');
+        background-repeat:no-repeat;
+        background-position: -96px -128px;
+        
+    }
 }
 
 #control {
@@ -109,15 +201,13 @@ img.icon {
     font-size:0.8em;    
     text-align:right;  
     form {
+        @include form-styling;
         margin-bottom: 8px;
         input[type=text],input[type=password] {
-            border: solid 2px $dark-purple;
             width:65px;
             height:18px;
             font-size:0.8em;
             margin:2px;
-        }input[type=text]:focus,input[type=password]:focus{
-            border-color:#BAAFC1;
         }
         .ui-button{
             padding:4px;

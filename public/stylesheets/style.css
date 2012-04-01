@@ -1,4 +1,4 @@
-/* line 9, sass/style.scss */
+/* line 35, sass/style.scss */
 body {
   color: #333;
   font-family: Verdana;
@@ -8,51 +8,146 @@ body {
   background-repeat: no-repeat;
 }
 
-/* line 17, sass/style.scss */
+/* line 44, sass/style.scss */
 img.icon {
   vertical-align: middle;
   margin-right: 5px;
 }
 
-/* line 21, sass/style.scss */
+/* line 49, sass/style.scss */
 #loader {
   text-align: center;
   width: 100%;
 }
 
-/* line 26, sass/style.scss */
-#header {
-  height: 50px;
-  text-align: center;
-  font-size: 2em;
-  font-weight: bold;
-  padding-top: 10px;
-  color: #666;
-}
-
-/* line 34, sass/style.scss */
+/* line 54, sass/style.scss */
 #container {
   z-index: 100;
   width: 63%;
-  margin: auto;
+  margin: 15px auto 50px auto;
   position: relative;
   height: 100%;
-  margin-bottom: 50px;
-}
-/* line 41, sass/style.scss */
-#container #content {
-  margin-top: 15px;
-  padding: 5px;
   background-color: #FFF;
-  border: dashed 1px #999;
+  border: dashed 1px #999999;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
   border-radius: 5px;
 }
+/* line 64, sass/style.scss */
+#container #nav {
+  text-align: right;
+  margin: 5px;
+}
+/* line 67, sass/style.scss */
+#container #nav ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 49, ../../../../../../../var/lib/gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/typography/lists/_inline-block-list.scss */
+#container #nav ul li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0;
+  display: -moz-inline-box;
+  -moz-box-orient: vertical;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  white-space: nowrap;
+}
+/* line 7, ../../../../../../../var/lib/gems/1.8/gems/compass-0.12.1/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+#container #nav ul li {
+  *display: inline;
+}
+/* line 69, sass/style.scss */
+#container #nav ul li {
+  margin: 2px 5px;
+}
+/* line 71, sass/style.scss */
+#container #nav ul li a {
+  font-size: 1.2em;
+  color: #f8be4e;
+  text-shadow: #eeeeee 1px 1px 0;
+  text-decoration: none;
+}
+/* line 77, sass/style.scss */
+#container #nav ul li a:hover {
+  text-shadow: #cccccc 1px 1px 0;
+}
+/* line 83, sass/style.scss */
+#container #header {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 5px 0px;
+  margin: 0.5em auto;
+  color: #FCFCF5;
+  background: url("bedroom/images/ui-bg_gloss-wave_75_767287_500x100.png") repeat-x scroll 50% 50% #767287;
+}
+/* line 92, sass/style.scss */
+#container #content {
+  padding: 5px;
+}
+/* line 94, sass/style.scss */
+#container #content form {
+  font-size: 0.9em;
+}
+/* line 19, sass/style.scss */
+#container #content form label {
+  display: inline-block;
+}
+/* line 22, sass/style.scss */
+#container #content form input[type=text], #container #content form input[type=password], #container #content form textarea {
+  border: solid 2px #353240;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin: 3px;
+}
+/* line 27, sass/style.scss */
+#container #content form input:focus[type=text], #container #content form input[type=password]:focus, #container #content form textarea:focus {
+  border-color: #baafc1;
+}
+/* line 30, sass/style.scss */
+#container #content form .form-bag:hover {
+  background-color: #eeeeee;
+}
+/* line 97, sass/style.scss */
+#container #content form p {
+  font-size: 1.1em;
+  margin: 5px 2px;
+  padding: 5px 2px;
+  background-color: #eeeeee;
+}
+/* line 104, sass/style.scss */
+#container #content form .form-bag label {
+  width: 30%;
+  margin-left: 2px;
+}
+/* line 108, sass/style.scss */
+#container #content form .form-bag input[type=text], #container #content form .form-bag input[type=password] {
+  height: 20px;
+}
+/* line 111, sass/style.scss */
+#container #content form .form-bag input[type=text], #container #content form .form-bag input[type=password], #container #content form .form-bag textarea {
+  margin: 3px 0px 3px -5px;
+}
+/* line 115, sass/style.scss */
+#container #content form .ui-button {
+  display: block;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 5px 0px 5px 30%;
+}
 
-/* line 50, sass/style.scss */
+/* line 125, sass/style.scss */
 #footer {
   z-index: 0;
   position: fixed;
@@ -64,7 +159,7 @@ img.icon {
   text-align: center;
   margin: 0;
 }
-/* line 60, sass/style.scss */
+/* line 135, sass/style.scss */
 #footer p {
   font-size: 0.8em;
   color: #FFF;
@@ -72,12 +167,13 @@ img.icon {
   top: 90%;
 }
 
-/* line 68, sass/style.scss */
+/* line 143, sass/style.scss */
 #message-box {
   display: none;
   margin: 15px auto 15px auto;
   padding: 5px;
   width: 25%;
+  z-index: 175;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -85,7 +181,22 @@ img.icon {
   border-radius: 5px;
 }
 
-/* line 76, sass/style.scss */
+/* line 152, sass/style.scss */
+#message-box.ui-state-error li:before {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: relative;
+  content: " ";
+  top: 4px;
+  margin: 2px;
+  overflow: hidden;
+  background-image: url("bedroom/images/ui-icons_fcd113_256x240.png");
+  background-repeat: no-repeat;
+  background-position: -96px -128px;
+}
+
+/* line 168, sass/style.scss */
 #control {
   position: relative;
   background-color: #767287;
@@ -107,7 +218,7 @@ img.icon {
   padding-top: 5px;
   z-index: 200;
 }
-/* line 90, sass/style.scss */
+/* line 182, sass/style.scss */
 #control a {
   color: #ffffff;
   text-decoration: none;
@@ -119,7 +230,7 @@ img.icon {
   text-decoration: underline;
 }
 
-/* line 97, sass/style.scss */
+/* line 189, sass/style.scss */
 #connect-box {
   display: none;
   position: absolute;
@@ -144,67 +255,84 @@ img.icon {
   font-size: 0.8em;
   text-align: right;
 }
-/* line 111, sass/style.scss */
+/* line 203, sass/style.scss */
 #connect-box form {
   margin-bottom: 8px;
   float: left;
 }
-/* line 113, sass/style.scss */
-#connect-box form input[type=text], #connect-box form input[type=password] {
+/* line 19, sass/style.scss */
+#connect-box form label {
+  display: inline-block;
+}
+/* line 22, sass/style.scss */
+#connect-box form input[type=text], #connect-box form input[type=password], #connect-box form textarea {
   border: solid 2px #353240;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin: 3px;
+}
+/* line 27, sass/style.scss */
+#connect-box form input:focus[type=text], #connect-box form input[type=password]:focus, #connect-box form textarea:focus {
+  border-color: #baafc1;
+}
+/* line 30, sass/style.scss */
+#connect-box form .form-bag:hover {
+  background-color: #eeeeee;
+}
+/* line 206, sass/style.scss */
+#connect-box form input[type=text], #connect-box form input[type=password] {
   width: 65px;
   height: 18px;
   font-size: 0.8em;
   margin: 2px;
 }
-/* line 119, sass/style.scss */
-#connect-box form input[type=text]:focus, #connect-box form input[type=password]:focus {
-  border-color: #BAAFC1;
-}
-/* line 122, sass/style.scss */
+/* line 212, sass/style.scss */
 #connect-box form .ui-button {
   padding: 4px;
   font-size: 0.8em;
 }
-/* line 128, sass/style.scss */
+/* line 218, sass/style.scss */
 #connect-box #social-connect {
   clear: right;
 }
-/* line 130, sass/style.scss */
+/* line 220, sass/style.scss */
 #connect-box #social-connect a {
   text-decoration: none;
   margin-right: 3px;
 }
-/* line 133, sass/style.scss */
+/* line 223, sass/style.scss */
 #connect-box #social-connect a span {
   display: inline-block;
   height: 25px;
   width: 25px;
 }
-/* line 138, sass/style.scss */
+/* line 228, sass/style.scss */
 #connect-box #social-connect a #twitter-connect {
   background: url("../imgs/twitter-connect.png") no-repeat;
   background-position: left top;
 }
-/* line 142, sass/style.scss */
+/* line 232, sass/style.scss */
 #connect-box #social-connect a #facebook-connect {
   background: url("../imgs/facebook-connect.png") no-repeat;
   background-position: left top;
 }
-/* line 146, sass/style.scss */
+/* line 236, sass/style.scss */
 #connect-box #social-connect a #google-connect {
   background: url("../imgs/google-connect.png") no-repeat;
   background-position: left top;
 }
-/* line 152, sass/style.scss */
+/* line 242, sass/style.scss */
 #connect-box #social-connect a:hover #twitter-connect {
   background-position: left bottom;
 }
-/* line 155, sass/style.scss */
+/* line 245, sass/style.scss */
 #connect-box #social-connect a:hover #facebook-connect {
   background-position: left bottom;
 }
-/* line 158, sass/style.scss */
+/* line 248, sass/style.scss */
 #connect-box #social-connect a:hover #google-connect {
   background-position: left bottom;
 }

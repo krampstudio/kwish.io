@@ -13,23 +13,30 @@
     </script>
 {{/if}}
 <form name="register-form" action="/register" method="post">
-    <label for="bwlogin">Pseudo *</label>
-    <input type="text" name="bwlogin" />
-    <br />
-    <label for="login">Email</label>
-    <input type="text" name="email" />
-    <br />
-    <label for="lastname">Nom</label>
-    <input type="text" name="lastname" />
-    <br />
-    <label for="firstname">Prénom</label>
-    <input type="text" name="firstname" />
-    <br />
-    <label for="bwpass">Mot de passe *</label>
-    <input type="password" name="bwpass" />
-    <br />
-    <label for="passbis">Répéter le mot de passe *</label>
-    <input type="password" name="passbis" />
-    <br />
+    <p>Veuillez fournir les informations ci-dessus pour vous inscrire:</p>
+    <div class='form-bag'>
+        <label for="bwlogin">Pseudo *</label>
+        <input type="text" name="bwlogin" />
+    </div>
+    <div class='form-bag'>
+      <label for="login">Email *</label>
+        <input type="text" name="email" />
+    </div>
+    <div class='form-bag'>
+        <label for="lastname">Nom</label>
+        <input type="text" name="lastname" />
+    </div>
+    <div class='form-bag'>
+        <label for="firstname">Prénom</label>
+        <input type="text" name="firstname" />
+    </div>
+    <div class='form-bag'>
+        <label for="bwpass">Mot de passe *</label>
+        <input type="password" name="bwpass" />
+    </div>
+    <div class='form-bag'>
+        <label for="passbis">Répéter le mot de passe *</label>
+        <input type="password" name="passbis" />
+    </div>
     <input type="submit" class="big-button" value="S'inscrire" />
 </form>
