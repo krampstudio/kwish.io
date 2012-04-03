@@ -26,8 +26,6 @@ var MongoStore  = require('../system/mongostore'),
     crypto      = require('crypto'),
     util        = require('util');
 
-//TODO setup a mongo link between _id and id
-
 /**
  * This class provides us the services 
  * to manage user against the store
@@ -60,7 +58,9 @@ UserProvider.prototype.getOne = function(id, callbck){
             callbck(err);   
         }
         else{
-            user.id = user._id;
+	    if(user && user !== null){
+            	user.id = user._id;
+	    }
             callbck(null, user);
         }
      });
@@ -116,7 +116,7 @@ UserProvider.prototype.login = function(user, callback){
                     callback(err);   
                 }
                 else{
-                    if(user === null){
+                    if(!user || user === null){
                         callback(new Error('Login failed!'));
                     }
                     else{
@@ -161,7 +161,7 @@ UserProvider.prototype.save = function(user, callback){
         else{
             self.findOneBy({login: user.login}, callback);
         }
-	});
+    });
 };
 
 /**
