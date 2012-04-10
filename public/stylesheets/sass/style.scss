@@ -30,6 +30,9 @@ $grey2:#999;
     .form-bag:hover{
          background-color:$grey;
      }
+     .ui-icon{
+        display:inline-block;   
+     }
 }
 
 body {
@@ -49,6 +52,7 @@ img.icon {
 #loader {
   text-align: center;
   width: 100%; 
+  position:absolute;
 }
 
 #container {

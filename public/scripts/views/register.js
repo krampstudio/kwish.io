@@ -5,11 +5,14 @@ $(document).ready(function(){
             $.post('/site/checkLogin', 
             {login: $field.val()}, 
             function(data){
+                var $parent = $field.parent();
+                $parent.find('.ui-icon').remove();
+                $parent.find('.form-info').remove();
                 if(data.available === true){
-                   $field.parent('div').remove('.ui-icon').append("<span class='ui-icon ui-icon-circle-close'></span>");
+                  $parent.append("<span class='ui-icon ui-icon-circle-check'></span>");
                 }
                 else{
-                   $field.parent('div').remove('.ui-icon').append("<span class='ui-icon ui-icon-circle-check'></span>");
+                   $parent.append("<span class='ui-icon ui-icon-circle-close'></span><span class='form-info'>Pseudo non disponible</span>");
                 }
             }, 'json');
        }
