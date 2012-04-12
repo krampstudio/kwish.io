@@ -1,0 +1,14 @@
+{{if ('undefined' !== typeof errors && errors.length)}}
+    <script type="text/javascript">
+        {{if ('object' === typeof errors && errors.length)}}
+            var errors = [
+              {{each(i, error) errors}}
+                {{if (i>0) }},{{/if}}  "${error}"
+              {{/each}}
+            ];
+        {{else}}
+            var errors = "${errors}";
+        {{/if}}
+        _msg(MSG.TYPE.ERROR, errors, -1);
+    </script>
+{{/if}}

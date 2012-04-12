@@ -1,8 +1,4 @@
-{{if ('undefined' !== typeof errors && errors.length)}}
-    <script type="text/javascript">
-            _msg(MSG.TYPE.ERROR, "${errors}", -1);
-    </script>
-{{/if}}
+{{partial() "partials/form-error"}}
 <form name="connect-form" action="/site/login" method="post">
     <p>Veuillez entrer vos identifiants pour vous connecter</p>
     <div class='form-bag'>

@@ -59,6 +59,12 @@ Authenticator.prototype._init = function(){
     
     //we set the timeout
     everyauth.everymodule.moduleTimeout(this.settings.timeout || 10000);
+    
+    //set up redirects
+/*    everyauth.everymodule.performRedirect( function (res, location) {
+        res.redirect(location, 303);
+      });
+*/
 };
 
 /**
@@ -91,7 +97,7 @@ Authenticator.prototype.setUpLogin = function(){
                     console.error(err);
                     return promise.fulfill([err]);   
                 }
-                promise.fullfill(loggedIn);
+                promise.fulfill(loggedIn);
             });
             return promise;
         })
@@ -147,12 +153,12 @@ Authenticator.prototype.setUpLogin = function(){
                    if(isAvailable !== true){
                         validator.error("Le login est déjà pris par un autre utilisateur, veuillez en changer");   
                    }
-                   promise.fullfil(validator.getErrors());
+                   promise.fulfill(validator.getErrors());
                 });
                 return;
             }
             else{
-                 promise.fullfil(validator.getErrors());
+                 promise.fulfill(validator.getErrors());
             }
             return promise;
         })
@@ -335,8 +341,8 @@ Authenticator.prototype.isLoginAvailable = function(login, callback){
                isAvailable = false;
         }
         callback(null, isAvailable);
-   });
-   
-}
+   });   
+};
+
 //export the Authenticator to be required
 module.exports = Authenticator;

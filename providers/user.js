@@ -110,7 +110,6 @@ UserProvider.prototype.login = function(user, callback){
                                     user.email, 
                                     user.password
                                 );
-            console.log(loginQuery);
             this.collection.findOne({$where : loginQuery}, function(err, user){
                 if(err){
                     callback(err);   

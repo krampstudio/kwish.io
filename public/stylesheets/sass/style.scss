@@ -33,6 +33,12 @@ $grey2:#999;
      .ui-icon{
         display:inline-block;   
      }
+     .form-desc{
+         display:block;
+         font-size:0.9em;
+         font-style:italic;
+         margin:3px 0;
+     }
 }
 
 body {
@@ -105,9 +111,10 @@ img.icon {
             background-color:$grey;
         }
         .form-bag{
+            margin:5px 2px;
+            padding:5px 2px;
             label{
                 width:30%;
-                margin-left:2px;
             }
             input[type=text],input[type=password]{
                 height:20px;   

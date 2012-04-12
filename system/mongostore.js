@@ -114,15 +114,5 @@ MongoStore.prototype.getCollection = function(collectionName){
 	return new Mongodb.Collection(this.db, collectionName);
 };
 
-/**
- * Close propertly the mongo store
- */
-MongoStore.prototype.close = function(){
-    if(this.db){
-        this.db.close();  
-        console.log("connection to mongo closed"); 
-    }
-};
-
 //export the MongoStore to be required
 module.exports = MongoStore;

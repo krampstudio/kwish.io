@@ -77,9 +77,12 @@ app.configure('production', function(){
 });
 
 function getViewName(req){
-    return    req.path.replace(properties.app.baseUrl, '')
-                        .replace(/^\/+/, '')
-                        .replace(/\/$/, '')+'';
+    return req.path.replace(properties.app.baseUrl, '')
+                    .replace(/^\/+/, '')
+                    .replace(/\/$/, '')
+                    .replace(/([A-Z])/g, function($1){
+                            return "-"+$1.toLowerCase();
+                        })+'';
 }
 
 //register view helpers
@@ -127,7 +130,15 @@ app.post('/site/checkLogin', function(req, res){
         res.json({});
      }
  });
-
+ 
+ app.get('/site/newList', function(req, res){
+     if(req.user && req.loggedIn){
+         return res.render(getViewName(req));  
+     }
+     
+     res.redirect('/site/login');
+ });
+ 
  app.get('/site/*', function(req, res){
      res.render(getViewName(req));
  });

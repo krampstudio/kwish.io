@@ -1,0 +1,10 @@
+{{partial() "partials/form-error"}}
+<form name="list-form" action="/site/newList" method="post">
+    <p>Veuillez donner un titre à la liste de naissance.</p>
+    <div class='form-bag'>
+        <label for="babyname">Titre de la liste</label>
+        <input type="text" name="title" />
+        <span class='form-desc'>Utilisez par exemple le nom de votre futur bébé, le votre ou un titre évocateur pour les personnes qui l'utiliseront.</span>
+    </div>
+    <input type="submit" class="big-button" value="Créer" />
+</form>
