@@ -26,12 +26,12 @@
   */
 
 //imports
-var express       = require('express'),
-    everyauth     = require('everyauth'),
-    util          = require('util'),
-    properties    = require('./properties'),
-    MongoStore    = require('./system/mongostore'),
-    Authenticator = require('./system/authenticator'),
+var express         = require('express'),
+    everyauth       = require('everyauth'),
+    properties      = require('./properties'),
+    MongoStore      = require('./system/mongostore'),
+    Authenticator   = require('./system/authenticator'),
+    BwValidator     = require('./system/bwvalidator'),
     path            = require('path');
     
 //initialize the mongodb store
@@ -54,8 +54,6 @@ app.configure(function(){
   }
   
   app.register(".html", require("jqtpl").express);
-  
-//  app.use(express.logger("tiny"));
   app.use(express.static(__dirname + "/public"));
   app.use(express.bodyParser());
   app.use(express.cookieParser());
@@ -74,6 +72,7 @@ app.configure('development', function(){
 
 app.configure('production', function(){
     app.use(express.errorHandler());
+    app.use(express.logger("tiny"));
 });
 
 function getViewName(req){
@@ -94,7 +93,8 @@ everyauth.helpExpress(app);
 app.dynamicHelpers({
     model: function(req, res){
         var model =  {
-            title: 'BabyWishList'
+            title: 'BabyWishList',
+            infos: req.flash('info')
         };
 
         var viewName = getViewName(req);
@@ -106,12 +106,14 @@ app.dynamicHelpers({
                 model.viewScript = viewName + '.js';
             }
         }
+            
         return model;
     }
 });
 
 // Routes
 app.get('/', function(req, res){
+    console.log(req);
      res.render('index');
  });
  
@@ -137,6 +139,37 @@ app.post('/site/checkLogin', function(req, res){
      }
      
      res.redirect('/site/login');
+ });
+ app.post('/site/newList', function(req, res){
+     if(req.user && req.loggedIn){
+        
+        var title = req.param('title');
+        
+        var validator = new BwValidator();
+         validator.check(title, 'Le champ titre est obligatoire.').notEmpty();
+        if(title && title.trim().length > 0){
+            validator.check(title, 'Le format du champ titre est invalide (Aucune ponctuation ni espace et entre 4 et 32 caractères).').isAlphanumeric().len(4,32);
+        }
+        
+        var errors = validator.getErrors();
+        if(errors.length > 0){
+            return res.render(getViewName(req), {errors: errors});
+        }
+        
+        var ListProvider = require('./providers/list');
+        var listProvider = new ListProvider();
+        listProvider.create(title, req.user, function(err, list){
+            if(err){
+                console.error(err);   
+            }
+            console.log(list);
+            req.flash('info', 'Liste créée avec succès');
+            res.redirect('/');
+        });
+        
+     }
+     
+   //  res.redirect('/site/login');
  });
  
  app.get('/site/*', function(req, res){

@@ -26,8 +26,7 @@
  */
 var everyauth   = require('everyauth'),
     UserProvider= require('../providers/user'),
-    BwValidator = require('./bwvalidator'),
-    util = require('util');
+    BwValidator = require('./bwvalidator');
 
 /**
  * This class use EveryAuth to implement authentication services

@@ -1,0 +1,10 @@
+{{if (model.infos && model.infos.length > 0)}}
+    <script type="text/javascript">
+        var infos = [
+          {{each(i, info) model.infos}}
+            {{if (i>0) }},{{/if}}  "${info}"
+          {{/each}}
+        ];
+        _msg(MSG.TYPE.INFO, infos, 5000);
+    </script>
+{{/if}}

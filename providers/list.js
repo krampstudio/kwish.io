@@ -22,7 +22,6 @@
 
 
 var MongoStore  = require('../system/mongostore'),
-    ObjectId    = require('mongodb').ObjectID,
     DBRef       = require('mongodb').DBRef,
     util        = require('util');
 
@@ -51,13 +50,33 @@ var ListProvider = function() {
  * @memberOf ListProvider
  */
 ListProvider.placeholder = {
-    'title' : 'Titre de la liste',
-    'description' : "Texte d'introduction et de description"
+    title : 'Titre de la liste',
+    description : "Texte d'introduction et de description"
 };
 
+/**
+ * Possible list states
+ * @type {Object}
+ * @static
+ * @memberOf ListProvider
+ */
 ListProvider.state = {
-    published : 'published',
-    staging : 'staging'
+    published   : 'published',  //list is available
+    staging     : 'staging',    //list is waiting to be published
+    building    : 'building'    //list is under construction    
+};
+
+/**
+ * Possible list visibility
+ * @type {Object}
+ * @static
+ * @memberOf ListProvider
+ */
+ListProvider.visibility = {
+    open        : 'open',       //publicly available
+    closed      : 'closed',     //available only by it's owner
+    shared      : 'shared',     //only available through the link
+    restricted  : 'restricted'  //restricted to a list of member
 };
 
 /**
@@ -66,10 +85,16 @@ ListProvider.state = {
  * @param {Function} callback(error, insertedList)
  * @memberOf ListProvider
  */
-ListProvider.prototype.create = function(user, callback){
-    if(user && user.id){
-        var list = ListProvider.placeholder;
-        list.user = new DBRef('users', user._id, this.store.db.databaseName);
+ListProvider.prototype.create = function(title, user, callback){
+    if(user && user.id && title.trim().length > 0){
+        
+        var list = {
+            title       : ListProvider.placeholder.title,
+            description : ListProvider.placeholder.description,
+            user        : new DBRef('users', user._id, this.store.db.databaseName),
+            state       : ListProvider.state.building,
+            visibility  : ListProvider.visibility.closed
+        };
         
         this.collection.insert(list, {safe: true}, function(err, lists){
             if(err){

@@ -64,7 +64,7 @@ Validator.prototype.reset = function(){
  * @return {BwValidator} the chainable instance
  */
 Validator.prototype.check = function(str, fail_msg) {
-    this.str = str == null || (isNaN(str) && str.length == undefined) ? '' : str+'';
+    this.str = (str === null || (isNaN(str) && str.length === undefined)) ? '' : str+'';
     this.msg = fail_msg;
     return this;
 };
