@@ -92,9 +92,13 @@ everyauth.helpExpress(app);
 //global templates variables
 app.dynamicHelpers({
     model: function(req, res){
+        //set the flash messages to a var because they're cleaned by getting them
+        var flashInfos = req.flash('info');
+        var flashErrors = req.flash('error');
         var model =  {
-            title: 'BabyWishList',
-            infos: req.flash('info')
+            title        : 'BabyWishList',
+            flashInfos   : flashInfos.length > 0 ? JSON.stringify(flashInfos) : false,
+            flashErrors  : flashErrors.length > 0 ? JSON.stringify(flashErrors) : false
         };
 
         var viewName = getViewName(req);
@@ -113,7 +117,10 @@ app.dynamicHelpers({
 
 // Routes
 app.get('/', function(req, res){
-    console.log(req);
+    req.flash('info', 'test');
+    req.flash('info', 'test 2');
+    req.flash('error', 'error');
+    req.flash('error', 'error 2');
      res.render('index');
  });
  
@@ -143,12 +150,12 @@ app.post('/site/checkLogin', function(req, res){
  app.post('/site/newList', function(req, res){
      if(req.user && req.loggedIn){
         
-        var title = req.param('title');
+        var name = req.param('name');
         
         var validator = new BwValidator();
-         validator.check(title, 'Le champ titre est obligatoire.').notEmpty();
-        if(title && title.trim().length > 0){
-            validator.check(title, 'Le format du champ titre est invalide (Aucune ponctuation ni espace et entre 4 et 32 caractères).').isAlphanumeric().len(4,32);
+         validator.check(name, 'Le champ nom est obligatoire.').notEmpty();
+        if(name && name.trim().length > 0){
+            validator.check(name, 'Le format du champ nom est invalide (Aucune ponctuation ni espace et entre 4 et 32 caractères).').isAlphanumeric().len(4,32);
         }
         
         var errors = validator.getErrors();
@@ -158,12 +165,13 @@ app.post('/site/checkLogin', function(req, res){
         
         var ListProvider = require('./providers/list');
         var listProvider = new ListProvider();
-        listProvider.create(title, req.user, function(err, list){
+        listProvider.create(name, req.user, function(err, list){
             if(err){
                 console.error(err);   
             }
-            console.log(list);
-            req.flash('info', 'Liste créée avec succès');
+            if(list){
+                req.flash('info', 'Liste créée avec succès');
+            }
             res.redirect('/');
         });
         
@@ -175,6 +183,39 @@ app.post('/site/checkLogin', function(req, res){
  app.get('/site/*', function(req, res){
      res.render(getViewName(req));
  });
+ 
+ app.get('/list/:name', function(req, res, next){
+     var name = req.param('name', null);
+     
+     //validate name
+     
+     if(name !== null){
+        var ListProvider = require('./providers/list');
+        var listProvider = new ListProvider();
+        listProvider.getOneByName(name, function(err, list){
+            if(err){
+                console.log(err);   
+            }
+            if(list){
+                res.render('list/index.html', {
+                    layout  : false,
+                    title   : name
+                });
+            }
+            else{
+                next();
+            }
+        });
+     }
+     else{
+        next();   
+     }
+});
+
+app.get('/list/', function(req, res){
+    req.flash('error', 'Liste créée avec succès');
+    res.redirect('/');
+});
 
 //on start
 app.listen(

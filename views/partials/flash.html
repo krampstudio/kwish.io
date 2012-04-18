@@ -1,10 +1,10 @@
-{{if (model.infos && model.infos.length > 0)}}
+{{if (model.flashInfos)}}
     <script type="text/javascript">
-        var infos = [
-          {{each(i, info) model.infos}}
-            {{if (i>0) }},{{/if}}  "${info}"
-          {{/each}}
-        ];
-        _msg(MSG.TYPE.INFO, infos, 5000);
+        _msg(MSG.TYPE.INFO, {{html model.flashInfos}}, 5000);
+    </script>
+{{/if}}
+{{if (model.flashErrors)}}
+    <script type="text/javascript">
+        _msg(MSG.TYPE.ERROR, {{html model.flashErrors}}, 5000);
     </script>
 {{/if}}
