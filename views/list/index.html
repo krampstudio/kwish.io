@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>List de naissance</title>
+        <link rel="stylesheet" href="/stylesheets/reset.css"/>
+        <link rel="stylesheet" href="/stylesheets/style.css"/>
+        <link rel="stylesheet" href="/stylesheets/bedroom/jquery-ui-1.8.15.custom.css"/>
+        <script type="text/javascript" src="/scripts/lib/jquery-1.6.2.min.js"></script>
+        <script type="text/javascript" src="/scripts/lib/jquery-ui-1.8.15.custom.min.js"></script>
+    </head>
+    <body xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+        
+        {{if everyauth.loggedIn}}
+        <div id="control">
+            <a id="return" href="/">Retour</a>
+            <a id="deconnector" href="/logout">Se déconnecter</a>
+        </div>
+        {{/if}}
+        
+        <div id="message-box"></div>
+        <div id="container">
+            <div id="header"></div>
+            <div id="loader" style="display:none;"><img src="/imgs/ajax-loader.gif"/></div>
+
+            <div id="content"></div>
+        </div>
+
+        <div id="footer"><p>2011 - a Bellette & co © production</p></div>
+        {{partial() "partials/flash"}}
+    </body>
+</html>
