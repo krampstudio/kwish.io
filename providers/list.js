@@ -81,14 +81,17 @@ ListProvider.visibility = {
 
 /**
  * Create a new list
+ * @param {String} name the list name
  * @param {Object} user the user the list belongs to
  * @param {Function} callback(error, insertedList)
  * @memberOf ListProvider
  */
-ListProvider.prototype.create = function(title, user, callback){
-    if(user && user.id && title.trim().length > 0){
+ListProvider.prototype.create = function(name, user, callback){
+    if(user && user.id && name.trim().length > 0){
         
+        //build the default list object
         var list = {
+            name        : name.toLowerCase(),
             title       : ListProvider.placeholder.title,
             description : ListProvider.placeholder.description,
             user        : new DBRef('users', user._id, this.store.db.databaseName),
@@ -96,7 +99,7 @@ ListProvider.prototype.create = function(title, user, callback){
             visibility  : ListProvider.visibility.closed
         };
         
-        this.collection.insert(list, {safe: true}, function(err, lists){
+        this.collection.insert(list, {safe: true}, function onListInsert(err, lists){
             if(err){
                 callback(err);   
             }
@@ -107,4 +110,44 @@ ListProvider.prototype.create = function(title, user, callback){
     }
 };
 
+/**
+ * Retrieve a list by it's name
+ * @param {String} name the name of the list to retrieve
+ * @param {Function}  callback(error, foundList)
+ * @memberOf ListProvider
+ */
+ListProvider.prototype.getOneByName = function(name, callback){
+    if(name && name.trim().length > 0){
+        this.collection.findOne({name: name.toLowerCase()}, function onListFind(err, foundList){
+            if(err){
+                return callback(err);   
+            }
+            if(foundList !== null){
+                callback(null, foundList);   
+            }
+        });
+    }
+};
+
+/**
+ * Check if a list identified by a name exists 
+ * @param {String} name the name of the list to check
+ * @param {Function}  callback(error, boolean)
+ * @memberOf ListProvider
+ */
+ListProvider.prototype.exists = function(name, callback){
+    if(name && name.trim().length > 0){
+        this.collection.findOne({name: name.toLowerCase()}, function onListFind(err, foundList){
+            if(err){
+                return callback(err);   
+            }
+            if(foundList !== null){
+                return callback(null, true);   
+            }
+            return callback(null, false);
+        });
+    }
+};
+
+//export the class
 module.exports = ListProvider;
