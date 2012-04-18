@@ -1,5 +1,6 @@
 .project
 .settings
+.c9revisions
 node_modules
 ext
 .settings.xml
