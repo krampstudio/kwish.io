@@ -33,6 +33,7 @@ var express         = require('express'),
     MongoStore      = require('./system/mongostore'),
     Authenticator   = require('./system/authenticator'),
     BwValidator     = require('./system/bwvalidator'),
+    ListController  = require('./controllers/list'),
     path            = require('path');
     
 //initialize the mongodb store
@@ -119,12 +120,8 @@ app.dynamicHelpers({
 
 // Routes
 app.get('/', function(req, res){
-    req.flash('info', 'test');
-    req.flash('info', 'test 2');
-    req.flash('error', 'error');
-    req.flash('error', 'error 2');
-     res.render('index');
- });
+    res.render('index');
+});
  
 app.post('/site/checkLogin', function(req, res){    
      var login = req.param('login', null);
@@ -186,36 +183,8 @@ app.post('/site/checkLogin', function(req, res){
      res.render(getViewName(req));
  });
  
- app.get('/list/:name', function(req, res){
-     var name = req.param('name', null);
-     
-     //validate name
-     
-     if(name !== null){
-        var ListProvider = require('./providers/list');
-        var listProvider = new ListProvider();
-        listProvider.exists(name, function(err, found){
-            if(err){
-                console.log(err);   
-            }
-            if(found){
-                res.render('list/index.html', {
-                    layout  : false,
-                    title   : name
-                });
-            }
-            else{
-                req.flash('error', 'Liste inconnue');
-                res.redirect('/');
-            }
-        });
-     }
-});
-
-app.get('/list/', function(req, res){
-    req.flash('error', 'Liste inconnue');
-    res.redirect('/');
-});
+app.get('/list/:name', ListController.load);
+app.get('/list/', ListController.error);
 
 //on start
 app.listen(
