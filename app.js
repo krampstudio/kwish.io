@@ -24,6 +24,7 @@
  /**
   * Main app file, bootstrap all the services and start the server loop
   */
+"use strict";
 
 //imports
 var express         = require('express'),
@@ -44,37 +45,38 @@ authenticator.setUp();
 //Create the app instance
 var app = express.createServer();
 
-app.configure(function(){
+app.configure(function appConf(){
     
-  //dynamic configuration reagrding properties.app 
-  if(properties.app){
-	  for(var key in properties.app){
-		app.set(key, properties.app[key]);
-	}
-  }
+    //dynamic configuration reagrding properties.app 
+    if(properties.app){
+        for(var key in properties.app){
+            app.set(key, properties.app[key]);
+        }
+    }
   
-  app.register(".html", require("jqtpl").express);
-  app.use(express.static(__dirname + "/public"));
-  app.use(express.bodyParser());
-  app.use(express.cookieParser());
-  app.use(express.session({secret:properties.store.session.pass}));
-  app.use(everyauth.middleware());
-  app.use(express.methodOverride());
-  app.use(app.router);
+    app.register(".html", require("jqtpl").express);
+    app.use(express.static(__dirname + "/public"));
+    app.use(express.bodyParser());
+    app.use(express.cookieParser());
+    app.use(express.session({secret:properties.store.session.pass}));
+    app.use(everyauth.middleware());
+    app.use(express.methodOverride());
+    app.use(app.router);
 });
 
-
-
 //error configuration
-app.configure('development', function(){
+app.configure('development', function appConfDev(){
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-app.configure('production', function(){
+app.configure('production', function appConfProd(){
     app.use(express.errorHandler());
     app.use(express.logger("tiny"));
 });
 
+/**
+ *  
+ */
 function getViewName(req){
     return req.path.replace(properties.app.baseUrl, '')
                     .replace(/^\/+/, '')
@@ -91,7 +93,7 @@ everyauth.helpExpress(app);
 
 //global templates variables
 app.dynamicHelpers({
-    model: function(req, res){
+    model: function setUpViewMode(req, res){
         //set the flash messages to a var because they're cleaned by getting them
         var flashInfos = req.flash('info');
         var flashErrors = req.flash('error');
@@ -184,7 +186,7 @@ app.post('/site/checkLogin', function(req, res){
      res.render(getViewName(req));
  });
  
- app.get('/list/:name', function(req, res, next){
+ app.get('/list/:name', function(req, res){
      var name = req.param('name', null);
      
      //validate name
@@ -192,28 +194,26 @@ app.post('/site/checkLogin', function(req, res){
      if(name !== null){
         var ListProvider = require('./providers/list');
         var listProvider = new ListProvider();
-        listProvider.getOneByName(name, function(err, list){
+        listProvider.exists(name, function(err, found){
             if(err){
                 console.log(err);   
             }
-            if(list){
+            if(found){
                 res.render('list/index.html', {
                     layout  : false,
                     title   : name
                 });
             }
             else{
-                next();
+                req.flash('error', 'Liste inconnue');
+                res.redirect('/');
             }
         });
-     }
-     else{
-        next();   
      }
 });
 
 app.get('/list/', function(req, res){
-    req.flash('error', 'Liste créée avec succès');
+    req.flash('error', 'Liste inconnue');
     res.redirect('/');
 });
 
