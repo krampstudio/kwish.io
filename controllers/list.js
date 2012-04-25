@@ -20,7 +20,6 @@
  * @version 0.2.0
  * 
  */
-"use strict";
 
 var ListProvider = require('../providers/list');
 
@@ -66,4 +65,4 @@ ListController.load = function(req, res){
      }
 };
 
-module.exports = ListController;
+module.exports=ListController;

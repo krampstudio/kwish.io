@@ -80,7 +80,7 @@ Authenticator.prototype.setUpLogin = function(){
         .passwordFormFieldName('bwpass')
         .getLoginPath('/site/login') 
         .postLoginPath('/site/login') 
-        .loginView('login')
+        .loginView('site/login')
         .authenticate( function (login, password) {
         
             var promise = this.Promise();
@@ -103,7 +103,7 @@ Authenticator.prototype.setUpLogin = function(){
         .loginSuccessRedirect('/') 
         .getRegisterPath('/site/register')
         .postRegisterPath('/site/register')
-        .registerView('register')
+        .registerView('site/register')
         .extractExtraRegistrationParams( function (req) {
             return {
                 email: req.body.email,
