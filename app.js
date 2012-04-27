@@ -133,7 +133,10 @@
         res.render(getViewName(req));
     });
     app.get('/list/:name', ListController.load);
+    app.get('/list/data/:name', ListController.getOne);
     app.get('/list/', ListController.error);
+    
+    
     
     //on start
     app.listen(

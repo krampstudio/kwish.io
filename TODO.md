@@ -8,3 +8,4 @@
 * Routing error management (next, redirect, etc.) 
 * Check concurrency 
 * Add Unit tests
+* validate list name and all requests parameters

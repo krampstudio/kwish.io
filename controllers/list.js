@@ -65,4 +65,22 @@ ListController.load = function(req, res){
      }
 };
 
+/**
+ * @static
+ * @memberOf ListController
+ */
+ListController.getOne = function(req, res){
+    var name = req.param('name', null);  
+      if(name !== null){
+        var listProvider = new ListProvider();
+        listProvider.getOneByName(name, function(err, foundList){
+            if(!err && foundList){
+                return res.json(foundList);
+            }
+            else{
+               res.json({error: err || "erreur de chargement de la liste"});
+            }
+        });
+     }
+};
 module.exports=ListController;
