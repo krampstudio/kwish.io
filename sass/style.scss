@@ -14,7 +14,6 @@ $grey:#eeeeee;
 $grey1:#CCC;
 $grey2:#999;
 
-
 @mixin form-styling {
      label{
         display:inline-block;
@@ -229,9 +228,9 @@ img.icon {
     #social-connect{
         clear:right;
         a{
-            text-decoration:none;
-            margin-right:3px;
-            span {
+            text-decoration: none;
+            margin-right: 3px;
+            span{
                 display:inline-block;
                 height: 25px;
                 width: 25px;
