@@ -1,29 +1,3 @@
-function editableArea(elt, options){
-    var editing = false;
-    $(elt).mouseover(function(){
-        $(this).css({
-            'cursor': 'pointer',
-            'border': 'dotted 1px orange'
-        });
-    })
-    .mouseout(function(){
-        $(this).css({
-            'border': 'none'
-        });
-    })
-    .click(function(){
-        if(!editing){
-            editing = true;
-            var $editable = $("<input type='text' />");
-            $editable.val($(this).text())
-                    .attr('id', $(this).attr('id') + '_edit');
-            
-            $(this).empty().append($editable);
-        }
-    });
-    
-}
-
 /**
  * Main loop
  */
@@ -35,14 +9,15 @@ $(document).ready(function(){
                 
     $('.big-button').button();
     
-    var listName = $('title').text();
+    var listName = $('title').text() || $(this).attr('title');
 	
     $.get('/list/data/' + listName, function(data){
         if(data){
             $('#header').text(data.title);
-            $('#intro').text(data.description);   
-            editableArea($('#header'));
-            editableArea($('#intro'));
+            $('#intro').html('<p>'+data.description+'</p>');   
+          //  EditableArea.setupArea
+           $('#header'). editableArea();
+           $('#intro').editableArea();
         }
     });
     
