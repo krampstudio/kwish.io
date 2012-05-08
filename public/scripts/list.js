@@ -15,9 +15,14 @@ $(document).ready(function(){
         if(data){
             $('#header').text(data.title);
             $('#intro').html('<p>'+data.description+'</p>');   
-          //  EditableArea.setupArea
-           $('#header'). editableArea();
+  
+           $('#header').editableArea();
            $('#intro').editableArea();
+           
+           $('#test').click(function(){
+                console.log($('#header').editableArea('getValue')); 
+                console.log($('#intro').editableArea('getValue')); 
+           });
         }
     });
     
