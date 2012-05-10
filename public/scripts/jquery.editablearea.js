@@ -57,30 +57,31 @@
                         var $controlBox = $("<div class='editablearea-control-box'><a id='"+id +"_edit_control' href='#'>ok</a></div>");
                         $elt.append($controlBox);
                         $('#'+id+'_edit_control').click(function(){
-                           console.log('#'+id+'_edit_control');
-                           var eltId = $(this).attr('id').replace('_edit_control', '');
-                            console.log($('#'+eltId).editableArea('getValue'));
                             
+                            $elt.trigger('editableArea.save', $elt.editableArea('getValue'))
+                                    .trigger('editableArea.close');
                         });
                     }
                 })
-                .bind('editableArea.close', EditableArea.closeArea);
+                .bind('editableArea.close', function(){
+                    $elt.editableArea('closeArea');
+                });
             });
         },
         closeArea : function(){
             return this.each(function() {
                 var $elt = $(this);
                 if(EditableArea._isEditing($elt.attr('id'))){
+                    var value = $elt.editableArea('getValue');
                     var data = $elt.data('editableArea');
+                    $elt.empty();
                     switch(data.type){
-                    case 'wysiwyg': 
-                        $elt.empty().html($elt.editableArea('getValue'));
-                        break;
-                    case 'text': $elt.empty().text($elt.editableArea('getValue'));
-                        $elt.empty().html($elt.editableArea('getValue'));
-                        break;
+                        case 'wysiwyg' : $elt.html(value); break;
+                        case 'text' : $elt.text(value); break;
                     }
-                    EditableArea._editing.splice(EditableArea._editing.indexOf($elt.attr('id')));
+                   setTimeout(function(){   //isn't called if not in a settimeout; don't know why!
+                        EditableArea._editing.splice(EditableArea._editing.indexOf($elt.attr('id')));
+                   }, 1);
                 }
             }); 
         },
@@ -102,7 +103,13 @@
                 }
             }); 
             
-            return values;
+            return (values.length === 1) ? values[0] : values;
+        },
+        destroy : function(){
+            this.each(function() {
+                var $elt = $(this);
+                $elt.unbind('editableArea.');
+            });
         }
     };
 
