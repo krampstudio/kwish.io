@@ -4,6 +4,7 @@
         <title>${title}</title>
         <link rel="stylesheet" href="/stylesheets/reset.css"/>
         <link rel="stylesheet" href="/stylesheets/style.css"/>
+        <link rel="stylesheet" href="/stylesheets/list.css"/>
         <link rel="stylesheet" href="/stylesheets/bedroom/jquery-ui.css"/>
         <link rel="stylesheet" href="/scripts/lib/jwysiwyg/jquery.wysiwyg.css" />
         <script type="text/javascript" src="/scripts/lib/jquery.min.js"></script>
@@ -23,10 +24,10 @@
         
         <div id="message-box"></div>
         <div id="container">
-            <div id="header">${title}</div>
+            <div id="header" class="editable">${title}</div>
             <div id="loader" style="display:none;"><img src="/imgs/ajax-loader.gif"/></div>
 
-            <div id="content">
+            <div id="content" class="editable" >
                 <div id="intro"></div>
             </div>
         </div>

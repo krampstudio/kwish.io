@@ -34,45 +34,60 @@
                     if(!EditableArea._isEditing(id)){
                         EditableArea._editing.push(id);
                         var type = ($elt.children().length === 0) ? 'text' : 'wysiwyg';
-                        var $editable;
+                        var $editable, baseValue;
                         if (type == 'text') {
                             $editable = $("<input type='text' />");
-                            $editable.val($elt.text())
+                            baseValue = $elt.text();
+                            $editable.val(baseValue)
                                     .attr('id', id + '_edit')
                                     .width(parseInt($elt.width(), 10) - 20 + 'px');
                             $elt.empty().append($editable);
                         }
                         else{
                             $editable = $("<textarea />");
-                            $editable.val($elt.html())
+                            baseValue = $elt.html();
+                            $editable.val(baseValue)
                                     .attr('id', id + '_edit')
                                     .width(parseInt($elt.width(), 10) - 20 + 'px');
                             $elt.empty().append($editable);
                             $editable.wysiwyg();
                         }
-                        $elt.data('editableArea', {type : type});
+                        $elt.data('editableArea', {
+                            type : type,
+                            baseValue : baseValue
+                        });
                         if(opts.fieldClass){
                             $elt.addClass(opts.fieldClass);
                         }
-                        var $controlBox = $("<div class='editablearea-control-box'><a id='"+id +"_edit_control' href='#'>ok</a></div>");
+                        var saveCtrlId = id + '_edit_control_save',
+                            cancelCtrlId = id + '_edit_control_cancel';
+                        var $controlBox = $("<div class='editablearea-control-box'>" +
+                                                "<a id='" + cancelCtrlId + "' href='#'>Annuler</a>" +
+                                                "<a id='" + saveCtrlId + "' href='#'>Sauver</a>" +
+                                            "</div>");
                         $elt.append($controlBox);
-                        $('#'+id+'_edit_control').click(function(){
-                            
-                            $elt.trigger('editableArea.save', $elt.editableArea('getValue'))
-                                    .trigger('editableArea.close');
+                        if($.ui){   //check if jquery-ui is loaded
+                            $('a', $controlBox).button();
+                        }
+                        $('#' + saveCtrlId).click(function(){
+                            $elt.trigger('save.editableArea', $elt.editableArea('getValue'));
+                            $elt.trigger('close.editableArea');
+                        });
+                         $('#' + cancelCtrlId).click(function(){
+                           $elt.editableArea('destroy');
                         });
                     }
                 })
-                .bind('editableArea.close', function(){
+                .on('close.editableArea', function(){
                     $elt.editableArea('closeArea');
                 });
             });
         },
-        closeArea : function(){
+        closeArea : function(value){
             return this.each(function() {
                 var $elt = $(this);
                 if(EditableArea._isEditing($elt.attr('id'))){
-                    var value = $elt.editableArea('getValue');
+                    value = value || $elt.editableArea('getValue');
                     var data = $elt.data('editableArea');
                     $elt.empty();
                     switch(data.type){
@@ -108,7 +123,11 @@
         destroy : function(){
             this.each(function() {
                 var $elt = $(this);
-                $elt.unbind('editableArea.');
+                if(EditableArea._isEditing($elt.attr('id'))){
+                    var data = $elt.data('editableArea');
+                    $elt.editableArea('closeArea', data.baseValue);
+                }
+                $elt.off('.editableArea');
             });
         }
     };
