@@ -9,3 +9,29 @@
         }
     }
 }
+.editable-hover{
+    border:dashed 1px orange;
+    margin:2px;
+}
+#items{
+    min-height:200px;  
+    margin:5px;
+}
+#items > ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    li{
+        border:solid black 1px;
+        background-color:#eee;
+        margin: 5px 5px 5px 0;
+        padding: 2px;
+        float:left;
+        width:150px;
+        height:150px;
+    }
+    .placeholder{
+         border:dashed 1px orange;
+         background-color:#fff;
+    }
+}

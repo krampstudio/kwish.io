@@ -1,14 +1,21 @@
 (function( $ ){
-    
     "use strict";
     
     var EditableArea = {
+        _opts : {
+            save : {
+                label : 'Sauver'
+            },
+            cancel : {
+                label : 'Annuler'
+            }
+        },
         _editing : [],
         _isEditing: function(id){
             return ($.inArray(id, EditableArea._editing) > -1);
         },
         setupArea: function(options){      
-            var opts = options || {};
+            var opts = $.extend(true, {}, EditableArea._opts, options);
             return this.each(function() {
                 var $elt = $(this);
                 var id = $elt.attr('id');
@@ -62,24 +69,27 @@
                         var saveCtrlId = id + '_edit_control_save',
                             cancelCtrlId = id + '_edit_control_cancel';
                         var $controlBox = $("<div class='editablearea-control-box'>" +
-                                                "<a id='" + cancelCtrlId + "' href='#'>Annuler</a>" +
-                                                "<a id='" + saveCtrlId + "' href='#'>Sauver</a>" +
+                                                "<a id='" + cancelCtrlId + "' href='#'>"+opts.cancel.label+"</a>" +
+                                                "<a id='" + saveCtrlId + "' href='#'>"+opts.save.label+"</a>" +
                                             "</div>");
                         $elt.append($controlBox);
                         if($.ui){   //check if jquery-ui is loaded
                             $('a', $controlBox).button();
                         }
                         $('#' + saveCtrlId).click(function(){
+                            var id = $(this).attr('id').replace('_edit_control_save', '');
+                            var $elt = $('#' + id);
                             $elt.trigger('save.editableArea', $elt.editableArea('getValue'));
                             $elt.trigger('close.editableArea');
                         });
                          $('#' + cancelCtrlId).click(function(){
-                           $elt.editableArea('destroy');
+                            var id = $(this).attr('id').replace('_edit_control_cancel', '');
+                            $('#' + id).editableArea('destroy');
                         });
                     }
                 })
                 .on('close.editableArea', function(){
-                    $elt.editableArea('closeArea');
+                    $(this).editableArea('closeArea');
                 });
             });
         },
@@ -95,7 +105,8 @@
                         case 'text' : $elt.text(value); break;
                     }
                    setTimeout(function(){   //isn't called if not in a settimeout; don't know why!
-                        EditableArea._editing.splice(EditableArea._editing.indexOf($elt.attr('id')));
+                        var index = EditableArea._editing.indexOf($elt.attr('id'));
+                        EditableArea._editing.splice(index,1);
                    }, 1);
                 }
             }); 
@@ -122,7 +133,7 @@
         },
         destroy : function(){
             this.each(function() {
-                var $elt = $(this);
+                var $elt = $(this); console.log('destroy')
                 if(EditableArea._isEditing($elt.attr('id'))){
                     var data = $elt.data('editableArea');
                     $elt.editableArea('closeArea', data.baseValue);
