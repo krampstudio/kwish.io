@@ -21,7 +21,8 @@
  * 
  */
 
-var ListProvider = require('../providers/list');
+var ListProvider = require('../providers/list'),
+    ArticleProvider = require('../providers/article');
 
 /**
  * @class ListController
@@ -77,10 +78,21 @@ ListController.getOne = function(req, res){
             if(!err && foundList){
                 return res.json(foundList);
             }
-            else{
-               res.json({error: err || "erreur de chargement de la liste"});
-            }
+            return res.json({error: err || "erreur de chargement de la liste"});
         });
      }
 };
+
+ListController.getArticles = function(req, res){
+    var list = req.param('list', null);
+    if(list !== null){
+        var articleProvider = new ArticleProvider();
+        articleProvider.getAllByList(list, {priority : ArticleProvider.priority.MUST_HAVE}, function(err, articles){
+             if(!err && articles){
+                return res.json(articles);
+            }
+            return res.json({error: err || "erreur de chargement des articles"});
+        });
+    }
+}
 module.exports=ListController;

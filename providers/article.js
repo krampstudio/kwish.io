@@ -1,12 +1,46 @@
 /**
- * Constructor
- * Instantiate the provider
- * @class ArticleProvider
- * @param {MongoStore} the mongo database store instance
+ * BabyWishList Platform : A web application to build cool baby wish lists 
+ * Copyright (C) 2012  Bertrand CHEVRIER, KrampStudio
+ *  
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see http://www.gnu.org/licenses/agpl-3.0.txt
+ * 
+ * @author <a href="mailto:chevrier.bertrand@gmail.com">Bertrand Chevrier</a>
+ * @license http://www.gnu.org/licenses/agpl-3.0.txt
+ * @version 0.2.0
  */
-ArticleProvider = function(store) {
-	this.collection = store.getCollection('articles');
-	this.oid	= this.collection.db.bson_serializer.ObjectID;
+
+
+var MongoStore  = require('../system/mongostore'),
+    ObjectID       = require('mongodb').ObjectID,
+    util        = require('util');
+
+/**
+ * This class provides us the services 
+ * to manage articles against the store
+ * 
+ * @class ArticleProvider
+ */
+var ArticleProvider = function() {
+    
+    //we get the mongoStore singleton
+    this.store = MongoStore.getInstance();
+    if(this.store === null){
+        throw new Error('Store not initialized');   
+    }
+
+    //the user collection inside the store
+    this.collection = this.store.getCollection('articles');
 };
 
 /**
@@ -15,47 +49,39 @@ ArticleProvider = function(store) {
  * @static
  */
 ArticleProvider.priority = {
-		MUST_HAVE	 : "MUST_HAVE",
-		NICE_TO_HAVE : "NICE_TO_HAVE" 
+        MUST_HAVE       : "MUST_HAVE",
+        NICE_TO_HAVE    : "NICE_TO_HAVE" 
 };
 
 /**
- * Retrieve the article collection
+ * Retrieve all the articles of a list
+ * @param {Object} list the name of the list to retrieve
+ * @param {Object} options
+ * @param {Function}  callback(error, foundList)
  * @memberOf ArticleProvider
- * @param {Function} onSuccess callback
- * @param {Function} onError callback
  */
-ArticleProvider.prototype.getCollection = function(priority, onSuccess, onError){
-	this.collection.find({priority: priority}).toArray(function(err, articleCollection){
-		if(err){
-			onError(err);
-		}
-		else {
-			var articles = {};
-			for(index in articleCollection){
-				var article = articleCollection[index];
-				article._index = index;
-				articles[article._id] = article;
-			}
-			onSuccess(articles);
-		}
-	});
+ArticleProvider.prototype.getAllByList = function(list, options, callback){
+    if(list && list.id || list._id){
+        
+        var params = {};
+        if(list._id) {
+            params["list.$id"] = new ObjectID(list._id);
+        }
+        
+        if(options.priority && ArticleProvider.priority[options.priority]){
+            params.priority = options.priority;
+        }
+        
+        this.collection.find(params).toArray(function onArticleFind(err, articles){
+            if(err){
+                return callback(err);   
+            }
+            if(articles !== null && articles.length > 0){
+                callback(null, articles);   
+            }
+        });
+    }
 };
 
-/**
- * Get one article by it's identifier
- * @param id
- * @param onSuccess
- * @param onError
- */
-ArticleProvider.prototype.getOne = function(id, onSuccess, onError){
-	this.collection.find({'_id': this.oid.createFromHexString(id)}).nextObject(function(err, article){
-		if(err){
-			onError(err);
-		}
-		else {
-			onSuccess(article);
-		}
-	});
-};
-
+//export the class
+module.exports = ArticleProvider;

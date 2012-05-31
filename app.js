@@ -134,7 +134,9 @@
     });
     app.get('/list/:name', ListController.load);
     app.get('/list/data/:name', ListController.getOne);
-    app.get('/list/', ListController.error);
+    app.post('/list/articles', ListController.getArticles);
+    app.get('/list', ListController.error);
+    
     
     
     
