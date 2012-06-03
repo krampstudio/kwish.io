@@ -22,8 +22,18 @@ $(document).ready(function(){
            
            $.post('/list/articles', {list: list}, function(articles){
             var $list = $('#items > ul');
-            for (index in articles){
-                $list.append('<li>'+articles[index].name+'</li>');
+            for (var index in articles){
+                var article = articles[index];
+                var shortDesc = article.description; 
+                if(article.description.length > 100){
+                    shortDesc = shortDesc.substring(0,95) + '[...]';                    
+                }
+                 
+                $list.append("<li>\
+                                <div class='item-title'>"+article.name+"</div>\
+                                <img class='item-thumbnail' src='/imgs/articles/"+article.thumb+"' />\
+                                <div class='item-desc'>"+shortDesc+"</div>\
+                             </li>");
             }
              $list.append("<li class='ctrl-box'></li>");
              

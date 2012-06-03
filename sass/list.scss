@@ -1,3 +1,7 @@
+@import "compass/css3";
+@import "compass/css3/box-shadow";
+@import "style.scss";
+
 .editable{
     padding:5px;
     .editablearea-control-box{
@@ -10,28 +14,47 @@
     }
 }
 .editable-hover{
-    border:dashed 1px orange;
+    border:dashed 1px $orange;
     margin:2px;
 }
 #items{
     min-height:200px;  
-    margin:5px;
+    margin:5px auto;
 }
 #items > ul{
     list-style-type:none;
     margin:0;
     padding:0;
     li{
-        border:solid black 1px;
-        background-color:#eee;
+        border:solid $dark-purple 1px;
+        @include border-radius(3px);
+        background-color: #FCFCF5;
         margin: 5px 5px 5px 0;
         padding: 2px;
         float:left;
-        width:150px;
-        height:150px;
+        width:180px;
+        height:160px;
+        overflow:hidden;
+        &:hover{
+            @include single-box-shadow($purple, 5px, 5px, 5px);
+        }
+        .item-title{
+            background-color:$grey;
+            @include border-radius(3px);
+            margin:5px;
+            padding:5px;
+        }
+        .item-thumbnail{
+            width:55px;
+            float:left;
+            margin:0 3px 3px 0;
+        }
+        .item-desc{
+            font-size: 0.9em;            
+        }
     }
     .placeholder{
-         border:dashed 1px orange;
+         border:dashed 1px $orange;
          background-color:#fff;
     }
 }
