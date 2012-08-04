@@ -83,6 +83,10 @@ ListController.getOne = function(req, res){
      }
 };
 
+/**
+ * @static
+ * @memberOf ListController
+ */
 ListController.getArticles = function(req, res){
     var list = req.param('list', null);
     if(list !== null){
@@ -94,5 +98,17 @@ ListController.getArticles = function(req, res){
             return res.json({error: err || "erreur de chargement des articles"});
         });
     }
-}
+};
+
+
+/**
+ * Save the entire list and it's articles
+ * @static
+ * @memberOf ListController
+ */
+ListController.save = function(req, res) {
+	var list = req.param('list', null);
+	if (list !== null) {
+	}
+};
 module.exports=ListController;

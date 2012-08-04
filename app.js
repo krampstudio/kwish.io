@@ -26,7 +26,6 @@
   */
 (function () {
     "use strict";
-    
     //imports
     var express         = require('express'),
         everyauth       = require('everyauth'),
@@ -36,8 +35,9 @@
         BwValidator     = require('./system/bwvalidator'),
         ListController  = require('./controllers/list'),
         SiteController  = require('./controllers/site'),
-        path            = require('path');
-        
+        path            = require('path'),
+	fs		= require('fs');
+    
     //initialize the mongodb store
     MongoStore.init(properties.store.db);
     
@@ -47,7 +47,6 @@
     
     //Create the app instance
     var app = express.createServer();
-    
     app.configure(function appConf(){
         
         //dynamic configuration reagrding properties.app 
@@ -113,7 +112,7 @@
                 //set the view name to global model
                 model.view = viewName;
                 //add the path of  client script to load regarding the view
-                if(path.existsSync(__dirname + '/public/scripts/views/'  + viewName + '.js')){
+                if(fs.existsSync(__dirname + '/public/scripts/views/'  + viewName + '.js')){
                     model.viewScript = viewName + '.js';
                 }
             }
