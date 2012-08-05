@@ -19,23 +19,31 @@ $(document).ready(function(){
            $('.editable').not('#items').editableArea({
                 hoverClass : 'editable-hover'
            });
-           
+          
+			var $itemTemplate = "\
+					<li id='item_${index}'>\
+						<div class='item-title'>${name}</div>\
+						<img class='item-thumbnail' src='/imgs/articles/${thumb}' alt='' />\
+						<div class='item-desc'>${shortDesc}</div>\
+					</li>\
+          			";
+			
+ 
            $.post('/list/articles', {list: list}, function(articles){
 				var $list = $('#items > ul');
 				for (var index in articles){
 					var article = articles[index];
-					var shortDesc = article.description; 
+					article.shortDesc = article.description; 
 					if(article.description.length > 100){
-						shortDesc = shortDesc.substring(0,95) + '[...]';                    
+						article.shortDesc = article.shortDesc.substring(0,95) + '[...]';                    
 					}
-						 
-					$list.append("\
-							<li>\
-								<div class='item-title'>"+article.name+"</div>\
-								<img class='item-thumbnail' src='/imgs/articles/"+article.thumb+"' alt='' />\
-								<div class='item-desc'>"+shortDesc+"</div>\
-                           	</li>\
-							");
+					//if there is an array of thumbnails, we get one randomly
+					if(article.thumb && $.isArray(article.thumb)){
+						article.thumb = article.thumb[Math.floor(Math.random()*article.thumb.length)];
+					}
+					article.index = index;
+					
+					$list.append($.tmpl($itemTemplate, article));
             	}
             	if($('#items').hasClass('editable')){
 					//enable to add an article
@@ -47,7 +55,14 @@ $(document).ready(function(){
 								");
 					//add a new item by clicking the ctrl button
 					$('.ctrl-box', $list).click(function(){
-						$('<li/>').insertBefore($(this));
+						var newIndex = $('li', $list).length - 1;
+						$.tmpl($itemTemplate, {
+							'index'		: newIndex,
+							'name'		: 'Titre',
+							'shortDesc' : 'Description',
+							'thumb'		: 'default.png'
+						}).insertBefore($(this));
+						$('#item_'+newIndex).removableArea();
 					});
 					
 
@@ -57,17 +72,17 @@ $(document).ready(function(){
 						forcePlaceholderSize: true,
 						opacity: 0.6,
 						placeholder: 'placeholder',
-						items: 'li:not(.ctrl-box)'          //to exclude the control box
+						items: 'li:not(.ctrl-box)',          //to exclude the control box
+						update: function(event, ui){
+							$.each($('li:not(.ctrl-box)', $list), function(index, elt){
+								elt.id = 'item_' + index;
+							});
+						}
 					});
 
-					$('li', $list).removableArea();
+					$('li:not(.ctrl-box)', $list).removableArea();
              	}
            }, 'json');
-           
-           
-         //  $('#items > ul').disableSelection();
-           
-           
         }
     });
     
