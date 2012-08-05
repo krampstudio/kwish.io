@@ -11,9 +11,11 @@ $light-purple:#BAAFC1;
 $dark-purple: #353240;
 $orange:#F8BE4E;
 $dark-orange:#DDB705;
-$grey:#eeeeee;
+$grey:#EEE;
 $grey1:#CCC;
 $grey2:#999;
+$grey3:#666;
+$grey4:#333;
 
 @mixin form-styling {
      label{
@@ -53,6 +55,10 @@ body {
 img.icon {
   vertical-align: middle;
   margin-right: 5px; 
+}
+img.half-opac{
+	opacity:0.6;
+	filter: alpha(opacity=60); /*ie<=8*/
 }
 
 #loader {

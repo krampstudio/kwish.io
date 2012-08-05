@@ -58,3 +58,28 @@
          background-color:#fff;
     }
 }
+#items.editable ul{
+	li{
+		&:hover{
+			border-style:dashed;
+			cursor:move;
+		}
+	}
+	li.ctrl-box{
+		height:18px;
+		padding:5px;
+		color:$grey3;
+		background-color:$grey;	
+		background-image:url('../imgs/bgbt.png');
+		background-repeat:repeat-x;
+	    background-position:top;
+		text-align:center;
+		font-weight:bold;	
+		&:hover{
+			color:$dark-purple;
+			cursor:pointer;
+			border:solid 1px $dark-purple;
+			@include single-box-shadow($purple, 1px, 2px, 2px);
+		}
+	}
+}
