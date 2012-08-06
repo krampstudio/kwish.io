@@ -8,7 +8,8 @@
             },
             cancel : {
                 label : 'Annuler'
-            }
+            },
+			cssClass : 'editable'
         },
         _editing : [],
         _isEditing: function(id){
@@ -22,6 +23,9 @@
                 if(!id){
                     $.error('editable areas must be identified by a unique id');   
                 }
+				if(!$elt.hasClass(opts.cssClass)){
+					$elt.addClass(opts.cssClass);
+				}
                 $elt.mouseover(function(){
                     if(!EditableArea._isEditing(id)){
                         $elt.css('cursor', 'pointer');

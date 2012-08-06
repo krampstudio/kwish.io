@@ -16,7 +16,7 @@
     "dependencies": {
         "express"   : "2.5.x",
         "mongodb"   : "0.9.x",
-        "jqtpl"     : "1.0.x",
+        "jqtpl"     : "1.1.x",
         "everyauth" : "0.2.x",
         "validator" : "0.4.x"
     },

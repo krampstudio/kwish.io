@@ -11,26 +11,26 @@ $(document).ready(function(){
     
     var listName = $('title').text() || $(this).attr('title');
 	
+	var editMode = $('#container').hasClass('inline-edition');
+	
     $.get('/list/data/' + listName, function(list){
         if(list){
             $('#header').text(list.title);
             $('#intro').html('<p>'+list.description+'</p>');   
   
-           $('.editable').not('#items').editableArea({
-                hoverClass : 'editable-hover'
-           });
-          
-			var $itemTemplate = "\
-					<li id='item_${index}'>\
-						<div class='item-title'>${name}</div>\
-						<img class='item-thumbnail' src='/imgs/articles/${thumb}' alt='' />\
-						<div class='item-desc'>${shortDesc}</div>\
-					</li>\
-          			";
 			
+			var itemTitle = 'Afficher les détails';
+			if(editMode){
+				$('#header, #intro').editableArea({
+                	hoverClass : 'editable-hover'
+           		});
+				itemTitle = 'Cliquez pour éditer, glissez pour réordonner';
+			}
  
            $.post('/list/articles', {list: list}, function(articles){
 				var $list = $('#items > ul');
+
+				//set up template data	
 				for (var index in articles){
 					var article = articles[index];
 					article.shortDesc = article.description; 
@@ -42,10 +42,20 @@ $(document).ready(function(){
 						article.thumb = article.thumb[Math.floor(Math.random()*article.thumb.length)];
 					}
 					article.index = index;
-					
-					$list.append($.tmpl($itemTemplate, article));
+					article.hover = itemTitle;
             	}
-            	if($('#items').hasClass('editable')){
+				$('#item-tmpl').tmpl(articles).appendTo($list);
+
+				//attach object to elements
+				for(var i in articles){
+					var article = articles[i];
+					$('#item_'+article.index).data('article', article);
+				}
+			
+            	if(editMode){
+
+					$('#items').addClass('editable');
+
 					//enable to add an article
 					$list.append("\
 								<li class='ctrl-box'>\
@@ -56,12 +66,15 @@ $(document).ready(function(){
 					//add a new item by clicking the ctrl button
 					$('.ctrl-box', $list).click(function(){
 						var newIndex = $('li', $list).length - 1;
-						$.tmpl($itemTemplate, {
+						
+						//TODO check append
+						$('#item-tmpl').tmpl([{
 							'index'		: newIndex,
 							'name'		: 'Titre',
 							'shortDesc' : 'Description',
 							'thumb'		: 'default.png'
-						}).insertBefore($(this));
+						}]).appendTo($(this).parent());
+						
 						$('#item_'+newIndex).removableArea();
 					});
 					
@@ -81,7 +94,20 @@ $(document).ready(function(){
 					});
 
 					$('li:not(.ctrl-box)', $list).removableArea();
-             	}
+
+					$('li:not(.ctrl-box)', $list).click(function(){
+						var article = $(this).data('article');
+						$('#content').empty();
+						$('#article-tmpl').tmpl([article]).appendTo($('#content'));
+						
+					});
+             	} else {
+					$('li', $list).click(function(){
+                		
+                    });
+				}
+
+				
            }, 'json');
         }
     });
