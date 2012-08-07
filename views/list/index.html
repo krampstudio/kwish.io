@@ -20,7 +20,11 @@
             <a id="return" href="/">Retour</a>
             <a id="deconnector" href="/logout">Se déconnecter</a>
         </div>
-        {{/if}}
+		<div class="save-box">
+			<span class='saver'>Sauver</span>
+			<span class='reverter'>Annuler</span>
+		</div>
+		{{/if}}
         
         <div id="message-box"></div>
         <div id="container" class="${everyauth.loggedIn ? 'inline-edition' : ''}">
@@ -35,7 +39,6 @@
                 </div>
             </div>
         </div>
-
         <div id="footer"><p>2011 - a Bellette & co © production</p></div>
         {{partial() "partials/flash"}}
 

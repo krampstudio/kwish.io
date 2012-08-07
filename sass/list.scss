@@ -83,3 +83,31 @@
 		}
 	}
 }
+.save-box{
+	height:40px;
+	position:relative;
+	z-index:10000;
+	width:100%;
+	overflow-x:hidden;
+	span{
+		border:solid 1px #FFF;
+		color:#FFF;	
+		display:inline-block;
+		position:absolute;
+		width:50%;
+		background-color:#000;
+		height:30px;
+		overflow-x:hidden;
+		font-weight:bold;
+		text-align:center;
+		padding-top:5px;
+		opacity:0.8;
+	    filter: alpha(opacity=80); /*ie<=8*/
+	}
+	.saver{
+		left:0;
+	}
+	.reverter{
+		left:50%;
+	}
+}

@@ -4,7 +4,7 @@
     var EditableArea = {
         _opts : {
             save : {
-                label : 'Sauver'
+                label : 'Valider'
             },
             cancel : {
                 label : 'Annuler'

@@ -55,25 +55,25 @@ $(document).ready(function(){
             	if(editMode){
 
 					$('#items').addClass('editable');
-
+					
 					//enable to add an article
 					$list.append("\
-								<li class='ctrl-box'>\
+								<li id='ctrl-add' class='ctrl-box'>\
 									<img class='icon' src='/imgs/add.png' alt='+' />\
 								 	Ajouter un article \
 								 </li>\
 								");
+					
 					//add a new item by clicking the ctrl button
-					$('.ctrl-box', $list).click(function(){
+					$('#ctrl-add', $list).click(function(){
 						var newIndex = $('li', $list).length - 1;
 						
-						//TODO check append
 						$('#item-tmpl').tmpl([{
 							'index'		: newIndex,
 							'name'		: 'Titre',
 							'shortDesc' : 'Description',
 							'thumb'		: 'default.png'
-						}]).appendTo($(this).parent());
+						}]).insertBefore($(this));
 						
 						$('#item_'+newIndex).removableArea();
 					});
