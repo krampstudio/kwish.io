@@ -89,6 +89,7 @@
 	z-index:10000;
 	width:100%;
 	overflow-x:hidden;
+	margin-bottom:25px;
 	span{
 		border:solid 1px #FFF;
 		color:#FFF;	
@@ -101,8 +102,13 @@
 		font-weight:bold;
 		text-align:center;
 		padding-top:5px;
-		opacity:0.8;
+		opacity:0.6;
 	    filter: alpha(opacity=80); /*ie<=8*/
+		&:hover{
+			border-color:#CCC;
+			color:#CCC;
+			cursor:pointer;
+		}
 	}
 	.saver{
 		left:0;

@@ -39,7 +39,13 @@
                 </div>
             </div>
         </div>
-        <div id="footer"><p>2011 - a Bellette & co © production</p></div>
+		{{if everyauth.loggedIn}}
+        <div class="save-box">
+            <span class='saver'>Sauver</span>
+            <span class='reverter'>Annuler</span>
+        </div>
+        {{/if}}
+		<div id="footer"><p>2011 - a Bellette & co © production</p></div>
         {{partial() "partials/flash"}}
 
 
