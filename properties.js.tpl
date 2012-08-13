@@ -51,10 +51,14 @@ var Properties = function(){
 			'pass' : 'xxx'
 		},
 		'db' :{
-            'name'      :'babywish',
-            'host'      :'localhost',
-            'port'      : 27017
-		}
+            'replicaset': false,
+            'host'      : '127.0.0.1',  //can be an array of servers for replicatsets
+            'name'      : 'babywish',
+            'user'      : 'xxx',        //optionnal
+            'pass'      : 'xxx',        //optionnal but required if user is defined
+            'port'      : 27017,
+            'useSsl'    : false
+    	}
 	};
     this.auth = {
         'twitter' : {

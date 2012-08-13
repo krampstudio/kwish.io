@@ -23,7 +23,8 @@
 /**
  * @requires mongodb
  */
-var Mongodb     = require('mongodb'); 
+var Mongodb     = require('mongodb'),
+    util        = require('util'); 
 
 /**
  * Private Constructor, throw an exception, use getInstance instead 
@@ -35,17 +36,59 @@ var Mongodb     = require('mongodb');
  * @param {String} host the mongo server host
  * @param {int}	   port	the mongo server port
  */
-var MongoStore = function(name ,host, port){
+var MongoStore = function(){
 	 if(MongoStore.caller != MongoStore.getInstance){
         throw new Error('Cannot be instanciated that way, use getInstance instead');   
 	 }
-     this.db = new Mongodb.Db(name, new Mongodb.Server(host, port, {auto_reconnect: true}, {}));
-	 this.db.open(function(err){
+     
+     if(MongoStore.settings.replicaset === true && util.isArray(MongoStore.settings.host) ){
+         
+         var servers = [];
+         for(var index in MongoStore.settings.host) {
+             servers.push(new Mongodb.Server(
+                    MongoStore.settings.host[index], 
+                    MongoStore.settings.port, 
+                    { auto_reconnect: true, useSsl:  MongoStore.settings.useSsl }
+                ));
+         }
+            
+         
+         //connect to a replicat set
+        this.db = new Mongodb.Db(
+                MongoStore.settings.name, 
+                new Mongodb.ReplSetServers(servers, {rs_name: Mongodb.RS.name})
+            );
+        
+     } else {
+         //connect to a single instance
+         this.db = new Mongodb.Db(
+                    MongoStore.settings.name, 
+                    new Mongodb.Server(
+                        MongoStore.settings.host, 
+                        MongoStore.settings.port, 
+                        { auto_reconnect: true, useSsl:  MongoStore.settings.useSsl }, 
+                        {}
+                    )
+                );
+     }
+     
+    this.db.open(function(err){
          if(err){
            console.error(err);   
+         } else {
+            console.log("connection to mongodb opened on "+ MongoStore.settings.host +" using "+ MongoStore.settings.name);   
          }
-        console.log("connection to mongo opened on "+ host + ":" + port +" using "+name);     
     });
+    
+    if(MongoStore.settings.user){
+        this.db.authenticate(MongoStore.settings.user, MongoStore.settings.pass, function(err){
+            if(err){
+               console.error(err);   
+             } else {
+                console.log(MongoStore.settings.user + " is now logged into the mongodb database");   
+             }
+        });
+    }
 };
 
 /**
@@ -75,10 +118,12 @@ MongoStore.getInstance = function(){
         if(!this.settings){
             throw new Error("No settigns found! Initialise the store before to load it.");
         }
-        var name = this.settings.name || 'babywish';
-        var host = this.settings.host || 'localhost';
-        var port = this.settings.port || 27017;
-        this._self = new MongoStore(name ,host, port);
+        this.settings.name = this.settings.name || 'babywish';
+        this.settings.host = this.settings.host || 'localhost';
+        this.settings.port = this.settings.port || 27017;
+        this.settings.replicaset = this.settings.replicaset || false;
+        this.settings.useSsl = this.settings.useSsl || false;
+        this._self = new MongoStore();
     }
     return this._self;
 };
