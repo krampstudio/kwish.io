@@ -8,9 +8,12 @@
         <script type="text/javascript" src="/scripts/lib/jquery.min.js"></script>
         <script type="text/javascript" src="/scripts/lib/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="/scripts/lib/jquery.tmpl.min.js"></script>
-        <script type="text/javascript" src="/scripts/lib/jwysiwyg/jquery.wysiwyg.js"></script>
+{{if everyauth.loggedIn}}
+		<script type="text/javascript" src="/scripts/lib/jwysiwyg/jquery.wysiwyg.js"></script>
         <script type="text/javascript" src="/scripts/jquery.editablearea.js"></script>
 		<script type="text/javascript" src="/scripts/jquery.removablearea.js"></script>
+		<script type="text/javascript" src="/scripts/jquery.infobubble.js"></script>
+{{/if}}
         <script type="text/javascript" src="/scripts/list.js"></script>
     </head>
     <body xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
@@ -41,13 +44,12 @@
         </div>
 		{{if everyauth.loggedIn}}
         <div class="save-box">
-            <span class='saver'>Sauver</span>
-            <span class='reverter'>Annuler</span>
+            <span class='saver' title='Sauvegarder les changements éffectués'>Sauver</span>
+            <span class='reverter' title='Annuler les changements éffectués'>Annuler</span>
         </div>
         {{/if}}
 		<div id="footer"><p>2011 - a Bellette & co © production</p></div>
         {{partial() "partials/flash"}}
-
 
 		<!-- templates -->
 		{{verbatim}}

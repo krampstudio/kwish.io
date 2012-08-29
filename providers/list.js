@@ -96,8 +96,9 @@ ListProvider.prototype.create = function(name, user, callback){
             description : ListProvider.placeholder.description,
             user        : new DBRef('users', user._id, this.store.db.databaseName),
             state       : ListProvider.state.building,
-            visibility  : ListProvider.visibility.closed
-        };
+            visibility  : ListProvider.visibility.closed,
+        	update		: null
+		};
         
         this.collection.insert(list, {safe: true}, function onListInsert(err, lists){
             if(err){
