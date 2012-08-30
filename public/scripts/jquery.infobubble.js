@@ -23,9 +23,16 @@
             var opts = $.extend(true, {}, InfoBubble._opts, options);
             return this.each(function() {
                 var $elt = $(this);
-				var arrow;
+				var target = $.extend({}, $elt.offset(), {
+					width	: parseInt($elt.width()),
+					height	: parseInt($elt.height()),
+					right	: parseInt($elt.offset().left) + parseInt($elt.width()),
+					bottom	: parseInt($elt.offset().top) + parseInt($elt.height())
+				});
+
+				var arrow, position = {};
 				switch(opts.position) {
-					case 'top'		: arrow = opts.arrow.bottom; break;
+					case 'top'		: arrow = opts.arrow.bottom; position.bottom =   break;
 					case 'right'	: arrow = opts.arrow.left; break;
 					case 'bottom'	: arrow = opts.arrow.top; break;
 					case 'left'		: arrow = opts.arrow.right; break;
