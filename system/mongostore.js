@@ -56,7 +56,7 @@ var MongoStore = function(){
          //connect to a replicat set
         this.db = new Mongodb.Db(
                 MongoStore.settings.name, 
-                new Mongodb.ReplSetServers(servers, {rs_name: Mongodb.RS.name})
+                new Mongodb.ReplSetServers(servers, {rs_name: MongoStore.settings.name})
             );
         
      } else {
