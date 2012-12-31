@@ -3,6 +3,7 @@
 .c9revisions
 node_modules
 ext
+*.swp
 .settings.xml
 .sass-cache
 properties.js
