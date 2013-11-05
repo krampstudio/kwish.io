@@ -1,29 +1,36 @@
 {
-    "name" : "baby-wish-list",
-    "description"   : "A cool baby [shower] wish list builder",
-    "version"       : "0.2.0",
-    "private"       : true,
-    "homepage"      : "https://github.com/krampstudio/BabyWishList",
-    "author": {
-        "name"  : "Bertrand Chevrier",
-        "email" : "chevrier.bertrand@gmail.com",
-        "url"   : "https://github.com/krampstudio/"
-    },
-    "repository": {
-        "type" : "git",
-        "url"  : "git://github.com/krampstudio/BabyWishList.git"
-    },
-    "dependencies": {
-        "express"   : "2.5.x",
-        "mongodb"   : "1.1.x",
-        "jqtpl"     : "1.1.x",
-        "everyauth" : "0.2.x",
-        "validator" : "0.4.x"
-    },
-    "devDependencies": {
-        "vows"      : "0.6.x"  
-    },
-    "engines"   : {
-        "node" : ">=0.6"
-    }
+  "name": "BabyWishList",
+  "description": "A cool baby [shower] wish list builder",
+  "version": "0.1.0",
+  "homepage": "https://github.com/krampstudio/BabyWishList",
+  "author": {
+    "name": "Bertrand Chevrier",
+    "email": "chevrier.bertrand@gmail.com",
+    "url": "https://github.com/krampstudio/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/krampstudio/BabyWishList.git"
+  },
+  "dependencies": {
+    "restify": "~2.6.0",
+    "lodash": "~2.2.1",
+    "async": "~0.2.9",
+    "caterpillar": "~2.0.6",
+    "caterpillar-filter": "~2.0.3",
+    "caterpillar-human": "~2.1.1",
+    "nconf": "~0.6.8"
+  },
+  "engines": {
+    "node": ">=0.10"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.1",
+    "nodeunit": "~0.8.1",
+    "grunt-contrib-nodeunit": "~0.2.2",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-bower-task": "~0.3.2",
+    "grunt-jsdoc": "~0.4.1"
+  }
 }
