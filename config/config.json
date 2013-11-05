@@ -1,0 +1,45 @@
+{
+    "server" : {
+        "address"		: "127.0.0.1",
+		"port"			: 4040,
+        "baseUrl"		: "dev.babywishlist.localdomain"
+    },
+    "log" : {
+        "level" : "info",
+        "stdout": true,
+        "file" : "logs/baby-wish-list.log"
+    },
+    "store" : {
+		"session": {
+			"pass" : "xxx"
+		},
+		"db" : {
+            "replicaset": false,
+            "host"      : "127.0.0.1",
+            "name"      : "babywish",
+            "user"      : "xxx",
+            "pass"      : "xxx",
+            "port"      : 27017,
+            "useSsl"    : false
+        }
+	},
+    "auth" : {
+        "twitter" : {
+            "consumerKey"   : "xxx",
+            "consumerSecret": "xxx"
+        },
+        "facebook" : {
+            "appId"     : "xxx",
+            "appSecret" : "xxx"
+        },
+        "google" : {
+            "appId"     : "xxx",
+            "appSecret" : "xxx"
+        },
+        "password" : {
+            "salt"      : "xxx",
+            "pepper"    : "xxx"
+        },
+        "timeout" : 30000
+    }
+}

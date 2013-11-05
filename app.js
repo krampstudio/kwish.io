@@ -17,15 +17,36 @@
  * 
  * @author <a href="mailto:chevrier.bertrand@gmail.com">Bertrand Chevrier</a>
  * @license http://www.gnu.org/licenses/agpl-3.0.txt
- * @version 0.2.0
- * 
+ * @version 0.1.0 
  */
+
+var conf = require('./config/confLoader').init();
+var logConf = conf.get('log');
+var serverConf = conf.get('server');
+
+var lf = require('./lib/logFactory');
+
+ //first of all initialize the logger
+var logger = lf.init(lf.levels[logConf.level], logConf.stdout, logConf.file); 
  
- /**
+var restify = require('restify');
+var server = restify.createServer({
+    log : logger
+}); 
+
+server.use(restify.queryParser());
+
+server.get(/\.(html)|(css)|(js)|(png)$/, restify.serveStatic({ directory : './public' }));
+
+server.listen(serverConf.port, serverConf.address, function(){
+    logger.info("Server started using %j", serverConf);
+});
+/**
   * Main app file, bootstrap all the services and start the server loop
   */
-(function () {
+/*(function () {
     "use strict";
+
     //imports
     var express         = require('express'),
         everyauth       = require('everyauth'),
@@ -75,13 +96,13 @@
         app.use(express.errorHandler());
         app.use(express.logger("tiny"));
     });
-    
+  */  
     /**
      * Get the view name from the request path
      * @param {Object} req request
      * @return {String} the name of the view to display
      */
-    function getViewName(req){
+    /*function getViewName(req){
         return req.path.replace(properties.app.baseUrl, '')
                         .replace(/^\/+/, '')
                         .replace(/\/$/, '')
@@ -146,4 +167,4 @@
     );
     console.log("Express server listening %s on port %d in %s mode", properties.server.address, properties.server.port, app.settings.env);
 
-})();
+})();*/
