@@ -11,8 +11,11 @@ module.exports = function(grunt) {
             client : ['public/js/test/**/*.js']
         },
         build: 'build/',
-        volatile : [ this.build]
+        volatile : ['build']
     };
+
+    //display times
+    require('time-grunt')(grunt);
 
     // Project configuration.
     grunt.initConfig({
@@ -73,11 +76,10 @@ module.exports = function(grunt) {
             }
         },
 
-        //the components will be copied regarding the .bowerrc file
         bower : {
             install :  {
                 options : {
-                    targetDir : layout.build + 'tmp/components'
+                    copy: false
                 }
             }
         }
@@ -89,7 +91,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-bower-task');
-
+    grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-qunit');
+    
 
     // Tasks flow.
     grunt.registerTask('install', ['clean', 'mkdir', 'bower']);
