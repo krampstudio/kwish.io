@@ -4,3 +4,4 @@ node_modules
 .sass-cache
 logs
 build
+public/js/lib
