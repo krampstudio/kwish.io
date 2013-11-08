@@ -1,0 +1,14 @@
+{
+    "bitwise" : true,
+    "camelcase" : true,
+    "curly" : true,
+    "eqeqeq" : true,
+    "freeze" : true,
+    "latedef" : true,
+    "newcap" : true,
+    "noempty" : true,
+    "undef" : true,
+    "smarttabs" : true,
+    "node" : true
+}
+

@@ -59,20 +59,14 @@ module.exports = function(grunt) {
             server : {
                 src: layout.src.server.concat(layout.test.server).concat(['Gruntfile.js']),
                 options : {
-                    node : true
+                    jshintrc : '.jshintrc'
                 }
             },
             client : {
                 src: layout.src.client.concat(layout.test.client),
                 options : {
-                    browser : true
+                    jshintrc : 'public/js/.jshintrc'
                 }
-            },
-            options: {
-                camelcase: true,
-                smarttabs: true,
-                curly: true,
-                multistr: true
             }
         },
 
