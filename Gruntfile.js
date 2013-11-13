@@ -10,8 +10,11 @@ module.exports = function(grunt) {
             server : ['test/**/*.js'],
             client : ['public/js/test/**/*.js']
         },
+        lib : {
+            client : 'public/js/lib/'
+        },
         build: 'build/',
-        volatile : ['build']
+        logs: 'logs/'
     };
 
     //display times
@@ -25,13 +28,13 @@ module.exports = function(grunt) {
         mkdir: {
             install: {
                 options: {
-                    create: layout.volatile
+                    create: [layout.build, layout.logs]
                 }
             }
         },
         
         clean : {
-            install: layout.volatile,
+            install: [layout.build, layout.logs, layout.lib.client]
         },
 
         jsdoc: {
@@ -72,18 +75,26 @@ module.exports = function(grunt) {
 
         bower : {
             install :  {
-                targetDir: 'public/js/lib'
+                options: {
+                    targetDir: layout.lib.client,
+                    copy: true,
+                    cleanup: true
+                }
             }
         },
         
         compass : {
-            dev: {
+            compile: { },
+            watch : {
+                options: {
+                    watch : true
+                }
+            },
             options : {
                 require: 'susy',
                 basePath: 'public',
                 sassDir: 'sass',
                 cssDir: 'css'
-            }
             }
         }
 
