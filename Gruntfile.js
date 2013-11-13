@@ -72,11 +72,18 @@ module.exports = function(grunt) {
 
         bower : {
             install :  {
-                options : {
-                    copy: false
-                }
+                targetDir: 'public/js/lib'
+            }
+        },
+        
+        compass : {
+            options : {
+                require: 'susy',
+                sassDir: 'public/sass',
+                cssDIr: 'public/css'
             }
         }
+
     });
     
     grunt.loadNpmTasks('grunt-mkdir');
