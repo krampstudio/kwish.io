@@ -11,7 +11,7 @@ module.exports = function(grunt) {
             client : ['public/js/test/**/*.js']
         },
         lib : {
-            client : 'public/js/lib/'
+            client : 'public/lib/'
         },
         build: 'build/',
         logs: 'logs/'

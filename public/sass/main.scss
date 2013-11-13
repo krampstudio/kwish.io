@@ -1,6 +1,9 @@
 @import "compass";
 @import "susy";
 
+$fa-font-path : "../lib/font-awesome/fonts";
+@import "../lib/font-awesome/scss/font-awesome.scss";
+
 @import "base.scss";
 @import "layout.scss";
 @import "theme.scss";

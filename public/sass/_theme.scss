@@ -17,4 +17,8 @@ nav {
             background-color: #444;
         }
     }
+    h1 {
+        @extend .fa;
+        @extend .fa-gift;
+    }
 }
