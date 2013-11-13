@@ -15,7 +15,7 @@ module.exports = function(grunt) {
     };
 
     //display times
-    require('time-grunt')(grunt);
+//    require('time-grunt')(grunt);
 
     // Project configuration.
     grunt.initConfig({
@@ -77,10 +77,13 @@ module.exports = function(grunt) {
         },
         
         compass : {
+            dev: {
             options : {
                 require: 'susy',
-                sassDir: 'public/sass',
-                cssDIr: 'public/css'
+                basePath: 'public',
+                sassDir: 'sass',
+                cssDir: 'css'
+            }
             }
         }
 
