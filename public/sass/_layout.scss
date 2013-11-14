@@ -13,3 +13,22 @@ nav {
         }
     }
 }
+
+header {
+    padding: 1em !important;
+    margin: 1em 0;
+    width: 100%;
+    position: relative;
+    height: 150px;
+    background-color: #fcfcfc;
+    aside {
+        background-color: #522A67;
+        color: #fff;
+        padding: 1em;
+        position: absolute;
+        width: 50%;
+        height: 150px;
+        margin-left: 50%;
+        top: 0;
+    } 
+}
