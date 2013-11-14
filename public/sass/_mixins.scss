@@ -1,0 +1,10 @@
+
+@mixin icon ($name, $pad) {
+    @if $pad {
+        &:before{
+            padding: $pad;
+        }
+    }
+    @extend .fa;
+    @extend .fa-#{$name};
+}

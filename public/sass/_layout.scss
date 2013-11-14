@@ -1,8 +1,15 @@
 nav {
+    height: 2.5em;
+    padding:.5em;
     & > *, li {
         display: inline-block;
     } 
     ul {
         list-style-type: none;
+        li {
+            height: 1em;
+            line-height: 1em;
+            padding: 1em;
+        }
     }
 }
