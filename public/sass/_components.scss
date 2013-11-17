@@ -1,22 +1,68 @@
 
 nav {
-    background-color: #333;
-    color: #fff;
-
+    background-color: $navBg;
+    color: $navColor;
+    h1 {
+        font-family: $logoFontFamily;
+    }
     a {
-        text-decoration: none;
-        color:#fff;
-        &:hover {
-            color:#eee;
-        }
+        color: $navColor;
     }
     ul > li {
-
         &:hover {
-            background-color: #444;
+            background-color: $navBgHover;
         }
     }
-    h1 {
-        @include icon(gift, .2em);
+}
+
+header {
+        @include background-image(linear-gradient(top, darken($headLight, 5%), lighten($headLight, 5%))); 
+    
+    h1{
+        @include single-text-shadow(1px, 1px, 1px, false, #333333);
+
+        padding: 1em;
+        font-family: $logoFontFamily;
+        p {
+            font-size: .8em;
+            font-style: italic;
+            color: #333;
+            font-family: $baseFontFamily;
+        }
+    }
+    aside {
+        background-color: $headDark;
+        @include background-image(linear-gradient(top left, $headDark, $headLight)); 
+        @include opacity(0.9);
+        color: #fff;
+        padding: 1em;
+        ul {
+            li {
+                padding: .3em;
+                &:before{
+                    @extend .fa;
+                    @extend .fa-check-square-o;
+                    margin-right: .2em;
+                }
+            }
+        }
+    } 
+}
+
+
+#lists{
+    margin: 1em auto !important;
+    width: 75%;
+    article {
+        width: 24%;
+        float: left;
+        margin: .5%;
+        &:before{
+            @extend .fa;
+            @extend .fa-3x;
+            @extend .pull-left;
+            @extend .fa-border;
+            @extend .fa-gift;
+        }
     }
 }

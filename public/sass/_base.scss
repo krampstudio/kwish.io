@@ -1,8 +1,14 @@
 //base and global styles
 @include global-reset;
 
+*, *:before, *:after {
+    @include box-sizing(border-box);
+}
+
 html, body{
     font-size: $baseFontSize;
+    font-family: $baseFontFamily;
+    color: $baseColor;
 }
 h1 {
     font-size: 2em;
@@ -18,4 +24,36 @@ h4 {
 }
 h5 {
     font-size: 1.1em;
+}
+
+a {
+    text-decoration: none;
+    color: $linkColor;
+    &:hover {
+        color: $linkHoverColor;
+    }
+}
+
+
+input{
+    &.big {
+        font-size: 1.2em;
+        width: 40em;
+        line-height: 2em;
+        height: 2em;
+        border: solid 2px #999;
+        @include border-radius(6px);
+    }
+}
+
+button {
+    background-color: $primaryColor;
+    color: $invColor;    
+    @include border-radius(6px);
+    border-style:none;
+    padding: .2em .5em;
+    &.big {
+        font-size: 1.2em;
+        padding: .5em .75em;
+    }
 }

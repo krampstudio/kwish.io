@@ -91,7 +91,7 @@ module.exports = function(grunt) {
                 }
             },
             options : {
-                require: 'susy',
+                require: 'zen-grids',
                 basePath: 'public',
                 sassDir: 'sass',
                 cssDir: 'css'

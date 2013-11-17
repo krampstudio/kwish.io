@@ -1,5 +1,29 @@
 
-$baseFontSize : '14px';
+//import google web fonts
+@import url(http://fonts.googleapis.com/css?family=Cantata+One|Luckiest+Guy);
+
+$baseFontSize: '14px';
+$baseFontFamily: 'Cantata One', serif;
+$logoFontFamily: 'Luckiest Guy', cursive;
+
+$primaryColor: #522A67;
+
+$baseColor: #333;
+$baseBgColor: #fff;
+
+$invColor: #fff;
+$invBgColor: #333;
+
+$linkColor: darken($primaryColor, 5%);
+$linkHoverColor: lighten($primaryColor, 5%);
+
+$invLinkColor: $invColor;
+$invLinkHoverColor: darken($primaryColor, 5%);
 
 
+$headLight: lighten($primaryColor, 65%);
+$headDark: lighten($primaryColor, 2%);
 
+$navBg: $invBgColor;
+$navBgHover: lighten($navBg, 10%);
+$navColor: $invColor;

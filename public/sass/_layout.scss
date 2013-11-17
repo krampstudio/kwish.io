@@ -1,5 +1,5 @@
 nav {
-    height: 2.5em;
+    height: 3.5em;
     padding:.5em;
     & > *, li {
         display: inline-block;
@@ -14,21 +14,29 @@ nav {
     }
 }
 
-header {
-    padding: 1em !important;
-    margin: 1em 0;
-    width: 100%;
-    position: relative;
-    height: 150px;
-    background-color: #fcfcfc;
-    aside {
-        background-color: #522A67;
-        color: #fff;
-        padding: 1em;
-        position: absolute;
-        width: 50%;
-        height: 150px;
-        margin-left: 50%;
-        top: 0;
-    } 
+
+
+#container {
+    @include zen-grid-container;
+    
+    & > section {
+        margin: 2em 0;
+    }
 }
+
+header {
+    height: 150px;
+    h1 {
+        @include zen-grid-item(6, 1);
+    }
+    aside {
+        height: 150px;
+        @include zen-grid-item(7, 6);
+    }
+}
+
+section[role=search], section[role=action]{
+    text-align: center;
+}
+
+
