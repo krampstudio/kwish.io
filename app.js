@@ -20,15 +20,20 @@
  * @version 0.1.0 
  */
 
+//initialize the config
 var conf = require('./config/confLoader').init();
 var logConf = conf.get('log');
 var serverConf = conf.get('server');
 
 var lf = require('./lib/logFactory');
 
- //first of all initialize the logger
+//then the logger
 var logger = lf.init(lf.levels[logConf.level], logConf.stdout, logConf.file); 
  
+//and redis
+var redisClient = require('./lib/redisClientFactory').init();
+
+//finally the web server
 var restify = require('restify');
 var server = restify.createServer({
     log : logger

@@ -7,7 +7,7 @@ module.exports = function(grunt) {
             client : ['public/js/**/*.js', '!public/js/test/**/*.js']
         },
         test : {
-            server : ['test/**/*.js'],
+            server : ['test/**/*_test.js'],
             client : ['public/js/test/**/*.js']
         },
         lib : {

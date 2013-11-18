@@ -13,14 +13,11 @@
 		"session": {
 			"pass" : "xxx"
 		},
-		"db" : {
-            "replicaset": false,
-            "host"      : "127.0.0.1",
-            "name"      : "babywish",
-            "user"      : "xxx",
-            "pass"      : "xxx",
-            "port"      : 27017,
-            "useSsl"    : false
+		"redis" : {
+            "host" : "127.0.0.1",
+            "port" : "6379",
+            "db" : 1,
+            "auth" : "foobared"
         }
 	},
     "auth" : {
