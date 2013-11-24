@@ -22,9 +22,11 @@ exports.confLoaderTest = {
     },
 
     testValues : function(test){
-        test.expect(2);
+        test.expect(3);
 
         var conf = require('../config/confLoader').conf;
+        
+        test.ok(typeof conf !== undefined);
         test.equal(conf.get('server').address, this.config.server.address);
         test.equal(conf.get('server').port, this.config.server.port);
 

@@ -20,29 +20,36 @@
  * @version 0.1.0 
  */
 
-//initialize the config
-var conf = require('./config/confLoader').init();
-var logConf = conf.get('log');
-var serverConf = conf.get('server');
-
-var lf = require('./lib/logFactory');
-
-//then the logger
-var logger = lf.init(lf.levels[logConf.level], logConf.stdout, logConf.file); 
- 
-//and redis
-var redisClient = require('./lib/redisClientFactory').init();
-
-//finally the web server
+var Bootstrap = require('./lib/bootstrap');
 var restify = require('restify');
-var server = restify.createServer({
-    log : logger
-}); 
+
+//initialization of services
+var bootstrap = new Bootstrap();
+bootstrap.on('error', function(err){
+    console.error("Unable to bootstrap : " + err);
+    process.exit();
+});
+bootstrap.start({
+    conf: true,
+    logger: true,
+    redis: true
+});
+
+//create the http server
+var logger = bootstrap.logger;
+var serverConf = bootstrap.conf.get('server');
+var server = restify.createServer(); 
 
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
+server.use(function(req, res, next){
+    logger.info("%s %s : %j", req.method, req.url, req.params);
+    next();
+});
 
 server.get(/\.(html)|(css)|(js)|(png)$/, restify.serveStatic({ directory : './public' }));
+require('./controllers/controllers')(server);
+
 
 server.listen(serverConf.port, serverConf.address, function(){
     logger.info("Server started using %j", serverConf);

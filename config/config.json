@@ -5,7 +5,7 @@
         "baseUrl"		: "dev.babywishlist.localdomain"
     },
     "log" : {
-        "level" : "debug",
+        "level" : "info",
         "stdout": true,
         "file" : "logs/baby-wish-list.log"
     },
@@ -16,7 +16,7 @@
 		"redis" : {
             "host" : "127.0.0.1",
             "port" : "6379",
-            "db" : 1,
+            "db"   : 3,
             "auth" : "foobared"
         }
 	},
