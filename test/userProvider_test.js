@@ -50,19 +50,39 @@ exports.userProviderTest = {
             lname: "Doe",
             email: "jdoe@anonymous.com"
         };
-        userProvider.add('jode', newUser, function(err, inserted){
+        userProvider.add('jdoe', newUser, function(err, inserted){
             test.equal(err, null);
             test.ok(inserted === true);
 
-            userProvider.get('jode', function(err, user){
+            userProvider.get('jdoe', function(err, user){
                 test.equal(err, null);
                 test.deepEqual(user, newUser);
 
-                client.quit();
                 test.done();
             });
         });
     },
+
+   testDelUser : function(test){
+        test.expect(4);
+
+        var self = this;
+        var userProvider = require('../lib/providers/user');
+        userProvider.get('jdoe', function(err, user){
+            userProvider.del('jdoe', function(err, removed){
+                test.equal(err, null);
+                test.ok(removed === true);
+
+                userProvider.get('jdoe', function(err, user){
+                    test.equal(err, null);
+                    test.strictEqual(user, null);
+
+                    client.quit();
+                    test.done();
+                });
+            });
+        });
+    }
 };
 
 
