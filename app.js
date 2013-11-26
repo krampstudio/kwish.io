@@ -39,6 +39,7 @@ bootstrap.start({
 var logger = bootstrap.logger;
 var serverConf = bootstrap.conf.get('server');
 var server = restify.createServer(); 
+var router = require('./controllers/router');
 
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
@@ -47,9 +48,10 @@ server.use(function(req, res, next){
     next();
 });
 
+//static resources
 server.get(/\.(html)|(css)|(js)|(png)$/, restify.serveStatic({ directory : './public' }));
-require('./controllers/controllers')(server);
 
+router.dispatch(server);
 
 server.listen(serverConf.port, serverConf.address, function(){
     logger.info("Server started using %j", serverConf);

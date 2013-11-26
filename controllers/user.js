@@ -2,19 +2,29 @@ var userProvider = require('../lib/providers/user');
 var _ = require('lodash');
 var util = require('util');
 
-var userController = function(server){
+//todo externalize and integrate with validation
+function _error(res, msg){
+    return res.json({
+        error : {
+            from : 'user',
+            message : util.format.apply(util, Array.prototype.slice.call(arguments, 1)) 
+        }
+    });
+}
+
+/**
+ * Provides actions to manage users
+ * @exports controllers/user
+ */ 
+var UserController = {
  
-    //todo externalize and integrate with validation
-    var _error = function(res, msg){
-        return res.json({
-            error : {
-                from : 'user',
-                message : util.format.apply(util, Array.prototype.slice.call(arguments, 1)) 
-            }
-        });
-    };
-   
-    server.get('/user/:login', function (req, res, next) {
+    /**
+     * Get a user from it's login
+     * @param {HttpRequest} req - json only, login parameter
+     * @param {HttpResponse} res - send json
+     * @param {Function} next - to move to middleware next stack
+     */
+    get : function (req, res, next) {
         var login = req.params.login;
         if(req.accepts('application/json') && /^[a-zA-Z0-9]+$/.test(login)){
             userProvider.get(login, function(err, user){
@@ -28,8 +38,8 @@ var userController = function(server){
             });
         }      
         next();
-    });
+    }
 
 };
 
-module.exports = userController;
+module.exports = UserController;
