@@ -26,5 +26,5 @@ hset kitem:1 img "http://image.test"
 hset kitem:1 url "http://link.test"
 hset kitem:1 price 200
 
-del klistitem:krampstudio
-zadd klistitem:krampstudio 1 1
+del klistitem:ditasbirth
+zadd klistitem:ditasbirth 1 1
