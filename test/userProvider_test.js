@@ -20,9 +20,9 @@ exports.userProviderTest = {
 
         test.ok(typeof userProvider !== undefined);
         test.ok(typeof userProvider.get  === 'function');
-        test.ok(typeof userProvider.add  === 'function');
-        test.ok(typeof userProvider.update  === 'function');
         test.ok(typeof userProvider.save  === 'function');
+        test.ok(typeof userProvider.loginExists  === 'function');
+        test.ok(typeof userProvider.auth  === 'function');
 
         test.done();
     },
@@ -40,7 +40,7 @@ exports.userProviderTest = {
         });
     },
 
-    testAddUser : function(test){
+    testSaveUser : function(test){
         test.expect(4);
 
         var self = this;
@@ -50,7 +50,7 @@ exports.userProviderTest = {
             lname: "Doe",
             email: "jdoe@anonymous.com"
         };
-        userProvider.add('jdoe', newUser, function(err, inserted){
+        userProvider.save('jdoe', newUser, function(err, inserted){
             test.equal(err, null);
             test.ok(inserted === true);
 
