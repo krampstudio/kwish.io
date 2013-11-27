@@ -4,12 +4,18 @@ var client = require('../lib/redisClientFactory').init(conf.get('store').redis);
 
 exports.userProviderTest = {
     setUp : function(done){
-        this.login = 'krampstudio';
-        this.user ={ 
+        this.logins = ['krampstudio', 'jdoe'];
+        this.users = [{ 
             fname: "bertrand",
             lname: "chevrier",
             email: "chevrier.bertrand@gmail.com"
-        };
+        }, {
+            fname: "John",
+            lname: "Doe",
+            email: "jdoe@anonymous.com",
+            passwd: "jdoe123"
+        }];
+
         done();
     },
 
@@ -32,48 +38,91 @@ exports.userProviderTest = {
 
         var self = this;
         var userProvider = require('../lib/providers/user');
-        userProvider.get(this.login, function(err, user){
+        userProvider.get(this.logins[0], function(err, user){
             test.equal(err, null);
-            test.deepEqual(user, self.user);
+            test.deepEqual(user, self.users[0]);
+
+            test.done();
+        });
+    },
+    
+    testLoginExists : function(test){
+        test.expect(2);
+
+        var userProvider = require('../lib/providers/user');
+        userProvider.loginExists(this.logins[0], function(err, exists){
+            test.equal(err, null);
+            test.strictEqual(exists, true);
 
             test.done();
         });
     },
 
+    testLoginNotExists : function(test){
+        test.expect(2);
+
+        var userProvider = require('../lib/providers/user');
+        userProvider.loginExists('foob', function(err, exists){
+            test.equal(err, null);
+            test.strictEqual(exists, false);
+
+            test.done();
+        });
+    },
+    
     testSaveUser : function(test){
         test.expect(4);
 
         var self = this;
         var userProvider = require('../lib/providers/user');
-        var newUser = {
-            fname: "John",
-            lname: "Doe",
-            email: "jdoe@anonymous.com"
-        };
-        userProvider.save('jdoe', newUser, function(err, inserted){
+
+        userProvider.save(this.logins[1], this.users[1], function(err, inserted){
             test.equal(err, null);
             test.ok(inserted === true);
 
-            userProvider.get('jdoe', function(err, user){
+            userProvider.get(self.logins[1], function(err, user){
                 test.equal(err, null);
-                test.deepEqual(user, newUser);
+                test.deepEqual(user, self.users[1]);
 
                 test.done();
             });
         });
     },
 
-   testDelUser : function(test){
+    testAuth : function(test){
+        test.expect(2);
+        var self = this;
+        var userProvider = require('../lib/providers/user');
+        userProvider.auth(this.logins[1], this.users[1].passwd,  function(err, auth){
+            test.equal(err, null);
+            test.ok(auth === true);
+            test.done();
+        });
+    },
+
+    testAuthWrongPasswd : function(test){
+        test.expect(2);
+        var self = this;
+        var userProvider = require('../lib/providers/user');
+        userProvider.auth(this.logins[1], 'bar',  function(err, auth){
+            test.equal(err, null);
+            test.ok(auth === false);
+
+            test.done();
+        });
+    },
+    
+    testDelUser : function(test){
         test.expect(4);
 
         var self = this;
         var userProvider = require('../lib/providers/user');
-        userProvider.get('jdoe', function(err, user){
-            userProvider.del('jdoe', function(err, removed){
+        userProvider.get(this.logins[1], function(err, user){
+            userProvider.del(self.logins[1], function(err, removed){
                 test.equal(err, null);
                 test.ok(removed === true);
 
-                userProvider.get('jdoe', function(err, user){
+                userProvider.get(self.logins[1], function(err, user){
                     test.equal(err, null);
                     test.strictEqual(user, null);
 
