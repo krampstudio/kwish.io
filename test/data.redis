@@ -26,5 +26,14 @@ hset kitem:1 img "http://image.test"
 hset kitem:1 url "http://link.test"
 hset kitem:1 price 200
 
+incr kitemid
+del kitem:2
+hset kitem:2 title "Toys"
+hset kitem:2 desc "Some awesome toys"
+hset kitem:2 img "http://image.test"
+hset kitem:2 url "http://link.test"
+hset kitem:2 price 20
+
 del klistitem:ditasbirth
 zadd klistitem:ditasbirth 1 1
+zadd klistitem:ditasbirth 2 2
