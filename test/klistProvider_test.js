@@ -16,7 +16,7 @@ exports.klistProviderTest = {
     },
 
     testProviderStruct : function(test){
-        test.expect(6);
+        test.expect(7);
 
         var klistProvider = require('../lib/providers/klist');
 
@@ -25,6 +25,7 @@ exports.klistProviderTest = {
         test.ok(typeof klistProvider.save  === 'function');
         test.ok(typeof klistProvider.del  === 'function');
         test.ok(typeof klistProvider.getId  === 'function');
+        test.ok(typeof klistProvider.getListItemsIds === 'function'); 
         test.ok(typeof klistProvider.getListItems === 'function'); 
         test.done();
     },
@@ -44,6 +45,21 @@ exports.klistProviderTest = {
         });
     },
 
+   testGetListItemsIds : function(test){
+        test.expect(3);
+
+        var self = this;
+        var klistProvider = require('../lib/providers/klist');
+
+        klistProvider.getListItemsIds('ditasbirth', function(err, ids){
+            test.strictEqual(err, null);
+            test.equal(ids.length, 2);
+            test.ok(ids.indexOf('2') >= 0);
+
+            test.done();
+        });
+    },
+   
    testGetListItems : function(test){
         test.expect(3);
 
@@ -53,13 +69,13 @@ exports.klistProviderTest = {
         klistProvider.getListItems('ditasbirth', function(err, items){
             test.strictEqual(err, null);
             test.equal(items.length, 2);
-            test.ok(items.indexOf('2') >= 0);
+            test.equal(items[1].title, 'Bed');
 
             test.done();
         });
     },
    
-     testSaveList : function(test){
+    testSaveList : function(test){
         test.expect(2);
 
         var self = this;
