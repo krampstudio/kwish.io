@@ -1,25 +1,21 @@
 auth foobared
 select 3
-del user:krampstudio
+flushdb
 hset user:krampstudio fname bertrand
 hset user:krampstudio lname chevrier
 hset user:krampstudio email chevrier.bertrand@gmail.com
 
-del userklist:krampstudio
 sadd userklist:krampstudio ditasbirth
 sadd userklist:krampstudio ditas1birthday
 sadd userklist:krampstudio ditas2birthday
 
-del klist:ditasbirth
 hset klist:ditasbirth title "Dita's birth wish list"
 hset klist:ditasbirth desc "To welcome Dita in our family we still need a few thing. We already have love and warmness but everything in the bedroom is missing."
 hset klist:ditasbirth category "baby"
 
-del kitemid
 set kitemid 0
 incr kitemid
 
-del kitem:1
 hset kitem:1 title "Bed"
 hset kitem:1 desc "A cut baby bed"
 hset kitem:1 img "http://image.test"
@@ -27,13 +23,11 @@ hset kitem:1 url "http://link.test"
 hset kitem:1 price 200
 
 incr kitemid
-del kitem:2
 hset kitem:2 title "Toys"
 hset kitem:2 desc "Some awesome toys"
 hset kitem:2 img "http://image.test"
 hset kitem:2 url "http://link.test"
 hset kitem:2 price 20
 
-del klistitem:ditasbirth
 zadd klistitem:ditasbirth 1 1
 zadd klistitem:ditasbirth 2 2
