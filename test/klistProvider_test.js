@@ -1,17 +1,32 @@
 var conf = require('../config/confLoader').init();
+var redisConf = conf.get('store').redis;
+
+var redisData = require('./redisData');
+redisData.prepare(redisConf);
+
 var logger = require('../lib/logFactory').init();
-var client = require('../lib/redisClientFactory').init(conf.get('store').redis);
+var client = require('../lib/redisClientFactory').init(redisConf);
 
 exports.klistProviderTest = {
 
     setUp : function(done){
+        
         this.login = 'krampstudio';
         this.id = 'foolist';
         this.list = {
             title : 'Awesome Foo List',
-            desc : 'Really awesome list',
-            state: 'public'
+            desc  : 'Really awesome list',
+            state : 'public'
         };
+        this.items = [{
+            title : "Stuff",
+            desc  : "An awesome stuff",
+            price : 200
+        },{
+            title : "Thing",
+            desc  : "A funny thing",
+            price : 49.99
+        }];
         done();
     },
 
@@ -102,6 +117,23 @@ exports.klistProviderTest = {
         });
     },
 
+    testAddListItem : function(test){
+        test.expect(5);
+
+        var self = this;
+        var klistProvider = require('../lib/providers/klist');
+        klistProvider.addListItem(this.id, this.items[0], function(err, added){
+            test.strictEqual(err, null);
+            test.strictEqual(added, true);
+            klistProvider.getListItems(self.id, function(err, items){
+                test.strictEqual(err, null);
+                test.strictEqual(items.length, 1);
+                test.equal(items[0].title, 'Stuff');
+                test.done();
+            });
+        });
+    },
+
     testDelList : function(test){
         test.expect(2);
 
@@ -113,6 +145,7 @@ exports.klistProviderTest = {
             test.strictEqual(removed, true);
             
             client.quit();
+
             test.done();
         });
     }
