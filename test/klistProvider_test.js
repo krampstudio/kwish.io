@@ -1,11 +1,7 @@
 var conf = require('../config/confLoader').init();
-var redisConf = conf.get('store').redis;
-
-var redisData = require('./redisData');
-redisData.prepare(redisConf);
-
 var logger = require('../lib/logFactory').init();
-var client = require('../lib/redisClientFactory').init(redisConf);
+var redisCF = require('../lib/redisClientFactory');
+redisCF.init(conf.get('store').redis);
 
 exports.klistProviderTest = {
 
@@ -144,7 +140,7 @@ exports.klistProviderTest = {
             test.strictEqual(err, null);
             test.strictEqual(removed, true);
             
-            client.quit();
+            redisCF.exit();
 
             test.done();
         });

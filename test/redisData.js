@@ -1,4 +1,6 @@
 var redis = require('redis');
+var _ = require('lodash');
+
 /**
  * prepare the test by inseting data
  */

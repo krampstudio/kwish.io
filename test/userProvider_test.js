@@ -1,6 +1,7 @@
 var conf = require('../config/confLoader').init();
 var logger = require('../lib/logFactory').init();
-var client = require('../lib/redisClientFactory').init(conf.get('store').redis);
+var redisCF = require('../lib/redisClientFactory');
+redisCF.init(conf.get('store').redis);
 
 exports.userProviderTest = {
     setUp : function(done){
@@ -125,13 +126,12 @@ exports.userProviderTest = {
                 userProvider.get(self.logins[1], function(err, user){
                     test.equal(err, null);
                     test.strictEqual(user, null);
+                
+                    redisCF.exit();
 
-                    client.quit();
                     test.done();
                 });
             });
         });
     }
 };
-
-
