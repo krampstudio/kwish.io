@@ -110,9 +110,28 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-compass');
     grunt.loadNpmTasks('grunt-contrib-qunit');
     
+    grunt.registerTask('preparetest', 'Load integration test data', function integrationTest(){
+        var prepare = require('./test/data/prepare');
+        var done = this.async();
+        /*process.env.store = {
+            "redis" : {
+                "host" : "127.0.0.1",
+                "port" : "6379",
+                "db"   : 2,
+                "auth" : "foobared"
+            }
+        };*/
+
+        prepare.run(function(err){
+            if(err){
+                return grunt.fail.warn(err);
+            }
+            done();
+        });
+    });
 
     // Tasks flow.
     grunt.registerTask('install', ['clean', 'mkdir', 'bower']);
-    grunt.registerTask('test', ['nodeunit']);
+    grunt.registerTask('test', ['preparetest' ,'nodeunit']);
     grunt.registerTask('build', ['jshint', 'test', 'jsdoc']);
 };

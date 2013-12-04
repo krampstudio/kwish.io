@@ -1,10 +1,11 @@
+
 var redis = require('redis');
 var _ = require('lodash');
 
 /**
  * prepare the test by inseting data
  */
-exports.prepare = function preparetest(conf){
+function preparetest(conf, cb){
     var client = redis.createClient(conf.port, conf.host);
     if(conf.auth){
         client.auth(conf.auth);
@@ -12,7 +13,7 @@ exports.prepare = function preparetest(conf){
     client.select(conf.db);
     
     client.on('error', function(err){
-        console.error(err);
+        cb(err);
     });
 
     client.multi()
@@ -46,10 +47,14 @@ exports.prepare = function preparetest(conf){
         .zadd('klistitem:ditasbirth', 2, 2)
         .exec(function(errors, replies){
             if(errors && errors.length > 0){
-                console.error(errors);
+                cb(errors[0]);
             }
-            console.log('quit');
             client.quit();
+            cb();
         });
-};
+}
 
+exports.run = function(cb){
+    var conf = require('../../config/confLoader').init();
+    preparetest(conf.get('store').redis, cb);
+};
