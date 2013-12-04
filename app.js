@@ -48,10 +48,15 @@ server.use(function(req, res, next){
     next();
 });
 
-//static resources
-server.get(/\.(html)|(css)|(js)|(png)$/, restify.serveStatic({ directory : './public' }));
-
+//dispatch api controllers
 router.dispatch(server);
+
+//static resource loading
+server.get(/.*/, restify.serveStatic({ 
+    directory : './public', 
+    default : 'index.html'
+}));
+
 
 server.listen(serverConf.port, serverConf.address, function(){
     logger.info("Server started using %j", serverConf);
