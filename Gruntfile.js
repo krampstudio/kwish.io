@@ -18,7 +18,7 @@ module.exports = function(grunt) {
     };
 
     //display times
-//    require('time-grunt')(grunt);
+    require('time-grunt')(grunt);
 
     // Project configuration.
     grunt.initConfig({
