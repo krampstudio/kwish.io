@@ -7,6 +7,9 @@ nav {
     }
     a {
         color: $navColor;
+        &:hover{
+            color: inherit;
+        }
     }
     ul > li {
         &:hover {

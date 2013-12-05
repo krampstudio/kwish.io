@@ -1,16 +1,29 @@
 nav {
     height: 3.5em;
-    padding:.5em;
+    padding:0;
     & > *, li {
         display: inline-block;
     } 
+    & > h1{
+        padding:.5em; 
+    }
+    & > a {
+        vertical-align: top;
+        height: 3.5em;
+        line-height: 3.5em;
+        padding:0 .5em;
+    }
     ul {
         list-style-type: none;
+        vertical-align: top;
         li {
-            height: 1em;
-            line-height: 1em;
-            padding: 1em;
+            height: 3.5em;
+            line-height: 3.5em;
+            padding:0 .5em;
         }
+    }
+    .login{
+        float: right;
     }
 }
 
