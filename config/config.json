@@ -35,7 +35,8 @@
         },
         "password" : {
             "salt"      : "xxx",
-            "pepper"    : "xxx"
+            "pepper"    : "xxx",
+            "algo"      : "sha256"
         },
         "timeout" : 30000
     }
