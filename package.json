@@ -21,7 +21,11 @@
     "caterpillar-human": "~2.1.1",
     "nconf": "~0.6.8",
     "redis": "~0.9.0",
-    "generic-pool": "~2.0.4"
+    "generic-pool": "~2.0.4",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.2",
+    "passport-google": "~0.3.0",
+    "passport-twitter": "~1.0.2"
   },
   "engines": {
     "node": ">=0.10"
