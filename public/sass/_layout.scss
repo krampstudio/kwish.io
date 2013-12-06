@@ -1,6 +1,8 @@
 nav {
+    @include zen-grid-container;
     height: 3.5em;
     padding:0;
+    overflow: hidden;
     & > *, li {
         display: inline-block;
     } 
@@ -23,7 +25,8 @@ nav {
         }
     }
     .login{
-        float: right;
+        @include zen-grid-item(3, 1, right);
+        text-align: right;
     }
 }
 
@@ -31,25 +34,80 @@ nav {
 
 #container {
     @include zen-grid-container;
-    
+}
+
+.home {
     & > section {
         margin: 2em 0;
     }
-}
-
-header {
-    height: 150px;
-    h1 {
-        @include zen-grid-item(6, 1);
-    }
-    aside {
+    header {
         height: 150px;
-        @include zen-grid-item(7, 6);
+        h1 {
+            @include zen-grid-item(6, 1);
+        }
+        aside {
+            height: 150px;
+            @include zen-grid-item(7, 6);
+        }
+    }
+
+    section[role=search], section[role=action]{
+        text-align: center;
     }
 }
+.klistboard {
+    & > section {
+        margin: 2em;
+    }
+    .klist {
+        .klist-image {
+            @include zen-grid-item(3, 1);
+            img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        .klist-title {
+            @include zen-grid-item(9, 1, right);
+        }
+        .klist-desc {
+            @include zen-clear(right);
+            @include zen-grid-item(9, 1, right);
+        }
+        & > .kitems {
+            @include zen-clear(both);
 
-section[role=search], section[role=action]{
-    text-align: center;
+            .kitem {
+                float: left;
+                position: relative;
+                width: 20%;
+                padding-bottom: 20%;
+                & > div {
+                    position: absolute;
+                    left: .5em;
+                    right: .5em;
+                    top: .5em;
+                    bottom: .5em;
+                    overflow: hidden;
+                }
+            
+                @media only screen and (max-width : 480px) {
+                    width: 100%;
+                    padding-bottom: 100%;
+                }
+                @media only screen and (max-width : 650px) and (min-width : 481px) {
+                    width: 50%;
+                    padding-bottom: 50%;
+                }
+                @media only screen and (max-width : 1050px) and (min-width : 651px) {
+                    width: 33.3%;
+                    padding-bottom: 33.3%;
+                }
+                @media only screen and (max-width : 1290px) and (min-width : 1051px) {
+                    width: 25%;
+                    padding-bottom: 25%;
+                }
+            }
+        }
+    }   
 }
-
-
