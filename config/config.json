@@ -1,17 +1,18 @@
 {
     "server" : {
-        "address"		: "127.0.0.1",
-		"port"			: 4040,
-        "baseUrl"		: "dev.babywishlist.localdomain"
+        "address"   : "127.0.0.1",
+		"port"		: 4040,
+        "baseUrl"	: "dev.babywishlist.localdomain"
     },
     "log" : {
-        "level" : "debug",
-        "stdout": true,
-        "file" : "logs/baby-wish-list.log"
+        "level"     : "debug",
+        "stdout"    : true,
+        "file"      : "logs/baby-wish-list.log"
     },
     "store" : {
 		"session": {
-			"pass" : "xxx"
+			"secret"    : "xxx",
+            "duration"  : 3600000
 		},
 		"redis" : {
             "host" : "127.0.0.1",

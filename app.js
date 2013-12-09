@@ -38,14 +38,23 @@ bootstrap.start({
 //create the http server
 var logger = bootstrap.logger;
 var serverConf = bootstrap.conf.get('server');
+var sessionConf = bootstrap.conf.get('store').session;
 var server = restify.createServer(); 
+var sessions = require('client-sessions');
 var authenticator = require('./controllers/authenticator');
 var router = require('./controllers/router');
 
+
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
+server.use(sessions({
+    secret      : sessionConf.secret,
+    duration    : sessionConf.duration, 
+    ephemeral   : true
+}));
 server.use(function(req, res, next){
     logger.info("%s %s : %j", req.method, req.url, req.params);
+    logger.debug("Session: %j", req.session_state);
     next();
 });
 

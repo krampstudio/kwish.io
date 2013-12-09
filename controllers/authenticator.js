@@ -16,7 +16,7 @@ var Authenticator = {
      */
     setup : function(server){
 
-        passport.use('local', this._getLocalStrategy(), {session : false});
+        passport.use('local', this._getLocalStrategy());
 
         server.use(passport.initialize());
         server.get('/auth', function(req, res, next){
@@ -27,13 +27,8 @@ var Authenticator = {
                 if (!user) { 
                     return res.json({auth: false}); 
                 }
+
                 return res.json({auth: true, user: user});
-/*                req.logIn(user, function(err) {
-                    if (err) { 
-                        return next(err); 
-                    }
-                    return res.json({auth: true});
-                });*/
             })(req, res, next); 
         }); 
     },
