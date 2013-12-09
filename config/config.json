@@ -33,7 +33,7 @@
             "appId"     : "xxx",
             "appSecret" : "xxx"
         },
-        "password" : {
+        "passwd" : {
             "salt"      : "xxx",
             "pepper"    : "xxx",
             "algo"      : "sha256"

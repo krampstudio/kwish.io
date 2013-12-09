@@ -25,7 +25,8 @@
     "passport": "~0.1.17",
     "passport-facebook": "~1.0.2",
     "passport-google": "~0.3.0",
-    "passport-twitter": "~1.0.2"
+    "passport-twitter": "~1.0.2",
+    "passport-local": "~0.1.6"
   },
   "engines": {
     "node": ">=0.10"

@@ -39,6 +39,7 @@ bootstrap.start({
 var logger = bootstrap.logger;
 var serverConf = bootstrap.conf.get('server');
 var server = restify.createServer(); 
+var authenticator = require('./controllers/authenticator');
 var router = require('./controllers/router');
 
 server.use(restify.queryParser());
@@ -48,6 +49,9 @@ server.use(function(req, res, next){
     next();
 });
 
+//set up the auth mechanism
+authenticator.setup(server);
+    
 //dispatch api controllers
 router.dispatch(server);
 
