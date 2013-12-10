@@ -23,6 +23,7 @@ function preparetest(conf, cb){
             lname: 'chevrier',
             email: 'chevrier.bertrand@gmail.com'
         })
+        .set('token:krampstudio', '8f8fa3c3-4464-4094-bf64-2b7e3d420802')
         .sadd('userklist:krampstudio', 'ditasbirth')
         .sadd('userklist:krampstudio', 'ditas1birthday')
         .sadd('userklist:krampstudio', 'ditas2birthday')

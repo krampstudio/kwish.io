@@ -5,6 +5,8 @@ hset user:krampstudio fname bertrand
 hset user:krampstudio lname chevrier
 hset user:krampstudio email chevrier.bertrand@gmail.com
 
+set token:krampstudio 8f8fa3c3-4464-4094-bf64-2b7e3d420802
+
 sadd userklist:krampstudio ditasbirth
 sadd userklist:krampstudio ditas1birthday
 sadd userklist:krampstudio ditas2birthday

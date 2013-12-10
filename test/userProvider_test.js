@@ -17,11 +17,13 @@ exports.userProviderTest = {
             passwd: "jdoe123"
         }];
 
+        this.token = '8f8fa3c3-4464-4094-bf64-2b7e3d420802';
+
         done();
     },
 
     testProviderStruct : function(test){
-        test.expect(5);
+        test.expect(8);
 
         var userProvider = require('../lib/providers/user');
 
@@ -30,7 +32,9 @@ exports.userProviderTest = {
         test.ok(typeof userProvider.save  === 'function');
         test.ok(typeof userProvider.loginExists  === 'function');
         test.ok(typeof userProvider.auth  === 'function');
-
+        test.ok(typeof userProvider.getToken  === 'function');
+        test.ok(typeof userProvider.checkToken  === 'function');
+        test.ok(typeof userProvider.createToken  === 'function');
         test.done();
     },
 
@@ -81,7 +85,7 @@ exports.userProviderTest = {
             test.equal(err, null);
             test.ok(inserted === true);
 
-            userProvider.get(self.logins[1], function(err, user){
+            userProvider._get(self.logins[1], function(err, user){
                 test.equal(err, null);
                 test.deepEqual(user, self.users[1]);
 
@@ -110,6 +114,51 @@ exports.userProviderTest = {
             test.ok(auth === false);
 
             test.done();
+        });
+    },
+   
+    testGetToken : function(test){
+        test.expect(3);
+        
+        var self = this;
+        var userProvider = require('../lib/providers/user');
+        userProvider.getToken(this.logins[0], function(err, token){
+            test.equal(err, null);
+            test.ok(token !== false);
+            test.equal(token, self.token);
+
+            test.done();
+        });
+    },
+
+    testCheckToken : function(test){
+        test.expect(2);
+        
+        var self = this;
+        var userProvider = require('../lib/providers/user');
+        userProvider.checkToken(this.logins[0], this.token, function(err, valid){
+            test.equal(err, null);
+            test.strictEqual(valid, true);
+
+            test.done();
+        });
+    },
+
+    testCreateToken : function(test){
+        test.expect(5);        
+
+        var self = this;
+        var userProvider = require('../lib/providers/user');
+        userProvider.createToken(this.logins[1], function(err, token){
+            test.equal(err, null);
+            test.ok(token !== false);
+            userProvider.getToken(self.logins[1], function(err, gotToken){
+                test.equal(err, null);
+                test.ok(gotToken !== false);
+                test.equal(token, gotToken);
+
+                test.done();
+            });
         });
     },
     
