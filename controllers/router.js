@@ -1,5 +1,7 @@
 var _ = require('lodash');
 var logger = require('../lib/logFactory').logger;
+var conf = require('../config/confLoader').conf;
+
 var UserController = require('./user');
 
 /**
@@ -25,9 +27,14 @@ var Router = {
      * @param {HttpServer} server - to apply the routes to
      */
     dispatch : function(server){
-        logger.debug("Dispatch routes");
+        var apiPath = conf.get('server').apiPath;
+        logger.debug("Dispatch routes into %s",apiPath);
 
         _.forEach(this.routes, function(mapping, route){
+            if(!/\/$/.test(apiPath) && !/^\//.test(route)){
+                apiPath += '/';
+            }
+            route = apiPath + route;
             if(typeof server[mapping.method] === 'function' && typeof mapping.action === 'function'){
                 logger.debug("Serve %s on using %j", route, mapping);
                 server[mapping.method](route, mapping.action);

@@ -4,12 +4,9 @@ flushdb
 hset user:krampstudio fname bertrand
 hset user:krampstudio lname chevrier
 hset user:krampstudio email chevrier.bertrand@gmail.com
-
-set token:krampstudio 8f8fa3c3-4464-4094-bf64-2b7e3d420802
+hset user:krampstudio passwd eb9c93257d2cbc4934aac90fbab52fd990184dacc0f29bee6a72d5258030255d
 
 sadd userklist:krampstudio ditasbirth
-sadd userklist:krampstudio ditas1birthday
-sadd userklist:krampstudio ditas2birthday
 
 hset klist:ditasbirth title "Dita's birth wish list"
 hset klist:ditasbirth desc "To welcome Dita in our family we still need a few thing. We already have love and warmness but everything in the bedroom is missing."

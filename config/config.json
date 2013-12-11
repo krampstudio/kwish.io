@@ -2,7 +2,8 @@
     "server" : {
         "address"   : "127.0.0.1",
 		"port"		: 4040,
-        "baseUrl"	: "dev.babywishlist.localdomain"
+        "baseUrl"	: "dev.babywishlist.localdomain",
+        "apiPath"   : "/api"
     },
     "log" : {
         "level"     : "debug",

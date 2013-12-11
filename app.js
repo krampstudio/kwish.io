@@ -60,7 +60,7 @@ server.use(function(req, res, next){
 
 //set up the auth mechanism
 authenticator.setup(server);
-    
+
 //dispatch api controllers
 router.dispatch(server);
 
