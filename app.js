@@ -46,7 +46,7 @@ var router = require('./controllers/router');
 
 
 server.use(restify.queryParser());
-server.use(restify.bodyParser());
+server.use(restify.bodyParser());//{ mapParams: false }));
 server.use(sessions({
     secret      : sessionConf.secret,
     duration    : sessionConf.duration, 

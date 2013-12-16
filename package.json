@@ -13,7 +13,7 @@
     "url": "git://github.com/krampstudio/BabyWishList.git"
   },
   "dependencies": {
-    "restify": "~2.6.0",
+    "restify": "2.6.0",
     "lodash": "~2.2.1",
     "async": "~0.2.9",
     "caterpillar": "~2.0.6",
@@ -26,9 +26,9 @@
     "passport-facebook": "~1.0.2",
     "passport-google": "~0.3.0",
     "passport-twitter": "~1.0.2",
-    "passport-local": "~0.1.6",
     "client-sessions": "~0.4.1",
-    "node-uuid": "~1.4.1"
+    "node-uuid": "~1.4.1",
+    "passport-local": "~0.1.6"
   },
   "engines": {
     "node": ">=0.10"

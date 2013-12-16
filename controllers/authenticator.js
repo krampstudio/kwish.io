@@ -18,12 +18,13 @@ var Authenticator = {
      */
     setup : function(server){    
         var apiPath = conf.get('server').apiPath;            
-
+        
         passport.use('local', this._getLocalStrategy());
-
+        
         server.use(passport.initialize());
-        server.get('/auth', function(req, res, next){
-            var auth = passport.authenticate('local', function(err, user, info) {
+        
+        server.post('/auth', function(req, res, next){
+            passport.authenticate('local', function(err, user, info) {
                if (err) { 
                     return next(err); 
                 }
@@ -32,11 +33,11 @@ var Authenticator = {
                 }
                 req.session_state.token = user.token;
                 return res.json({auth: true, user: user});
-            });
-            auth(req, res, next);
+            })(req, res, next);
         });
 
         //protect api
+/*
         server.all(apiPath, function(req, res, next){
             var headerToken = req.header('XToken');
             var login = req.header('XLogin');
@@ -58,7 +59,7 @@ var Authenticator = {
                 logger.error("Trying to access the api with wrong token: %s : %s <> %s", login, headerToken, req.session_state.token);
                 return res.send(403);
             }
-        }); 
+        }); */
     },
 
     _getLocalStrategy : function(){
