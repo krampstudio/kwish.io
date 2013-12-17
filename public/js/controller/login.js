@@ -15,7 +15,7 @@ define(['jquery', 'lodash', 'ui/nav', 'ui/form'], function($, _, Nav, Form){
         _login : function(data){
             $.post('/auth', data, function(res){
                 if(res.auth && res.auth === true){
-                    Nav.open('list', false);
+                    Nav.open('klistboard', false);
                 } else {
                     alert('wrong');
                 }

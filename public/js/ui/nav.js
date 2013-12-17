@@ -19,6 +19,7 @@ define(['jquery', 'lodash'], function($, _){
                 var view = 'views/' + ref + '.html';
                 var controller = 'controller/' + ref;
                 $container.load(view, function(){
+                    $container.removeClass($container.prop('class')).addClass(ref);
                     if(loadCtrl === true){
                         require([controller], function(Controller){
                             if(Controller && _.isFunction(Controller.dispatch)){
