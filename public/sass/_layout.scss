@@ -30,11 +30,10 @@ nav {
     }
 }
 
-
-
 #container {
     @include zen-grid-container;
 }
+
 
 .home {
     & > section {
@@ -55,6 +54,23 @@ nav {
         text-align: center;
     }
 }
+
+.login {
+   #login-form {
+        height: 300px;
+        @include zen-grid-item(6, 1);
+   }
+   #register-form {
+        height: 300px;
+        @include zen-grid-item(7, 6);
+   } 
+   #external-login {
+        height: 200px;
+        @include zen-clear;
+        @include zen-grid-item(12, 1);
+   } 
+}
+
 .klistboard {
     & > section {
         margin: 2em;
