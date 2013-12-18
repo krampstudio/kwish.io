@@ -24,7 +24,7 @@ nav {
             padding:0 .5em;
         }
     }
-    .login{
+    .login-menu{
         @include zen-grid-item(3, 1, right);
         text-align: right;
     }
@@ -34,11 +34,34 @@ nav {
     @include zen-grid-container;
 }
 
+form {
+    fieldset {
+
+        legend { 
+            margin: .5em 0;
+        }
+        & > div {
+            padding: .2em 0;
+            @include zen-grid-container;
+            & > label {
+                @include zen-grid-item(5, 1);
+                text-align: right;
+                
+                .asterix {
+                    font-size: 1.2em;
+                    font-style: italic;
+                    color: red;
+                }
+            } 
+            & > input, & > button {
+                @include zen-grid-item(5, 2, right);
+            }           
+        }
+    }
+}
 
 .home {
-    & > section {
-        margin: 2em 0;
-    }
+
     header {
         height: 150px;
         h1 {
@@ -52,22 +75,31 @@ nav {
 
     section[role=search], section[role=action]{
         text-align: center;
+        margin: 2em 0;
     }
 }
 
 .login {
+   padding: 2em 0;
    #login-form {
         height: 300px;
-        @include zen-grid-item(6, 1);
+        @include zen-grid-item(4, 3);
+        border: solid 1px #eee;
+        border-radius: 3px;
    }
    #register-form {
         height: 300px;
-        @include zen-grid-item(7, 6);
+        @include zen-grid-item(4, 7);
+        border: solid 1px #eee;
+        border-radius: 3px;
    } 
    #external-login {
         height: 200px;
+        text-align: center;
         @include zen-clear;
-        @include zen-grid-item(12, 1);
+        @include zen-grid-item(8, 2);
+        border: solid 1px #eee;
+        border-radius: 3px;
    } 
 }
 

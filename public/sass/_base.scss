@@ -32,6 +32,12 @@ a {
     &:hover {
         color: $linkHoverColor;
     }
+    &.big{
+        font-size: 1.2em;
+        i {
+            font-size: 3em;
+        }
+    }
 }
 
 
@@ -47,11 +53,18 @@ input{
 }
 
 button {
-    background-color: $primaryColor;
-    color: $invColor;    
+    border:solid 2px $primaryColor;
+    color: $primaryColor;
+    background-color: $invColor;    
     @include border-radius(6px);
-    border-style:none;
     padding: .2em .5em;
+    
+    &:hover{
+        cursor:pointer;
+        background-color: $primaryColor;
+        color: $invColor;    
+    }
+    
     &.big {
         font-size: 1.2em;
         padding: .5em .75em;
