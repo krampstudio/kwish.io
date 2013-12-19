@@ -13,7 +13,7 @@ define(['jquery', 'lodash', 'ui/nav', 'ui/form'], function($, _, Nav, Form){
         },
 
         _login : function(data){
-            $.post('/auth', data, function(res){
+            $.post('/auth-local', data, function(res){
                 if(res.auth && res.auth === true){
                     Nav.open('klistboard', false);
                 } else {

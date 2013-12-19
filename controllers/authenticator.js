@@ -6,39 +6,115 @@ var LocalStrategy = require('passport-local').Strategy;
 var userProvider = require('../lib/providers/user');
 
 /**
- * The Router manage controllers' action dispatch regarding URL routing. 
- * @exports controllers/router
+ * The authenticator setup auth strategies and authorization mechanism
+ * @exports controllers/authenticator
  */
 var Authenticator = {
     
     /**
-     * Dispatch the routes
+     * Set up the authenticator
      * @public
      * @param {HttpServer} server - to apply the routes to
      */
-    setup : function(server){    
+    setup : function(server, strategies){
+        var self = this;
         var apiPath = conf.get('server').apiPath;            
+        strategies = strategies || ['local'];   
         
-        passport.use('local', this._getLocalStrategy());
+        logger.debug("Setup authenticator with strategies : %j", strategies);
         
-        server.use(passport.initialize());
-        
-        server.post('/auth', function(req, res, next){
-            passport.authenticate('local', function(err, user, info) {
-               if (err) { 
-                    return next(err); 
-                }
-                if (!user) { 
-                    return res.json({auth: false}); 
-                }
-                req.session_state.token = user.token;
-                return res.json({auth: true, user: user});
-            })(req, res, next);
+        //initialize strategies
+        _.forEach(strategies, function(strategy){
+            if(_.isFunction(self.strategy[strategy])){
+                passport.use('local', self.strategy[strategy].call(self));
+            }
         });
 
+        server.use(passport.initialize());
+        
+        
+        _.forEach(strategies, function(strategy){
+            if(_.isFunction(self.auth[strategy])){
+                server.post('/auth-' + strategy,  self.auth[strategy].call(self));
+            }
+        });
+
+        logger.debug("Check for authorization for : %s", apiPath);
+        
         //protect api
-/*
-        server.all(apiPath, function(req, res, next){
+        server.get(apiPath, this.authorize());
+        server.post(apiPath, this.authorize());
+        server.put(apiPath, this.authorize());
+        server.del(apiPath, this.authorize());
+        server.head(apiPath, this.authorize());
+    },
+
+    auth : {
+
+        /**
+         * Provides local authentication method
+         * @returns {Function} basic routing handler 
+         */
+        local : function(){
+            return function localAuth(req, res, next){
+                var auth = passport.authenticate('local', function(err, user, info) {
+                   if (err) { 
+                        return next(err); 
+                    }
+                    if (!user) { 
+                        return res.json({auth: false}); 
+                    }
+                    req.session_state.token = user.token;
+                    return res.json({auth: true, user: user});
+                });
+                auth(req, res, next);
+            };
+        }
+    },
+
+    strategy : {
+
+        /**
+         * Provides local auth strategy, that check user against userProvider
+         * @returns {LocalStrategy}  
+         */
+        local : function(){
+            var parameters = {
+                usernameField: 'login',
+                passwordField: 'passwd'
+            };
+            return new LocalStrategy(parameters, function(login, passwd, done) {
+                userProvider.auth(login, passwd, function(err, valid){
+                    if(err){
+                        return done(err);
+                    }   
+                    if(valid !== true){
+                        return done(null, false);
+                    }
+                    userProvider.get(login, function(err, user){
+                        if(err){
+                            return done(err);
+                        }
+                        userProvider.createToken(user.login, function(err, token){
+                            if(err){
+                                return done(err);
+                            }
+                            user.token = token;
+                            return done(null, user);    
+                        });
+                    });
+                });
+            });
+        }
+    },
+
+
+    /**
+     * Provides an authorization check using the token from the XToken header 
+     * @returns {Function} basic routing handler 
+     */
+    authorize : function(){
+        return function authorizeHandler(req, res, next){
             var headerToken = req.header('XToken');
             var login = req.header('XLogin');
             //check the token match the session
@@ -49,6 +125,7 @@ var Authenticator = {
                         return next(err);
                     }
                     if(valid === true){
+                        logger.debug("Allowing req to %s for token %s", req.url, headerToken);
                         return next();
                     } else {
                         logger.error("Token not registered or don't match the session: %s : %s", login, headerToken);
@@ -59,36 +136,7 @@ var Authenticator = {
                 logger.error("Trying to access the api with wrong token: %s : %s <> %s", login, headerToken, req.session_state.token);
                 return res.send(403);
             }
-        }); */
-    },
-
-    _getLocalStrategy : function(){
-        var parameters = {
-            usernameField: 'login',
-            passwordField: 'passwd'
         };
-        return new LocalStrategy(parameters, function(login, passwd, done) {
-            userProvider.auth(login, passwd, function(err, valid){
-                if(err){
-                    return done(err);
-                }   
-                if(valid !== true){
-                    return done(null, false);
-                }
-                userProvider.get(login, function(err, user){
-                    if(err){
-                        return done(err);
-                    }
-                    userProvider.createToken(user.login, function(err, token){
-                        if(err){
-                            return done(err);
-                        }
-                        user.token = token;
-                        return done(null, user);    
-                    });
-                });
-            });
-        });
     }
 };
 
