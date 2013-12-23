@@ -40,8 +40,55 @@ a {
     }
 }
 
+form {
+
+    fieldset {
+        position: relative;
+        width: 100%;
+        border: solid 1px #ccc;
+        @include border-radius(6px);
+        padding: 3em 0 0 0;
+        margin: 0;
+        @include single-box-shadow(#999);
+        legend { 
+            font-size: 1.2em;
+            width: 100%;
+            width: 100%;
+            top: .5em;
+            @include flag;
+        }
+        & > div {
+            margin-left: .5em;
+            margin-bottom: 1em;
+            & > label {
+                display: block;
+                color : lighten($baseColor, 10%);                
+                .asterix {
+                    font-size: 1.2em;
+                    font-style: italic;
+                    color: lighten(red, 5%);
+                }
+            } 
+            & > input, & > button {
+                display: block;
+                margin-top: .2em;
+
+            }           
+        }
+    }
+}
 
 input{
+    font-size: 1em;
+    line-height: 1.5em;
+    height: 1.5em;
+    border: solid 1px #999;
+    @include border-radius(3px);
+    
+    &:hover, &:active, &:focus {
+        @include single-box-shadow(lighten($primaryColor, 20%), 0px, 0px, 3px );
+    }
+
     &.big {
         font-size: 1.2em;
         width: 40em;
@@ -58,7 +105,13 @@ button {
     background-color: $invColor;    
     @include border-radius(6px);
     padding: .2em .5em;
+    font-size: 1.1em;
     
+    i.fa {
+        margin-left: -0.2em;
+        margin-right: 0.2em;
+    }
+ 
     &:hover{
         cursor:pointer;
         background-color: $primaryColor;
@@ -66,7 +119,7 @@ button {
     }
     
     &.big {
-        font-size: 1.2em;
+        font-size: 1.5em;
         padding: .5em .75em;
     }
 }

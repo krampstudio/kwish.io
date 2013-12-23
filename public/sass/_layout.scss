@@ -34,31 +34,7 @@ nav {
     @include zen-grid-container;
 }
 
-form {
-    fieldset {
 
-        legend { 
-            margin: .5em 0;
-        }
-        & > div {
-            padding: .2em 0;
-            @include zen-grid-container;
-            & > label {
-                @include zen-grid-item(5, 1);
-                text-align: right;
-                
-                .asterix {
-                    font-size: 1.2em;
-                    font-style: italic;
-                    color: red;
-                }
-            } 
-            & > input, & > button {
-                @include zen-grid-item(5, 2, right);
-            }           
-        }
-    }
-}
 
 .home {
 
@@ -82,24 +58,18 @@ form {
 .login {
    padding: 2em 0;
    #login-form {
-        height: 300px;
-        @include zen-grid-item(4, 3);
-        border: solid 1px #eee;
-        border-radius: 3px;
+        @include zen-grid-item(4, 3, left);
    }
    #register-form {
-        height: 300px;
-        @include zen-grid-item(4, 7);
-        border: solid 1px #eee;
-        border-radius: 3px;
+        @include zen-grid-item(4, 3, right);
    } 
    #external-login {
-        height: 200px;
-        text-align: center;
-        @include zen-clear;
-        @include zen-grid-item(8, 2);
-        border: solid 1px #eee;
-        border-radius: 3px;
+        margin-top: .5em;
+        #providers{
+            text-align: center;
+        }
+        @include zen-clear(left);
+        @include zen-grid-item(4, 3);
    } 
 }
 

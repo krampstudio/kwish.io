@@ -8,3 +8,24 @@
     @extend .fa;
     @extend .fa-#{$name};
 }
+
+@mixin flag() {
+    background-color: $primaryColor;
+    color: $invColor;
+    position: absolute;   
+    padding:.25em .25em .25em 10px;
+    margin:0 0 0 -10px;
+    @include single-box-shadow(#666, 2px, 2px);
+ 
+    &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 100%;
+        left:0;
+        border-width: 3px 5px;
+        border-style: solid;
+        border-color: #666 #666 transparent transparent;
+    }
+}
