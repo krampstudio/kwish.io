@@ -22,6 +22,7 @@
 
 var Bootstrap = require('./lib/bootstrap');
 var restify = require('restify');
+var nstatic = require('node-static');
 
 //initialization of services
 var bootstrap = new Bootstrap();
@@ -43,7 +44,7 @@ var server = restify.createServer();
 var sessions = require('client-sessions');
 var authenticator = require('./controllers/authenticator');
 var router = require('./controllers/router');
-
+var fileServer = new nstatic.Server('public');
 
 server.use(restify.queryParser());
 server.use(restify.bodyParser({ mapParams: false }));
@@ -65,12 +66,16 @@ authenticator.setup(server);
 router.dispatch(server);
 
 //static resource loading
-server.get(/.*/, restify.serveStatic({ 
-    directory : './public', 
-    default : 'index.html'
-}));
-
-
+server.get(/\.html$/, function(req, res, next){
+    if(/views/.test(req.url)){
+        fileServer.serve(req, res);
+    } else {
+        fileServer.serveFile('index.html', 200, {}, req, res);
+    }
+});
+server.get(/.*/, function(req, res, next){
+      fileServer.serve(req, res);
+});
 server.listen(serverConf.port, serverConf.address, function(){
     logger.info("Server started using %j", serverConf);
 });
