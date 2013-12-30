@@ -53,12 +53,39 @@ header {
     } 
 }
 
+#loader {
+    font-size: 5em;
+    color: $primaryColor;
+    @include border-radius;  
+    width: 3em;
+    text-align: center;
+    margin: 2em auto;
+    opacity: 0.2;
+}
+
 .klistboard{
-    .img-placeholder{
-        @extend .fa;
-        @extend .fa-picture-o;
-        color: #ccc;
-        border: dashed 3px #ccc;
+    .klist {
+        .klist-title {
+            margin-bottom: .5em;
+        }
+        .img-placeholder{
+            @extend .fa;
+            @extend .fa-picture-o;
+            color: #ccc;
+            border: dashed 3px #ccc;
+            @include border-radius;
+            font-size: 5em;
+            padding: .2em;
+        }
+        .klist-image {
+            float: left;
+        }
+        .klist-desc {
+            margin-left: .5em;
+        }
+    }
+    .kitems {
+        
     }
 }
 

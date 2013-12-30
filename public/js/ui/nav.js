@@ -50,7 +50,6 @@ define(['jquery', 'lodash', 'ui/history'], function($, _, history){
                     }
                 });
             }
-
         }
     };
 });
