@@ -24,9 +24,12 @@ nav {
             padding:0 .5em;
         }
     }
-    .login-menu{
+    .login-menu, .logout-menu{
         @include zen-grid-item(3, 1, right);
         text-align: right;
+    }
+    .logout-menu {
+        display: none;
     }
 }
 
