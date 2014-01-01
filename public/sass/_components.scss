@@ -54,13 +54,20 @@ header {
 }
 
 #loader {
+    position: absolute;
+    top: 0; 
+    bottom: 0;
+    right: 0;
+    left: 0;
     font-size: 5em;
     color: $primaryColor;
     @include border-radius;  
     width: 3em;
+    height: 1em;
     text-align: center;
-    margin: 2em auto;
+    margin: auto;
     opacity: 0.2;
+    z-index: 10000;
 }
 
 .klistboard{
