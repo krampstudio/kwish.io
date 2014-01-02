@@ -71,11 +71,11 @@ header {
 }
 
 .klistboard{
-    .klist {
-        .klist-title {
+    #klist {
+        & > h1 {
             margin-bottom: .5em;
         }
-        .img-placeholder{
+        .placeholder{
             @extend .fa;
             @extend .fa-picture-o;
             color: #ccc;
@@ -84,31 +84,14 @@ header {
             font-size: 5em;
             padding: .2em;
         }
-        .klist-image {
+        .image {
             float: left;
         }
-        .klist-desc {
+        .desc {
             margin-left: .5em;
         }
-    }
-    .kitems {
-        
-    }
-}
-
-#lists{
-    margin: 1em auto !important;
-    width: 75%;
-    article {
-        width: 24%;
-        float: left;
-        margin: .5%;
-        &:before{
-            @extend .fa;
-            @extend .fa-3x;
-            @extend .pull-left;
-            @extend .fa-border;
-            @extend .fa-gift;
+        .actions {
+            clear: both;
         }
     }
 }

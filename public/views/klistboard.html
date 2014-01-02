@@ -1,104 +1,27 @@
-<section class="klist">
-    <h1 class="klist-title">List title</h1>
-    <div class='klist-image img-placeholder'></div>
-    <div class="klist-desc">
+<section id="klist">
+    <h1 data-bind="klist.title">List title</h1>
+    <div class='image placeholder' data-bind="klist.image"></div>
+    <div class="desc" data-bind="klist.desc">
         <p>List description.</p>
     </div>
+    <div class="actions">
+        Status : staged - private - shared - public       
+        <br />
+        Delete
+    </div>
 </section>
-<section class="kitems">
+<section id="kitems">
     <article class="kitem">
         <div>
-            <h2 class="kitem-title">title</h2>
-            <div class="kitem-desc">
+            <h2>title</h2>
+            <div class='thumb placeholder'></div>
+            <div class="desc">
                 <p>description</p>
             </div>
-            <div class="kitem-price">
+            <div class="price">
                 <strong>Price</strong><span>20</span>€
             </div>
-            <div class="kitem-actions">
-                <a href="#">img</a>
-                <a href="#">link</a>
-                <a href="#">Options</a>
-            </div>
-        </div>
-    </article>
-    <article class="kitem">
-        <div>
-            <div class='kitem-thumb'>
-                <img src="" alt="placeholder" /> 
-            </div>
-            <h2 class="kitem-title">title</h2>
-            <div class="kitem-desc">
-                <p>description</p>
-            </div>
-            <div class="kitem-price">
-                <strong>Price</strong><span>20</span>€
-            </div>
-            <div class="kitem-actions">
-                <a href="#">img</a>
-                <a href="#">link</a>
-                <a href="#">Options</a>
-            </div>
-        </div>
-    </article>
-    <article class="kitem">
-        <div>
-            <h2 class="kitem-title">title</h2>
-            <div class="kitem-desc">
-                <p>description</p>
-            </div>
-            <div class="kitem-price">
-                <strong>Price</strong><span>20</span>€
-            </div>
-            <div class="kitem-actions">
-                <a href="#">img</a>
-                <a href="#">link</a>
-                <a href="#">Options</a>
-            </div>
-        </div>
-    </article>
-    <article class="kitem">
-        <div>
-            <h2 class="kitem-title">title</h2>
-            <div class="kitem-desc">
-                <p>description</p>
-            </div>
-            <div class="kitem-price">
-                <strong>Price</strong><span>20</span>€
-            </div>
-            <div class="kitem-actions">
-                <a href="#">img</a>
-                <a href="#">link</a>
-                <a href="#">Options</a>
-            </div>
-        </div>
-    </article>
-    <article class="kitem">
-        <div>
-            <h2 class="kitem-title">title</h2>
-            <div class="kitem-desc">
-                <p>description</p>
-            </div>
-            <div class="kitem-price">
-                <strong>Price</strong><span>20</span>€
-            </div>
-            <div class="kitem-actions">
-                <a href="#">img</a>
-                <a href="#">link</a>
-                <a href="#">Options</a>
-            </div>
-        </div>
-    </article>
-    <article class="kitem">
-        <div>
-            <h2 class="kitem-title">title</h2>
-            <div class="kitem-desc">
-                <p>description</p>
-            </div>
-            <div class="kitem-price">
-                <strong>Price</strong><span>20</span>€
-            </div>
-            <div class="kitem-actions">
+            <div class="actions">
                 <a href="#">img</a>
                 <a href="#">link</a>
                 <a href="#">Options</a>
@@ -107,7 +30,7 @@
     </article>
     <article class="kitem placeholder">
         <div>
-           <h1><i style="font-size:3em" class="fa fa-plus"></i></h1>
+           <i style="font-size:3em" class="fa fa-plus"></i>
         </div>
     </article>
 </section>    

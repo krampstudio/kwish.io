@@ -31,8 +31,7 @@ var Authenticator = {
         });
 
         server.use(passport.initialize());
-        
-        
+                
         _.forEach(strategies, function(strategy){
             if(_.isFunction(self.auth[strategy])){
                 server.post('/auth-' + strategy,  self.auth[strategy].call(self));
