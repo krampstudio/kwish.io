@@ -1,4 +1,4 @@
-define(['jquery', 'lodash', 'ui/history', 'ui/session'], function($, _, history, session){
+define(['jquery', 'lodash', 'core/history', 'core/session'], function($, _, history, session){
     'use strict';   
  
     var $container = $('#container');
