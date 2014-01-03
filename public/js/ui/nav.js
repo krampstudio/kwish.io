@@ -1,4 +1,4 @@
-define(['jquery', 'lodash', 'ui/history'], function($, _, history){
+define(['jquery', 'lodash', 'ui/history', 'ui/session'], function($, _, history, session){
     'use strict';   
  
     var $container = $('#container');
@@ -34,6 +34,24 @@ define(['jquery', 'lodash', 'ui/history'], function($, _, history){
             }
             history.pushState({ module : ref, dispatch : dispatch } , ref, ref + '.html'); 
             this._open(ref, dispatch);
+        },
+
+        api : function(url, options, cb){
+            var defaults = {
+                type : 'GET', 
+                dataType : 'json'
+            };
+            if(session.isset('token')){
+                defaults.headers = {
+                    'XToken' : session.get('token'),
+                    'XLogin' : session.get('login')
+                };
+            }
+            $.ajax(url, _.defaults(options, defaults)).done(function(data){
+                cb(data);
+            }).fail(function(jqXHR, textStatus, errorThrown){
+                $.error(errorThrown);
+            });
         },
 
         _open : function(ref, dispatch){
