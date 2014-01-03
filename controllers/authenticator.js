@@ -30,13 +30,18 @@ var Authenticator = {
             }
         });
 
+        //set up passport
         server.use(passport.initialize());
                 
+        //register auth routes by strategy
         _.forEach(strategies, function(strategy){
             if(_.isFunction(self.auth[strategy])){
                 server.post('/auth-' + strategy,  self.auth[strategy].call(self));
             }
         });
+
+        //bind logout 
+        server.get('/logout', self.logout);
 
         logger.debug("Check for authorization for : %s", apiPath);
         
@@ -57,14 +62,18 @@ var Authenticator = {
         local : function(){
             return function localAuth(req, res, next){
                 var auth = passport.authenticate('local', function(err, user, info) {
-                   if (err) { 
+                    if (err) { 
                         return next(err); 
                     }
                     if (!user) { 
                         return res.json({auth: false}); 
                     }
                     req.session_state.token = user.token;
-                    return res.json({auth: true, user: user});
+                    console.log(req.session_state);
+                    return res.json({ 
+                        auth: true, 
+                        user: user
+                    });
                 });
                 auth(req, res, next);
             };
@@ -94,11 +103,12 @@ var Authenticator = {
                         if(err){
                             return done(err);
                         }
-                        userProvider.createToken(user.login, function(err, token){
+                        userProvider.createToken(login, function(err, token){
                             if(err){
                                 return done(err);
                             }
                             user.token = token;
+                            user.login = login;
                             return done(null, user);    
                         });
                     });
@@ -106,7 +116,6 @@ var Authenticator = {
             });
         }
     },
-
 
     /**
      * Provides an authorization check using the token from the XToken header 
@@ -136,6 +145,10 @@ var Authenticator = {
                 return res.send(403);
             }
         };
+    },
+
+    logout : function(req, res, next){
+        return res.json({'logout' : true}); 
     }
 };
 

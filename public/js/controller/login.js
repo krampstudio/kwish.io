@@ -1,8 +1,9 @@
-define(['jquery', 'lodash', 'ui/nav', 'ui/form'], function($, _, nav, form){
+define(['jquery', 'lodash', 'ui/nav', 'ui/form', 'ui/session'], function($, _, nav, form, session){
     'use strict';
 
     var $loginMenu = $('.login-menu');
     var $logoutMenu = $('.logout-menu');
+    var $logout = $('#logout');
 
     var loginController = {
 
@@ -22,24 +23,37 @@ define(['jquery', 'lodash', 'ui/nav', 'ui/form'], function($, _, nav, form){
             var self = this;
             $.post('/auth-local', data, function(res){
                 if(res.auth && res.auth === true){
-                    self._updateNavBar(data.login);
+
+                    session.set('login', res.user.login);
+                    session.set('token', res.user.token);
+
+                    self._updateNavBar();
+
                     nav.open('klistboard', false);
                 } else {
                     self._updateNavBar(false);
-                    alert('wrong');
                 }
             }, 'json');
         },
 
-        _updateNavBar : function(login){
-            if(login){
+        _updateNavBar : function(){
+            var self = this;
+            var login = session.get('login');
+            if(login && _.isString(login) && !_.isEmpty(login)){
                 $loginMenu.hide();        
-                $logoutMenu.show(); 
-                $logoutMenu.find('li:first-child > a').text(login);       
+                $logoutMenu.show().find('li:first-child > a').text(login);    
+                $logout.on('click', function(e){
+                    e.preventDefault();
+                    nav.api('/logout', {}, function(data){
+                        session.rm('login');
+                        session.rm('token');
+                        self._updateNavBar();
+                    });
+                });
             } else {
                 $loginMenu.show(); 
-                $logoutMenu.hide(); 
-                $logoutMenu.find('li:first-child > a').text('');       
+                $logoutMenu.hide().find('li:first-child > a').text('');
+                $logout.off('click');
             }
         }
     };
