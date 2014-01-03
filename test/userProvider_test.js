@@ -4,6 +4,7 @@ var redisCF = require('../lib/redisClientFactory');
 redisCF.init(conf.get('store').redis);
 
 exports.userProviderTest = {
+
     setUp : function(done){
         this.logins = ['krampstudio', 'jdoe'];
         this.users = [{ 
@@ -23,7 +24,7 @@ exports.userProviderTest = {
     },
 
     testProviderStruct : function(test){
-        test.expect(8);
+        test.expect(9);
 
         var userProvider = require('../lib/providers/user');
 
@@ -35,6 +36,7 @@ exports.userProviderTest = {
         test.ok(typeof userProvider.getToken  === 'function');
         test.ok(typeof userProvider.checkToken  === 'function');
         test.ok(typeof userProvider.createToken  === 'function');
+        test.ok(typeof userProvider.removeToken  === 'function');
         test.done();
     },
 
@@ -124,7 +126,7 @@ exports.userProviderTest = {
         var userProvider = require('../lib/providers/user');
         userProvider.getToken(this.logins[0], function(err, token){
             test.equal(err, null);
-            test.ok(token !== false);
+            test.ok(token !== null);
             test.equal(token, self.token);
 
             test.done();
@@ -154,10 +156,38 @@ exports.userProviderTest = {
             test.ok(token !== false);
             userProvider.getToken(self.logins[1], function(err, gotToken){
                 test.equal(err, null);
-                test.ok(gotToken !== false);
+                test.ok(gotToken !== null);
                 test.equal(token, gotToken);
 
                 test.done();
+            });
+        });
+    },
+
+    testRemoveToken : function(test){
+        test.expect(6);        
+
+        var self = this;
+        var userProvider = require('../lib/providers/user');
+        var login = this.logins[1];
+
+        //check the token exists 
+        userProvider.getToken(login, function(err, gotToken){
+            test.equal(err, null);
+            test.ok(gotToken !== null);
+
+            //remove it
+            userProvider.removeToken(login, function(err, removed){
+                test.equal(err, null);
+                test.ok(removed === true);
+
+                //check the token is removed
+                userProvider.getToken(login, function(err, rmToken){
+                    test.equal(err, null);
+                    test.ok(rmToken === null);
+
+                    test.done();
+                });
             });
         });
     },

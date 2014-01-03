@@ -113,14 +113,6 @@ module.exports = function(grunt) {
     grunt.registerTask('preparetest', 'Load integration test data', function integrationTest(){
         var prepare = require('./test/data/prepare');
         var done = this.async();
-        /*process.env.store = {
-            "redis" : {
-                "host" : "127.0.0.1",
-                "port" : "6379",
-                "db"   : 2,
-                "auth" : "foobared"
-            }
-        };*/
 
         prepare.run(function(err){
             if(err){
