@@ -70,6 +70,79 @@ header {
     z-index: 10000;
 }
 
+#notifs {
+    position: absolute;
+    left: 50%;
+    z-index: 100000;
+    .msg {
+        position: relative;
+        left: -50%;
+        padding: .5em;
+        margin-top: .5em;
+        border: solid 1px #666;
+        @include border-radius;
+        background-color: #eee;
+        color: #333;
+        z-index: 100000;
+        &.msg-info {
+            background-color: #444;
+            color: #fff;
+            border-color: #CCC; 
+            &:before {
+                @extend .fa;
+                @extend .fa-info;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-success {
+            background-color: #8EDA7C;
+            color: #fff;
+            border-color: darken(#8EDA7C, 5%); 
+            &:before {
+                @extend .fa;
+                @extend .fa-check;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-failure {
+            background-color: #E35151;
+            color: #fff;
+            border-color: darken(#E35151, 5%); 
+            &:before {
+                @extend .fa;
+                @extend .fa-exclamation;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-warning {
+            background-color: #E7732D;
+            color: #fff;
+            border-color: darken(#E7732D, 5%); 
+            &:before {
+                @extend .fa;
+                @extend .fa-warning;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-error {
+            background-color: #E35151;
+            color: #fff;
+            border-color: darken(#E35151, 5%); 
+            &:before {
+                @extend .fa;
+                @extend .fa-bug;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+    }
+
+}
+
 .klistboard{
     #klist {
         & > h1 {
