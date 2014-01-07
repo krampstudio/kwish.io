@@ -8,12 +8,6 @@ require(['config'], function(){
         //set up the ajax navigation
         nav.setup();
 
-        notify.error('error');
-        notify.warning('warning');
-        notify.info('info');
-        notify.failure('failure');
-        notify.success('success');
-
         //set up the nav bar component
         $('nav').navbar();
     });

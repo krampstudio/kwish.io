@@ -13,25 +13,32 @@ define(['jquery', 'lodash'], function($, _){
         tmpl : _.template('<div id="msg-${id}" class="msg msg-${type}">${content}</div>'),
         types : ['info', 'success', 'failure', 'warning', 'error'],
 
+        _showing : false,
+
         add : function(type, content, options){
+            var self = this;
             this.stack.push(_.merge({
-                    id : new Date().getTime() + this.stack.length,
+                    id : new Date().getTime() + '' + this.stack.length,
                     type : type,
                     content : content,
                     status : 'waiting'
                 }, 
                 _.defaults(options || {}, defaults))
             );
-            this.show();
+            
+            //in case of multiple additions
+            setTimeout(function(){
+                self.show();
+            }, this.size * 10);
         },
 
         show : function(){
             var self = this;
-    
+ 
             //how many messages we can show
             var size = this.size - (_.where(this.stack, {status : 'showing'}).length);
-            if(size > 0){
-
+            if(size > 0 && this._showing === false){
+                this._showing = true;
                 _(this.stack)
                     .first(size)
                     .where({status : 'waiting'})
@@ -41,9 +48,10 @@ define(['jquery', 'lodash'], function($, _){
                         if(_.isNumber(message.timeout) && message.timeout > 0){
                             setTimeout(function(){
                                 self.close(message);
-                            }, message.timeout);
+                            }, message.timeout + (index * 100));
                         }  
                     });
+                this._showing = false;
             }
         },
 
@@ -59,7 +67,10 @@ define(['jquery', 'lodash'], function($, _){
         },
 
         close : function(message){
-            $('#msg-' + message.id, this.$container).remove();
+            
+            $('#msg-' + message.id, this.$container).slideUp(function(){
+                $(this).remove();
+            });
             message.status = 'closed';
             this.hide();
         }

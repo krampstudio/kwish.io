@@ -84,6 +84,7 @@ header {
         background-color: #eee;
         color: #333;
         z-index: 100000;
+        opacity: 0.9;
         &.msg-info {
             background-color: #444;
             color: #fff;
@@ -140,7 +141,6 @@ header {
             }
         }
     }
-
 }
 
 .klistboard{
