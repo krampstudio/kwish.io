@@ -42,12 +42,12 @@ nav {
 .home {
 
     header {
-        height: 150px;
+        height: 250px;
         h1 {
             @include zen-grid-item(6, 1);
         }
         aside {
-            height: 150px;
+            height: 250px;
             @include zen-grid-item(7, 6);
         }
     }
@@ -56,6 +56,18 @@ nav {
         text-align: center;
         margin: 2em 0;
     }
+
+   section[role=brand]{
+        & > article {
+            @include zen-grid-item(4, 5);
+        }
+        & > article:first-child {
+            @include zen-grid-item(4, 1);
+        }
+        & > article:last-child {
+            @include zen-grid-item(4, 9);
+        }
+   } 
 }
 
 .login {
