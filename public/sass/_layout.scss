@@ -1,5 +1,5 @@
 nav {
-    @include zen-grid-container;
+//    @include zen-grid-container;
     height: 3.5em;
     padding:0;
     overflow: hidden;
@@ -25,7 +25,8 @@ nav {
         }
     }
     .login-menu, .logout-menu{
-        @include zen-grid-item(3, 1, right);
+        @include zen-grid-item(6, 1, right);
+    
         text-align: right;
     }
     .logout-menu {
