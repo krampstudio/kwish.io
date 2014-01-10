@@ -32,7 +32,7 @@ define(['jquery', 'lodash', 'core/history', 'core/session'], function($, _, hist
             if(dispatch === undefined){
                 dispatch = true;
             }
-            history.pushState({ module : ref, dispatch : dispatch } , ref, ref + '.html'); 
+            history.pushState({ module : ref, dispatch : dispatch } , ref, ref); 
             this._open(ref, dispatch);
         },
 

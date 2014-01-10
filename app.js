@@ -66,16 +66,17 @@ authenticator.setup(server);
 router.dispatch(server);
 
 //static resource loading
-server.get(/\.html$/, function(req, res, next){
-    if(/views/.test(req.url)){
-        fileServer.serve(req, res);
-    } else {
-        fileServer.serveFile('index.html', 200, {}, req, res);
-    }
+server.get(/\.(css|js|png|ttf|svg|ico|txt)/, function(req, res){
+    fileServer.serve(req, res);
+});
+server.get(/views/, function(req, res){
+    fileServer.serve(req, res);
 });
 server.get(/.*/, function(req, res, next){
-      fileServer.serve(req, res);
+    fileServer.serveFile('index.html', 200, {}, req, res);
 });
+
+//start the server
 server.listen(serverConf.port, serverConf.address, function(){
     logger.info("Server started using %j", serverConf);
 });
