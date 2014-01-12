@@ -20,7 +20,9 @@ function(module, $, _, history, session, notify){
             });
 
             history.popState(function(state, url){
-                self._open(state.module, state.dispatch);
+                if(!this.isRestricted(state.module)){
+                    self._open(state.module, state.dispatch);
+                }
             });
 
             if(module !== '' && module !== 'home'){
@@ -30,19 +32,24 @@ function(module, $, _, history, session, notify){
             }
         },
 
+        isRestricted: function(ref){
+            //check if a token exists
+            if(_.contains(restricted, ref) && !_.isString(session.get('token'))){
+                notify.failure('You must login before acessing to ' + ref);
+                this.open('login');
+                return true;
+            }
+            return false;
+        },
+
         open : function(ref, dispatch){
             if(dispatch === undefined){
                 dispatch = true;
             }
-             
-            //check if a token exists
-            if(_.contains(restricted, ref) && !_.isString(session.get('token'))){
-                notify.failure('You must login before acessing to %s', ref);
-                return this.open('login');
+            if(!this.isRestricted(ref)){
+                history.pushState({ module : ref, dispatch : dispatch } , ref, ref); 
+                this._open(ref, dispatch);
             }
-
-            history.pushState({ module : ref, dispatch : dispatch } , ref, ref); 
-            this._open(ref, dispatch);
         },
 
         api : function(url, options, cb){
@@ -59,7 +66,7 @@ function(module, $, _, history, session, notify){
             $.ajax(url, _.defaults(options, defaults)).done(function(data){
                 cb(data);
             }).fail(function(jqXHR, textStatus, errorThrown){
-                notify.failure('An error occurs while retrieving data: %s', errorThrown);
+                notify.failure('An error occurs while retrieving data: '+ errorThrown);
             });
         },
 

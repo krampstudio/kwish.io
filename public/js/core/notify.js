@@ -2,7 +2,7 @@ define(['jquery', 'lodash'], function($, _){
     'use strict';
 
     var defaults = {
-        timeout : 3000
+        timeout : 10000
     };
     
     var notifier = {
