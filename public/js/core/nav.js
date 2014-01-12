@@ -2,9 +2,10 @@ define(['module', 'jquery', 'lodash', 'core/history', 'core/session', 'core/noti
 function(module, $, _, history, session, notify){
     'use strict';   
  
-    var restricted = module.config().restricted;
-    var $container = $('#container');
-    var $loader = $('#loader');
+    var restricted  = module.config().restricted;
+    var apiPath     = module.config().apiPath;
+    var $container  = $('#container');
+    var $loader     = $('#loader');
 
     return {
 
@@ -53,6 +54,12 @@ function(module, $, _, history, session, notify){
         },
 
         api : function(url, options, cb){
+            
+            //optionnal args
+            if(_.isFunction(options) && cb === undefined){
+                cb = arguments[1];
+                options = {};
+            }
             var defaults = {
                 type : 'GET', 
                 dataType : 'json'
@@ -63,7 +70,7 @@ function(module, $, _, history, session, notify){
                     'XLogin' : session.get('login')
                 };
             }
-            $.ajax(url, _.defaults(options, defaults)).done(function(data){
+            $.ajax(apiPath +  url, _.defaults(options, defaults)).done(function(data){
                 cb(data);
             }).fail(function(jqXHR, textStatus, errorThrown){
                 notify.failure('An error occurs while retrieving data: '+ errorThrown);

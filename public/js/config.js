@@ -3,7 +3,8 @@ require.config({
 
     config : {
         'core/nav' : {
-            'restricted' : ['klistboard']
+            'restricted' : ['klistboard'],
+            'apiPath'    : '/api'
         }
     },
 

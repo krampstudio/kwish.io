@@ -52,7 +52,7 @@ define(['jquery', 'lodash', 'core/nav', 'core/session'], function($, _, nav, ses
                 data.$logoutMenu.show().find('li:first-child > a').text(login);    
                 data.$logout.on('click', function(e){
                     e.preventDefault();
-                    nav.api('/logout', {}, function(data){
+                    nav.api('/logout', function(data){
                         session.rm('login');
                         session.rm('token');
                         self._updateLoginMenu($elt);
