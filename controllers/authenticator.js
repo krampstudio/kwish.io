@@ -15,6 +15,7 @@ var Authenticator = {
      * Set up the authenticator
      * @public
      * @param {HttpServer} server - to apply the routes to
+     * @param {Array} [strategies] - the list of auth strategies to set up  
      */
     setup : function(server, strategies){
         var self = this;

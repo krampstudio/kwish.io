@@ -1,6 +1,8 @@
-define(['jquery', 'lodash', 'core/history', 'core/session'], function($, _, history, session){
+define(['module', 'jquery', 'lodash', 'core/history', 'core/session', 'core/notify'], 
+function(module, $, _, history, session, notify){
     'use strict';   
  
+    var restricted = module.config().restricted;
     var $container = $('#container');
     var $loader = $('#loader');
 
@@ -32,6 +34,13 @@ define(['jquery', 'lodash', 'core/history', 'core/session'], function($, _, hist
             if(dispatch === undefined){
                 dispatch = true;
             }
+             
+            //check if a token exists
+            if(_.contains(restricted, ref) && !_.isString(session.get('token'))){
+                notify.failure('You must login before acessing to %s', ref);
+                return this.open('login');
+            }
+
             history.pushState({ module : ref, dispatch : dispatch } , ref, ref); 
             this._open(ref, dispatch);
         },
@@ -50,7 +59,7 @@ define(['jquery', 'lodash', 'core/history', 'core/session'], function($, _, hist
             $.ajax(url, _.defaults(options, defaults)).done(function(data){
                 cb(data);
             }).fail(function(jqXHR, textStatus, errorThrown){
-                $.error(errorThrown);
+                notify.failure('An error occurs while retrieving data: %s', errorThrown);
             });
         },
 
