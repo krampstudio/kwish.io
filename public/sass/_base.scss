@@ -45,11 +45,11 @@ form {
     fieldset {
         position: relative;
         width: 100%;
-        border: solid 1px #ccc;
+        border: solid 1px $borderColor;
         @include border-radius(6px);
         padding: 3em 0 0 0;
         margin: 0;
-        @include single-box-shadow(#999);
+        @include single-box-shadow($borderColor, 1px, 1px, 3px);
         legend { 
             font-size: 1.2em;
             width: 100%;
@@ -78,33 +78,38 @@ form {
     }
 }
 
-input{
+input, textarea{
     font-size: 1em;
-    line-height: 1.5em;
-    height: 1.5em;
-    border: solid 1px #999;
-    @include border-radius(3px);
-    
+    border: solid 1px $borderColor;
+    @include border-radius(2px);
+    width: 200px;
     &:hover, &:active, &:focus {
-        @include single-box-shadow(lighten($primaryColor, 20%), 0px, 0px, 3px );
+        @include single-box-shadow(lighten($primaryColor, 20%), 0px, 0px, 2px );
     }
 
+    &.micro {
+        width: 30px;
+    }
+    &.small {
+        width: 100px;
+    }
     &.big {
-        font-size: 1.2em;
-        width: 40em;
-        line-height: 2em;
-        height: 2em;
-        border: solid 2px #999;
+        width: 300px;
         @include border-radius(6px);
     }
 }
 
+input {
+    line-height: 1.5em;
+    height: 1.5em;
+}
+
 button {
-    border:solid 1px $primaryColor;
+    border: none;
     color: $invColor;
-    background-color: lighten($primaryColor, 7%);    
+    background-color: $primaryColor;    
     padding: .2em .5em;
-    font-size: 1.1em;
+    font-size: 1em;
     opacity: 0.9;
     i.fa {
         margin-left: -0.2em;
@@ -113,12 +118,11 @@ button {
  
     &:hover{
         cursor:pointer;
-        background-color: $primaryColor;
-        color: $invColor;    
+        background-color: lighten($primaryColor, 5%);
     }
     
     &.big {
-        font-size: 1.5em;
+        font-size: 1.2em;
         padding: .5em .75em;
     }
 }

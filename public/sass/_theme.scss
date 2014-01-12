@@ -5,7 +5,8 @@ $baseFontSize: '14px';
 $baseFontFamily: 'Cantata One', sans-serif;
 $logoFontFamily: 'Luckiest Guy', cursive;
 
-$primaryColor: #522A67;
+//$primaryColor: #522A67;
+$primaryColor: #7D4C96;
 
 $baseColor: #333;
 $baseBgColor: #fff;
@@ -19,6 +20,7 @@ $linkHoverColor: lighten($primaryColor, 5%);
 $invLinkColor: $invColor;
 $invLinkHoverColor: darken($primaryColor, 5%);
 
+$borderColor : #ccc;
 
 $headLight: lighten($primaryColor, 65%);
 $headDark: lighten($primaryColor, 2%);

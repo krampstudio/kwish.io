@@ -152,10 +152,10 @@ header {
             @extend .fa;
             @extend .fa-picture-o;
             color: #ccc;
-            border: dashed 3px #ccc;
-            @include border-radius;
+            border: dashed 2px #ccc;
+            @include border-radius(2px);
             font-size: 5em;
-            padding: .2em;
+            padding: .1em;
         }
         .image {
             float: left;
@@ -166,5 +166,46 @@ header {
         .actions {
             clear: both;
         }
+    }
+
+    #kitems {
+        .kitem {
+            border: solid 1px $borderColor;
+            @include border-radius(4px);
+            @include single-box-shadow($borderColor, 1px, 1px, 3px);
+            position: relative; 
+            &:before{
+                @extend .fa;
+                @extend .fa-angle-right;
+                color: #ccc;
+                position: absolute;
+            }
+            & > div {
+                width: 100%;
+                padding: 0 3em 0 2em;
+
+                position: relative; 
+                top: 0;
+                 .placeholder{
+                    @extend .fa;
+                    @extend .fa-picture-o;
+                    color: #ccc;
+                    border: dashed 1px #ccc;
+                    @include border-radius(1px);
+                    font-size: 3.5em;
+                    padding: .1em;
+                }
+                .thumb {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+    
+            &.adder {
+                &:before{
+                    @extend .fa-plus;
+                }
+            }
+        }  
     }
 }

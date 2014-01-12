@@ -95,35 +95,54 @@ nav {
     }
     #kitems {
         @include zen-grid-item(9, 4);
-        .kitem {
-            float: left;
-            position: relative;
-            width: 20%;
-            padding-bottom: 20%;
-            & > div {
-                position: absolute;
-                left: .5em;
-                right: .5em;
-                top: .5em;
-                bottom: .5em;
-                overflow: hidden;
-            }
-        
-            @media only screen and (max-width : 480px) {
+
+        &.list {
+            .kitem {
+                //position: relative;
                 width: 100%;
-                padding-bottom: 100%;
+                margin: .3em 0;
+                padding: .5em;
+               /* & > div {
+                    position: absolute;
+                    left: .5em;
+                    right: .5em;
+                    top: .5em;
+                    bottom: .5em;
+                    overflow: hidden;
+                }*/
             }
-            @media only screen and (max-width : 650px) and (min-width : 481px) {
-                width: 50%;
-                padding-bottom: 50%;
-            }
-            @media only screen and (max-width : 1050px) and (min-width : 651px) {
-                width: 33.3%;
-                padding-bottom: 33.3%;
-            }
-            @media only screen and (max-width : 1290px) and (min-width : 1051px) {
-                width: 25%;
-                padding-bottom: 25%;
+        }
+        &.cards {
+            .kitem {
+                float: left;
+                position: relative;
+                width: 20%;
+                padding-bottom: 20%;
+                & > div {
+                    position: absolute;
+                    left: .5em;
+                    right: .5em;
+                    top: .5em;
+                    bottom: .5em;
+                    overflow: hidden;
+                }
+            
+                @media only screen and (max-width : 480px) {
+                    width: 100%;
+                    padding-bottom: 100%;
+                }
+                @media only screen and (max-width : 650px) and (min-width : 481px) {
+                    width: 50%;
+                    padding-bottom: 50%;
+                }
+                @media only screen and (max-width : 1050px) and (min-width : 651px) {
+                    width: 33.3%;
+                    padding-bottom: 33.3%;
+                }
+                @media only screen and (max-width : 1290px) and (min-width : 1051px) {
+                    width: 25%;
+                    padding-bottom: 25%;
+                }
             }
         }
     }
