@@ -3,13 +3,13 @@ define(['core/nav'], function(nav){
 
     var klistboardController = {
         dispatch : function(){
-
+            this.getList('ditasbirth');
         },
 
-        getList : function(login, name){
-            var url = '/' + login + '/' + name;
+        getList : function(name){
+            var url = 'klist/' + name;
             nav.api(url, function(list){
-//                console.log(list);
+                console.log(list);
             });
         }
     };

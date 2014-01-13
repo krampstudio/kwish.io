@@ -70,7 +70,10 @@ function(module, $, _, history, session, notify){
                     'XLogin' : session.get('login')
                 };
             }
-            $.ajax(apiPath +  url, _.defaults(options, defaults)).done(function(data){
+            if(!/^\//.test(url)){
+                url = apiPath + '/' +  url;
+            }
+            $.ajax(url, _.defaults(options, defaults)).done(function(data){
                 cb(data);
             }).fail(function(jqXHR, textStatus, errorThrown){
                 notify.failure('An error occurs while retrieving data: '+ errorThrown);

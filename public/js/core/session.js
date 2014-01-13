@@ -14,7 +14,6 @@ define(['modernizr', 'jquery'], function(Modernizr, $){
     var Session = {
         
         get : function(key){
-            
             return store.getItem(prefix + key);
         },
 
@@ -23,7 +22,7 @@ define(['modernizr', 'jquery'], function(Modernizr, $){
         },
 
         isset : function(key){
-            return this.get(prefix + key) !== null; 
+            return this.get(key) !== null; 
         },
 
         rm : function(key){

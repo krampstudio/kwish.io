@@ -70,7 +70,6 @@ var Authenticator = {
                         return res.json({auth: false}); 
                     }
                     req.session_state.token = user.token;
-                    console.log(req.session_state);
                     return res.json({ 
                         auth: true, 
                         user: user

@@ -27,7 +27,8 @@ var KListController = {
      */
     get : function (req, res, next) {
         var klistId = req.params.id;
-        if(req.accepts('application/json') && /^\w+$/.test(klistId)){
+        var login = req.header('XLogin');
+        if(req.accepts('application/json') && /^\w+$/.test(klistId) && !_.isEmpty(login)){
             klistProvider.getList(klistId, function(err, list){
                 if(err){
                     return _error(res, err.message);

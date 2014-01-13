@@ -29,7 +29,7 @@ define(['jquery', 'lodash', 'core/nav', 'core/form', 'core/session'], function($
                 $navbar.trigger('update.navbar');
                 
                 if(auth){
-                    nav.open('klistboard', false);                    
+                    nav.open('klistboard');                    
                 }
 
             }, 'json');
