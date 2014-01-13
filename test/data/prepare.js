@@ -29,7 +29,8 @@ function preparetest(conf, cb){
         .sadd('userklist:krampstudio', 'ditas2birthday')
         .hmset('klist:ditasbirth', {
              title: "dita's birth wish list",
-             desc: "to welcome dita in our family we still need a few thing"
+             desc: "to welcome dita in our family we still need a few thing",
+             category: "baby"
         })
         .set('kitemid', 0)
         .incr('kitemid')

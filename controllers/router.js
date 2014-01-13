@@ -3,6 +3,7 @@ var logger = require('../lib/logFactory').logger;
 var conf = require('../config/confLoader').conf;
 
 var UserController = require('./user');
+var KListController = require('./klist');
 
 /**
  * The Router manage controllers' action dispatch regarding URL routing. 
@@ -18,6 +19,10 @@ var Router = {
         'user/:login' : {
             method : 'get',
             action : UserController.get
+        },
+        'klist/:id' : {
+            method : 'get',
+            action : KListController.get
         }
     },
 

@@ -27,12 +27,13 @@ exports.klistProviderTest = {
     },
 
     testProviderStruct : function(test){
-        test.expect(7);
+        test.expect(8);
 
         var klistProvider = require('../lib/providers/klist');
 
         test.ok(typeof klistProvider !== undefined);
         test.ok(typeof klistProvider.getUserLists  === 'function');
+        test.ok(typeof klistProvider.getList  === 'function');
         test.ok(typeof klistProvider.save  === 'function');
         test.ok(typeof klistProvider.del  === 'function');
         test.ok(typeof klistProvider.getId  === 'function');
@@ -55,6 +56,22 @@ exports.klistProviderTest = {
             test.done();
         });
     },
+
+   testGetList : function(test){
+        test.expect(3);
+
+        var self = this;
+        var klistProvider = require('../lib/providers/klist');
+
+        klistProvider.getList('ditasbirth', function(err, list){
+            test.strictEqual(err, null);
+            test.equal(list.title, "dita's birth wish list");
+            test.equal(list.category, "baby");
+
+            test.done();
+        });
+    },
+
 
    testGetListItemsIds : function(test){
         test.expect(3);

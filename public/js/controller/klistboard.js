@@ -9,7 +9,7 @@ define(['core/nav'], function(nav){
         getList : function(login, name){
             var url = '/' + login + '/' + name;
             nav.api(url, function(list){
-                console.log(list);
+//                console.log(list);
             });
         }
     };

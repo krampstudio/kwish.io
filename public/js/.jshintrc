@@ -15,7 +15,8 @@
     "globals" : {
         "require" : true,
         "define" : true,
-        "requirejs" : true
+        "requirejs" : true,
+        "Modernizr" : true
     }
 }
 
