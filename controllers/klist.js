@@ -37,7 +37,7 @@ var KListController = {
                     return _error(res, "No list found for %s", klistId);
                 }
                 //check if the list belongs to the current user
-                klistProvider.getUserLists(req.header('XLogin'), function(err, lists){ 
+                klistProvider.getUserLists(login, function(err, lists){ 
                     if(err){
                         return _error(res, err.message);
                     }
@@ -47,9 +47,30 @@ var KListController = {
                     return res.json(list);
                 });
             });
-        } else {
+        } else { 
             logger.debug("Invalid request for getting list, go to next");
-            next();
+            return next();
+        }
+    },
+
+    /**
+     * Get user's lists
+     * @param {HttpRequest} req - json only
+     * @param {HttpResponse} res - send json
+     * @param {Function} next - to move to middleware next stack
+     */
+    getLists : function(req, res, next){
+        var login = req.header('XLogin');
+        if(req.accepts('application/json') && !_.isEmpty(login)){
+            klistProvider.getUserLists(login, function(err, lists){ 
+                if(err){
+                    return _error(res, err.message);
+                }
+                return res.json(lists);
+            });
+        } else { 
+            logger.debug("Invalid request for getting lists, go to next");
+            return next();
         }
     }
 };
