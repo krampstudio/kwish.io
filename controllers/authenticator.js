@@ -19,7 +19,6 @@ var Authenticator = {
      */
     setup : function(server, strategies){
         var self = this;
-        var apiPath = conf.get('server').apiPath;            
         strategies = strategies || ['local'];   
         
         logger.debug("Setup authenticator with strategies : %j", strategies);
@@ -44,14 +43,8 @@ var Authenticator = {
         //bind logout 
         server.get('/logout', self.logout);
 
-        logger.debug("Check for authorization for : %s", apiPath);
-        
         //protect api
-        server.get(apiPath, this.authorize());
-        server.post(apiPath, this.authorize());
-        server.put(apiPath, this.authorize());
-        server.del(apiPath, this.authorize());
-        server.head(apiPath, this.authorize());
+        server.use(this.authorize());
     },
 
     auth : {
@@ -122,9 +115,21 @@ var Authenticator = {
      * @returns {Function} basic routing handler 
      */
     authorize : function(){
+        var apiPath = conf.get('server').apiPath;            
+        var protectedPath = new RegExp( apiPath.replace(/\//, "\\/") + "\\/*", 'g');
+
+        logger.debug("Protecting %s", apiPath);
+
         return function authorizeHandler(req, res, next){
-            var headerToken = req.header('XToken');
-            var login = req.header('XLogin');
+            var headerToken, login;
+            
+            if(!protectedPath.test(req.url)){
+                return next();
+            }
+
+            headerToken = req.header('XToken');
+            login = req.header('XLogin');
+            
             //check the token match the session
             if(req.session_state.token === headerToken && !_.isEmpty(headerToken)){
                 //check against the store
