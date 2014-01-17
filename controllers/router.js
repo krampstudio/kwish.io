@@ -23,6 +23,10 @@ var Router = {
         'klist/:id' : {
             method : 'get',
             action : KListController.get
+        },
+        'klists' : {
+            method : 'get',
+            action : KListController.getLists
         }
     },
 
