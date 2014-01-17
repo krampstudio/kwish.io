@@ -21,7 +21,7 @@ function(module, $, _, history, session, notify){
             });
 
             history.popState(function(state, url){
-                if(!this.isRestricted(state.module)){
+                if(!self.isRestricted(state.module)){
                     self._open(state.module, state.dispatch);
                 }
             });
