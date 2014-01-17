@@ -34,6 +34,8 @@ define(['jquery', 'lodash', 'core/nav', 'core/session'], function($, _, nav, ses
 
                     //update the login menu on initialisation
                     self._updateLoginMenu($elt);
+  
+                    $elt.trigger('create.navbar');
                 }
             });
         },
