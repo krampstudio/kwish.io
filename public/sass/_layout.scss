@@ -90,12 +90,15 @@ nav {
 }
 
 .klistboard {
-    #klist {
+    > aside {
         @include zen-grid-item(3, 1);
     }
+    #klist {
+        @include zen-grid-item(9, 1, right);
+    }
     #kitems {
-        @include zen-grid-item(9, 4);
-
+        @include zen-clear(right);
+        @include zen-grid-item(9, 1, right);
         &.list {
             .kitem {
                 //position: relative;

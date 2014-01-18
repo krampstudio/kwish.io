@@ -1,17 +1,44 @@
-<section id="klist">
+<aside>
     <div id="klist-selector"></div>
-    <h1 data-bind="klist.title">List title</h1>
-    <div class='image placeholder' data-bind="klist.image"></div>
-    <div class="desc" data-bind="klist.desc">
-        <p>List description.</p>
-    </div>
+
+    <hr />
+
     <div class="actions">
         Status : staged - private - shared - public       
         <br />
         Delete
     </div>
+</aside>
+<section id="klist">
+    <h1 data-bind="klist.title">List title</h1>
+    <div class='image placeholder' data-bind="klist.image"></div>
+    <div class="desc" data-bind="klist.desc">
+        <p>List description.</p>
+    </div>
 </section>
 <section id="kitems" class="list">
+    <article class="kitem adder">
+        <div>
+            <form>
+                <div class='thumb placeholder'></div>
+                <div>
+                    <input type="text" placeholder="title" />
+                </div>
+                <div> 
+                    <textarea></textarea>
+                </div>
+                <div>
+                    <input type="number" placeholder="0" class="micro" /> €
+                </div>
+                <div class="actions">
+                    <button>
+                        <i class="fa fa-plus" />Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </article>
+
     <article class="kitem">
         <div>
             <div class='thumb placeholder'></div>
@@ -45,25 +72,5 @@
             </div>
         </div>
     </article>
-    <article class="kitem adder">
-        <div>
-            <form>
-                <div class='thumb placeholder'></div>
-                <div>
-                    <input type="text" placeholder="title" />
-                </div>
-                <div> 
-                    <textarea></textarea>
-                </div>
-                <div>
-                    <input type="number" placeholder="0" class="micro" /> €
-                </div>
-                <div class="actions">
-                    <button>
-                        <i class="fa fa-plus" />Add
-                    </button>
-                </div>
-            </form>
-        </div>
-    </article>
+
 </section>    
