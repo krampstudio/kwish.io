@@ -4,6 +4,7 @@ nav {
     color: $navColor;
     h1 {
         font-family: $logoFontFamily;
+        @include single-text-shadow(-1px, -1px, 0, false, #999);
     }
     a {
         color: $navColor;
@@ -144,11 +145,16 @@ header {
 }
 
 .klistboard{
+    aside > h2 {
+        margin-top: 5px;
+        font-size: 1em;
+        color:#666;
+    }
     #klist {
         & > h1 {
             margin-bottom: .5em;
         }
-        .placeholder{
+/*        .placeholder{
             @extend .fa;
             @extend .fa-picture-o;
             color: #ccc;
@@ -159,7 +165,7 @@ header {
         }
         .image {
             float: left;
-        }
+        }*/
         .desc {
             margin-left: .5em;
         }
@@ -208,4 +214,62 @@ header {
             }
         }  
     }
+}
+
+.selectbox-item {
+    position: relative;
+    margin-top: 3px; 
+    &:before{ 
+        font-size: .9em;
+        position: absolute;	
+        width: 35px; 
+        color: #666; 
+        background-color: #dfdfdf;
+        height: 30px;
+        line-height: 30px; 
+        text-align: center;
+        cursor: pointer;
+        @include border-radius(2);
+        @extend .fa;
+        @extend .fa-th-list;
+    }
+    &:hover a {
+        background: #efefef;
+    }
+    &:hover .remover{
+       &:before{ 
+           font-size: .9em;
+           position: absolute;
+           top: 3px;
+           right: 5px;
+           color: #666; 
+           cursor: pointer;
+           @extend .fa;
+           @extend .fa-times;
+        }
+    }
+    a{
+        color: #333;
+        position: relative;
+        display: block;
+        margin-left: 38px;  
+        height: 30px;
+        line-height: 30px; 
+        padding-left: 3px;
+        background: #dfdfdf;
+        @include border-radius(2);
+        text-decoration: none;
+        transition: all .3s ease-out;	
+    }
+
+    &.selectbox-selected a, &.selectbox-selected:before,   &.selectbox-selected .remover:before,{
+        color: #fff;
+        background-color: $primaryColor;
+   }
+
+   &.adder:before {
+        @extend .fa-plus;
+   } 
+
+     
 }

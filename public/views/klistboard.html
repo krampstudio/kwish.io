@@ -1,4 +1,5 @@
 <aside>
+    <h2>Your klists</h2>
     <div id="klist-selector"></div>
 
     <hr />
@@ -10,11 +11,8 @@
     </div>
 </aside>
 <section id="klist">
-    <h1 data-bind="klist.title">List title</h1>
-    <div class='image placeholder' data-bind="klist.image"></div>
-    <div class="desc" data-bind="klist.desc">
-        <p>List description.</p>
-    </div>
+    <h1 data-bind="title"></h1>
+    <div class="desc" data-bind="desc"></div>
 </section>
 <section id="kitems" class="list">
     <article class="kitem adder">
@@ -31,9 +29,7 @@
                     <input type="number" placeholder="0" class="micro" /> €
                 </div>
                 <div class="actions">
-                    <button>
-                        <i class="fa fa-plus" />Add
-                    </button>
+                    <button>Add</button>
                 </div>
             </form>
         </div>
@@ -56,6 +52,7 @@
             </div>
         </div>
     </article>
+
     <article class="kitem">
         <div>
             <div class='thumb placeholder'></div>
