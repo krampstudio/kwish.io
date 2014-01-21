@@ -11,8 +11,16 @@ $primaryColor: #7D4C96;
 $baseColor: #333;
 $baseBgColor: #fff;
 
+$borderColor : #ccc;
+
 $invColor: #fff;
 $invBgColor: #333;
+
+$contentBgColor: #F2EDF5;
+$contentColor : $baseColor;
+
+$titleBgColor: #F2EDF5;
+$titleColor : #666;
 
 $linkColor: darken($primaryColor, 5%);
 $linkHoverColor: lighten($primaryColor, 5%);
@@ -20,10 +28,7 @@ $linkHoverColor: lighten($primaryColor, 5%);
 $invLinkColor: $invColor;
 $invLinkHoverColor: darken($primaryColor, 5%);
 
-$borderColor : #ccc;
 
-$headLight: lighten($primaryColor, 65%);
-$headDark: lighten($primaryColor, 2%);
 
 $navBg: $invBgColor;
 $navBgHover: lighten($navBg, 15%);

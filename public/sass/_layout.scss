@@ -1,5 +1,4 @@
 nav {
-//    @include zen-grid-container;
     height: 3.5em;
     padding:0;
     overflow: hidden;
@@ -38,28 +37,21 @@ nav {
     @include zen-grid-container;
 }
 
-
-
 .home {
 
     header {
-        height: 250px;
-        h1 {
-            @include zen-grid-item(6, 1);
-        }
-        aside {
-            height: 250px;
-            @include zen-grid-item(7, 6);
-        }
+        height: 275px;
     }
 
     section[role=search], section[role=action]{
         text-align: center;
-        margin: 2em 0;
+        margin: 50px 0;
     }
 
    section[role=brand]{
+        margin: 0 10px;
         & > article {
+            margin: 15px;
             @include zen-grid-item(4, 5);
         }
         & > article:first-child {
@@ -90,7 +82,12 @@ nav {
 }
 
 .klistboard {
+    position:relative;
     > aside {
+        position: relative;
+        top: 0;
+        bottom: 0;
+        height: 100%;
         @include zen-grid-item(3, 1);
     }
     #klist {

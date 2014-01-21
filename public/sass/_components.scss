@@ -4,7 +4,7 @@ nav {
     color: $navColor;
     h1 {
         font-family: $logoFontFamily;
-        @include single-text-shadow(-1px, -1px, 0, false, #999);
+        @include single-text-shadow(-2px, -2px, 0, false, #999);
     }
     a {
         color: $navColor;
@@ -20,24 +20,38 @@ nav {
     
 }
 
-header {
-        @include background-image(linear-gradient(top, darken($headLight, 5%), lighten($headLight, 5%))); 
-    
-    h1{
-        @include single-text-shadow(1px, 1px, 1px, false, #333333);
+.home {
+    header {
 
-        padding: 1em;
-        font-family: $logoFontFamily;
+        margin-top: 5px;
+        background-color: $primaryColor; 
+        color: $invColor;
+        font-family: $baseFontFamily;
+        @include single-text-shadow(-2px, -2px, 0, false, lighten($primaryColor, 15%));
+         
+        h1{
+            padding-top: 50px;
+            font-size: 4em;
+            text-align: center;
+        }
         p {
-            font-size: .8em;
-            font-style: italic;
-            color: #333;
-            font-family: $baseFontFamily;
+            margin-top: 25px;
+            font-size: 2em;
+            text-align: center;
         }
     }
+    section[role=brand] > article{
+        text-align: center;
+        h2, p {
+          text-align:left; 
+        }
+        
+    }
+}
+/*
     aside {
-        background-color: $headDark;
-        @include background-image(linear-gradient(top left, $headDark, $headLight)); 
+//        background-color: $headDark;
+//        @include background-image(linear-gradient(top left, $headDark, $headLight)); 
         @include opacity(0.9);
         color: #fff;
         padding: 1em;
@@ -53,7 +67,7 @@ header {
         }
     } 
 }
-
+*/
 #loader {
     position: absolute;
     top: 0; 
@@ -145,10 +159,26 @@ header {
 }
 
 .klistboard{
-    aside > h2 {
-        margin-top: 5px;
-        font-size: 1em;
-        color:#666;
+
+    background-color: $contentBgColor;
+    
+    aside {
+        background-color: $baseBgColor;
+        position: relative;
+        height: 100%;
+        & > h2 {
+            margin-top: 5px;
+            font-size: 1em;
+            padding: 5px;
+            background-color: $titleBgColor; 
+            color: $titleColor;
+            &:before {
+                font-size: .9em;
+                margin:0 15px 0 5px;
+                @extend .fa;
+                @extend .fa-chevron-down;
+            }
+        }
     }
     #klist {
         & > h1 {
