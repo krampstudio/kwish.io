@@ -16,8 +16,7 @@ nav {
         &:hover {
             background-color: $navBgHover;
         }
-    }
-    
+    }    
 }
 
 .home {
@@ -167,17 +166,7 @@ nav {
         position: relative;
         height: 100%;
         & > h2 {
-            margin-top: 5px;
-            font-size: 1em;
-            padding: 5px;
-            background-color: $titleBgColor; 
-            color: $titleColor;
-            &:before {
-                font-size: .9em;
-                margin:0 15px 0 5px;
-                @extend .fa;
-                @extend .fa-chevron-down;
-            }
+
         }
     }
     #klist {
@@ -247,60 +236,92 @@ nav {
     }
 }
 
-.selectbox-item {
-    position: relative;
-    margin-top: 3px; 
-    &:before{ 
+#klist-selector {
+
+    margin: 10px 5px;
+    border: solid 1px $borderColor;
+    background-color: $contentBgColor;
+    @include border-radius(4px);
+    @include single-box-shadow($borderColor, 1px, 1px, 3px);
+    
+    & > h2 {
         font-size: .9em;
-        position: absolute;	
-        width: 35px; 
-        color: #666; 
-        background-color: #dfdfdf;
         height: 30px;
         line-height: 30px; 
-        text-align: center;
-        cursor: pointer;
-        @include border-radius(2);
-        @extend .fa;
-        @extend .fa-th-list;
-    }
-    &:hover a {
-        background: #efefef;
-    }
-    &:hover .remover{
-       &:before{ 
-           font-size: .9em;
-           position: absolute;
-           top: 3px;
-           right: 5px;
-           color: #666; 
-           cursor: pointer;
-           @extend .fa;
-           @extend .fa-times;
+        background-color : darken($contentBgColor, 5%);
+        &:before {
+            color: #999;
+            font-size: .9em;
+            margin:0 10px 0 10px;
+            @extend .fa;
+            @extend .fa-angle-down;
         }
     }
-    a{
-        color: #333;
+
+    .selectbox-item {
+         
         position: relative;
         display: block;
-        margin-left: 38px;  
-        height: 30px;
-        line-height: 30px; 
-        padding-left: 3px;
-        background: #dfdfdf;
-        @include border-radius(2);
-        text-decoration: none;
-        transition: all .3s ease-out;	
-    }
+        height: 40px;
+        line-height: 40px; 
+        padding-left: 10px;
+        cursor: pointer;
+        a {
+            color: #333;
+            font-weight: bold;
+        }
 
-    &.selectbox-selected a, &.selectbox-selected:before,   &.selectbox-selected .remover:before,{
-        color: #fff;
-        background-color: $primaryColor;
-   }
+        &:first-child {
+            border-bottom: solid 1px $borderColor;
+        }
+        &:last-child {
+            border-top: solid 1px $borderColor;
+        }
+        &:after {
+            color: #999;
+            font-size: .9em;
+            position: absolute; 
+            right: 15px;
+            height: 40px;
+            line-height: 40px; 
+            @extend .fa;
+            @extend .fa-chevron-right:before;
+        }
+ 
+        &:hover { 
+            background-color : darken($contentBgColor, 10%);
+            &:before {
+                color: #333;
+            }
+            .remover:before{ 
+               font-size: .8em;
+               position: absolute;
+               top: 3px;
+               right: 3px;
+               color: #999; 
+               cursor: pointer;
+               @extend .fa;
+               @extend .fa-times-circle;
+            }
+        }
 
-   &.adder:before {
-        @extend .fa-plus;
-   } 
-
-     
+       &.adder{
+            height: 30px;
+            line-height: 30px; 
+           a {
+                font-weight: normal;
+                font-size: .9em;
+           }
+           &:before {
+                color: #999;
+                font-size: .9em;
+                margin:0 10px 0 5px;
+                @extend .fa;
+                @extend .fa-plus;
+           }  
+           &:after {
+                content: inherit;
+           }
+        }
+    }    
 }

@@ -3,12 +3,13 @@
 
 *, *:before, *:after {
     @include box-sizing(border-box);
+    font-size: $baseFontSize;
 }
 
 html, body{
-    font-size: $baseFontSize;
     font-family: $baseFontFamily;
     color: $baseColor;
+    font-size: $baseFontSize;
 }
 h1 {
     font-size: 2em;
@@ -106,7 +107,7 @@ input {
 
 button {
     border: solid 1px $borderColor;
-    @include background-image(linear-gradient(#ffffff, #dddddd));
+    @include background-image(linear-gradient(#ffffff, #dfdfdf));
     @include border-radius(3px);
     padding: 5px 10px;
     
