@@ -46,12 +46,12 @@ form {
         position: relative;
         width: 100%;
         border: solid 1px $borderColor;
-        @include border-radius(6px);
+        @include border-radius(5px);
         padding: 3em 0 0 0;
         margin: 0;
         @include single-box-shadow($borderColor, 1px, 1px, 3px);
         legend { 
-            font-size: 1.2em;
+            font-size: 1.1em;
             width: 100%;
             width: 100%;
             top: .5em;
@@ -105,24 +105,18 @@ input {
 }
 
 button {
-    border: none;
-    color: $invColor;
-    background-color: $primaryColor;    
-    padding: .2em .5em;
-    font-size: 1em;
-    opacity: 0.9;
+    border: solid 1px $borderColor;
+    @include background-image(linear-gradient(#ffffff, #dddddd));
+    @include border-radius(3px);
+    padding: 5px 10px;
+    
     i.fa {
-        margin-left: -0.2em;
-        margin-right: 0.2em;
+        margin-left: -3px;
+        margin-right: 3px;
     }
  
     &:hover{
         cursor:pointer;
-        background-color: lighten($primaryColor, 5%);
-    }
-    
-    &.big {
-        font-size: 1.2em;
-        padding: .5em .75em;
+        color: $primaryColor;
     }
 }

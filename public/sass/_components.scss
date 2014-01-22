@@ -4,7 +4,7 @@ nav {
     color: $navColor;
     h1 {
         font-family: $logoFontFamily;
-        @include single-text-shadow(-2px, -2px, 0, false, #999);
+        @include single-text-shadow(-1px, -1px, 0, false, #999);
     }
     a {
         color: $navColor;
@@ -26,8 +26,8 @@ nav {
         margin-top: 5px;
         background-color: $primaryColor; 
         color: $invColor;
-        font-family: $baseFontFamily;
-        @include single-text-shadow(-2px, -2px, 0, false, lighten($primaryColor, 15%));
+        font-family: $logoFontFamily;
+        @include single-text-shadow(-1px, -1px, 0, false, lighten($primaryColor, 15%));
          
         h1{
             padding-top: 50px;
@@ -207,6 +207,7 @@ nav {
     #kitems {
         .kitem {
             border: solid 1px $borderColor;
+            background-color: #ffffff;
             @include border-radius(4px);
             @include single-box-shadow($borderColor, 1px, 1px, 3px);
             position: relative; 
