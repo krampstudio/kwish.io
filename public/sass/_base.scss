@@ -83,6 +83,7 @@ input, textarea{
     border: solid 1px $borderColor;
     @include border-radius(2px);
     width: 200px;
+    text-indent: 5px;
     &:hover, &:active, &:focus {
         @include single-box-shadow(lighten($primaryColor, 20%), 0px, 0px, 2px );
     }
@@ -94,8 +95,8 @@ input, textarea{
         width: 100px;
     }
     &.big {
-        width: 300px;
-        @include border-radius(6px);
+        width: 350px;
+        @include border-radius(3px);
     }
 }
 

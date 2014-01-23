@@ -1,6 +1,6 @@
 <aside>
     <div id="klist-selector">
-        <h2>Your klists</h2>
+        <h2>Your Klists</h2>
     </div>
 
     <hr />
@@ -8,30 +8,32 @@
     <div class="actions">
         Status : staged - private - shared - public       
         <br />
-        Delete
+        <button class="danger"><i class="fa fa-trash-o"></i>Delete Klist</button>
     </div>
 </aside>
 <section id="klist">
     <h1 data-bind="title"></h1>
     <div class="desc" data-bind="desc"></div>
 </section>
+<section id="kitem-search">
+
+</section>
 <section id="kitems" class="list">
     <article class="kitem adder">
         <div>
             <form>
-                <div class='thumb placeholder'></div>
-                <div>
-                    <input type="text" placeholder="title" />
-                </div>
-                <div> 
-                    <textarea></textarea>
-                </div>
-                <div>
-                    <input type="number" placeholder="0" class="micro" /> €
-                </div>
-                <div class="actions">
-                    <button>Add</button>
-                </div>
+                <span>
+                    <input type="text" class="big" placeholder="Enter gift description or URL" />
+                </span>
+                OR
+                <span>
+                    <input type="text" class="big search" placeholder="Search for an item on Amazon.fr" />
+                    <select type="category">
+                        <option>Book</option>
+                        <option>Wearing</option>
+                        <option>Hifi</option>
+                    </select>
+                </span>
             </form>
         </div>
     </article>

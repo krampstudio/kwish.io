@@ -164,8 +164,9 @@ nav {
         background-color: $baseBgColor;
     }
     #klist {
+        padding: 10px;
         & > h1 {
-            margin-bottom: .5em;
+            margin-bottom: 10px;
         }
 /*        .placeholder{
             @extend .fa;
@@ -195,14 +196,15 @@ nav {
             @include single-box-shadow($borderColor, 1px, 1px, 3px);
             position: relative; 
             &:before{
+                position: absolute;
+                font-size: .9em;
+                color: #999;
                 @extend .fa;
                 @extend .fa-angle-right;
-                color: #ccc;
-                position: absolute;
             }
             & > div {
                 width: 100%;
-                padding: 0 3em 0 2em;
+                padding: 0 5px 0 20px;
 
                 position: relative; 
                 top: 0;
@@ -210,10 +212,10 @@ nav {
                     @extend .fa;
                     @extend .fa-picture-o;
                     color: #ccc;
-                    border: dashed 1px #ccc;
+                    border: dashed 1px $borderColor;
                     @include border-radius(1px);
                     font-size: 3.5em;
-                    padding: .1em;
+                    padding: 3px;
                 }
                 .thumb {
                     position: absolute;

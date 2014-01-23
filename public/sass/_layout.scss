@@ -93,12 +93,11 @@ nav {
         height: 100%;
         @include zen-grid-item(3, 1);
     }
-    #klist {
+    #klist, #kitems {
         @include zen-grid-item(9, 1, right);
     }
     #kitems {
         @include zen-clear(right);
-        @include zen-grid-item(9, 1, right);
         &.list {
             .kitem {
                 //position: relative;
