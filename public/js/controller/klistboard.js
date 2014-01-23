@@ -32,9 +32,6 @@ define(['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox'],
                             value : 'Klist ' + size,
                             state: 'selectable'
                         });
-                    },
-                    remove : function(cb){
-                        return cb(true);
                     }
                 });
             });
