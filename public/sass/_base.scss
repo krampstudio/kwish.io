@@ -3,7 +3,6 @@
 
 *, *:before, *:after {
     @include box-sizing(border-box);
-    font-size: $baseFontSize;
 }
 
 html, body{
@@ -101,17 +100,19 @@ input, textarea{
 }
 
 input {
-    line-height: 1.5em;
-    height: 1.5em;
+    height: 30px;
+    line-height: 30px;
 }
 
 button {
+    font-family: $baseFontFamily;
     border: solid 1px $borderColor;
     @include background-image(linear-gradient(#ffffff, #dfdfdf));
     @include border-radius(3px);
     padding: 5px 10px;
     
     i.fa {
+        font-size: .9em;
         margin-left: -3px;
         margin-right: 3px;
     }

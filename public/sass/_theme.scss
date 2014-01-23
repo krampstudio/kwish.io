@@ -1,8 +1,40 @@
-//import google web fonts
-@import url(http://fonts.googleapis.com/css?family=Cantata+One|Luckiest+Guy);
+//Google web fonts
+//@import url(http://fonts.googleapis.com/css?family=Luckiest+Guy|Sintony:400,700);
+@font-face {
+  font-family: 'Luckiest Guy';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Luckiest Guy'), local('LuckiestGuy'), 
+        url('../fonts/Luckiest_Guy/LuckiestGuy.eot') format('eot'),
+        url('../fonts/Luckiest_Guy/LuckiestGuy.woff') format('woff'),
+        url('../fonts/Luckiest_Guy/LuckiestGuy.ttf') format('truetype'),
+        url('../fonts/Luckiest_Guy/LuckiestGuy.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'Sintony';
+  font-style: normal;
+  font-weight: bold;
+  src: local('Sintony'), 
+        url('../fonts/Sintony/Sintony-Bold.eot') format('eot'),
+        url('../fonts/Sintony/Sintony-Bold.woff') format('woff'),
+        url('../fonts/Sintony/Sintony-Bold.ttf') format('truetype'),
+        url('../fonts/Sintony/Sintony-Bold.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'Sintony';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Sintony'), 
+        url('../fonts/Sintony/Sintony-Regular.eot') format('eot'),
+        url('../fonts/Sintony/Sintony-Regular.woff') format('woff'),
+        url('../fonts/Sintony/Sintony-Regular.ttf') format('truetype'),
+        url('../fonts/Sintony/Sintony-Regular.svg') format('svg');
+}
 
 $baseFontSize: 14px;
-$baseFontFamily: 'Cantata One', sans-serif;
+$baseFontFamily: 'Sintony', sans-serif;
 $logoFontFamily: 'Luckiest Guy', cursive;
 
 //$primaryColor: #522A67;
@@ -11,7 +43,7 @@ $primaryColor: #7D4C96;
 $baseColor: #333;
 $baseBgColor: #fff;
 
-$borderColor : #ccc;
+$borderColor : #cfcfcf;
 
 $invColor: #fff;
 $invBgColor: #333;
@@ -24,8 +56,6 @@ $linkHoverColor: lighten($primaryColor, 5%);
 
 $invLinkColor: $invColor;
 $invLinkHoverColor: darken($primaryColor, 5%);
-
-
 
 $navBg: $invBgColor;
 $navBgHover: lighten($navBg, 15%);

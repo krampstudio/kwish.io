@@ -26,7 +26,7 @@ nav {
         background-color: $primaryColor; 
         color: $invColor;
         font-family: $logoFontFamily;
-        @include single-text-shadow(-1px, -1px, 0, false, lighten($primaryColor, 15%));
+        @include single-text-shadow(-1px, -1px, 0, false, #999);
          
         h1{
             padding-top: 50px;
@@ -158,16 +158,10 @@ nav {
 }
 
 .klistboard{
-
     background-color: $contentBgColor;
     
     aside {
         background-color: $baseBgColor;
-        position: relative;
-        height: 100%;
-        & > h2 {
-
-        }
     }
     #klist {
         & > h1 {
