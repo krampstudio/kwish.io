@@ -20,6 +20,9 @@ module.exports = function(grunt) {
     //display times
     require('time-grunt')(grunt);
 
+    //load npm tasks
+    require('load-grunt-tasks')(grunt);
+
     // Project configuration.
     grunt.initConfig({
         
@@ -35,6 +38,15 @@ module.exports = function(grunt) {
         
         clean : {
             install: [layout.build, layout.logs, layout.lib.client]
+        },
+
+        copy : {
+            install: {
+                files : [
+                    { src : 'config/config.json', dest: 'config/.config.json.backup' },
+                    { src : 'config/config.json.sample', dest: 'config/config.json' }
+                ]
+            }
         },
 
         jsdoc: {
@@ -100,16 +112,6 @@ module.exports = function(grunt) {
 
     });
     
-    grunt.loadNpmTasks('grunt-mkdir');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-contrib-requirejs');
-    grunt.loadNpmTasks('grunt-contrib-compass');
-    grunt.loadNpmTasks('grunt-contrib-qunit');
-    
     grunt.registerTask('preparetest', 'Load integration test data', function integrationTest(){
         var prepare = require('./test/data/prepare');
         var done = this.async();
@@ -123,7 +125,7 @@ module.exports = function(grunt) {
     });
 
     // Tasks flow.
-    grunt.registerTask('install', ['clean', 'mkdir', 'bower']);
+    grunt.registerTask('install', "Prepare project", ['clean:install', 'mkdir:install', 'bower:install', 'copy:install']);
     grunt.registerTask('test', ['preparetest' ,'nodeunit']);
     grunt.registerTask('build', ['jshint', 'test', 'jsdoc']);
 };

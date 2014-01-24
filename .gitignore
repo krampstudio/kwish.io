@@ -6,3 +6,4 @@ logs
 build
 public/lib
 public/css
+config/config.json
