@@ -113,13 +113,21 @@ button {
     padding: 5px 10px;
     
     i.fa {
-        font-size: .9em;
-        margin-left: -3px;
-        margin-right: 3px;
+        margin-right: 10px;
     }
  
     &:hover{
         cursor:pointer;
         color: $primaryColor;
+    }
+
+    &.danger { 
+        color: $errorColor;
+        border-color: $errorBorderColor;
+        @include background-image(linear-gradient(lighten($errorBgColor, 10%), $errorBgColor));
+        &:hover {
+            color: $errorColor;
+            @include background-image(linear-gradient(lighten($errorBgColor, 10%), darken($errorBgColor, 5%)));
+        }
     }
 }

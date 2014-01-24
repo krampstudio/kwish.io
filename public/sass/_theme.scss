@@ -57,6 +57,29 @@ $linkHoverColor: lighten($primaryColor, 5%);
 $invLinkColor: $invColor;
 $invLinkHoverColor: darken($primaryColor, 5%);
 
-$navBg: $invBgColor;
-$navBgHover: lighten($navBg, 15%);
+$navBgColor: $invBgColor;
+$navBgHoverColor: lighten($navBgColor, 15%);
 $navColor: $invColor;
+
+
+$infoBgColor: #444;
+$infoColor: #fff;
+$infoBorderColor: #CCC; 
+        
+$successBgColor: #8EDA7C;
+$successColor: #fff;
+$successBorderColor: darken($successBgColor, 5%); 
+ 
+$failureBgColor: #E35151;
+$failureColor: #fff;
+$failureBorderColor: darken($failureBgColor, 5%); 
+
+$warningBgColor: #E7732D;
+$warningColor: #fff;
+$warningBorderColor: darken($warningBgColor, 5%); 
+        
+$errorBgColor: $failureBgColor;
+$errorColor: $failureColor;
+$errorBorderColor: $failureBorderColor;
+
+

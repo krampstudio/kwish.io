@@ -1,6 +1,6 @@
 
 nav {
-    background-color: $navBg;
+    background-color: $navBgColor;
     color: $navColor;
     h1 {
         font-family: $logoFontFamily;
@@ -14,7 +14,7 @@ nav {
     }
     ul > li {
         &:hover {
-            background-color: $navBgHover;
+            background-color: $navBgHoverColor;
         }
     }    
 }
@@ -162,6 +162,15 @@ nav {
     
     aside {
         background-color: $baseBgColor;
+        .actions {
+            margin: 5px;
+            & > div {
+                margin: 20px 0;
+            }
+            button {
+                width:100%;
+            }
+        }
     }
     #klist {
         padding: 10px;
@@ -328,3 +337,33 @@ nav {
         }
     }    
 }
+
+#klist-status {
+    display: inline-block;
+    position: relative;
+    .ctrl {
+        display: block;
+        position: relative;
+        @extend button;
+        &:after {
+            margin-left:10px;
+            @extend .fa;
+            @extend .fa-angle-down:before;
+        }
+     } 
+    .options {
+        display: none;
+        position: absolute;
+    }
+
+    &.open {
+        .ctrl:after {
+            @extend .fa-angle-down:before;
+        }
+        .options {
+            display: block;
+        }
+    }
+}
+
+
