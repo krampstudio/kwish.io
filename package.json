@@ -29,7 +29,9 @@
     "client-sessions": "~0.4.1",
     "node-uuid": "~1.4.1",
     "passport-local": "~0.1.6",
-    "node-static": "~0.7.2"
+    "node-static": "~0.7.2",
+    "apac": "0.0.13",
+    "traverse": "~0.6.6"
   },
   "engines": {
     "node": ">=0.10"

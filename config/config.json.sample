@@ -2,13 +2,13 @@
     "server" : {
         "address"   : "127.0.0.1",
 		"port"		: 4040,
-        "baseUrl"	: "dev.babywishlist.localdomain",
+        "baseUrl"	: "localhost",
         "apiPath"   : "/api"
     },
     "log" : {
         "level"     : "debug",
         "stdout"    : true,
-        "file"      : "logs/baby-wish-list.log"
+        "file"      : "logs/kwish.log"
     },
     "store" : {
 		"session": {
@@ -18,8 +18,8 @@
 		"redis" : {
             "host" : "127.0.0.1",
             "port" : "6379",
-            "db"   : 3,
-            "auth" : "foobared"
+            "db"   : 0,
+            "auth" : "xxx"
         }
 	},
     "auth" : {
@@ -41,5 +41,11 @@
             "algo"      : "sha256"
         },
         "timeout" : 30000
+    },
+    "amazon" : {
+        "awsId" : "xxx",
+        "awsSecret": "xxx",
+        "assocId": "xxx",
+        "endpoint": "webservices.amazon.fr"
     }
 }
