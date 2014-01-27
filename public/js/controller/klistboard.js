@@ -1,4 +1,4 @@
-define(['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox'], function($, _, nav, session){
+define(['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox', 'components/dropMenu'], function($, _, nav, session){
     'use strict';
 
     var currentList;
@@ -47,6 +47,8 @@ define(['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox'],
             nav.api(url, function(list){
                 $('#klist').find("[data-bind='title']").text(list.title);
                 $('#klist').find("[data-bind='desc']").text(list.desc);
+
+                $('#klist-status').dropMenu(); 
             });
         }
     };

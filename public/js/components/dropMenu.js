@@ -4,7 +4,10 @@ define(['jquery', 'lodash'], function($, _){
 
     var defaults = {
         control : '.ctrl',
-        menu :  '.options'
+        menu :  '.options',
+        menuTarget : 'a',
+        action : 'replace',
+        activeClass : 'active' 
     };
 
     /**
@@ -21,7 +24,7 @@ define(['jquery', 'lodash'], function($, _){
          */
         init : function(options){
             var self = dropMenu;
-            options = _.default(options, defaults);
+            options = _.defaults(options || {}, defaults);
             return this.each(function(){
                 var $elt = $(this);
                 if(!$elt.data('dropMenu')){
@@ -38,11 +41,53 @@ define(['jquery', 'lodash'], function($, _){
 
                     $control.click(function(e){
                         e.preventDefault();
+                        self._toggle($elt);
+                    });
+
+                    $(options.menuTarget, $menu).click(function(e){
+                        e.preventDefault();
+                        self._select($elt, $(this)); 
                     });
 
                     $elt.trigger('create.dropMenu');
                 }
             });
+        },
+
+        _toggle : function($elt){
+            var self = this;
+            var options = $elt.data('dropMenu');
+            var $menu = options.$menu;
+
+            if($menu.css('display') === 'none'){
+                $menu.slideDown(200, function(){
+                    //close menu by clicking outside
+                    $(document).on('mouseup.dropMenu', function(e){
+                        if (!$menu.is(e.target)  && $menu.has(e.target).length === 0){
+                            self._toggle($elt);
+                        }
+                    });
+                });
+            } else {
+                $(document).off('mouseup.dropMenu');
+                $menu.slideUp(200);
+            }
+        },
+
+        _select : function($elt, $target){ 
+            var options = $elt.data('dropMenu');
+            var $menu = options.$menu;
+            var $control = options.$control;
+            var value = $target.text();
+            $(options.menuTarget, $menu).removeClass(options.activeClass);
+            $target.addClass(options.activeClass);
+            
+            if(options.action === 'replace'){
+                $control.text(value);
+            }
+            this._toggle($elt);
+
+            $elt.trigger('selected.dropMenu', [$target, value]);
         },
 
         /**

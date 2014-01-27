@@ -317,9 +317,10 @@ nav {
            a {
                 font-weight: normal;
                 font-size: .9em;
+                color: $primaryColor; 
            }
            &:before {
-                color: #999;
+                color: $primaryColor; 
                 font-size: .8em;
                 margin:0 10px 0 10px;
                 @extend .fa;
@@ -330,8 +331,9 @@ nav {
            }
            &:hover {
                 background-color: inherit; 
+                color: $baseColor;
                 &:before, a {
-                   color: $primaryColor; 
+                    color: $baseColor;
                 }
            }
         }
@@ -351,9 +353,58 @@ nav {
             @extend .fa-angle-down:before;
         }
      } 
-    .options {
+    ul.options {
         display: none;
         position: absolute;
+        top: 40px;
+        color: $baseColor;
+        background-color: $baseBgColor;
+        z-index: 10000;
+        border: solid 1px $borderColor;
+        @include border-radius(4px);
+        li {
+            padding: 5px 0;
+            width: 100%;
+            border-bottom: solid 1px $borderColor;
+            a {
+                display:inline-block;
+                width: 100%;
+                padding: 5px 25px;
+                color: $baseColor;
+
+                &:hover {
+                    color: $invLinkColor;
+                    background-color: $linkHoverColor;
+                }
+                &.active:before {
+                    position: absolute;
+                    left: 5px;
+                    font-size: .9em;
+                    @extend .fa;
+                    @extend .fa-check;
+                }
+            }
+        }
+        &:before {
+            position:absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            top: -17px;
+            left: 15px;
+            border: solid 8px $borderColor; 
+            border-color: transparent transparent $borderColor transparent;
+        }
+        &:after {
+            position:absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            top: -16px;
+            left: 15px;
+            border: solid 8px $baseBgColor; 
+            border-color: transparent transparent $baseBgColor transparent;
+        }
     }
 
     &.open {
