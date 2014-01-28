@@ -29,7 +29,7 @@ function(module, $, _, history, session, notify){
             if(module !== '' && module !== 'home'){
                 self.open(module);
             } else {
-                self.open('home', false); 
+                self.open('home'); 
             }
         },
 
@@ -54,7 +54,7 @@ function(module, $, _, history, session, notify){
         },
 
         api : function(url, options, cb){
-            
+            var self = this; 
             //optionnal args
             if(_.isFunction(options) && cb === undefined){
                 cb = arguments[1];
@@ -75,8 +75,13 @@ function(module, $, _, history, session, notify){
             }
             $.ajax(url, _.defaults(options, defaults)).done(function(data){
                 cb(data);
-            }).fail(function(jqXHR, textStatus, errorThrown){
+            }).fail(function(jxhr, textStatus, errorThrown){
                 notify.failure('An error occurs while retrieving data: '+ errorThrown);
+                if(jxhr.status === 403){
+                    session.rm('token');
+                    session.rm('login');
+                    self._open('home', true);
+                }
             });
         },
 

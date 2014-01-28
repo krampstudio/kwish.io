@@ -58,7 +58,7 @@ define(['jquery', 'lodash', 'core/nav', 'core/session'], function($, _, nav, ses
                         session.rm('login');
                         session.rm('token');
                         self._updateLoginMenu($elt);
-                        nav.open('home', false);
+                        nav.open('home');
                     });
                 });
             } else {
