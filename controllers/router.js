@@ -2,8 +2,9 @@ var _ = require('lodash');
 var logger = require('../lib/logFactory').logger;
 var conf = require('../config/confLoader').conf;
 
-var UserController = require('./user');
-var KListController = require('./klist');
+var userController = require('./user');
+var klistController = require('./klist');
+var awsController = require('./aws');
 
 /**
  * The Router manage controllers' action dispatch regarding URL routing. 
@@ -18,15 +19,19 @@ var Router = {
     routes : {
         'user/:login' : {
             method : 'get',
-            action : UserController.get
+            action : userController.get
         },
         'klist/:id' : {
             method : 'get',
-            action : KListController.get
+            action : klistController.get
         },
         'klists' : {
             method : 'get',
-            action : KListController.getLists
+            action : klistController.getLists
+        },
+        'aws/search' : {
+            method : 'get',
+            action : awsController.search
         }
     },
 

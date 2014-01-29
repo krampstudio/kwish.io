@@ -15,7 +15,10 @@ exports.userProviderTest = {
             test.ok(result.count > 0);
             test.ok(result.pages > 0);
             test.ok(result.items.length > 0);
-            
+            test.ok(result.items[0].asin !== undefined);
+            test.ok(result.items[0].url !== undefined);
+           
+             
             test.done();
         });
     }
