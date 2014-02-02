@@ -41,4 +41,5 @@ var awsController = {
         }
     }
 };
+
 module.exports = awsController;

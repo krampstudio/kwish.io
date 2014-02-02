@@ -10,9 +10,9 @@ exports.userProviderTest = {
     testAws : function(test){
       var awsProvider = require('../lib/providers/aws');
 
-        awsProvider.search('rammstein Made In Germany', 'All', function(err, result){
+        awsProvider.search('Elric des dragons', 'All', function(err, result){
             test.strictEqual(err, null);
-            test.ok(result.count > 0);
+            test.ok(result.total > 0);
             test.ok(result.pages > 0);
             test.ok(result.items.length > 0);
             test.ok(result.items[0].asin !== undefined);
