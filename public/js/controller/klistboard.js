@@ -1,4 +1,6 @@
-define(['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox', 'components/dropMenu'], function($, _, nav, session){
+define(
+['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox', 'components/dropMenu', 'components/searchField'], 
+function($, _, nav, session){
     'use strict';
 
     var currentList;
@@ -6,6 +8,11 @@ define(['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox', 
     var klistboardController = {
         
         dispatch : function(){
+            this.setUpListBox();
+            this.setUpSearchField();
+        },
+        
+        setUpListBox : function(){
             var self = this;
             var $klistsBox = $('#klist-selector');
             var current = session.isset('klist') ? session.get('klist') : false;
@@ -34,6 +41,22 @@ define(['jquery', 'lodash', 'core/nav', 'core/session', 'components/selectBox', 
                         });
                     }
                 });
+            });
+
+        },
+
+        setUpSearchField : function(){
+            var self = this;
+            var url = 'aws/search';
+            var $pattern = $('#aws-search');
+            var $index = $('#aws-index');
+            $pattern.searchField({
+                data: function(cb){
+                   nav.api(url, { data : {
+                        index: $index.val(),
+                        pattern: $pattern.val()
+                   }, cb);
+                }
             });
         },
 
