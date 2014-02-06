@@ -46,6 +46,7 @@
         "awsId" : "xxx",
         "awsSecret": "xxx",
         "assocId": "xxx",
-        "endpoint": "webservices.amazon.fr"
+        "endpoint": "webservices.amazon.fr",
+        "file" : false
     }
 }
