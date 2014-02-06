@@ -3,8 +3,7 @@ nav {
     background-color: $navBgColor;
     color: $navColor;
     h1 {
-        font-family: $logoFontFamily;
-        @include single-text-shadow(-1px, -1px, 0, false, #999);
+        @include logo();        
     }
     a {
         color: $navColor;
@@ -13,60 +12,18 @@ nav {
         }
     }
     ul > li {
-        &:hover {
+        
+&:hover {
             background-color: $navBgHoverColor;
         }
     }    
 }
 
-.home {
-    header {
+footer {
+    background-color: $footerBgColor;
+    color: $footerColor;
+}
 
-        margin-top: 5px;
-        background-color: $primaryColor; 
-        color: $invColor;
-        font-family: $logoFontFamily;
-        @include single-text-shadow(-1px, -1px, 0, false, #999);
-         
-        h1{
-            padding-top: 50px;
-            font-size: 4em;
-            text-align: center;
-        }
-        p {
-            margin-top: 25px;
-            font-size: 2em;
-            text-align: center;
-        }
-    }
-    section[role=brand] > article{
-        text-align: center;
-        h2, p {
-          text-align:left; 
-        }
-        
-    }
-}
-/*
-    aside {
-//        background-color: $headDark;
-//        @include background-image(linear-gradient(top left, $headDark, $headLight)); 
-        @include opacity(0.9);
-        color: #fff;
-        padding: 1em;
-        ul {
-            li {
-                padding: .3em;
-                &:before{
-                    @extend .fa;
-                    @extend .fa-check-square-o;
-                    margin-right: .2em;
-                }
-            }
-        }
-    } 
-}
-*/
 #loader {
     position: absolute;
     top: 0; 
@@ -157,93 +114,84 @@ nav {
     }
 }
 
-.klistboard{
-    background-color: $contentBgColor;
-    
-    aside {
-        background-color: $baseBgColor;
-        .actions {
-            margin: 5px;
-            & > div {
-                margin: 20px 0;
-            }
-            button {
-                width:100%;
-            }
-        }
-    }
-    #klist {
-        padding: 10px;
-        & > h1 {
-            margin-bottom: 10px;
-        }
-/*        .placeholder{
+.dropmenu {
+    display: inline-block;
+    position: relative;
+    .ctrl {
+        display: block;
+        position: relative;
+        @extend button;
+        &:after {
+            margin-left:10px;
             @extend .fa;
-            @extend .fa-picture-o;
-            color: #ccc;
-            border: dashed 2px #ccc;
-            @include border-radius(2px);
-            font-size: 5em;
-            padding: .1em;
+            @extend .fa-angle-down:before;
         }
-        .image {
-            float: left;
-        }*/
-        .desc {
-            margin-left: .5em;
+     } 
+    ul.options {
+        display: none;
+        position: absolute;
+        top: 40px;
+        color: $baseColor;
+        background-color: $baseBgColor;
+        z-index: 10000;
+        border: solid 1px $borderColor;
+        @include border-radius(4px);
+        li {
+            padding: 5px 0;
+            width: 100%;
+            border-bottom: solid 1px $borderColor;
+            a {
+                display:inline-block;
+                width: 100%;
+                padding: 5px 25px;
+                color: $baseColor;
+
+                &:hover {
+                    color: $invLinkColor;
+                    background-color: $linkHoverColor;
+                }
+                &.active:before {
+                    position: absolute;
+                    left: 5px;
+                    font-size: .9em;
+                    @extend .fa;
+                    @extend .fa-check;
+                }
+            }
         }
-        .actions {
-            clear: both;
+        &:before {
+            position:absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            top: -17px;
+            left: 15px;
+            border: solid 8px $borderColor; 
+            border-color: transparent transparent $borderColor transparent;
+        }
+        &:after {
+            position:absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            top: -16px;
+            left: 15px;
+            border: solid 8px $baseBgColor; 
+            border-color: transparent transparent $baseBgColor transparent;
         }
     }
 
-    #kitems {
-        .kitem {
-            border: solid 1px $borderColor;
-            background-color: #ffffff;
-            @include border-radius(4px);
-            @include single-box-shadow($borderColor, 1px, 1px, 3px);
-            position: relative; 
-            &:before{
-                position: absolute;
-                font-size: .9em;
-                color: #999;
-                @extend .fa;
-                @extend .fa-angle-right;
-            }
-            & > div {
-                width: 100%;
-                padding: 0 5px 0 20px;
-
-                position: relative; 
-                top: 0;
-                 .placeholder{
-                    @extend .fa;
-                    @extend .fa-picture-o;
-                    color: #ccc;
-                    border: dashed 1px $borderColor;
-                    @include border-radius(1px);
-                    font-size: 3.5em;
-                    padding: 3px;
-                }
-                .thumb {
-                    position: absolute;
-                    right: 0;
-                }
-            }
-    
-            &.adder {
-                &:before{
-                    @extend .fa-plus;
-                }
-            }
-        }  
+    &.open {
+        .ctrl:after {
+            @extend .fa-angle-down:before;
+        }
+        .options {
+            display: block;
+        }
     }
 }
 
-#klist-selector {
-
-    margin: 10px 5px;
+.selectbox {
     border: solid 1px $borderColor;
     background-color: $contentBgColor;
     @include border-radius(4px);
@@ -340,81 +288,22 @@ nav {
     }    
 }
 
-#klist-status {
-    display: inline-block;
-    position: relative;
-    .ctrl {
-        display: block;
+.searchfield-result {
+    display: none;
+    position: absolute;
+    color: $baseColor;
+    background-color: $baseBgColor;
+    z-index: 10000;
+    border: solid 1px $borderColor;
+    @include border-radius(4px);
+
+    & > div {
         position: relative;
-        @extend button;
-        &:after {
-            margin-left:10px;
-            @extend .fa;
-            @extend .fa-angle-down:before;
-        }
-     } 
-    ul.options {
-        display: none;
-        position: absolute;
-        top: 40px;
-        color: $baseColor;
-        background-color: $baseBgColor;
-        z-index: 10000;
-        border: solid 1px $borderColor;
-        @include border-radius(4px);
-        li {
-            padding: 5px 0;
-            width: 100%;
-            border-bottom: solid 1px $borderColor;
-            a {
-                display:inline-block;
-                width: 100%;
-                padding: 5px 25px;
-                color: $baseColor;
-
-                &:hover {
-                    color: $invLinkColor;
-                    background-color: $linkHoverColor;
-                }
-                &.active:before {
-                    position: absolute;
-                    left: 5px;
-                    font-size: .9em;
-                    @extend .fa;
-                    @extend .fa-check;
-                }
-            }
-        }
-        &:before {
-            position:absolute;
-            content: '';
-            width: 0;
-            height: 0;
-            top: -17px;
-            left: 15px;
-            border: solid 8px $borderColor; 
-            border-color: transparent transparent $borderColor transparent;
-        }
-        &:after {
-            position:absolute;
-            content: '';
-            width: 0;
-            height: 0;
-            top: -16px;
-            left: 15px;
-            border: solid 8px $baseBgColor; 
-            border-color: transparent transparent $baseBgColor transparent;
-        }
-    }
-
-    &.open {
-        .ctrl:after {
-            @extend .fa-angle-down:before;
-        }
-        .options {
-            display: block;
+        padding: 5px 75px 5px 5px;
+        height: 100px;
+        border-bottom: solid 1px $borderColor;
+        .thumb {
+            top: 0;
         }
     }
 }
-
-

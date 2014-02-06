@@ -1,0 +1,133 @@
+
+.home {
+    header {
+        position: relative;
+        background-image:url('../imgs/bg.png');
+        color: $invColor;
+        @include logo(light);         
+        h1{
+            padding-top: 50px;
+            font-size: 4em;
+            text-align: center;
+        }
+        p {
+            margin-top: 20px;
+            font-size: 2em;
+            text-align: center;
+            &:after{
+                @extend .fa;
+                @extend .fa-tasks:before;
+                display: block;
+                font-size: 4em;
+                opacity:.1;
+            }
+        }
+    }
+    section[role=brand]{
+        @include zen-grid-container;
+        & > article{
+            .fa {
+                font-size: 3em;
+                @include zen-grid-item(2, 1);
+            }
+            h3 {
+                font-weight: bold;
+                @include zen-grid-item(10, 1, right);
+            }
+            p {
+                margin-top: 5px;
+                @include zen-clear(right);
+                @include zen-grid-item(10, 1, right);
+            }
+        }
+    }
+}
+.klistboard{
+    background-color: $contentBgColor;
+    
+    aside {
+        background-color: $baseBgColor;
+        .actions {
+            margin: 5px;
+            & > div {
+                margin: 20px 0;
+            }
+            button {
+                width:100%;
+            }
+        }
+    }
+    #klist {
+        padding: 10px;
+        & > h1 {
+            margin-bottom: 10px;
+        }
+/*        .placeholder{
+            @extend .fa;
+            @extend .fa-picture-o;
+            color: #ccc;
+            border: dashed 2px #ccc;
+            @include border-radius(2px);
+            font-size: 5em;
+            padding: .1em;
+        }
+        .image {
+            float: left;
+        }*/
+        .desc {
+            margin-left: .5em;
+        }
+        .actions {
+            clear: both;
+        }
+    }
+
+    #kitems {
+        .kitem {
+            border: solid 1px $borderColor;
+            background-color: #ffffff;
+            @include border-radius(4px);
+            @include single-box-shadow($borderColor, 1px, 1px, 3px);
+            position: relative; 
+            &:before{
+                position: absolute;
+                font-size: .9em;
+                color: #999;
+                @extend .fa;
+                @extend .fa-angle-right;
+            }
+            & > div {
+                width: 100%;
+                padding: 0 5px 0 20px;
+
+                position: relative; 
+                top: 0;
+                 .placeholder{
+                    @extend .fa;
+                    @extend .fa-picture-o;
+                    color: #ccc;
+                    border: dashed 1px $borderColor;
+                    @include border-radius(1px);
+                    font-size: 3.5em;
+                    padding: 3px;
+                }
+                .thumb {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+    
+            &.adder {
+                &:before{
+                    @extend .fa-plus;
+                }
+            }
+        }  
+    }
+}
+
+#klist-selector {
+    margin: 10px 5px;
+}
+
+

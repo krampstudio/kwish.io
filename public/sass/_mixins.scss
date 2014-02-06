@@ -29,3 +29,24 @@
         border-color: #666 #666 transparent transparent;
     }
 }
+
+//colored button
+@mixin cbutton($bg, $border, $color){
+    background-color: $bg;
+    border: solid 1px $border;
+    color: $color;
+    @include background-image(linear-gradient(lighten($bg, 10%), darken($bg, 5%)));
+//    @include single-text-shadow(0, 0, 1px, false, #eee);
+    &:hover {
+        @include background-image(linear-gradient(lighten($bg, 15%), $bg));
+    }
+}
+
+@mixin logo($bg : dark){
+    $shadowColor : #666;
+    @if $bg == dark {
+        $shadowColor : #aaa;
+    }
+    font-family: $logoFontFamily;
+    @include single-text-shadow(-1px, -1px, 0, false, $shadowColor);
+}

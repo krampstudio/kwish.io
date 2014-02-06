@@ -1,13 +1,13 @@
 define(['jquery', 'lodash'], function($, _){
     'use strict';
 
-
     var defaults = {
         control : '.ctrl',
         menu :  '.options',
         menuTarget : 'a',
         action : 'replace',
-        activeClass : 'active' 
+        activeClass : 'active',
+        mainClass : 'dropmenu'
     };
 
     /**
@@ -28,7 +28,9 @@ define(['jquery', 'lodash'], function($, _){
             return this.each(function(){
                 var $elt = $(this);
                 if(!$elt.data('dropMenu')){
-
+                    
+                    $elt.addClass(options.mainClass);
+                     
                     var $control = $(options.control, $elt);                    
                     var $menu = $(options.menu, $elt);                    
 

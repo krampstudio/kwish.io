@@ -106,28 +106,44 @@ input {
 }
 
 button {
+    font-size: .9em;
     font-family: $baseFontFamily;
     border: solid 1px $borderColor;
     @include background-image(linear-gradient(#ffffff, #dfdfdf));
     @include border-radius(3px);
-    padding: 5px 10px;
+    padding: 4px 10px;
     
     i.fa {
-        margin-right: 10px;
+        margin-right: 5px;
+    }
+
+    &.small {
+        padding: 3px 5px;
+        font-size: .8em;
     }
  
+    &.big {
+        padding: 5px 12px;
+        font-size: 1em;
+    }
+    
+    &.huge {
+        padding: 7px 15px;
+        font-size: 1.2em;
+    }
+    
     &:hover{
-        cursor:pointer;
-        color: $primaryColor;
+        cursor: pointer;
+        @include background-image(linear-gradient(#ffffff, lighten($primaryColor, 42%)));
     }
 
     &.danger { 
-        color: $errorColor;
-        border-color: $errorBorderColor;
-        @include background-image(linear-gradient(lighten($errorBgColor, 10%), $errorBgColor));
-        &:hover {
-            color: $errorColor;
-            @include background-image(linear-gradient(lighten($errorBgColor, 10%), darken($errorBgColor, 5%)));
-        }
+        @include cbutton($errorBgColor, $errorBorderColor, $baseColor);
+    }
+    &.great { 
+        @include cbutton($successBgColor, $successBorderColor, $baseColor);
+    }
+    &.highlight { 
+        @include cbutton($primaryColor, $primaryColor, $invColor);
     }
 }

@@ -18,7 +18,8 @@ define(['jquery', 'lodash'], function($, _){
     var defaults = {
         items : [],
         add : false,
-        remove : false
+        remove : false,
+        mainClass : 'selectbox'
     };
 
     /**
@@ -49,6 +50,7 @@ define(['jquery', 'lodash'], function($, _){
                 var $elt = $(this);
                 if(!$elt.data('selectBox')){
 
+                    $elt.addClass(options.mainClass);
                     $elt.data('selectBox', options);
 
                     /**

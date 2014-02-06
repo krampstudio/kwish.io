@@ -1,5 +1,13 @@
+
+$navHeight : 50px; 
+$footerHeight : 50px;
+
+html, body {
+    height: 100%;
+    position: relative;
+}
 nav {
-    height: 3.5em;
+    height: $navHeight;
     padding:0;
     overflow: hidden;
     & > *, li {
@@ -24,8 +32,7 @@ nav {
         }
     }
     .login-menu, .logout-menu{
-        @include zen-grid-item(6, 1, right);
-    
+        @include zen-grid-item(6, 1, right); 
         text-align: right;
     }
     .logout-menu {
@@ -33,8 +40,17 @@ nav {
     }
 }
 
+
 #container {
+    padding-bottom: $footerHeight;
     @include zen-grid-container;
+}
+
+footer {
+    height: $footerHeight;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }
 
 .home {
@@ -49,9 +65,9 @@ nav {
     }
 
    section[role=brand]{
-        margin: 0 10px;
+        margin: 10px 15%;
         & > article {
-            margin: 15px;
+            margin: 10px;
             @include zen-grid-item(4, 5);
         }
         & > article:first-child {

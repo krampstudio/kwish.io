@@ -52,10 +52,10 @@ function($, _, nav, session){
             var $index = $('#aws-index');
             $pattern.searchField({
                 data: function(cb){
-                   nav.api(url, { data : {
+                    nav.api(url, { data : {
                         index: $index.val(),
                         pattern: $pattern.val()
-                   }, cb);
+                    }}, cb);
                 }
             });
         },

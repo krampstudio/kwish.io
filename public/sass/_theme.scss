@@ -38,9 +38,10 @@ $baseFontFamily: 'Sintony', sans-serif;
 $logoFontFamily: 'Luckiest Guy', cursive;
 
 //$primaryColor: #522A67;
-$primaryColor: #7D4C96;
+//$primaryColor: #7D4C96;
+$primaryColor: #9970AF;
 
-$baseColor: #333;
+$baseColor: #444;
 $baseBgColor: #fff;
 
 $borderColor : #cfcfcf;
@@ -61,10 +62,12 @@ $navBgColor: $invBgColor;
 $navBgHoverColor: lighten($navBgColor, 15%);
 $navColor: $invColor;
 
+$footerBgColor: #666;
+$footerColor: $invColor;
 
-$infoBgColor: #444;
+$infoBgColor: #6A83B2;
 $infoColor: #fff;
-$infoBorderColor: #CCC; 
+$infoBorderColor: darken($infoBgColor, 5%);  
         
 $successBgColor: #8EDA7C;
 $successColor: #fff;

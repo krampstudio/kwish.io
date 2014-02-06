@@ -6,20 +6,22 @@ define(['jquery', 'lodash'], function($, _){
     );
 
     var resultItemTmpl = _.template(
-        '<div data-asin="#{asin}">' +
-            '<p>#{title}</p>' +
+        '<div data-asin="${asin}">' +
+            '<p>${title}</p>' +
             '<div class="actions">' +
-                '<button>Add to klist</button>' +
+                '<button class="small great">Add to klist</button>' +
             '</div>' +
-            '<a href="#{url}" target="_blank">' +
-                '<img class="thumb" src="#{thumb}" alt="amazon" />' +
+            '<a href="${url}" target="_blank">' +
+                '<img class="thumb" src="${thumb}" alt="amazon" />' +
             '</a>' +
         '</div>'
     );
 
     var defaults = {
-        minLength: 4,
+//      parent: 'selector',
+        minLength: 3,
         delay: 300,
+        width: '450px',
         data: function(cb){
             cb({});
         }
@@ -61,9 +63,19 @@ define(['jquery', 'lodash'], function($, _){
                             }, options.delay);
                         }
                     };
+                    var $parent = (options.parent) ? $(options.parent) : $elt.parent();
 
                     //create result list container
-                    options.$container = $(resultContainerTmpl()).insertAfter($elt); 
+                    options.$container = $(resultContainerTmpl()).appendTo($parent);
+                    
+
+     
+                    //set style relative to the field
+                    var position = $elt.position();
+                    options.$container.css({
+                        left:  position.left,
+                        width: options.width || $elt.width()
+                    });
 
                     $elt.data('searchField', options);
                     
@@ -84,7 +96,7 @@ define(['jquery', 'lodash'], function($, _){
         },
         
         _setResultItems: function($elt, results){
-            var options = $elt.data('searchFIeld');
+            var options = $elt.data('searchField');
             _.forEach(results.items, function(item){
                 options.$container.append(resultItemTmpl(item));
             });
