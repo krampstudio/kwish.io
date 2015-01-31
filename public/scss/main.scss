@@ -1,0 +1,17 @@
+@import "zen";
+
+$zen-grid-width: 100%;
+$zen-column-count: 12;
+$legacy-support-for-ie7: false;
+$legacy-support-for-ie6: false;
+
+$fa-font-path : "../lib/font-awesome/fonts";
+@import "../lib/font-awesome/scss/font-awesome.scss";
+
+@import "theme.scss";
+@import "mixins.scss";
+@import "normalize.scss";
+@import "base.scss";
+@import "layout.scss";
+@import "components.scss";
+@import "views.scss";

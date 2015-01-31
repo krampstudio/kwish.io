@@ -25,9 +25,9 @@ module.exports = function(grunt) {
 
     // Project configuration.
     grunt.initConfig({
-        
-        pkg: grunt.file.readJSON('package.json'),        
-        
+
+        pkg: grunt.file.readJSON('package.json'),
+
         mkdir: {
             install: {
                 options: {
@@ -35,7 +35,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
+
         clean : {
             install: [layout.build, layout.logs, layout.lib.client]
         },
@@ -63,13 +63,13 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
+
         nodeunit: {
             unit: {
                 src: layout.test.server
             }
         },
-        
+
         jshint: {
             server : {
                 src: layout.src.server.concat(layout.test.server).concat(['Gruntfile.js']),
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        
+
         compass : {
             compile: { },
             watch : {
@@ -108,10 +108,38 @@ module.exports = function(grunt) {
                 sassDir: 'sass',
                 cssDir: 'css'
             }
-        }
+        },
 
+        sass : {
+            build: {
+                options : {
+                    sourceMap : true,
+                    outputStyle: 'compressed'
+                },
+                files : {
+                    'public/css/main.css' : [ 'public/scss/main.scss' ]
+                }
+            },
+
+            preview: {
+                files : {
+                    'public/css/main.css' : [ 'public/scss/main.scss' ]
+                }
+            }
+        },
+
+        watch: {
+            options: {
+                livereload: 35729,
+                debounceDelay: 200
+            },
+            preview: {
+                files: ['public/**/*.scss'],
+                tasks : ['sass:preview']
+            }
+        },
     });
-    
+
     grunt.registerTask('preparetest', 'Load integration test data', function integrationTest(){
         var prepare = require('./test/data/prepare');
         var done = this.async();

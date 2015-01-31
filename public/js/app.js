@@ -4,7 +4,7 @@ require(['config'], function(){
 
     //main setup
     require(['jquery', 'core/nav', 'core/notify', 'components/navbar'], function($, nav, notify){
-        
+
         //set up the ajax navigation
         nav.setup();
 

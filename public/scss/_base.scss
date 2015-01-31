@@ -1,0 +1,150 @@
+//base and global styles
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body{
+    font-family: $baseFontFamily;
+    color: $baseColor;
+    font-size: $baseFontSize;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.75em;
+}
+h3 {
+    font-size: 1.5em;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1.1em;
+}
+
+a {
+    text-decoration: none;
+    color: $linkColor;
+    &:hover {
+        color: $linkHoverColor;
+    }
+    &.big{
+        font-size: 1.2em;
+        i {
+            font-size: 3em;
+        }
+    }
+}
+
+form {
+
+    fieldset {
+        position: relative;
+        width: 100%;
+        border: solid 1px $borderColor;
+        @include border-radius(5px);
+        padding: 3em 0 0 0;
+        margin: 0;
+        @include box-shadow($borderColor, 1px, 1px, 3px);
+        legend {
+            font-size: 1.1em;
+            width: 100%;
+            width: 100%;
+            top: .5em;
+            @include flag;
+        }
+        & > div {
+            margin-left: .5em;
+            margin-bottom: 1em;
+            & > label {
+                display: block;
+                color : lighten($baseColor, 10%);
+                .asterix {
+                    font-size: 1.2em;
+                    font-style: italic;
+                    color: lighten(red, 5%);
+                }
+            }
+            & > input, & > button {
+                display: block;
+                margin-top: .2em;
+
+            }
+        }
+    }
+}
+
+input, textarea{
+    font-size: 1em;
+    border: solid 1px $borderColor;
+    @include border-radius(2px);
+    width: 200px;
+    text-indent: 5px;
+    &:hover, &:active, &:focus {
+        @include box-shadow(lighten($primaryColor, 20%), 0px, 0px, 2px );
+    }
+
+    &.micro {
+        width: 30px;
+    }
+    &.small {
+        width: 100px;
+    }
+    &.big {
+        width: 350px;
+        @include border-radius(3px);
+    }
+}
+
+input {
+    height: 30px;
+    line-height: 30px;
+}
+
+button {
+    font-size: .9em;
+    font-family: $baseFontFamily;
+    border: solid 1px $borderColor;
+/*    @include background-image(linear-gradient(#ffffff, #dfdfdf));*/
+    @include border-radius(3px);
+    padding: 4px 10px;
+
+    i.fa {
+        margin-right: 5px;
+    }
+
+    &.small {
+        padding: 3px 5px;
+        font-size: .8em;
+    }
+
+    &.big {
+        padding: 5px 12px;
+        font-size: 1em;
+    }
+
+    &.huge {
+        padding: 7px 15px;
+        font-size: 1.2em;
+    }
+
+    &:hover{
+        cursor: pointer;
+        /*@include background-image(linear-gradient(#ffffff, lighten($primaryColor, 42%)));*/
+    }
+
+    &.danger {
+        @include cbutton($errorBgColor, $errorBorderColor, $baseColor);
+    }
+    &.great {
+        @include cbutton($successBgColor, $successBorderColor, $baseColor);
+    }
+    &.highlight {
+        @include cbutton($primaryColor, $primaryColor, $invColor);
+    }
+}

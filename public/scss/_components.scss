@@ -1,0 +1,309 @@
+
+nav {
+    background-color: $navBgColor;
+    color: $navColor;
+    h1 {
+        @include logo();
+    }
+    a {
+        color: $navColor;
+        &:hover{
+            color: inherit;
+        }
+    }
+    ul > li {
+
+&:hover {
+            background-color: $navBgHoverColor;
+        }
+    }
+}
+
+footer {
+    background-color: $footerBgColor;
+    color: $footerColor;
+}
+
+#loader {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    font-size: 5em;
+    color: $primaryColor;
+    @include border-radius;
+    width: 3em;
+    height: 1em;
+    text-align: center;
+    margin: auto;
+    opacity: 0.2;
+    z-index: 10000;
+}
+
+#notifs {
+    position: absolute;
+    left: 50%;
+    z-index: 100000;
+    .msg {
+        position: relative;
+        left: -50%;
+        padding: .5em;
+        margin-top: .5em;
+        border: solid 1px #666;
+        @include border-radius;
+        background-color: #eee;
+        color: #333;
+        z-index: 100000;
+        opacity: 0.9;
+        &.msg-info {
+            background-color: #444;
+            color: #fff;
+            border-color: #CCC;
+            &:before {
+                @extend .fa;
+                @extend .fa-info;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-success {
+            background-color: #8EDA7C;
+            color: #fff;
+            border-color: darken(#8EDA7C, 5%);
+            &:before {
+                @extend .fa;
+                @extend .fa-check;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-failure {
+            background-color: #E35151;
+            color: #fff;
+            border-color: darken(#E35151, 5%);
+            &:before {
+                @extend .fa;
+                @extend .fa-exclamation;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-warning {
+            background-color: #E7732D;
+            color: #fff;
+            border-color: darken(#E7732D, 5%);
+            &:before {
+                @extend .fa;
+                @extend .fa-warning;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+        &.msg-error {
+            background-color: #E35151;
+            color: #fff;
+            border-color: darken(#E35151, 5%);
+            &:before {
+                @extend .fa;
+                @extend .fa-bug;
+                margin-right: .5em;
+                font-size: 1.1em;
+            }
+        }
+    }
+}
+
+.dropmenu {
+    display: inline-block;
+    position: relative;
+    .ctrl {
+        display: block;
+        position: relative;
+        @extend button;
+        &:after {
+            margin-left:10px;
+            @extend .fa;
+            @extend .fa-angle-down:before;
+        }
+     }
+    ul.options {
+        display: none;
+        position: absolute;
+        top: 40px;
+        color: $baseColor;
+        background-color: $baseBgColor;
+        z-index: 10000;
+        border: solid 1px $borderColor;
+        @include border-radius(4px);
+        li {
+            padding: 5px 0;
+            width: 100%;
+            border-bottom: solid 1px $borderColor;
+            a {
+                display:inline-block;
+                width: 100%;
+                padding: 5px 25px;
+                color: $baseColor;
+
+                &:hover {
+                    color: $invLinkColor;
+                    background-color: $linkHoverColor;
+                }
+                &.active:before {
+                    position: absolute;
+                    left: 5px;
+                    font-size: .9em;
+                    @extend .fa;
+                    @extend .fa-check;
+                }
+            }
+        }
+        &:before {
+            position:absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            top: -17px;
+            left: 15px;
+            border: solid 8px $borderColor;
+            border-color: transparent transparent $borderColor transparent;
+        }
+        &:after {
+            position:absolute;
+            content: '';
+            width: 0;
+            height: 0;
+            top: -16px;
+            left: 15px;
+            border: solid 8px $baseBgColor;
+            border-color: transparent transparent $baseBgColor transparent;
+        }
+    }
+
+    &.open {
+        .ctrl:after {
+            @extend .fa-angle-down:before;
+        }
+        .options {
+            display: block;
+        }
+    }
+}
+
+.selectbox {
+    border: solid 1px $borderColor;
+    background-color: $contentBgColor;
+    @include border-radius(4px);
+    @include box-shadow($borderColor, 1px, 1px, 3px);
+
+    & > h2 {
+        font-size: .9em;
+        height: 30px;
+        line-height: 30px;
+        background-color : darken($contentBgColor, 5%);
+        &:before {
+            color: #999;
+            font-size: .9em;
+            margin:0 10px 0 10px;
+            @extend .fa;
+            @extend .fa-angle-down;
+        }
+    }
+
+    .selectbox-item {
+
+        position: relative;
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        cursor: pointer;
+        a {
+            color: #333;
+            font-weight: bold;
+        }
+
+        &:first-child {
+            border-bottom: solid 1px $borderColor;
+        }
+        &:last-child {
+            border-top: solid 1px $borderColor;
+        }
+        &:after {
+            color: #999;
+            font-size: .9em;
+            position: absolute;
+            right: 15px;
+            height: 40px;
+            line-height: 40px;
+            @extend .fa;
+            @extend .fa-chevron-right:before;
+        }
+
+        &:hover, &.selectbox-selected {
+            background-color : darken($contentBgColor, 10%);
+            &:after {
+                color: #333;
+            }
+            .remover:before{
+               font-size: .8em;
+               position: absolute;
+               top: 3px;
+               right: 3px;
+               color: #999;
+               cursor: pointer;
+               @extend .fa;
+               @extend .fa-times-circle;
+            }
+        }
+
+       &.adder{
+            height: 30px;
+            line-height: 30px;
+            padding-left: inherit;
+           a {
+                font-weight: normal;
+                font-size: .9em;
+                color: $primaryColor;
+           }
+           &:before {
+                color: $primaryColor;
+                font-size: .8em;
+                margin:0 10px 0 10px;
+                @extend .fa;
+                @extend .fa-plus;
+           }
+           &:after {
+                content: inherit;
+           }
+           &:hover {
+                background-color: inherit;
+                color: $baseColor;
+                &:before, a {
+                    color: $baseColor;
+                }
+           }
+        }
+    }
+}
+
+.searchfield-result {
+    display: none;
+    position: absolute;
+    color: $baseColor;
+    background-color: $baseBgColor;
+    z-index: 10000;
+    border: solid 1px $borderColor;
+    @include border-radius(4px);
+
+    & > div {
+        position: relative;
+        padding: 5px 75px 5px 5px;
+        height: 100px;
+        border-bottom: solid 1px $borderColor;
+        .thumb {
+            top: 0;
+        }
+    }
+}
