@@ -1,7 +1,7 @@
 /**
- * BabyWishList Platform : A web application to build cool baby wish lists 
+ * BabyWishList Platform : A web application to build cool baby wish lists
  * Copyright (C) 2012  Bertrand CHEVRIER, KrampStudio
- *  
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
  * published by the Free Software Foundation, either version 3 of the
@@ -14,10 +14,10 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see http://www.gnu.org/licenses/agpl-3.0.txt
- * 
+ *
  * @author <a href="mailto:chevrier.bertrand@gmail.com">Bertrand Chevrier</a>
  * @license http://www.gnu.org/licenses/agpl-3.0.txt
- * @version 0.1.0 
+ * @version 0.1.0
  */
 
 var Bootstrap = require('./lib/bootstrap');
@@ -40,7 +40,7 @@ bootstrap.start({
 var logger = bootstrap.logger;
 var serverConf = bootstrap.conf.get('server');
 var sessionConf = bootstrap.conf.get('store').session;
-var server = restify.createServer(); 
+var server = restify.createServer();
 var sessions = require('client-sessions');
 var authenticator = require('./controllers/authenticator');
 var router = require('./controllers/router');
@@ -50,12 +50,12 @@ server.use(restify.queryParser());
 server.use(restify.bodyParser({ mapParams: false }));
 server.use(sessions({
     secret      : sessionConf.secret,
-    duration    : sessionConf.duration, 
+    duration    : sessionConf.duration,
     ephemeral   : true
 }));
 server.use(function(req, res, next){
     logger.info("%s %s : %j", req.method, req.url, req.params);
-    logger.debug("Session: %j", req.session_state);
+    logger.info("Session: %j", req.session_state);
     next();
 });
 

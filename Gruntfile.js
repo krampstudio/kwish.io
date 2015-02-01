@@ -27,6 +27,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
+        config : grunt.file.readJSON('config/config.json'),
 
         mkdir: {
             install: {
@@ -133,9 +134,35 @@ module.exports = function(grunt) {
                 livereload: 35729,
                 debounceDelay: 200
             },
-            preview: {
+            sass: {
                 files: ['public/**/*.scss'],
                 tasks : ['sass:preview']
+            }
+        },
+
+        nodemon : {
+            preview  : {
+                script : 'app.js',
+                options : {
+                    watch  : ['app.js', 'lib/**/*.js', 'controllers/**/*.js', 'config/**/*.js'],
+                    nodeArgs: ['--debug']
+                }
+            }
+        },
+
+        'node-inspector': {
+            preview: {
+                options: {
+                  'hidden': ['node_modules']
+                }
+            }
+        },
+        concurrent: {
+            preview: {
+                tasks: ['nodemon:preview', 'node-inspector', 'watch:sass'],
+                options: {
+                    logConcurrentOutput: true
+                }
             }
         },
     });
@@ -153,7 +180,8 @@ module.exports = function(grunt) {
     });
 
     // Tasks flow.
-    grunt.registerTask('install', "Prepare project", ['clean:install', 'mkdir:install', 'bower:install', 'copy:install']);
-    grunt.registerTask('test', ['preparetest' ,'nodeunit']);
-    grunt.registerTask('build', ['jshint', 'test', 'jsdoc']);
+    grunt.registerTask('install',   "Prepare project",      ['clean:install', 'mkdir:install', 'bower:install', 'copy:install']);
+    grunt.registerTask('test',      "Run unit tests",       ['preparetest' ,'nodeunit']);
+    grunt.registerTask('build',     "Build the project",    ['jshint', 'test', 'jsdoc']);
+    grunt.registerTask('preview',   "Run preview server",   ['concurrent:preview']);
 };
