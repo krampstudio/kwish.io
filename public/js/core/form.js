@@ -15,7 +15,7 @@ define(['jquery', 'lodash'], function($, _){
                     }, {}));
                 }
             });
-         
+
             $('.submiter', $form).click(function(e){
                 e.preventDefault();
                 e.stopPropagation();

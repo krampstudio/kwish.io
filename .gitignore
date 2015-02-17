@@ -7,4 +7,5 @@ build
 public/lib
 public/css
 config/config.json
+config/.config.json.backup
 tmp

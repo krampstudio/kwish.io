@@ -44,8 +44,9 @@ var server = restify.createServer();
 var sessions = require('client-sessions');
 var authenticator = require('./controllers/authenticator');
 var router = require('./controllers/router');
-var fileServer = new nstatic.Server('public');
+var fileServer = new nstatic.Server('public');//, { gzip : true });
 
+server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser({ mapParams: false }));
 server.use(sessions({
@@ -55,7 +56,7 @@ server.use(sessions({
 }));
 server.use(function(req, res, next){
     logger.info("%s %s : %j", req.method, req.url, req.params);
-    logger.info("Session: %j", req.session_state);
+    //logger.info("Session: %j", req.session_state);
     next();
 });
 
@@ -66,14 +67,20 @@ authenticator.setup(server);
 router.dispatch(server);
 
 //static resource loading
-server.get(/\.(css|js|png|ttf|svg|ico|txt)/, function(req, res){
-    fileServer.serve(req, res);
+server.get(/\.(scss|css|js|png|ttf|svg|eot|woff|ico|txt|map)$/, function(req, res){
+        fileServer.serve(req, res);
 });
 server.get(/views/, function(req, res){
     fileServer.serve(req, res);
 });
 server.get(/.*/, function(req, res, next){
+    console.log('otherwise serve index ' + req.url);
     fileServer.serveFile('index.html', 200, {}, req, res);
+});
+
+server.head(/.*/, function(req, res){
+    console.log('head on ' + req.url);
+
 });
 
 //start the server

@@ -2,6 +2,9 @@
 require(['config'], function(){
     'use strict';
 
+    //load components first
+    require(['components/xview']);
+
     //main setup
     require(['jquery', 'core/nav', 'core/notify', 'components/navbar'], function($, nav, notify){
 

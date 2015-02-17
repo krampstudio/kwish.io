@@ -24,17 +24,17 @@ define(['jquery', 'lodash', 'core/nav', 'core/session'], function($, _, nav, ses
                         $logoutMenu : $('.logout-menu', $elt),
                         $logout : $('#logout', $elt)
                     });
-                        
+
                     /**
                      * @event navbar#update.navbar
-                     */    
+                     */
                     $elt.on('update.navbar', function(){
                         self._updateLoginMenu($elt);
                     });
 
                     //update the login menu on initialisation
                     self._updateLoginMenu($elt);
-  
+
                     $elt.trigger('create.navbar');
                 }
             });
@@ -50,8 +50,8 @@ define(['jquery', 'lodash', 'core/nav', 'core/session'], function($, _, nav, ses
             var data = $elt.data('navbar');
             var login = session.get('login');
             if(login && _.isString(login) && !_.isEmpty(login)){
-                data.$loginMenu.hide();        
-                data.$logoutMenu.show().find('li:first-child > a').text(login);    
+                data.$loginMenu.hide();
+                data.$logoutMenu.show().find('li:first-child > a').text(login);
                 data.$logout.on('click', function(e){
                     e.preventDefault();
                     nav.api('/logout', function(data){
@@ -62,7 +62,7 @@ define(['jquery', 'lodash', 'core/nav', 'core/session'], function($, _, nav, ses
                     });
                 });
             } else {
-                data.$loginMenu.show(); 
+                data.$loginMenu.show();
                 data.$logoutMenu.hide().find('li:first-child > a').text('');
                 data.$logout.off('click');
             }
@@ -77,7 +77,7 @@ define(['jquery', 'lodash', 'core/nav', 'core/session'], function($, _, nav, ses
             return this.each(function(){
                 var $elt = $(this);
                 var data = $elt.data('navbar');
-                    
+
                 $elt.off('update.navbar');
                 data.$logout.off('click');
             });

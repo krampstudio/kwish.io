@@ -1,5 +1,5 @@
-define(['modernizr', 'jquery'], function(Modernizr, $){
-    'use strict';    
+define(['modernizr'], function(Modernizr){
+    'use strict';
 
     var prefix = 'kwish:';
 
@@ -8,11 +8,11 @@ define(['modernizr', 'jquery'], function(Modernizr, $){
     if(Modernizr.sessionstorage){
         store = window.sessionStorage;
     } else {
-        $.error('Implement cookie store');
+        throw new Error('Implement cookie store');
     }
 
     var Session = {
-        
+
         get : function(key){
             return store.getItem(prefix + key);
         },
@@ -22,7 +22,7 @@ define(['modernizr', 'jquery'], function(Modernizr, $){
         },
 
         isset : function(key){
-            return this.get(key) !== null; 
+            return this.get(key) !== null;
         },
 
         rm : function(key){

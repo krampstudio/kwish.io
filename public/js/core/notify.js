@@ -4,9 +4,9 @@ define(['jquery', 'lodash'], function($, _){
     var defaults = {
         timeout : 10000
     };
-    
+
     var notifier = {
-            
+
         stack : [],
         size  : 3,
         $container : $('#notifs'),
@@ -22,10 +22,10 @@ define(['jquery', 'lodash'], function($, _){
                     type : type,
                     content : content,
                     status : 'waiting'
-                }, 
+                },
                 _.defaults(options || {}, defaults))
             );
-            
+
             //in case of multiple additions
             setTimeout(function(){
                 self.show();
@@ -34,7 +34,7 @@ define(['jquery', 'lodash'], function($, _){
 
         show : function(){
             var self = this;
- 
+
             //how many messages we can show
             var size = this.size - (_.where(this.stack, {status : 'showing'}).length);
             if(size > 0 && this._showing === false){
@@ -49,7 +49,7 @@ define(['jquery', 'lodash'], function($, _){
                             setTimeout(function(){
                                 self.close(message);
                             }, message.timeout + (index * 100));
-                        }  
+                        }
                     });
                 this._showing = false;
             }
@@ -61,13 +61,13 @@ define(['jquery', 'lodash'], function($, _){
             });
             this.show();
         },
-    
+
         display : function(message){
             this.$container.append(this.tmpl(message));
         },
 
         close : function(message){
-            
+
             $('#msg-' + message.id, this.$container).slideUp(function(){
                 $(this).remove();
             });
@@ -100,5 +100,5 @@ define(['jquery', 'lodash'], function($, _){
         notify[type] = _.bind(notifier.add, notifier, type);
     });
 
-    return notify; 
+    return notify;
 });

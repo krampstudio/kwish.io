@@ -13,18 +13,23 @@ html, body{
 }
 h1 {
     font-size: 2em;
+    margin: 0;
 }
 h2 {
     font-size: 1.75em;
+    margin: 0;
 }
 h3 {
     font-size: 1.5em;
+    margin: 0;
 }
 h4 {
     font-size: 1.25em;
+    margin: 0;
 }
 h5 {
     font-size: 1.1em;
+    margin: 0;
 }
 
 a {
@@ -39,6 +44,16 @@ a {
             font-size: 3em;
         }
     }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+ul li {
+    margin: 0;
+    padding: 0;
 }
 
 form {
@@ -110,7 +125,7 @@ button {
     font-size: .9em;
     font-family: $baseFontFamily;
     border: solid 1px $borderColor;
-/*    @include background-image(linear-gradient(#ffffff, #dfdfdf));*/
+    @include bg-gradient(#dfdfdf);
     @include border-radius(3px);
     padding: 4px 10px;
 
@@ -135,7 +150,6 @@ button {
 
     &:hover{
         cursor: pointer;
-        /*@include background-image(linear-gradient(#ffffff, lighten($primaryColor, 42%)));*/
     }
 
     &.danger {

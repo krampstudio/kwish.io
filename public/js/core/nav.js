@@ -1,7 +1,7 @@
-define(['module', 'jquery', 'lodash', 'core/history', 'core/session', 'core/notify'], 
+define(['module', 'jquery', 'lodash', 'core/history', 'core/session', 'core/notify'],
 function(module, $, _, history, session, notify){
-    'use strict';   
- 
+    'use strict';
+
     var restricted  = module.config().restricted;
     var apiPath     = module.config().apiPath;
     var $container  = $('#container');
@@ -29,7 +29,7 @@ function(module, $, _, history, session, notify){
             if(module !== '' && module !== 'home'){
                 self.open(module);
             } else {
-                self.open('home'); 
+                self.open('home');
             }
         },
 
@@ -48,20 +48,20 @@ function(module, $, _, history, session, notify){
                 dispatch = true;
             }
             if(!this.isRestricted(ref)){
-                history.pushState({ module : ref, dispatch : dispatch } , ref, ref); 
+                history.pushState({ module : ref, dispatch : dispatch } , ref, ref);
                 this._open(ref, dispatch);
             }
         },
 
         api : function(url, options, cb){
-            var self = this; 
+            var self = this;
             //optionnal args
             if(_.isFunction(options) && cb === undefined){
                 cb = arguments[1];
                 options = {};
             }
             var defaults = {
-                type : 'GET', 
+                type : 'GET',
                 dataType : 'json'
             };
             if(session.isset('token')){
@@ -92,10 +92,10 @@ function(module, $, _, history, session, notify){
 
                 $loader.show();
                 $container.empty();
-    
+
                 setTimeout(function(){
                     $container.load(view, function(){
-                        $loader.hide();      
+                        $loader.hide();
                         $container.removeClass($container.prop('class')).addClass(ref);
                         if(dispatch === true){
                             require([controller], function(Controller){

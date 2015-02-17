@@ -1,8 +1,8 @@
 
-$navHeight : 50px; 
+$navHeight : 50px;
 $footerHeight : 50px;
 
-html, body {
+html, body, #wrapper {
     height: 100%;
     position: relative;
 }
@@ -12,9 +12,9 @@ nav {
     overflow: hidden;
     & > *, li {
         display: inline-block;
-    } 
+    }
     & > h1{
-        padding:.5em; 
+        padding:.5em;
     }
     & > a {
         vertical-align: top;
@@ -32,7 +32,7 @@ nav {
         }
     }
     .login-menu, .logout-menu{
-        @include zen-grid-item(6, 1, right); 
+        @include zen-grid-item(6, 1, right);
         text-align: right;
     }
     .logout-menu {
@@ -42,15 +42,19 @@ nav {
 
 
 #container {
+    height: auto;
+    min-height: 100%;
     padding-bottom: $footerHeight;
     @include zen-grid-container;
 }
 
 footer {
     height: $footerHeight;
+    margin-top: $footerHeight * -1;
     position: relative;
     bottom: 0;
     width: 100%;
+    clear: both;
 }
 
 .home {
@@ -76,7 +80,7 @@ footer {
         & > article:last-child {
             @include zen-grid-item(4, 9);
         }
-   } 
+   }
 }
 
 .login {
@@ -86,7 +90,7 @@ footer {
    }
    #register-form {
         @include zen-grid-item(4, 3, right);
-   } 
+   }
    #external-login {
         margin-top: .5em;
         #providers{
@@ -94,7 +98,7 @@ footer {
         }
         @include zen-clear(left);
         @include zen-grid-item(4, 3);
-   } 
+   }
 }
 
 .klistboard {
@@ -144,7 +148,7 @@ footer {
                     bottom: .5em;
                     overflow: hidden;
                 }
-            
+
                 @media only screen and (max-width : 480px) {
                     width: 100%;
                     padding-bottom: 100%;

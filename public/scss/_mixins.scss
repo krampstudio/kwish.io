@@ -1,15 +1,7 @@
-@mixin border-radius($radius : 3px) {
-    -moz-border-radius : $radius;
-    -webkit-border-radius : $radius;
-    -o-border-radius : $radius;
-    border-radius : $radius;
-}
 
-@mixin box-shadow($color : #333, $voffset : 0px, $hoffset : 0px , $spread :  1px) {
-
-    //TODO
-}
-
+/**
+ * Add a font awesome icon
+ */
 @mixin icon ($name, $pad) {
     @if $pad {
         &:before{
@@ -20,13 +12,45 @@
     @extend .fa-#{$name};
 }
 
+/**
+ * Border Radius
+ * @example @include border-radius(3px);
+ * @example @include border-radius(3px, 0, 0, 3px);
+ */
+@mixin border-radius($topLeft : 3px, $topRight : $topLeft, $bottomRight : $topLeft, $bottomLeft : $topLeft){
+    -moz-border-radius: $topRight $topLeft $bottomRight $bottomLeft;
+    -webkit-border-radius: $topRight $topLeft $bottomRight $bottomLeft;
+    border-radius: $topRight $topLeft $bottomRight $bottomLeft;
+}
+
+@mixin box-shadow($color: #666, $hoffset: 2px, $voffset: 2px, $blur : 2px, $spread : 2px){
+    -moz-box-shadow: $hoffset $voffset $blur $spread $color;
+    -webkit-box-shadow: $hoffset $voffset $blur $spread $color;
+    box-shadow: $hoffset $voffset $blur $spread $color;
+}
+
+@mixin bg-gradient($color){
+    $start : lighten($color, 10%);
+    $end   : darken($color, 5%);
+    background-color: $color;
+    background-image: -moz-linear-gradient(top, $start, $end);
+    background-image: -ms-linear-gradient(top, $start, $end);
+    background-image: -o-linear-gradient(top, $start, $end);
+    background-image: -webkit-linear-gradient(top, $start, $end);
+    background-image: linear-gradient(top, $start, $end);
+}
+
+@mixin text-shadow($color: #eee, $hoffset : 0, $voffset: 0, $blur : 1px){
+    text-shadow: $hoffset $voffset $blur $color;
+}
+
 @mixin flag() {
     background-color: $primaryColor;
     color: $invColor;
     position: absolute;
     padding:.25em .25em .25em 10px;
     margin:0 0 0 -10px;
-    @include box-shadow(#666, 2px, 2px);
+    @include box-shadow;
 
     &:before {
         content: '';
@@ -41,15 +65,16 @@
     }
 }
 
+
+
 //colored button
 @mixin cbutton($bg, $border, $color){
-    background-color: $bg;
     border: solid 1px $border;
     color: $color;
-    /*@include background-image(linear-gradient(lighten($bg, 10%), darken($bg, 5%)));*/
-//    @include single-text-shadow(0, 0, 1px, false, #eee);
+    @include bg-gradient($bg);
+    @include text-shadow;
     &:hover {
-        /*@include background-image(linear-gradient(lighten($bg, 15%), $bg));*/
+        @include bg-gradient(lighten($bg, 5%));
     }
 }
 
@@ -59,5 +84,5 @@
         $shadowColor : #aaa;
     }
     font-family: $logoFontFamily;
-    /*@include single-text-shadow(-1px, -1px, 0, false, $shadowColor);*/
+    @include text-shadow($shadowColor, -1px, -1px, 0);
 }

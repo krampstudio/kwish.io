@@ -96,25 +96,9 @@ module.exports = function(grunt) {
             }
         },
 
-        compass : {
-            compile: { },
-            watch : {
-                options: {
-                    watch : true
-                }
-            },
-            options : {
-                require: 'zen-grids',
-                basePath: 'public',
-                sassDir: 'sass',
-                cssDir: 'css'
-            }
-        },
-
         sass : {
             build: {
                 options : {
-                    sourceMap : true,
                     outputStyle: 'compressed'
                 },
                 files : {
@@ -123,20 +107,42 @@ module.exports = function(grunt) {
             },
 
             preview: {
+                options : {
+                    lineNumbers : true
+                },
                 files : {
                     'public/css/main.css' : [ 'public/scss/main.scss' ]
                 }
             }
         },
 
+        requirejs : {
+            build : {
+                options : {
+                    baseUrl : "public/js",
+                    mainConfigFile : 'public/js/config.js',
+                    optimize : 'uglify2',
+                    generateSourceMaps: true,
+                    preserveLicenseComments : false,
+                    findNestedDependencies : true,
+                    name : 'app',
+                    include : ['../lib/requirejs/require'],
+                    out : 'public/js/app.min.js'
+                }
+            }
+        },
+
         watch: {
             options: {
-                livereload: 35729,
-                debounceDelay: 200
+                debounceDelay: 5000
             },
             sass: {
-                files: ['public/**/*.scss'],
+                files: ['public/scss/*.scss'],
                 tasks : ['sass:preview']
+            },
+            requirejs : {
+                files: ['public/js/*.js', 'public/js/components/*.js', 'public/js/components/core/*.js'],
+                tasks : ['requirejs:build']
             }
         },
 
@@ -159,7 +165,7 @@ module.exports = function(grunt) {
         },
         concurrent: {
             preview: {
-                tasks: ['nodemon:preview', 'node-inspector', 'watch:sass'],
+                tasks: ['nodemon:preview', 'node-inspector', 'watch:sass', 'watch:requirejs'],
                 options: {
                     logConcurrentOutput: true
                 }
@@ -182,6 +188,6 @@ module.exports = function(grunt) {
     // Tasks flow.
     grunt.registerTask('install',   "Prepare project",      ['clean:install', 'mkdir:install', 'bower:install', 'copy:install']);
     grunt.registerTask('test',      "Run unit tests",       ['preparetest' ,'nodeunit']);
-    grunt.registerTask('build',     "Build the project",    ['jshint', 'test', 'jsdoc']);
+    grunt.registerTask('build',     "Build the project",    ['jshint', 'test', 'jsdoc', 'sassi:build', 'requirejs']);
     grunt.registerTask('preview',   "Run preview server",   ['concurrent:preview']);
 };
