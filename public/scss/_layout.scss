@@ -1,45 +1,42 @@
 
-$navHeight : 50px;
-$footerHeight : 50px;
 
 html, body, #wrapper {
     height: 100%;
     position: relative;
 }
-nav {
-    height: $navHeight;
-    padding:0;
-    overflow: hidden;
-    & > *, li {
-        display: inline-block;
+
+header {
+    height  : $navHeight;
+    padding : 0;
+
+    h1 {
+        display         : inline-block;
+        width           : 40%;
+        height          : $navHeight;
+        line-height     : $navHeight;
+        vertical-align  : top;
+        padding-left    : 1em;
     }
-    & > h1{
-        padding:.5em;
-    }
-    & > a {
-        vertical-align: top;
-        height: 3.5em;
-        line-height: 3.5em;
-        padding:0 .5em;
-    }
-    ul {
-        list-style-type: none;
-        vertical-align: top;
-        li {
-            height: 3.5em;
-            line-height: 3.5em;
-            padding:0 .5em;
+
+    nav {
+        height  : $navHeight;
+        padding : 0;
+        overflow: hidden;
+        display : inline-block;
+        ul {
+            list-style-type : none;
+            li, a {
+                display     : inline-block;
+                height      : $navHeight;
+                a {
+                    line-height : $navHeight;
+                    vertical-align  : top;
+                    padding: 0 .5em;
+                }
+            }
         }
     }
-    .login-menu, .logout-menu{
-        @include zen-grid-item(6, 1, right);
-        text-align: right;
-    }
-    .logout-menu {
-        display: none;
-    }
 }
-
 
 #container {
     height: auto;

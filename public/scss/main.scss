@@ -13,5 +13,10 @@ $fa-font-path : "../lib/font-awesome/fonts";
 @import "normalize.scss";
 @import "base.scss";
 @import "layout.scss";
-@import "components.scss";
-@import "views.scss";
+
+div, header, footer, nav, ul, li, section, article, aside {
+    border: solid 1px pink;
+}
+
+/*@import "components.scss";*/
+/*@import "views.scss";*/

@@ -58,10 +58,14 @@ $linkHoverColor: lighten($primaryColor, 5%);
 $invLinkColor: $invColor;
 $invLinkHoverColor: darken($primaryColor, 5%);
 
+
+$navHeight : 50px;
 $navBgColor: $invBgColor;
 $navBgHoverColor: lighten($navBgColor, 15%);
 $navColor: $invColor;
 
+
+$footerHeight : 50px;
 $footerBgColor: #666;
 $footerColor: $invColor;
 
