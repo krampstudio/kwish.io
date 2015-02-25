@@ -5,38 +5,82 @@ html, body, #wrapper {
     position: relative;
 }
 
-header {
+body > header {
     height  : $navHeight;
     padding : 0;
 
+    background-color : $navBgColor;
+    color            : $navColor;
+
+    &:after{
+        clear : both;
+    }
+
     h1 {
         display         : inline-block;
-        width           : 40%;
         height          : $navHeight;
         line-height     : $navHeight;
         vertical-align  : top;
         padding-left    : 1em;
+        a {
+            color : $navColor;
+            @include logo(true);
+        }
     }
 
     nav {
-        height  : $navHeight;
-        padding : 0;
-        overflow: hidden;
-        display : inline-block;
+        height          : $navHeight;
+        padding         : 0;
+        margin-right    : 1em;
+        overflow        : hidden;
+        float           : right;
         ul {
             list-style-type : none;
-            li, a {
+            li {
+                position    : relative;
                 display     : inline-block;
                 height      : $navHeight;
+                margin      : 0;
                 a {
-                    line-height : $navHeight;
+                    display         : inline-block;
+                    height          : $navHeight;
+                    line-height     : $navHeight;
                     vertical-align  : top;
-                    padding: 0 .5em;
+                    padding         : 0 .5em;
+                    color           : $navColor;
+                    &:hover {
+                        color : inherit;
+                    }
+                }
+
+                &:after{
+                    content: ' ';
+                    height: 0;
+                    width: 100%;
+                    position:absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+
+                @include transition(background-color);
+
+                &:hover{
+
+                    background-color : $navBgHoverColor;
+                    @include transition(background-color);
+
+                    &:after{
+                        background-color: $primaryColor;
+                        height: 5px;
+                        @include transition(height);
+                    }
                 }
             }
         }
     }
 }
+
+
 
 #container {
     height: auto;

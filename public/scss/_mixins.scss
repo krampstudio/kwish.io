@@ -84,3 +84,11 @@
     font-family: $logoFontFamily;
     @include text-shadow($shadowColor, -1px, -1px, 0);
 }
+
+@mixin transition($prop : all, $duration : 300ms, $fn : linear){
+    -webkit-transition  : $prop $duration $fn;
+    -moz-transition     : $prop $duration $fn;
+    -ms-transition      : $prop $duration $fn;
+    -o-transition       : $prop $duration $fn;
+    transition          : $prop $duration $fn;
+}
