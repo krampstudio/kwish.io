@@ -1,0 +1,37 @@
+//base and global styles
+@include global-reset;
+
+*, *:before, *:after {
+    @include box-sizing(border-box);
+}
+
+html, body{
+    font-family: $baseFontFamily;
+    color: $baseColor;
+    font-size: $baseFontSize;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.75em;
+}
+h3 {
+    font-size: 1.5em;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1.1em;
+}
+
+a {
+    text-decoration: none;
+    color: $linkColor;
+    &:hover {
+        color: $linkHoverColor;
+    }
+}
+
+

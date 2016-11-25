@@ -1,0 +1,1705 @@
+@CHARSET "UTF-8";
+@font-face {
+  font-family: 'Luckiest Guy';
+  font-style: normal;
+  font-weight: normal;
+  src: local("Luckiest Guy"), local("LuckiestGuy"), url("../fonts/Luckiest_Guy/LuckiestGuy.eot") format("eot"), url("../fonts/Luckiest_Guy/LuckiestGuy.woff") format("woff"), url("../fonts/Luckiest_Guy/LuckiestGuy.ttf") format("truetype"), url("../fonts/Luckiest_Guy/LuckiestGuy.svg") format("svg"); }
+@font-face {
+  font-family: 'Sintony';
+  font-style: normal;
+  font-weight: bold;
+  src: local("Sintony"), url("../fonts/Sintony/Sintony-Bold.eot") format("eot"), url("../fonts/Sintony/Sintony-Bold.woff") format("woff"), url("../fonts/Sintony/Sintony-Bold.ttf") format("truetype"), url("../fonts/Sintony/Sintony-Bold.svg") format("svg"); }
+@font-face {
+  font-family: 'Sintony';
+  font-style: normal;
+  font-weight: normal;
+  src: local("Sintony"), url("../fonts/Sintony/Sintony-Regular.eot") format("eot"), url("../fonts/Sintony/Sintony-Regular.woff") format("woff"), url("../fonts/Sintony/Sintony-Regular.ttf") format("truetype"), url("../fonts/Sintony/Sintony-Regular.svg") format("svg"); }
+@font-face {
+  font-family: 'kwico';
+  src: url("../fonts/kwico/kwico.eot?-4pk44n");
+  src: url("../fonts/kwico/kwico.eot?#iefix-4pk44n") format("embedded-opentype"), url("../fonts/kwico/kwico.woff?-4pk44n") format("woff"), url("../fonts/kwico/kwico.ttf?-4pk44n") format("truetype"), url("../fonts/kwico/kwico.svg?-4pk44n#kwico") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+/* line 2, ../scss/_icon.scss */
+[class^="kwico-"], [class*=" kwico-"], .home header p:after {
+  font-family: 'kwico';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; }
+
+/* line 19, ../scss/_icon.scss */
+.kwico-search:before {
+  content: "\f002"; }
+
+/* line 23, ../scss/_icon.scss */
+.kwico-user:before {
+  content: "\f007"; }
+
+/* line 27, ../scss/_icon.scss */
+.kwico-check:before {
+  content: "\f00c"; }
+
+/* line 31, ../scss/_icon.scss */
+.kwico-close:before {
+  content: "\f00d"; }
+
+/* line 35, ../scss/_icon.scss */
+.kwico-cog:before {
+  content: "\f013"; }
+
+/* line 39, ../scss/_icon.scss */
+.kwico-trash-o:before {
+  content: "\f014"; }
+
+/* line 43, ../scss/_icon.scss */
+.kwico-lock:before {
+  content: "\f023"; }
+
+/* line 47, ../scss/_icon.scss */
+.kwico-chevron-left:before {
+  content: "\f053"; }
+
+/* line 51, ../scss/_icon.scss */
+.kwico-chevron-right:before {
+  content: "\f054"; }
+
+/* line 55, ../scss/_icon.scss */
+.kwico-plus:before {
+  content: "\f067"; }
+
+/* line 59, ../scss/_icon.scss */
+.kwico-minus:before {
+  content: "\f068"; }
+
+/* line 63, ../scss/_icon.scss */
+.kwico-gift:before {
+  content: "\f06b"; }
+
+/* line 67, ../scss/_icon.scss */
+.kwico-exclamation-triangle:before {
+  content: "\f071"; }
+
+/* line 71, ../scss/_icon.scss */
+.kwico-chevron-up:before {
+  content: "\f077"; }
+
+/* line 75, ../scss/_icon.scss */
+.kwico-chevron-down:before {
+  content: "\f078"; }
+
+/* line 79, ../scss/_icon.scss */
+.kwico-cogs:before {
+  content: "\f085"; }
+
+/* line 83, ../scss/_icon.scss */
+.kwico-globe:before {
+  content: "\f0ac"; }
+
+/* line 87, ../scss/_icon.scss */
+.kwico-wrench:before {
+  content: "\f0ad"; }
+
+/* line 91, ../scss/_icon.scss */
+.kwico-tasks:before, .home header p:after {
+  content: "\f0ae"; }
+
+/* line 95, ../scss/_icon.scss */
+.kwico-bars:before {
+  content: "\f0c9"; }
+
+/* line 99, ../scss/_icon.scss */
+.kwico-dashboard:before {
+  content: "\f0e4"; }
+
+/* line 103, ../scss/_icon.scss */
+.kwico-cloud-download:before {
+  content: "\f0ed"; }
+
+/* line 107, ../scss/_icon.scss */
+.kwico-cloud-upload:before {
+  content: "\f0ee"; }
+
+/* line 111, ../scss/_icon.scss */
+.kwico-rocket:before {
+  content: "\f135"; }
+
+/* line 115, ../scss/_icon.scss */
+.kwico-unlock-alt:before {
+  content: "\f13e"; }
+
+/* line 119, ../scss/_icon.scss */
+.kwico-paper-plane:before {
+  content: "\f1d8"; }
+
+/* line 123, ../scss/_icon.scss */
+.kwico-paper-plane-o:before {
+  content: "\f1d9"; }
+
+/* line 127, ../scss/_icon.scss */
+.kwico-share-alt:before {
+  content: "\f1e0"; }
+
+/* line 131, ../scss/_icon.scss */
+.kwico-birthday-cake:before {
+  content: "\f1fd"; }
+
+/**/
+/**
+ * Add a font icon
+ */
+/**
+ * Border Radius
+ * @example @include border-radius(3px);
+ * @example @include border-radius(3px, 0, 0, 3px);
+ */
+/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+/* line 11, ../scss/_normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * Correct `inline-block` display not defined in IE 6/7/8/9 and Firefox 3.
+ */
+/* line 30, ../scss/_normalize.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1; }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 43, ../scss/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 7/8/9, Firefox 3, and Safari 4.
+ * Known issue: no IE 6 support.
+ */
+/* line 53, ../scss/_normalize.scss */
+[hidden] {
+  display: none; }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Correct text resizing oddly in IE 6/7 when body `font-size` is set using
+ *    `em` units.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 68, ../scss/_normalize.scss */
+html {
+  font-size: 100%;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Address `font-family` inconsistency between `textarea` and other form
+ * elements.
+ */
+/* line 79, ../scss/_normalize.scss */
+html,
+button,
+.dropmenu .ctrl,
+input,
+select,
+textarea {
+  font-family: sans-serif; }
+
+/**
+ * Address margins handled incorrectly in IE 6/7.
+ */
+/* line 91, ../scss/_normalize.scss */
+body {
+  margin: 0; }
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+/* line 103, ../scss/_normalize.scss */
+a:focus {
+  outline: thin dotted; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 111, ../scss/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address font sizes and margins set differently in IE 6/7.
+ * Address font sizes within `section` and `article` in Firefox 4+, Safari 5,
+ * and Chrome.
+ */
+/* line 126, ../scss/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* line 131, ../scss/_normalize.scss */
+h2 {
+  font-size: 1.5em;
+  margin: 0.83em 0; }
+
+/* line 136, ../scss/_normalize.scss */
+h3 {
+  font-size: 1.17em;
+  margin: 1em 0; }
+
+/* line 141, ../scss/_normalize.scss */
+h4 {
+  font-size: 1em;
+  margin: 1.33em 0; }
+
+/* line 146, ../scss/_normalize.scss */
+h5 {
+  font-size: 0.83em;
+  margin: 1.67em 0; }
+
+/* line 151, ../scss/_normalize.scss */
+h6 {
+  font-size: 0.67em;
+  margin: 2.33em 0; }
+
+/**
+ * Address styling not present in IE 7/8/9, Safari 5, and Chrome.
+ */
+/* line 160, ../scss/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome.
+ */
+/* line 168, ../scss/_normalize.scss */
+b,
+strong {
+  font-weight: bold; }
+
+/* line 173, ../scss/_normalize.scss */
+blockquote {
+  margin: 1em 40px; }
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+/* line 181, ../scss/_normalize.scss */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ * Known issue: no IE 6/7 normalization.
+ */
+/* line 190, ../scss/_normalize.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 6/7/8/9.
+ */
+/* line 200, ../scss/_normalize.scss */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Address margins set differently in IE 6/7.
+ */
+/* line 209, ../scss/_normalize.scss */
+p,
+pre {
+  margin: 1em 0; }
+
+/**
+ * Correct font family set oddly in IE 6, Safari 4/5, and Chrome.
+ */
+/* line 218, ../scss/_normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  _font-family: 'courier new', monospace;
+  font-size: 1em; }
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+/* line 231, ../scss/_normalize.scss */
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word; }
+
+/**
+ * Address CSS quotes not supported in IE 6/7.
+ */
+/* line 241, ../scss/_normalize.scss */
+q {
+  quotes: none; }
+
+/**
+ * Address `quotes` property not supported in Safari 4.
+ */
+/* line 249, ../scss/_normalize.scss */
+q:before,
+q:after {
+  content: '';
+  content: none; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 259, ../scss/_normalize.scss */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 267, ../scss/_normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+/* line 275, ../scss/_normalize.scss */
+sup {
+  top: -0.5em; }
+
+/* line 279, ../scss/_normalize.scss */
+sub {
+  bottom: -0.25em; }
+
+/* ==========================================================================
+   Lists
+   ========================================================================== */
+/**
+ * Address margins set differently in IE 6/7.
+ */
+/* line 291, ../scss/_normalize.scss */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0; }
+
+/* line 298, ../scss/_normalize.scss */
+dd {
+  margin: 0 0 0 40px; }
+
+/**
+ * Address paddings set differently in IE 6/7.
+ */
+/* line 306, ../scss/_normalize.scss */
+menu,
+ol,
+ul {
+  padding: 0 0 0 40px; }
+
+/**
+ * Correct list images handled incorrectly in IE 7.
+ */
+/* line 316, ../scss/_normalize.scss */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none; }
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * 1. Remove border when inside `a` element in IE 6/7/8/9 and Firefox 3.
+ * 2. Improve image quality when scaled in IE 7.
+ */
+/* line 331, ../scss/_normalize.scss */
+img {
+  border: 0;
+  /* 1 */
+  -ms-interpolation-mode: bicubic;
+  /* 2 */ }
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+/* line 340, ../scss/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+ */
+/* line 352, ../scss/_normalize.scss */
+figure {
+  margin: 0; }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Correct margin displayed oddly in IE 6/7.
+ */
+/* line 364, ../scss/_normalize.scss */
+form {
+  margin: 0; }
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 372, ../scss/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct color not being inherited in IE 6/7/8/9.
+ * 2. Correct text not wrapping in Firefox 3.
+ * 3. Correct alignment displayed oddly in IE 6/7.
+ */
+/* line 384, ../scss/_normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  white-space: normal;
+  /* 2 */
+  *margin-left: -7px;
+  /* 3 */ }
+
+/**
+ * 1. Correct font size not being inherited in all browsers.
+ * 2. Address margins set differently in IE 6/7, Firefox 3+, Safari 5,
+ *    and Chrome.
+ * 3. Improve appearance and consistency in all browsers.
+ */
+/* line 398, ../scss/_normalize.scss */
+button, .dropmenu .ctrl,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+  vertical-align: baseline;
+  /* 3 */
+  *vertical-align: middle;
+  /* 3 */ }
+
+/**
+ * Address Firefox 3+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 413, ../scss/_normalize.scss */
+button, .dropmenu .ctrl,
+input {
+  line-height: normal; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 6+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+/* line 425, ../scss/_normalize.scss */
+button, .dropmenu .ctrl,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ * 4. Remove inner spacing in IE 7 without affecting normal text inputs.
+ *    Known issue: inner spacing remains in IE 6.
+ */
+/* line 440, ../scss/_normalize.scss */
+button, .dropmenu .ctrl,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+  *overflow: visible;
+  /* 4 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 453, ../scss/_normalize.scss */
+button[disabled], .dropmenu [disabled].ctrl,
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * 1. Address box sizing set to content-box in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ * 3. Remove excess padding in IE 7.
+ *    Known issue: excess padding remains in IE 6.
+ */
+/* line 465, ../scss/_normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+  *height: 13px;
+  /* 3 */
+  *width: 13px;
+  /* 3 */ }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 479, ../scss/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+/* line 491, ../scss/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Remove inner padding and border in Firefox 3+.
+ */
+/* line 500, ../scss/_normalize.scss */
+button::-moz-focus-inner, .dropmenu .ctrl::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * 1. Remove default vertical scrollbar in IE 6/7/8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+/* line 511, ../scss/_normalize.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 524, ../scss/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* line 3, ../scss/_base.scss */
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* line 9, ../scss/_base.scss */
+html, body {
+  font-family: "Sintony", sans-serif;
+  color: #444;
+  font-size: 14px; }
+
+/* line 14, ../scss/_base.scss */
+h1 {
+  font-size: 2em;
+  margin: 0; }
+
+/* line 18, ../scss/_base.scss */
+h2 {
+  font-size: 1.75em;
+  margin: 0; }
+
+/* line 22, ../scss/_base.scss */
+h3 {
+  font-size: 1.5em;
+  margin: 0; }
+
+/* line 26, ../scss/_base.scss */
+h4 {
+  font-size: 1.25em;
+  margin: 0; }
+
+/* line 30, ../scss/_base.scss */
+h5 {
+  font-size: 1.1em;
+  margin: 0; }
+
+/* line 35, ../scss/_base.scss */
+a {
+  text-decoration: none;
+  color: #8d60a6; }
+  /* line 38, ../scss/_base.scss */
+  a:hover {
+    color: #a580b8; }
+  /* line 41, ../scss/_base.scss */
+  a.big {
+    font-size: 1.2em; }
+    /* line 43, ../scss/_base.scss */
+    a.big i {
+      font-size: 3em; }
+
+/* line 49, ../scss/_base.scss */
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+
+/* line 54, ../scss/_base.scss */
+ul li {
+  margin: 0;
+  padding: 0; }
+
+/* line 61, ../scss/_base.scss */
+form fieldset {
+  position: relative;
+  width: 100%;
+  border: solid 1px #cfcfcf;
+  -moz-border-radius: 5px 5px 5px 5px;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  padding: 3em 0 0 0;
+  margin: 0;
+  -moz-box-shadow: 1px 1px 3px 2px #cfcfcf;
+  -webkit-box-shadow: 1px 1px 3px 2px #cfcfcf;
+  box-shadow: 1px 1px 3px 2px #cfcfcf; }
+  /* line 69, ../scss/_base.scss */
+  form fieldset legend {
+    font-size: 1.1em;
+    width: 100%;
+    width: 100%;
+    top: .5em;
+    background-color: #9970AF;
+    color: #fff;
+    position: absolute;
+    padding: .25em .25em .25em 10px;
+    margin: 0 0 0 -10px;
+    -moz-box-shadow: 2px 2px 2px 2px #666;
+    -webkit-box-shadow: 2px 2px 2px 2px #666;
+    box-shadow: 2px 2px 2px 2px #666; }
+    /* line 55, ../scss/_mixins.scss */
+    form fieldset legend:before {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 100%;
+      left: 0;
+      border-width: 3px 5px;
+      border-style: solid;
+      border-color: #666 #666 transparent transparent; }
+  /* line 76, ../scss/_base.scss */
+  form fieldset > div {
+    margin-left: .5em;
+    margin-bottom: 1em; }
+    /* line 79, ../scss/_base.scss */
+    form fieldset > div > label {
+      display: block;
+      color: #5e5e5e; }
+      /* line 82, ../scss/_base.scss */
+      form fieldset > div > label .asterix {
+        font-size: 1.2em;
+        font-style: italic;
+        color: #ff1a1a; }
+    /* line 88, ../scss/_base.scss */
+    form fieldset > div > input, form fieldset > div > button, form .dropmenu fieldset > div > .ctrl, .dropmenu form fieldset > div > .ctrl {
+      display: block;
+      margin-top: .2em; }
+
+/* line 97, ../scss/_base.scss */
+input, textarea {
+  font-size: 1em;
+  border: solid 1px #cfcfcf;
+  -moz-border-radius: 2px 2px 2px 2px;
+  -webkit-border-radius: 2px 2px 2px 2px;
+  border-radius: 2px 2px 2px 2px;
+  width: 200px;
+  text-indent: 5px; }
+  /* line 103, ../scss/_base.scss */
+  input:hover, input:active, input:focus, textarea:hover, textarea:active, textarea:focus {
+    -moz-box-shadow: 0px 0px 2px 2px #c8b1d4;
+    -webkit-box-shadow: 0px 0px 2px 2px #c8b1d4;
+    box-shadow: 0px 0px 2px 2px #c8b1d4; }
+  /* line 107, ../scss/_base.scss */
+  input.micro, textarea.micro {
+    width: 30px; }
+  /* line 110, ../scss/_base.scss */
+  input.small, textarea.small {
+    width: 100px; }
+  /* line 113, ../scss/_base.scss */
+  input.big, textarea.big {
+    width: 350px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px; }
+
+/* line 119, ../scss/_base.scss */
+input {
+  height: 30px;
+  line-height: 30px; }
+
+/* line 124, ../scss/_base.scss */
+button, .dropmenu .ctrl {
+  font-size: .9em;
+  font-family: "Sintony", sans-serif;
+  border: solid 1px #cfcfcf;
+  background-color: #dfdfdf;
+  background-image: -moz-linear-gradient(top, #f9f9f9, #d2d2d2);
+  background-image: -ms-linear-gradient(top, #f9f9f9, #d2d2d2);
+  background-image: -o-linear-gradient(top, #f9f9f9, #d2d2d2);
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #d2d2d2);
+  background-image: linear-gradient(top, #f9f9f9, #d2d2d2);
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  padding: 4px 10px; }
+  /* line 132, ../scss/_base.scss */
+  button i.fa, .dropmenu .ctrl i.fa {
+    margin-right: 5px; }
+  /* line 136, ../scss/_base.scss */
+  button.small, .dropmenu .small.ctrl {
+    padding: 3px 5px;
+    font-size: .8em; }
+  /* line 141, ../scss/_base.scss */
+  button.big, .dropmenu .big.ctrl {
+    padding: 5px 12px;
+    font-size: 1em; }
+  /* line 146, ../scss/_base.scss */
+  button.huge, .dropmenu .huge.ctrl {
+    padding: 7px 15px;
+    font-size: 1.2em; }
+  /* line 151, ../scss/_base.scss */
+  button:hover, .dropmenu .ctrl:hover {
+    cursor: pointer; }
+  /* line 155, ../scss/_base.scss */
+  button.danger, .dropmenu .danger.ctrl {
+    border: solid 1px #df3b3b;
+    color: #444;
+    background-color: #E35151;
+    background-image: -moz-linear-gradient(top, #ea7d7d, #df3b3b);
+    background-image: -ms-linear-gradient(top, #ea7d7d, #df3b3b);
+    background-image: -o-linear-gradient(top, #ea7d7d, #df3b3b);
+    background-image: -webkit-linear-gradient(top, #ea7d7d, #df3b3b);
+    background-image: linear-gradient(top, #ea7d7d, #df3b3b);
+    text-shadow: 0 0 1px #eee; }
+    /* line 74, ../scss/_mixins.scss */
+    button.danger:hover, .dropmenu .danger.ctrl:hover {
+      background-color: #e76767;
+      background-image: -moz-linear-gradient(top, #ee9393, #e35151);
+      background-image: -ms-linear-gradient(top, #ee9393, #e35151);
+      background-image: -o-linear-gradient(top, #ee9393, #e35151);
+      background-image: -webkit-linear-gradient(top, #ee9393, #e35151);
+      background-image: linear-gradient(top, #ee9393, #e35151); }
+  /* line 158, ../scss/_base.scss */
+  button.great, .dropmenu .great.ctrl {
+    border: solid 1px #7dd468;
+    color: #444;
+    background-color: #8EDA7C;
+    background-image: -moz-linear-gradient(top, #b0e5a4, #7dd468);
+    background-image: -ms-linear-gradient(top, #b0e5a4, #7dd468);
+    background-image: -o-linear-gradient(top, #b0e5a4, #7dd468);
+    background-image: -webkit-linear-gradient(top, #b0e5a4, #7dd468);
+    background-image: linear-gradient(top, #b0e5a4, #7dd468);
+    text-shadow: 0 0 1px #eee; }
+    /* line 74, ../scss/_mixins.scss */
+    button.great:hover, .dropmenu .great.ctrl:hover {
+      background-color: #9fe090;
+      background-image: -moz-linear-gradient(top, #c1ebb8, #8eda7c);
+      background-image: -ms-linear-gradient(top, #c1ebb8, #8eda7c);
+      background-image: -o-linear-gradient(top, #c1ebb8, #8eda7c);
+      background-image: -webkit-linear-gradient(top, #c1ebb8, #8eda7c);
+      background-image: linear-gradient(top, #c1ebb8, #8eda7c); }
+  /* line 161, ../scss/_base.scss */
+  button.highlight, .dropmenu .highlight.ctrl {
+    border: solid 1px #9970AF;
+    color: #fff;
+    background-color: #9970AF;
+    background-image: -moz-linear-gradient(top, #b091c1, #8d60a6);
+    background-image: -ms-linear-gradient(top, #b091c1, #8d60a6);
+    background-image: -o-linear-gradient(top, #b091c1, #8d60a6);
+    background-image: -webkit-linear-gradient(top, #b091c1, #8d60a6);
+    background-image: linear-gradient(top, #b091c1, #8d60a6);
+    text-shadow: 0 0 1px #eee; }
+    /* line 74, ../scss/_mixins.scss */
+    button.highlight:hover, .dropmenu .highlight.ctrl:hover {
+      background-color: #a580b8;
+      background-image: -moz-linear-gradient(top, #bca1ca, #9970af);
+      background-image: -ms-linear-gradient(top, #bca1ca, #9970af);
+      background-image: -o-linear-gradient(top, #bca1ca, #9970af);
+      background-image: -webkit-linear-gradient(top, #bca1ca, #9970af);
+      background-image: linear-gradient(top, #bca1ca, #9970af); }
+
+/* line 1, ../scss/_layout.scss */
+html, body {
+  height: 100%;
+  position: relative; }
+
+/* line 6, ../scss/_layout.scss */
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+  /* line 22, ../scss/_layout.scss */
+  body > header {
+    height: 50px;
+    padding: 0;
+    background-color: #333;
+    color: #fff; }
+    /* line 29, ../scss/_layout.scss */
+    body > header:after {
+      clear: both; }
+    /* line 33, ../scss/_layout.scss */
+    body > header h1 {
+      display: inline-block;
+      height: 50px;
+      line-height: 50px;
+      vertical-align: top;
+      padding-left: 1rem; }
+      /* line 39, ../scss/_layout.scss */
+      body > header h1 a {
+        color: #fff;
+        font-family: "Luckiest Guy", cursive;
+        text-shadow: -1px -1px 0 #666; }
+    /* line 45, ../scss/_layout.scss */
+    body > header nav {
+      height: 50px;
+      padding: 0;
+      margin-right: 1em;
+      overflow: hidden;
+      float: right; }
+      /* line 51, ../scss/_layout.scss */
+      body > header nav ul {
+        list-style-type: none; }
+        /* line 53, ../scss/_layout.scss */
+        body > header nav ul li {
+          position: relative;
+          display: inline-block;
+          height: 50px;
+          margin: 0;
+          -webkit-transition: background-color 300ms linear;
+          -moz-transition: background-color 300ms linear;
+          -ms-transition: background-color 300ms linear;
+          -o-transition: background-color 300ms linear;
+          transition: background-color 300ms linear; }
+          /* line 58, ../scss/_layout.scss */
+          body > header nav ul li a {
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            vertical-align: top;
+            padding: 0 .5rem;
+            color: #fff; }
+            /* line 65, ../scss/_layout.scss */
+            body > header nav ul li a:hover {
+              color: inherit; }
+          /* line 70, ../scss/_layout.scss */
+          body > header nav ul li:after {
+            content: ' ';
+            height: 0;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0; }
+          /* line 81, ../scss/_layout.scss */
+          body > header nav ul li:hover {
+            background-color: #363636;
+            -webkit-transition: background-color 300ms linear;
+            -moz-transition: background-color 300ms linear;
+            -ms-transition: background-color 300ms linear;
+            -o-transition: background-color 300ms linear;
+            transition: background-color 300ms linear; }
+            /* line 86, ../scss/_layout.scss */
+            body > header nav ul li:hover:after {
+              background-color: #9970AF;
+              height: 5px;
+              -webkit-transition: height 300ms linear;
+              -moz-transition: height 300ms linear;
+              -ms-transition: height 300ms linear;
+              -o-transition: height 300ms linear;
+              transition: height 300ms linear; }
+  /* line 97, ../scss/_layout.scss */
+  body > main {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto; }
+    /* line 45, ../scss/zen/_grids.scss */
+    body > main:before, body > main:after {
+      content: "";
+      display: table; }
+    /* line 50, ../scss/zen/_grids.scss */
+    body > main:after {
+      clear: both; }
+  /* line 106, ../scss/_layout.scss */
+  body > footer {
+    min-height: 50px;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+    text-align: center; }
+
+/* line 120, ../scss/_layout.scss */
+.home header {
+  height: 275px; }
+/* line 124, ../scss/_layout.scss */
+.home section[role=search], .home section[role=action] {
+  text-align: center;
+  margin: 50px 0; }
+/* line 129, ../scss/_layout.scss */
+.home section[role=brand] {
+  margin: 10px 15%; }
+  /* line 131, ../scss/_layout.scss */
+  .home section[role=brand] > article {
+    margin: 10px;
+    float: left;
+    width: 33.33333%;
+    margin-left: 33.33333%;
+    margin-right: -66.66667%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word; }
+  /* line 135, ../scss/_layout.scss */
+  .home section[role=brand] > article:first-child {
+    float: left;
+    width: 33.33333%;
+    margin-left: 0%;
+    margin-right: -33.33333%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word; }
+  /* line 138, ../scss/_layout.scss */
+  .home section[role=brand] > article:last-child {
+    float: left;
+    width: 33.33333%;
+    margin-left: 66.66667%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word; }
+
+/* line 144, ../scss/_layout.scss */
+.login {
+  padding: 2em 0; }
+  /* line 146, ../scss/_layout.scss */
+  .login #login-form {
+    float: left;
+    width: 33.33333%;
+    margin-left: 16.66667%;
+    margin-right: -50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word; }
+  /* line 149, ../scss/_layout.scss */
+  .login #register-form {
+    float: right;
+    width: 33.33333%;
+    margin-right: 16.66667%;
+    margin-left: -50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word; }
+  /* line 152, ../scss/_layout.scss */
+  .login #external-login {
+    margin-top: .5em;
+    clear: left;
+    float: left;
+    width: 33.33333%;
+    margin-left: 16.66667%;
+    margin-right: -50%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word; }
+    /* line 154, ../scss/_layout.scss */
+    .login #external-login #providers {
+      text-align: center; }
+
+/* line 2, ../scss/_components.scss */
+#loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  font-size: 5em;
+  color: #9970AF;
+  -moz-border-radius: 3px 3px 3px 3px;
+  -webkit-border-radius: 3px 3px 3px 3px;
+  border-radius: 3px 3px 3px 3px;
+  width: 3em;
+  height: 1em;
+  text-align: center;
+  margin: auto;
+  opacity: 0.2;
+  z-index: 10000; }
+
+/* line 19, ../scss/_components.scss */
+#notifs {
+  position: absolute;
+  left: 50%;
+  z-index: 100000; }
+  /* line 23, ../scss/_components.scss */
+  #notifs .msg {
+    position: relative;
+    left: -50%;
+    padding: .5em;
+    margin-top: .5em;
+    border: solid 1px #666;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+    background-color: #eee;
+    color: #333;
+    z-index: 100000;
+    opacity: 0.9; }
+    /* line 34, ../scss/_components.scss */
+    #notifs .msg.msg-info {
+      background-color: #444;
+      color: #fff;
+      border-color: #CCC; }
+      /* line 38, ../scss/_components.scss */
+      #notifs .msg.msg-info:before {
+        /*@extend .fa;*/
+        /*@extend .fa-info;*/
+        margin-right: .5em;
+        font-size: 1.1em; }
+    /* line 46, ../scss/_components.scss */
+    #notifs .msg.msg-success {
+      background-color: #8EDA7C;
+      color: #fff;
+      border-color: #7dd468; }
+      /* line 50, ../scss/_components.scss */
+      #notifs .msg.msg-success:before {
+        /*@extend .fa;*/
+        /*@extend .fa-check;*/
+        margin-right: .5em;
+        font-size: 1.1em; }
+    /* line 57, ../scss/_components.scss */
+    #notifs .msg.msg-failure {
+      background-color: #E35151;
+      color: #fff;
+      border-color: #df3b3b; }
+      /* line 61, ../scss/_components.scss */
+      #notifs .msg.msg-failure:before {
+        /*@extend .fa;*/
+        /*@extend .fa-exclamation;*/
+        margin-right: .5em;
+        font-size: 1.1em; }
+    /* line 68, ../scss/_components.scss */
+    #notifs .msg.msg-warning {
+      background-color: #E7732D;
+      color: #fff;
+      border-color: #e1651a; }
+      /* line 72, ../scss/_components.scss */
+      #notifs .msg.msg-warning:before {
+        /*@extend .fa;*/
+        /*@extend .fa-warning;*/
+        margin-right: .5em;
+        font-size: 1.1em; }
+    /* line 79, ../scss/_components.scss */
+    #notifs .msg.msg-error {
+      background-color: #E35151;
+      color: #fff;
+      border-color: #df3b3b; }
+      /* line 83, ../scss/_components.scss */
+      #notifs .msg.msg-error:before {
+        /*@extend .fa;*/
+        /*@extend .fa-bug;*/
+        margin-right: .5em;
+        font-size: 1.1em; }
+
+/* line 93, ../scss/_components.scss */
+.dropmenu {
+  display: inline-block;
+  position: relative; }
+  /* line 96, ../scss/_components.scss */
+  .dropmenu .ctrl {
+    display: block;
+    position: relative; }
+    /* line 100, ../scss/_components.scss */
+    .dropmenu .ctrl:after {
+      margin-left: 10px;
+      /*@extend .fa;*/
+      /*@extend .fa-angle-down:before;*/ }
+  /* line 106, ../scss/_components.scss */
+  .dropmenu ul.options {
+    display: none;
+    position: absolute;
+    top: 40px;
+    color: #444;
+    background-color: #fff;
+    z-index: 10000;
+    border: solid 1px #cfcfcf;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px; }
+    /* line 115, ../scss/_components.scss */
+    .dropmenu ul.options li {
+      padding: 5px 0;
+      width: 100%;
+      border-bottom: solid 1px #cfcfcf; }
+      /* line 119, ../scss/_components.scss */
+      .dropmenu ul.options li a {
+        display: inline-block;
+        width: 100%;
+        padding: 5px 25px;
+        color: #444; }
+        /* line 125, ../scss/_components.scss */
+        .dropmenu ul.options li a:hover {
+          color: #fff;
+          background-color: #a580b8; }
+        /* line 129, ../scss/_components.scss */
+        .dropmenu ul.options li a.active:before {
+          position: absolute;
+          left: 5px;
+          font-size: .9em;
+          /*@extend .fa;*/
+          /*@extend .fa-check;*/ }
+    /* line 138, ../scss/_components.scss */
+    .dropmenu ul.options:before {
+      position: absolute;
+      content: '';
+      width: 0;
+      height: 0;
+      top: -17px;
+      left: 15px;
+      border: solid 8px #cfcfcf;
+      border-color: transparent transparent #cfcfcf transparent; }
+    /* line 148, ../scss/_components.scss */
+    .dropmenu ul.options:after {
+      position: absolute;
+      content: '';
+      width: 0;
+      height: 0;
+      top: -16px;
+      left: 15px;
+      border: solid 8px #fff;
+      border-color: transparent transparent #fff transparent; }
+  /* line 161, ../scss/_components.scss */
+  .dropmenu.open .ctrl:after {
+    /*@extend .fa-angle-down:before;*/ }
+  /* line 164, ../scss/_components.scss */
+  .dropmenu.open .options {
+    display: block; }
+
+/*
+.selectbox {
+    border: solid 1px $borderColor;
+    background-color: $contentBgColor;
+    @include border-radius(4px);
+    @include box-shadow($borderColor, 1px, 1px, 3px);
+
+    & > h2 {
+        font-size: .9em;
+        height: 30px;
+        line-height: 30px;
+        background-color : darken($contentBgColor, 5%);
+        &:before {
+            color: #999;
+            font-size: .9em;
+            margin:0 10px 0 10px;
+            @extend .fa;
+            @extend .fa-angle-down;
+        }
+    }
+
+    .selectbox-item {
+
+        position: relative;
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        cursor: pointer;
+        a {
+            color: #333;
+            font-weight: bold;
+        }
+
+        &:first-child {
+            border-bottom: solid 1px $borderColor;
+        }
+        &:last-child {
+            border-top: solid 1px $borderColor;
+        }
+        &:after {
+            color: #999;
+            font-size: .9em;
+            position: absolute;
+            right: 15px;
+            height: 40px;
+            line-height: 40px;
+            @extend .fa;
+            @extend .fa-chevron-right:before;
+        }
+
+        &:hover, &.selectbox-selected {
+            background-color : darken($contentBgColor, 10%);
+            &:after {
+                color: #333;
+            }
+            .remover:before{
+               font-size: .8em;
+               position: absolute;
+               top: 3px;
+               right: 3px;
+               color: #999;
+               cursor: pointer;
+               @extend .fa;
+               @extend .fa-times-circle;
+            }
+        }
+
+       &.adder{
+            height: 30px;
+            line-height: 30px;
+            padding-left: inherit;
+           a {
+                font-weight: normal;
+                font-size: .9em;
+                color: $primaryColor;
+           }
+           &:before {
+                color: $primaryColor;
+                font-size: .8em;
+                margin:0 10px 0 10px;
+                @extend .fa;
+                @extend .fa-plus;
+           }
+           &:after {
+                content: inherit;
+           }
+           &:hover {
+                background-color: inherit;
+                color: $baseColor;
+                &:before, a {
+                    color: $baseColor;
+                }
+           }
+        }
+    }
+}
+*/
+/* line 268, ../scss/_components.scss */
+.searchfield-result {
+  display: none;
+  position: absolute;
+  color: #444;
+  background-color: #fff;
+  z-index: 10000;
+  border: solid 1px #cfcfcf;
+  -moz-border-radius: 4px 4px 4px 4px;
+  -webkit-border-radius: 4px 4px 4px 4px;
+  border-radius: 4px 4px 4px 4px; }
+  /* line 277, ../scss/_components.scss */
+  .searchfield-result > div {
+    position: relative;
+    padding: 5px 75px 5px 5px;
+    height: 100px;
+    border-bottom: solid 1px #cfcfcf; }
+    /* line 282, ../scss/_components.scss */
+    .searchfield-result > div .thumb {
+      top: 0; }
+
+/* line 3, ../scss/_views.scss */
+.home header {
+  position: relative;
+  background-image: url("../imgs/bg.png");
+  color: #fff;
+  font-family: "Luckiest Guy", cursive;
+  text-shadow: -1px -1px 0 #666; }
+  /* line 8, ../scss/_views.scss */
+  .home header h1 {
+    padding-top: 50px;
+    font-size: 4em;
+    text-align: center; }
+  /* line 13, ../scss/_views.scss */
+  .home header p {
+    margin-top: 20px;
+    font-size: 2em;
+    text-align: center; }
+    /* line 17, ../scss/_views.scss */
+    .home header p:after {
+      display: block;
+      font-size: 4em;
+      opacity: .1; }
+      /* line 7, ../scss/_mixins.scss */
+      .home header p:after:before {
+        padding: 0; }
+/* line 45, ../scss/zen/_grids.scss */
+.home section[role=brand]:before, .home section[role=brand]:after {
+  content: "";
+  display: table; }
+/* line 50, ../scss/zen/_grids.scss */
+.home section[role=brand]:after {
+  clear: both; }
+/* line 28, ../scss/_views.scss */
+.home section[role=brand] > article .fa {
+  font-size: 3em;
+  float: left;
+  width: 16.66667%;
+  margin-left: 0%;
+  margin-right: -16.66667%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word; }
+/* line 32, ../scss/_views.scss */
+.home section[role=brand] > article h3 {
+  font-weight: bold;
+  float: right;
+  width: 83.33333%;
+  margin-right: 0%;
+  margin-left: -83.33333%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word; }
+/* line 36, ../scss/_views.scss */
+.home section[role=brand] > article p {
+  margin-top: 5px;
+  clear: right;
+  float: right;
+  width: 83.33333%;
+  margin-right: 0%;
+  margin-left: -83.33333%;
+  padding-left: 10px;
+  padding-right: 10px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  word-wrap: break-word; }
+
+/* line 46, ../scss/_views.scss */
+.klistboard .boardbar {
+  background-color: #9970AF;
+  color: #fff; }
+  /* line 45, ../scss/zen/_grids.scss */
+  .klistboard .boardbar:before, .klistboard .boardbar:after {
+    content: "";
+    display: table; }
+  /* line 50, ../scss/zen/_grids.scss */
+  .klistboard .boardbar:after {
+    clear: both; }
+  /* line 51, ../scss/_views.scss */
+  .klistboard .boardbar .select-klist {
+    float: left;
+    width: 16.66667%;
+    margin-left: 0%;
+    margin-right: -16.66667%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    text-align: left;
+    height: 3rem;
+    padding: .5rem 1rem;
+    line-height: 1rem; }
+    /* line 57, ../scss/_views.scss */
+    .klistboard .boardbar .select-klist a {
+      font-size: 2rem;
+      color: #fff; }
+  /* line 62, ../scss/_views.scss */
+  .klistboard .boardbar h3 {
+    float: left;
+    width: 58.33333%;
+    margin-left: 16.66667%;
+    margin-right: -75%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    text-align: center;
+    height: 3rem;
+    padding: 1rem;
+    line-height: 1rem; }
+  /* line 69, ../scss/_views.scss */
+  .klistboard .boardbar .klist-actions {
+    float: left;
+    width: 25%;
+    margin-left: 75%;
+    margin-right: -100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    text-align: right;
+    height: 3rem;
+    padding: .75rem .5rem;
+    line-height: 1rem; }
+    /* line 75, ../scss/_views.scss */
+    .klistboard .boardbar .klist-actions a {
+      font-size: 1.5rem;
+      margin: 0 .5rem;
+      color: #fff; }
+
+/*
+.klistboard {
+    & > aside {
+
+        @include zen-grid-item(3, 1);
+        margin: 0;
+        padding: 0;
+
+        h2 {
+            margin: 0;
+            padding: 0.5rem;
+            background-color : $primaryColor;
+            color            : $invColor;
+        }
+        .selectbox-item {
+
+            position: relative;
+            padding: 0;
+            margin: -1px 0 0 0;
+            height: 3rem;
+            background-color: $baseBgColor;
+            color: $baseColor;
+            border: solid 1px $primaryColor;
+            a {
+               color: inherit;
+                font-weight: bold;
+            }
+            &:before {
+                @extend .fa;
+                @extend .fa-chevron-right:before;
+                width: 3rem;
+                height: 3rem;
+                line-height: 3rem;
+                text-align: center;
+
+                background-color: lighten($primaryColor, 35%);
+                color: $primaryColor;
+                border: solid 1px $primaryColor;
+                padding: 0;
+                margin: 0;
+                position: relative;
+                top: -1px;
+                left: -1px;
+            }
+            &.adder{
+                &:before {
+                    @extend .fa-plus:before;
+                }
+            }
+
+        }
+    }
+    #klist, #kitems {
+        @include zen-grid-item(9, 1, right);
+    }
+    #kitems {
+        @include zen-clear(right);
+        &.cards {
+            .kitem {
+                float: left;
+                position: relative;
+                width: 20%;
+                padding-bottom: 20%;
+                & > div {
+                    position: absolute;
+                    left: .5em;
+                    right: .5em;
+                    top: .5em;
+                    bottom: .5em;
+                    overflow: hidden;
+                }
+
+                @media only screen and (max-width : 480px) {
+                    width: 100%;
+                    padding-bottom: 100%;
+                }
+                @media only screen and (max-width : 650px) and (min-width : 481px) {
+                    width: 50%;
+                    padding-bottom: 50%;
+                }
+                @media only screen and (max-width : 1050px) and (min-width : 651px) {
+                    width: 33.3%;
+                    padding-bottom: 33.3%;
+                }
+                @media only screen and (max-width : 1290px) and (min-width : 1051px) {
+                    width: 25%;
+                    padding-bottom: 25%;
+                }
+            }
+        }
+    }
+}
+.klistboard{
+    background-color: $contentBgColor;
+
+    #klist {
+        padding: 10px;
+        & > h1 {
+            margin-bottom: 10px;
+        }
+        .desc {
+            margin-left: .5em;
+        }
+        .actions {
+            clear: both;
+        }
+    }
+
+    #kitems {
+        .kitem {
+            border: solid 1px $borderColor;
+            background-color: #ffffff;
+            @include border-radius(4px);
+            @include box-shadow($borderColor, 1px, 1px, 3px);
+            position: relative;
+            &:before{
+                position: absolute;
+                font-size: .9em;
+                color: #999;
+                @extend .fa;
+                @extend .fa-angle-right;
+            }
+            & > div {
+                width: 100%;
+                padding: 0 5px 0 20px;
+
+                position: relative;
+                top: 0;
+                 .placeholder{
+                    @extend .fa;
+                    @extend .fa-picture-o;
+                    color: #ccc;
+                    border: dashed 1px $borderColor;
+                    @include border-radius(1px);
+                    font-size: 3.5em;
+                    padding: 3px;
+                }
+                .thumb {
+                    position: absolute;
+                    right: 0;
+                }
+            }
+
+            &.adder {
+                &:before{
+                    @extend .fa-plus;
+                }
+            }
+        }
+    }
+}
+*/
+
+/*# sourceMappingURL=main.css.map */

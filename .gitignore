@@ -1,10 +1,5 @@
-.c9revisions
 node_modules
 *.swp
-.sass-cache
-logs
-build
-public/lib
-public/css
 config/config.json
 tmp
+rethink_data

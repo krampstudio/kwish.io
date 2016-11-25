@@ -1,8 +1,8 @@
 {
-  "name": "BabyWishList",
-  "description": "A cool baby [shower] wish list builder",
+  "name": "kwish.io",
+  "description": "A cool baby [shower] / weddings / anything wish list builder",
   "version": "0.1.0",
-  "homepage": "https://github.com/krampstudio/BabyWishList",
+  "homepage": "https://github.com/krampstudio/kwish.io",
   "author": {
     "name": "Bertrand Chevrier",
     "email": "chevrier.bertrand@gmail.com",
@@ -10,46 +10,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/krampstudio/BabyWishList.git"
+    "url": "git://github.com/krampstudio/kwish.io.git"
   },
   "dependencies": {
-    "restify": "2.6.0",
-    "lodash": "~2.2.1",
-    "async": "~0.2.9",
-    "caterpillar": "~2.0.6",
-    "caterpillar-filter": "~2.0.3",
-    "caterpillar-human": "~2.1.1",
-    "nconf": "~0.6.8",
-    "redis": "~0.9.0",
-    "generic-pool": "~2.0.4",
-    "passport": "~0.1.17",
-    "passport-facebook": "~1.0.2",
-    "passport-google": "~0.3.0",
-    "passport-twitter": "~1.0.2",
-    "client-sessions": "~0.4.1",
-    "node-uuid": "~1.4.1",
-    "passport-local": "~0.1.6",
-    "node-static": "~0.7.2",
-    "apac": "0.0.13",
-    "traverse": "~0.6.6"
+    "restify": "^4.2.0",
+    "rethinkdb": "^2.3.3"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=7.0.0"
   },
   "devDependencies": {
-    "nodeunit": "latest",
-    "grunt": "~0.4.*",
-    "grunt-contrib-jshint": "latest",
-    "grunt-contrib-nodeunit": "latest",
-    "grunt-contrib-clean": "latest",
-    "grunt-bower-task": "latest",
-    "grunt-jsdoc": "latest",
-    "grunt-mkdir": "latest",
-    "grunt-contrib-qunit": "latest",
-    "grunt-contrib-requirejs": "latest",
-    "grunt-contrib-compass": "latest",
-    "time-grunt": "~0.2.0",
-    "load-grunt-tasks": "~0.2.1",
-    "grunt-contrib-copy": "~0.5.0"
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-preset-es2017-node7": "^0.4.1",
+    "babel-register": "^6.18.0",
+    "babelify": "^7.3.0",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-exorcise": "^2.1.1",
+    "grunt-sass": "^1.2.1",
+    "load-grunt-tasks": "^3.5.2",
+    "time-grunt": "^1.4.0"
   }
 }
