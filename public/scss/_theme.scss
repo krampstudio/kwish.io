@@ -4,7 +4,7 @@
   font-family: 'Luckiest Guy';
   font-style: normal;
   font-weight: normal;
-  src: local('Luckiest Guy'), local('LuckiestGuy'), 
+  src: local('Luckiest Guy'), local('LuckiestGuy'),
         url('../fonts/Luckiest_Guy/LuckiestGuy.eot') format('eot'),
         url('../fonts/Luckiest_Guy/LuckiestGuy.woff') format('woff'),
         url('../fonts/Luckiest_Guy/LuckiestGuy.ttf') format('truetype'),
@@ -15,7 +15,7 @@
   font-family: 'Sintony';
   font-style: normal;
   font-weight: bold;
-  src: local('Sintony'), 
+  src: local('Sintony'),
         url('../fonts/Sintony/Sintony-Bold.eot') format('eot'),
         url('../fonts/Sintony/Sintony-Bold.woff') format('woff'),
         url('../fonts/Sintony/Sintony-Bold.ttf') format('truetype'),
@@ -26,7 +26,7 @@
   font-family: 'Sintony';
   font-style: normal;
   font-weight: normal;
-  src: local('Sintony'), 
+  src: local('Sintony'),
         url('../fonts/Sintony/Sintony-Regular.eot') format('eot'),
         url('../fonts/Sintony/Sintony-Regular.woff') format('woff'),
         url('../fonts/Sintony/Sintony-Regular.ttf') format('truetype'),
@@ -67,20 +67,20 @@ $footerColor: $invColor;
 
 $infoBgColor: #6A83B2;
 $infoColor: #fff;
-$infoBorderColor: darken($infoBgColor, 5%);  
-        
+$infoBorderColor: darken($infoBgColor, 5%);
+
 $successBgColor: #8EDA7C;
 $successColor: #fff;
-$successBorderColor: darken($successBgColor, 5%); 
- 
+$successBorderColor: darken($successBgColor, 5%);
+
 $failureBgColor: #E35151;
 $failureColor: #fff;
-$failureBorderColor: darken($failureBgColor, 5%); 
+$failureBorderColor: darken($failureBgColor, 5%);
 
 $warningBgColor: #E7732D;
 $warningColor: #fff;
-$warningBorderColor: darken($warningBgColor, 5%); 
-        
+$warningBorderColor: darken($warningBgColor, 5%);
+
 $errorBgColor: $failureBgColor;
 $errorColor: $failureColor;
 $errorBorderColor: $failureBorderColor;
