@@ -39,9 +39,10 @@ $logoFontFamily: 'Luckiest Guy', cursive;
 
 //$primaryColor: #522A67;
 //$primaryColor: #7D4C96;
-$primaryColor: #9970AF;
+//$primaryColor: #9970AF;
+$primaryColor : #7a71b0;
 
-$baseColor: #444;
+$baseColor: #333;
 $baseBgColor: #fff;
 
 $borderColor : #cfcfcf;
@@ -58,9 +59,9 @@ $linkHoverColor: lighten($primaryColor, 5%);
 $invLinkColor: $invColor;
 $invLinkHoverColor: darken($primaryColor, 5%);
 
-$navBgColor: $invBgColor;
+$navBgColor: $primaryColor;
 $navBgHoverColor: lighten($navBgColor, 15%);
-$navColor: $invColor;
+$navColor: #fff;;
 
 $footerBgColor: #666;
 $footerColor: $invColor;

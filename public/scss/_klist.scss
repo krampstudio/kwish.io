@@ -1,0 +1,28 @@
+.klist {
+  
+    article {
+        padding: 1em;
+        border: solid 1px #ddd;
+
+        img {
+            float: left;
+            margin-right: .5em;
+            margin-bottom: .5em;
+        }
+
+        h1 {
+           font-size: 1.75em; 
+           color: $primaryColor;
+        }
+
+        .price {
+            clear: both;
+           font-size: 1.5em; 
+           margin-top: .5em;
+        }
+        .actions {
+           margin-top: .5em;
+            text-align: right; 
+        }
+    } 
+}

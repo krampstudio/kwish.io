@@ -79,4 +79,12 @@ a {
     }
 }
 
+.actions a {
 
+    display: inline-block;
+    background-color : $primaryColor;
+    color: #fff;
+    border-radius: 4px;
+    padding: .5em 1em;
+
+}

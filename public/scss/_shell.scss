@@ -1,0 +1,30 @@
+header {
+   height: 75px;
+   background-color : $navBgColor;
+   color: $navColor;
+
+   h1 {
+        font-family: $logoFontFamily;
+        padding: 1em;
+   }
+}
+
+main {
+    height: calc(100vh - 125px);
+    overflow: auto;
+
+    background-color : $contentBgColor;
+    color: $contentColor;
+}
+
+footer {
+    height: 50px;
+    background-color : $invBgColor;
+    color: $invColor;
+    text-align: center;
+    padding: 1em;
+    a {
+        color: $invColor;
+        text-decoration: underline;
+    }
+}
