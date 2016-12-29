@@ -54,6 +54,7 @@ html, body{
     font-family: $baseFontFamily;
     color: $baseColor;
     font-size: $baseFontSize;
+    line-height: 1.3;
 }
 h1 {
     font-size: 2em;
@@ -83,8 +84,14 @@ a {
 
     display: inline-block;
     background-color : $primaryColor;
-    color: #fff;
+    color: $invColor;
     border-radius: 4px;
     padding: .5em 1em;
 
+    &.disabled, &[disabled] {
+        background-color : $disabledBgColor;
+        color: $disabledColor;
+        border: solid 1px $disabledBorderColor;
+        cursor: default;
+    }
 }

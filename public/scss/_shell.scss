@@ -13,8 +13,8 @@ main {
     height: calc(100vh - 125px);
     overflow: auto;
 
-    background-color : $contentBgColor;
-    color: $contentColor;
+    background-color : $baseBgColor;
+    color: $baseColor;
 }
 
 footer {

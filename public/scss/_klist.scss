@@ -1,9 +1,10 @@
 .klist {
-  
+
     article {
         padding: 1em;
         border: solid 1px #ddd;
-
+        max-width: 800px;
+        margin: auto;
         img {
             float: left;
             margin-right: .5em;
@@ -11,18 +12,49 @@
         }
 
         h1 {
-           font-size: 1.75em; 
+           font-size: 1.75em;
            color: $primaryColor;
+           white-space: nowrap;
+           overflow: hidden;
+           text-overflow: ellipsis;
+           margin-bottom: .3em;
+        }
+
+        & > p {
+            max-height: 2.6em;
+           overflow: hidden;
         }
 
         .price {
             clear: both;
-           font-size: 1.5em; 
+           font-size: 1.5em;
            margin-top: .5em;
+
+           progress {
+               display:block;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                border: none;
+                height: .5em;
+                line-height: 1.3em;
+                width: 75px;
+                border-radius: 3px;
+                color: $primaryColor;
+           }
+
+           progress[value]::-webkit-progress-value{
+                border-radius: 3px;
+                background-color: $primaryColor;
+            }
+           progress::-moz-progress-bar {
+                border-radius: 3px;
+                background-color: $primaryColor;
+           }
         }
         .actions {
            margin-top: .5em;
-            text-align: right; 
+            text-align: right;
         }
-    } 
+    }
 }

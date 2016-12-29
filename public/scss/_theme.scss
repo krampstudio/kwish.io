@@ -33,57 +33,49 @@
         url('../fonts/Sintony/Sintony-Regular.svg') format('svg');
 }
 
-$baseFontSize: 14px;
-$baseFontFamily: 'Sintony', sans-serif;
-$logoFontFamily: 'Luckiest Guy', cursive;
+$baseFontSize:       14px;
+$baseFontFamily:     'Sintony', sans-serif;
+$logoFontFamily:     'Luckiest Guy', cursive;
 
-//$primaryColor: #522A67;
-//$primaryColor: #7D4C96;
-//$primaryColor: #9970AF;
-$primaryColor : #7a71b0;
+$primaryColor:       #7a71b0;
 
-$baseColor: #333;
-$baseBgColor: #fff;
+$baseColor:          #333;
+$baseBgColor:        #fff;
+$linkColor:          darken($primaryColor, 5%);
+$linkHoverColor:     lighten($primaryColor, 5%);
+$borderColor:        #cfcfcf;
 
-$borderColor : #cfcfcf;
+$invColor:           #fff;
+$invBgColor:         #666;
+$invLinkColor:       $invColor;
+$invLinkHoverColor:  darken($primaryColor, 5%);
 
-$invColor: #fff;
-$invBgColor: #333;
+$navBgColor:         $primaryColor;
+$navBgHoverColor:    lighten($navBgColor, 15%);
+$navColor:           #fff;;
 
-$contentBgColor: #F2EDF5;
-$contentColor : #666;
+$infoBgColor:        #6A83B2;
+$infoColor:          #fff;
+$infoBorderColor:    darken($infoBgColor, 5%);
 
-$linkColor: darken($primaryColor, 5%);
-$linkHoverColor: lighten($primaryColor, 5%);
-
-$invLinkColor: $invColor;
-$invLinkHoverColor: darken($primaryColor, 5%);
-
-$navBgColor: $primaryColor;
-$navBgHoverColor: lighten($navBgColor, 15%);
-$navColor: #fff;;
-
-$footerBgColor: #666;
-$footerColor: $invColor;
-
-$infoBgColor: #6A83B2;
-$infoColor: #fff;
-$infoBorderColor: darken($infoBgColor, 5%);
-
-$successBgColor: #8EDA7C;
-$successColor: #fff;
+$successBgColor:     #8EDA7C;
+$successColor:       #fff;
 $successBorderColor: darken($successBgColor, 5%);
 
-$failureBgColor: #E35151;
-$failureColor: #fff;
+$failureBgColor:     #E35151;
+$failureColor:       #fff;
 $failureBorderColor: darken($failureBgColor, 5%);
 
-$warningBgColor: #E7732D;
-$warningColor: #fff;
+$warningBgColor:     #E7732D;
+$warningColor:       #fff;
 $warningBorderColor: darken($warningBgColor, 5%);
 
-$errorBgColor: $failureBgColor;
-$errorColor: $failureColor;
-$errorBorderColor: $failureBorderColor;
+$errorBgColor:       $failureBgColor;
+$errorColor:         $failureColor;
+$errorBorderColor:   $failureBorderColor;
+
+$disabledBgColor:     #ddd;
+$disabledColor:       #fff;
+$disabledBorderColor: #ddd;
 
 
