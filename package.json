@@ -13,8 +13,8 @@
     "url": "git://github.com/krampstudio/kwish.io.git"
   },
   "dependencies": {
-    "restify": "^4.2.0",
-    "rethinkdb": "^2.3.3"
+    "nano": "^6.2.0",
+    "restify": "^4.2.0"
   },
   "engines": {
     "node": ">=7.0.0"
