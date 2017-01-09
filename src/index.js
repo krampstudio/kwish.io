@@ -1,6 +1,7 @@
 import restify from 'restify';
 
 import klistService from './service/klist.js';
+import kitemService from './service/kitem.js';
 
 const server = restify.createServer();
 
@@ -17,6 +18,19 @@ server.get('/klist/:name', (req, res, next) => {
     if(req.params.name){
         return klistService()
             .getOne(req.params.name)
+            .then( data => {
+                res.send(200, data);
+                next();
+            })
+            .catch( next );
+    }
+    return next();
+});
+
+server.get('/klist/:name/items', (req, res, next) => {
+    if(req.params.name){
+        return kitemService()
+            .getListItems(req.params.name)
             .then( data => {
                 res.send(200, data);
                 next();

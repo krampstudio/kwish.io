@@ -36,7 +36,6 @@ const klistServiceFactory = function klistServiceFactory(){
                     return resolve(data);
                 });
             });
-
         }
     };
 
