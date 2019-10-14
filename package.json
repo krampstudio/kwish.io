@@ -13,7 +13,7 @@
     "url": "git://github.com/krampstudio/BabyWishList.git"
   },
   "dependencies": {
-    "restify": "2.6.0",
+    "restify": "8.4.0",
     "lodash": "~2.2.1",
     "async": "~0.2.9",
     "caterpillar": "~2.0.6",
