@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "restify": "2.6.0",
-    "lodash": "~2.2.1",
+    "lodash": "~4.17.19",
     "async": "~0.2.9",
     "caterpillar": "~2.0.6",
     "caterpillar-filter": "~2.0.3",
